@@ -37,10 +37,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestLua", "samples\TestLua\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MoonWarriors", "samples\MoonWarriors\proj.win32\MoonWarriors.vcxproj", "{1DB7C0FC-46FF-4A1B-82E0-C6244EEEC4C2}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NeoSalamander.win32", "NeoSalamander\proj.win32\NeoSalamander.win32.vcxproj", "{0E67F2C9-413A-4F66-8C75-D798FBE0FFAA}"
+EndProject
 Global
-	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
-		DPCodeReviewSolutionGUID = {00000000-0000-0000-0000-000000000000}
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
 		Release|Win32 = Release|Win32
@@ -94,8 +93,15 @@ Global
 		{1DB7C0FC-46FF-4A1B-82E0-C6244EEEC4C2}.Debug|Win32.Build.0 = Debug|Win32
 		{1DB7C0FC-46FF-4A1B-82E0-C6244EEEC4C2}.Release|Win32.ActiveCfg = Release|Win32
 		{1DB7C0FC-46FF-4A1B-82E0-C6244EEEC4C2}.Release|Win32.Build.0 = Release|Win32
+		{0E67F2C9-413A-4F66-8C75-D798FBE0FFAA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0E67F2C9-413A-4F66-8C75-D798FBE0FFAA}.Debug|Win32.Build.0 = Debug|Win32
+		{0E67F2C9-413A-4F66-8C75-D798FBE0FFAA}.Release|Win32.ActiveCfg = Release|Win32
+		{0E67F2C9-413A-4F66-8C75-D798FBE0FFAA}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
+		DPCodeReviewSolutionGUID = {00000000-0000-0000-0000-000000000000}
 	EndGlobalSection
 EndGlobal
