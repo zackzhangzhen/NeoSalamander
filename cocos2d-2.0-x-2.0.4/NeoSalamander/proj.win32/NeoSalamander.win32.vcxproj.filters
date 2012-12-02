@@ -13,6 +13,42 @@
       <UniqueIdentifier>{a00c1341-85ce-46b2-b5ec-aee717eeb981}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;jpg;jpeg;jpe;png;manifest</Extensions>
     </Filter>
+    <Filter Include="source\layer">
+      <UniqueIdentifier>{1bccb44a-fb4d-458b-bc54-80df71f8e518}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\layer">
+      <UniqueIdentifier>{11894baf-51a9-4200-84ed-6447569e04ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\sprite">
+      <UniqueIdentifier>{d0cbb799-0912-41f1-9264-d7dff33f16f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\sprite">
+      <UniqueIdentifier>{13e07340-df79-4ebc-ad8a-9dbaa83eefc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\scene">
+      <UniqueIdentifier>{5105ac3e-45dc-47dd-a40b-3587247e1cca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\scene">
+      <UniqueIdentifier>{e16af3a0-a8e3-45d0-9da2-a5f478a7354b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\action">
+      <UniqueIdentifier>{62b1fc2a-8089-47c5-9509-d7aa67839929}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\action">
+      <UniqueIdentifier>{ecd1d3e5-bdd1-45e7-a2a3-dc35bf164e2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\menu">
+      <UniqueIdentifier>{26a07c35-d5ed-4b16-aab3-999ebc41afd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\menu">
+      <UniqueIdentifier>{d3e04fc9-df6e-4251-95e1-94f034ade76d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\director">
+      <UniqueIdentifier>{ff51ce4f-f5ad-4d27-821e-6b603888ae46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\director">
+      <UniqueIdentifier>{ca8e1955-4cfc-449c-920b-7870f710afbc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\NeoSalamander.ico">
@@ -46,6 +82,9 @@
     <ClInclude Include="..\Classes\HelloWorldScene.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\layer\BgLayer.h">
+      <Filter>include\layer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -56,6 +95,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\layer\BgLayer.cpp">
+      <Filter>source\layer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
