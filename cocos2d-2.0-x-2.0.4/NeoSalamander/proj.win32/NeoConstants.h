@@ -1,7 +1,11 @@
 #pragma once
-
-namespace NeoConstants
+class NeoConstants
 {
-	int WIN_WIDTH = 320;
-	int WIN_HEIGHT = 576;
-}
+public:
+	NeoConstants(void);
+	~NeoConstants(void);
+
+	static int WIN_WIDTH;
+	static int WIN_HEIGHT;
+};
+

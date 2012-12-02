@@ -136,6 +136,7 @@
     <ClInclude Include="..\Classes\layer\BgLayer.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="NeoConstants.h" />
+    <ClInclude Include="Plane.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +145,7 @@
     <ClCompile Include="..\Classes\layer\BgLayer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NeoConstants.cpp" />
+    <ClCompile Include="Plane.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
