@@ -1,5 +1,6 @@
 #include "ZSprite.h"
 using namespace cocos2d;
+//The base class for the sprites
 ZSprite::ZSprite(void)
 {
 
