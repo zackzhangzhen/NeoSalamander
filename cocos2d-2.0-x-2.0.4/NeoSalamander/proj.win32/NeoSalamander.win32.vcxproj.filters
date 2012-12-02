@@ -106,7 +106,7 @@
     <ClInclude Include="..\Classes\utility\Utility.h">
       <Filter>include\utility</Filter>
     </ClInclude>
-    <ClInclude Include="Plane.h">
+    <ClInclude Include="..\Classes\sprite\Plane.h">
       <Filter>include\sprite</Filter>
     </ClInclude>
   </ItemGroup>
@@ -132,7 +132,7 @@
     <ClCompile Include="..\Classes\utility\Utility.cpp">
       <Filter>source\utility</Filter>
     </ClCompile>
-    <ClCompile Include="Plane.cpp">
+    <ClCompile Include="..\Classes\sprite\Plane.cpp">
       <Filter>source\sprite</Filter>
     </ClCompile>
   </ItemGroup>
