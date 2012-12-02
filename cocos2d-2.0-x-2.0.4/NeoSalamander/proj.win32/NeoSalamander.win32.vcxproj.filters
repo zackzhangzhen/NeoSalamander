@@ -55,6 +55,12 @@
     <Filter Include="source\constants">
       <UniqueIdentifier>{cb61e9ec-77d7-4d7c-abe5-b61e0e978c40}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\utility">
+      <UniqueIdentifier>{b3ba2995-6187-4ffc-8bf4-dcf16086a51c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\utility">
+      <UniqueIdentifier>{4848f247-5ae8-41e3-afdd-7be056081345}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\NeoSalamander.ico">
@@ -97,6 +103,9 @@
     <ClInclude Include="..\Classes\sprite\ZSprite.h">
       <Filter>include\sprite</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\utility\Utility.h">
+      <Filter>include\utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -116,6 +125,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\sprite\ZSprite.cpp">
       <Filter>source\sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\utility\Utility.cpp">
+      <Filter>source\utility</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

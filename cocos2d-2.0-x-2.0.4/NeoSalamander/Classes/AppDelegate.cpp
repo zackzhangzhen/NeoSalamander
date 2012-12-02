@@ -4,6 +4,7 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
 #include "layer/BgLayer.h";
+#include "utility/Utility.h"
 using namespace CocosDenshion;
 
 USING_NS_CC;
@@ -33,6 +34,15 @@ bool AppDelegate::applicationDidFinishLaunching()
     //CCScene *pScene = HelloWorld::scene();
 	CCScene *pScene = CCScene::create();
 	pScene->addChild(new BgLayer());
+
+	CCRepeatForever* ac = Utility::getAnimationAction("pic\\explosion\\", "png",26, false);
+
+	/*CCSprite *player = CCSprite::spriteWithFile("Stewie.png", 
+		CCRectMake(0, 0, 55, 62) );*/
+	CCSprite *player = CCSprite::create();
+	player->setPosition(ccp(200,200));
+	player->runAction(ac);
+	pScene->addChild(player,1);
     // run
     pDirector->runWithScene(pScene);
     return true;
