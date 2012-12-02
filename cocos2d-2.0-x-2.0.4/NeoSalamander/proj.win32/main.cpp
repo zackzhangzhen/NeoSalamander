@@ -1,7 +1,7 @@
 #include "main.h"
 #include "AppDelegate.h"
 #include "CCEGLView.h"
-
+#include "NeoConstants.h"
 USING_NS_CC;
 
 // uncomment below line, open debug console
@@ -25,7 +25,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
     // create the application instance
     AppDelegate app;
     CCEGLView* eglView = CCEGLView::sharedOpenGLView();
-    eglView->setFrameSize(480, 320);
+	eglView->setFrameSize(NeoConstants::WIN_WIDTH, NeoConstants::WIN_HEIGHT);
 
     int ret = CCApplication::sharedApplication()->run();
 

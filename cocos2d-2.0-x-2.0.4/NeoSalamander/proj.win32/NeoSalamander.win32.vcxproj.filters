@@ -94,6 +94,9 @@
     <ClInclude Include="NeoConstants.h">
       <Filter>include\constants</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\sprite\ZSprite.h">
+      <Filter>include\sprite</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -110,6 +113,9 @@
     </ClCompile>
     <ClCompile Include="NeoConstants.cpp">
       <Filter>source\constants</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\sprite\ZSprite.cpp">
+      <Filter>source\sprite</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

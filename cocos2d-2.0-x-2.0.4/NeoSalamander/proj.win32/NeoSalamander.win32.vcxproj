@@ -134,6 +134,7 @@
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\layer\BgLayer.h" />
+    <ClInclude Include="..\Classes\sprite\ZSprite.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="NeoConstants.h" />
     <ClInclude Include="resource.h" />
@@ -142,6 +143,7 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\layer\BgLayer.cpp" />
+    <ClCompile Include="..\Classes\sprite\ZSprite.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NeoConstants.cpp" />
   </ItemGroup>

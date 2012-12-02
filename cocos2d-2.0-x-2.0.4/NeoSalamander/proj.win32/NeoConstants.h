@@ -1,7 +1,10 @@
-#pragma once
+#ifndef __NEO_CONSTANTS_H__
+#define __NEO_CONSTANTS_H__ 1
 
-namespace NeoConstants
+class NeoConstants
 {
-	int WIN_WIDTH = 320;
-	int WIN_HEIGHT = 576;
-}
+public:
+	static int WIN_WIDTH;
+	static int WIN_HEIGHT;
+};
+#endif
