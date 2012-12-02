@@ -135,6 +135,7 @@
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\layer\BgLayer.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="NeoConstants.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +143,7 @@
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\layer\BgLayer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NeoConstants.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

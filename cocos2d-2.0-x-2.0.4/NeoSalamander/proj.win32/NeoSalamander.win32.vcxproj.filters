@@ -49,6 +49,12 @@
     <Filter Include="source\director">
       <UniqueIdentifier>{ca8e1955-4cfc-449c-920b-7870f710afbc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\constants">
+      <UniqueIdentifier>{d8da4244-8f3b-4e1a-a85b-acd6a61dcce8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\constants">
+      <UniqueIdentifier>{cb61e9ec-77d7-4d7c-abe5-b61e0e978c40}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\NeoSalamander.ico">
@@ -85,6 +91,9 @@
     <ClInclude Include="..\Classes\layer\BgLayer.h">
       <Filter>include\layer</Filter>
     </ClInclude>
+    <ClInclude Include="NeoConstants.h">
+      <Filter>include\constants</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -98,6 +107,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\layer\BgLayer.cpp">
       <Filter>source\layer</Filter>
+    </ClCompile>
+    <ClCompile Include="NeoConstants.cpp">
+      <Filter>source\constants</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

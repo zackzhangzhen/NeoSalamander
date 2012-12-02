@@ -3,6 +3,7 @@
 
 BgLayer::BgLayer(void)
 {
+
 }
 
 
