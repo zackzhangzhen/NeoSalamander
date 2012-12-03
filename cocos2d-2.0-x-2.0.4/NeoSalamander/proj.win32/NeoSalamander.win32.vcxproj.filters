@@ -109,6 +109,9 @@
     <ClInclude Include="..\Classes\sprite\Plane.h">
       <Filter>include\sprite</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\layer\ObjectLayer.h">
+      <Filter>include\layer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -134,6 +137,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\sprite\Plane.cpp">
       <Filter>source\sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\layer\ObjectLayer.cpp">
+      <Filter>source\layer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
