@@ -51,7 +51,7 @@ char* Utility::convertStringToChar(std::string str)
 	return actionRepeat;
 }
 
- CCPoint Utility::getRandomPoint()
+ CCPoint Utility::getRandomPointTop()
  {
 	 CCSize winSize = CCDirector::sharedDirector()->getWinSize();
 	int minX = 0 - NeoConstants::WIDTH_TOLERANCE;
@@ -65,6 +65,53 @@ char* Utility::convertStringToChar(std::string str)
 	return ccp(actualX, actualY);
  }
 
+ CCPoint Utility::getRandomPointOnOneSide(bool left)
+ {
+	 CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+	int minY= 0 - NeoConstants::HEIGHT_TOLERANCE;
+	int maxY = winSize.height + NeoConstants::HEIGHT_TOLERANCE;
+	int rangeY = maxY - minY;
+	// srand( TimGetTicks() );
+	int random = rand();
+	int actualY = ( random % rangeY ) + minY;
+
+	int actualX;
+	if(left)
+	{
+		actualX = 0 - NeoConstants::WIDTH_TOLERANCE;
+	}
+
+	else
+	{
+		actualX = winSize.width + NeoConstants::WIDTH_TOLERANCE;
+	}
+	
+	return ccp(actualX, actualY);
+ }
+
+ CCPoint Utility::getRandomPointOnRandomSide()
+ {
+	 bool left = Utility::getRandomBoolean();
+	 CCPoint pt = getRandomPointOnOneSide(left);
+
+	 return pt;
+ }
+
+ CCPoint* Utility::getRandomPointOnBothSides()
+ {
+	 CCPoint pt1 = getRandomPointOnOneSide(true);
+	 int y = pt1.y;
+
+	 CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+	 int x = winSize.width + NeoConstants::WIDTH_TOLERANCE;
+	 CCPoint pt2 = ccp(x,y);
+
+	 CCPoint* ptPair = new CCPoint[2];
+	 ptPair[0] = pt1;
+	 ptPair[1] = pt2;
+	 return ptPair;
+ }
+
  bool Utility::getRandomBoolean()
  {
 	 int random = rand();
@@ -72,10 +119,8 @@ char* Utility::convertStringToChar(std::string str)
 	 return i == 0;
  }
 
- CCMoveTo* Utility::generateLinearMoveToAction(float velocity, bool moveLeft, CCSize size, CCPoint pos)
+ CCMoveTo* Utility::generateLinearMoveToDownAction(float velocity, bool moveLeft, CCSize size, CCPoint pos)
 {
-	// Determine where we wish to shoot the projectile to
-
 	float ratioRange = 10 - 1;
 
 	float randomRatio = ( rand() % 9 ) + 1;
@@ -99,6 +144,31 @@ char* Utility::convertStringToChar(std::string str)
     float length = sqrtf((realXLen * realXLen) 
                                         + (realYLen*realYLen));
     
+    float realMoveDuration = length/velocity;
+
+	return CCMoveTo::actionWithDuration(realMoveDuration, realDest);
+}
+
+CCMoveTo* Utility::generateLinearMoveToHorizontalAction(float velocity, bool moveLeft, CCSize size, CCPoint pos)
+{
+
+	float ratioRange = 10 - 1;
+
+	float randomRatio = ( rand() % 9 ) + 1;
+
+	int realX ;
+	if(moveLeft)
+	{
+		realX = 0 - size.width;//don't use size.width/2, let it move further
+	}
+	else
+	{
+		realX = NeoConstants::WIN_WIDTH + size.width;//don't use size.width/2 let it move further
+	}
+	
+    CCPoint realDest = ccp(realX, pos.y);
+
+	float length = realX - pos.x;
     float realMoveDuration = length/velocity;
 
 	return CCMoveTo::actionWithDuration(realMoveDuration, realDest);

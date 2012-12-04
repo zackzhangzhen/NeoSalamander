@@ -19,23 +19,38 @@ ZSprite::ZSprite(char* fileName, bool randomSpawn)
 	this->m_originSize = this->m_sprite->getContentSize();
 	if(randomSpawn)
 	{
-		this->m_sprite->setPosition(Utility::getRandomPoint());
+		this->m_sprite->setPosition(Utility::getRandomPointTop());
 	}	
 }
 
-ZSprite::ZSprite(char* fileName, bool randomSpawn, bool linearMove, float velocity)
+ZSprite::ZSprite(char* fileName, bool randomSpawn, int direction, float velocity)
 {
 	this->m_sprite = CCSprite::create(fileName);
 	this->m_originSize = this->m_sprite->getContentSize();
 	if(randomSpawn)
 	{
-		CCPoint pt = Utility::getRandomPoint();
+		CCPoint pt = Utility::getRandomPointTop();
 		this->m_sprite->setPosition(pt);
 	}
 
-	if(linearMove)
+	switch(direction)
 	{
-		linearMoveWithRandomDirection(velocity);
+	case (0/*NeoConstants::MOVE_DOWN*/): 
+		{
+			 linearMoveDownWithRandomDirection(velocity);
+			 break;
+		 }
+
+	case (1/*NeoConstants::MOVE_LEFT*/):
+		{
+
+		}
+
+	case (2/*NeoConstants::MOVE_RIGHT*/):
+		{
+
+		}
+
 	}
 }
 
@@ -44,19 +59,19 @@ void ZSprite::addToCCNode(CCNode* node, int zOrder)
 	node->addChild(this->m_sprite, zOrder);
 }
 
-void ZSprite::linearMoveWithRandomDirection(float velocity)
+void ZSprite::linearMoveDownWithRandomDirection(float velocity)
 {
 	// Determine where we wish to shoot the projectile to
-	CCMoveTo* move = Utility::generateLinearMoveToAction(velocity, Utility::getRandomBoolean(),this->m_sprite->getContentSize(), this->m_sprite->getPosition());
+	CCMoveTo* move = Utility::generateLinearMoveToDownAction(velocity, Utility::getRandomBoolean(),this->m_sprite->getContentSize(), this->m_sprite->getPosition());
 
 	//this->m_sprite->runAction( CCSequence::actions(move));
 	this->m_sprite->runAction( move);
 }
 
-void ZSprite::linearMove(float velocity, bool moveLeft)
+void ZSprite::linearMoveDown(float velocity, bool moveLeft)
 {
 	// Determine where we wish to shoot the projectile to
-	CCMoveTo* move = Utility::generateLinearMoveToAction(velocity, Utility::getRandomBoolean(),this->m_sprite->getContentSize(), this->m_sprite->getPosition());
+	CCMoveTo* move = Utility::generateLinearMoveToDownAction(velocity, Utility::getRandomBoolean(),this->m_sprite->getContentSize(), this->m_sprite->getPosition());
 
 	this->m_sprite->runAction( move);
 }

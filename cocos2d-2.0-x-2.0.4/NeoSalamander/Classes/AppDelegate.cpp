@@ -6,6 +6,7 @@
 #include "layer/BgLayer.h";
 #include "utility/Utility.h"
 #include "sprite/ZSprite.h"
+#include "layer/ObjectLayer.h"
 using namespace CocosDenshion;
 
 USING_NS_CC;
@@ -45,17 +46,18 @@ bool AppDelegate::applicationDidFinishLaunching()
 	player->setPosition(ccp(200,200));
 	player->runAction(ac);
 
-	for(int i = 0; i < 5; i ++)
+	for(int i = 0; i < 0; i ++)
 	{
-		ZSprite* sprite = new ZSprite("pic\\object\\stewie.png",true,true,200);
-		sprite->addToCCNode(pScene, 2);
+		ZSprite* sprite = new ZSprite("pic\\object\\stewie.png",true,NeoConstants::MOVE_DOWN,200);
+		sprite->addToCCNode(pScene, 0);
 	}
-	
 
-	pScene->addChild(player,1);
-	
+	ObjectLayer* l = ObjectLayer::createObjectLayer();
+	l->scheduleRandomSpawn(0.1F);
+	pScene->addChild(l,1);
+	pScene->addChild(player,2);
     // run
-    pDirector->runWithScene(pScene);
+	pDirector->runWithScene(pScene);
     return true;
 }
 

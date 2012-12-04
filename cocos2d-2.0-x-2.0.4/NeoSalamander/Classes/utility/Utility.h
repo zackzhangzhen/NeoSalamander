@@ -15,9 +15,14 @@ public:
 	static char* appendIntToString(char*, char* extention, int i);
 	static char* convertStringToChar(std::string str);
 	static CCRepeatForever* getAnimationAction(char* filePrefix, char* extension, int suffixCount, bool startFromIndex0);
-	static CCPoint getRandomPoint();
+	static CCPoint getRandomPointTop();
+	static CCPoint getRandomPointOnRandomSide();
+	static CCPoint getRandomPointOnOneSide(bool left);
+	static CCPoint* getRandomPointOnBothSides();
 	static bool getRandomBoolean();
-	static CCMoveTo* generateLinearMoveToAction(float velocity, bool moveLeft, CCSize size, CCPoint pos);
+	static CCMoveTo* generateLinearMoveToDownAction(float velocity, bool moveLeft, CCSize size, CCPoint pos);
+	static CCMoveTo* generateLinearMoveToHorizontalAction(float velocity, bool moveLeft, CCSize size, CCPoint pos);
+
 private:
 	Utility(void);
 };
