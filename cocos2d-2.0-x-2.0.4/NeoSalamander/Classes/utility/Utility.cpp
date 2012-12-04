@@ -58,7 +58,8 @@ char* Utility::convertStringToChar(std::string str)
 	int maxX = winSize.width + NeoConstants::WIDTH_TOLERANCE;
 	int rangeX = maxX - minX;
 	// srand( TimGetTicks() );
-	int actualX = ( rand() % rangeX ) + minX;
+	int random = rand();
+	int actualX = ( random % rangeX ) + minX;
 	int actualY = winSize.height + NeoConstants::HEIGHT_TOLERANCE;
 	
 	return ccp(actualX, actualY);
@@ -66,7 +67,8 @@ char* Utility::convertStringToChar(std::string str)
 
  bool Utility::getRandomBoolean()
  {
-	 int i = rand()%1;
+	 int random = rand();
+	 int i = random%2;
 	 return i == 0;
  }
 

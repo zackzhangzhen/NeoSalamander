@@ -15,8 +15,9 @@ public:
 	ZSprite(void);
 	ZSprite(char* fileName);
 	ZSprite(char* fileName, bool randomSpawn);
-	ZSprite(char* fileName, bool randomSpawn, bool linearMove);
+	ZSprite(char* fileName, bool randomSpawn, bool linearMove, float velocity = 1);
 	bool isInScreen();
+	void addToCCNode(CCNode* node, int zOrder);
 
 	void linearMoveWithRandomDirection(float velocity);
 	void linearMove(float velocity, bool moveLeft);

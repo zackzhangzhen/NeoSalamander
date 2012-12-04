@@ -23,19 +23,25 @@ ZSprite::ZSprite(char* fileName, bool randomSpawn)
 	}	
 }
 
-ZSprite::ZSprite(char* fileName, bool randomSpawn, bool linearMove)
+ZSprite::ZSprite(char* fileName, bool randomSpawn, bool linearMove, float velocity)
 {
 	this->m_sprite = CCSprite::create(fileName);
 	this->m_originSize = this->m_sprite->getContentSize();
 	if(randomSpawn)
 	{
-		this->m_sprite->setPosition(Utility::getRandomPoint());
+		CCPoint pt = Utility::getRandomPoint();
+		this->m_sprite->setPosition(pt);
 	}
 
 	if(linearMove)
 	{
-
+		linearMoveWithRandomDirection(velocity);
 	}
+}
+
+void ZSprite::addToCCNode(CCNode* node, int zOrder)
+{
+	node->addChild(this->m_sprite, zOrder);
 }
 
 void ZSprite::linearMoveWithRandomDirection(float velocity)
@@ -43,7 +49,8 @@ void ZSprite::linearMoveWithRandomDirection(float velocity)
 	// Determine where we wish to shoot the projectile to
 	CCMoveTo* move = Utility::generateLinearMoveToAction(velocity, Utility::getRandomBoolean(),this->m_sprite->getContentSize(), this->m_sprite->getPosition());
 
-	this->m_sprite->runAction( CCSequence::actions(move));
+	//this->m_sprite->runAction( CCSequence::actions(move));
+	this->m_sprite->runAction( move);
 }
 
 void ZSprite::linearMove(float velocity, bool moveLeft)
@@ -51,7 +58,7 @@ void ZSprite::linearMove(float velocity, bool moveLeft)
 	// Determine where we wish to shoot the projectile to
 	CCMoveTo* move = Utility::generateLinearMoveToAction(velocity, Utility::getRandomBoolean(),this->m_sprite->getContentSize(), this->m_sprite->getPosition());
 
-	this->m_sprite->runAction( CCSequence::actions(move));
+	this->m_sprite->runAction( move);
 }
 
 bool ZSprite::isInScreen()
