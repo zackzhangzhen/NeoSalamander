@@ -15,7 +15,7 @@ using namespace cocos2d;
  pl->AddAnimation("anim1",Utility::getAnimationAction("pre","ext",5,true));
  pl->PlayAnimation("anim1");
 */
-class Plane
+class Plane:public CCObject
 {
 public:
 	Plane(void);
@@ -26,10 +26,16 @@ public:
 	void AddToLayer(CCLayer* layer);//The plane add itself to a layer
 	void AddAnimation(string animName,CCRepeatForever* anim);//Add an animation to the plane's anim map
 	void PlayAnimation(string animName);//Play an animation of the plane,designated by the animName
+	void Fire();
+
+	void EquipBullet(char* sprite);
+	void FireDone(CCNode* sender);
 	~Plane(void);
 
 protected:
-	CCSprite* m_Sprite;
+	CCSprite* m_SpritePlane;
+	CCSprite* m_SpriteBullet;
+	    char  m_SpriteFileBullet[256];
 	map<string,CCRepeatForever*> m_AnimMap;
 	CCRepeatForever* m_curAnim;
     CCLayer* m_curLayer;
