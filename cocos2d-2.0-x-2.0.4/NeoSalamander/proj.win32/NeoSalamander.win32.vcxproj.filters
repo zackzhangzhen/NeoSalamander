@@ -124,6 +124,12 @@
     <ClInclude Include="..\Classes\action\CCMoveToWrapper.h">
       <Filter>include\action</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\scheduler\LayerScheduler.h">
+      <Filter>include\scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\animation\AnimationWrapper.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -158,6 +164,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\action\CCMoveToWrapper.cpp">
       <Filter>source\action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\scheduler\LayerScheduler.cpp">
+      <Filter>source\scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\animation\AnimationWrapper.cpp">
+      <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

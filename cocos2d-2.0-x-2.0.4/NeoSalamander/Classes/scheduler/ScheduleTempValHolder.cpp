@@ -12,6 +12,17 @@ ScheduleTempValHolder::ScheduleTempValHolder(void)
 	tempZOrder = 0;
 }
 
+ScheduleTempValHolder::ScheduleTempValHolder(char* fileName, int dir, int bulkCount, float spawnInterval, float velocity, int zOrder)
+{
+	tempSpriteFileName = fileName;
+	tempDirection = dir;
+	tempSpawnBulkCount = bulkCount;
+	tempSpawnInterval = spawnInterval;
+	tempVelocity = velocity;
+	tempZOrder = zOrder;
+
+}
+
 void ScheduleTempValHolder::resetTempValueForSingleSprite(char* fileName, int dir, float velocity, int zOrder)
 {
 	tempSpriteFileName = fileName;

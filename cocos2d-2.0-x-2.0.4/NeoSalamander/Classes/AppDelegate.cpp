@@ -48,14 +48,14 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 	for(int i = 0; i < 0; i ++)
 	{
-		ZSprite* sprite = new ZSprite("pic\\object\\stewie.png",true,NeoConstants::MOVE_DOWN,200);
+		ZSprite* sprite = new ZSprite("pic\\object\\stewie.png",NeoConstants::MOVE_DOWN,200);
 		sprite->addToCCNode(pScene, 0);
 	}
 
 	ObjectLayer* l = ObjectLayer::createObjectLayer();
-	l->scheduleEnemies();
+	l->scheduleObjects();
 	pScene->addChild(l,1);
-	pScene->addChild(player,2);
+	//pScene->addChild(player,2);
     // run
 	pDirector->runWithScene(pScene);
     return true;

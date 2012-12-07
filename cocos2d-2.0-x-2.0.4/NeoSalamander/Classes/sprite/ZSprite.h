@@ -16,7 +16,7 @@ public:
 	ZSprite(void);
 	ZSprite(char* fileName);
 	ZSprite(char* fileName, bool randomSpawn);
-	ZSprite(char* fileName, bool randomSpawn, int direction, float velocity = 1);
+	ZSprite(char* fileName, int direction, float velocity = 1);
 	ZSprite(ZSprite& rhs, float spawnInterval);
 	bool isInScreen();
 	void addToCCNode(CCNode* node, int zOrder);

@@ -4,6 +4,7 @@ class ScheduleTempValHolder
 {
 public:
 	ScheduleTempValHolder(void);
+	ScheduleTempValHolder(char*, int, int, float, float, int);
 	~ScheduleTempValHolder(void);
 
 	char* tempSpriteFileName;

@@ -132,10 +132,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\action\CCMoveToWrapper.h" />
+    <ClInclude Include="..\Classes\animation\AnimationWrapper.h" />
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\layer\BgLayer.h" />
     <ClInclude Include="..\Classes\layer\ObjectLayer.h" />
+    <ClInclude Include="..\Classes\scheduler\LayerScheduler.h" />
     <ClInclude Include="..\Classes\scheduler\ScheduleTempValHolder.h" />
     <ClInclude Include="..\Classes\sprite\Plane.h" />
     <ClInclude Include="..\Classes\sprite\ZSprite.h" />
@@ -146,10 +148,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\action\CCMoveToWrapper.cpp" />
+    <ClCompile Include="..\Classes\animation\AnimationWrapper.cpp" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\layer\BgLayer.cpp" />
     <ClCompile Include="..\Classes\layer\ObjectLayer.cpp" />
+    <ClCompile Include="..\Classes\scheduler\LayerScheduler.cpp" />
     <ClCompile Include="..\Classes\scheduler\ScheduleTempValHolder.cpp" />
     <ClCompile Include="..\Classes\sprite\Plane.cpp" />
     <ClCompile Include="..\Classes\sprite\ZSprite.cpp" />

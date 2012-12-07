@@ -6,7 +6,6 @@ ZSprite::ZSprite(void)
 
 }
 
-
 ZSprite::ZSprite(char* fileName)
 {
 	this->m_sprite = CCSprite::create(fileName);
@@ -50,7 +49,7 @@ ZSprite::ZSprite(ZSprite& rhs, float spawnInterval)
 	}
 }
 
-ZSprite::ZSprite(char* fileName, bool randomSpawn, int direction, float velocity)
+ZSprite::ZSprite(char* fileName, int direction, float velocity)
 {
 	this->m_sprite = CCSprite::create(fileName);
 	this->m_spriteFileName = fileName;
@@ -75,6 +74,7 @@ ZSprite::ZSprite(char* fileName, bool randomSpawn, int direction, float velocity
 			 this->m_sprite->setPosition(pt);
 			 this->m_startPoint = pt;
 			 linearMoveLeft(velocity);
+			 break;
 		}
 
 	case (2/*NeoConstants::MOVE_RIGHT*/):
@@ -83,6 +83,7 @@ ZSprite::ZSprite(char* fileName, bool randomSpawn, int direction, float velocity
 			this->m_sprite->setPosition(pt);
 			this->m_startPoint = pt;
 			linearMoveRight(velocity);
+			break;
 		}
 	}
 }

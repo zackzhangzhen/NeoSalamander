@@ -26,48 +26,26 @@ ObjectLayer * ObjectLayer::createObjectLayer(void)
     }
 }
 
-void ObjectLayer::scheduleEnemies()
+void ObjectLayer::scheduleObjects()
 {
-	//this->scheduleRandomSpawn(1.0F, STEWIE, NeoConstants::MOVE_DOWN, 40.0F, 0);
-	//this->scheduleRandomSpawnInBulk(3.0F, STEWIE, NeoConstants::MOVE_DOWN,5,0.5f, 90.0F, 0);
-	this->scheduleRandomSpawn(5.0F, RAVEN, NeoConstants::MOVE_LEFT,120.0F,0);
+	this->scheduleRandomSpawnInBulk(10.0F, STEWIE, NeoConstants::MOVE_DOWN,5,0.5f, 90.0F, 0);
+	this->scheduleRandomSpawnInBulk(15.0F, LAND_ROVER, NeoConstants::MOVE_DOWN,3,0.8F,70.0f);
+	this->scheduleRandomSpawnInBulk(6.0F, BLACK_OPS, NeoConstants::MOVE_DOWN,1,0.5f, 90.0F, 0);
+	this->scheduleRandomSpawn(30.0F, RAVEN, NeoConstants::MOVE_LEFT, 10.0F, 0);
 }
 
 void ObjectLayer::scheduleRandomSpawn(float dt, const char* spriteFileName,int direction, float velocity, int zOrder)
 {
-	this->tempValHolder.resetTempValueForSingleSprite((char*)spriteFileName, direction, velocity, zOrder); 
-	this->schedule(schedule_selector(ObjectLayer::randomSpawn), dt);	
+	LayerScheduler* scheduler = new LayerScheduler((char*)spriteFileName, direction, 0, 0.0F, velocity, zOrder, this);
+	this->addChild(scheduler, 0);
+	scheduler->scheduleRandomSpawn(dt);	
 }
 
 void ObjectLayer::scheduleRandomSpawnInBulk(float dt, const char* spriteFileName,int direction,int spawnBulkCount,float spawnInterval, float velocity,int zOrder)
 {
-	this->tempValHolder.resetTempValueForBulkSprite((char*)spriteFileName, direction,spawnBulkCount,spawnInterval, velocity, zOrder); 
-	this->schedule(schedule_selector(ObjectLayer::randomSpawnInBulk), dt);
-}
-
-void ObjectLayer::randomSpawn(float dt)
-{
-	ZSprite* sprite = new ZSprite(tempValHolder.tempSpriteFileName, true, tempValHolder.tempDirection, tempValHolder.tempVelocity);
-	sprite->addToCCNode(this, tempValHolder.tempZOrder);
-}
-
-void ObjectLayer::randomSpawnInBulk(float dt)
-{
-	bool firstOne = true;
-	ZSprite* firstSprite = NULL;
-	for(int i = 0; i < tempValHolder.tempSpawnBulkCount; i++)
-	{
-		if(firstOne)
-		{
-			firstOne = false;
-			firstSprite = new ZSprite(tempValHolder.tempSpriteFileName, true, tempValHolder.tempDirection, tempValHolder.tempVelocity);
-			firstSprite->addToCCNode(this, tempValHolder.tempZOrder);
-			continue;
-		}
-
-		ZSprite* sprite = new ZSprite(*firstSprite, tempValHolder.tempSpawnInterval*(i));	
-		sprite->addToCCNode(this, tempValHolder.tempZOrder);
-	}
+	LayerScheduler* scheduler = new LayerScheduler((char*)spriteFileName, direction, spawnBulkCount, spawnInterval, velocity, zOrder, this);
+	this->addChild(scheduler, 0);
+	scheduler->scheduleRandomSpawnInBulk(dt);	
 }
 
 ObjectLayer::~ObjectLayer(void)
