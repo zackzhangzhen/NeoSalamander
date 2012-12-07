@@ -53,7 +53,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	}
 
 	ObjectLayer* l = ObjectLayer::createObjectLayer();
-	l->scheduleRandomSpawn(0.1F);
+	l->scheduleEnemies();
 	pScene->addChild(l,1);
 	pScene->addChild(player,2);
     // run

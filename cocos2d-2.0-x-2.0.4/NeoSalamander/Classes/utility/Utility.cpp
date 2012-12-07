@@ -119,7 +119,7 @@ char* Utility::convertStringToChar(std::string str)
 	 return i == 0;
  }
 
- CCMoveTo* Utility::generateLinearMoveToDownAction(float velocity, bool moveLeft, CCSize size, CCPoint pos)
+ CCMoveToWrapper Utility::generateLinearMoveToDownAction(float velocity, bool moveLeft, CCSize size, CCPoint pos)
 {
 	float ratioRange = 10 - 1;
 
@@ -146,10 +146,11 @@ char* Utility::convertStringToChar(std::string str)
     
     float realMoveDuration = length/velocity;
 
-	return CCMoveTo::actionWithDuration(realMoveDuration, realDest);
+	CCMoveTo* moveTo = CCMoveTo::actionWithDuration(realMoveDuration, realDest);
+	return CCMoveToWrapper(realMoveDuration, realDest);
 }
 
-CCMoveTo* Utility::generateLinearMoveToHorizontalAction(float velocity, bool moveLeft, CCSize size, CCPoint pos)
+CCMoveToWrapper Utility::generateLinearMoveToHorizontalAction(float velocity, bool moveLeft, CCSize size, CCPoint pos)
 {
 
 	float ratioRange = 10 - 1;
@@ -171,7 +172,8 @@ CCMoveTo* Utility::generateLinearMoveToHorizontalAction(float velocity, bool mov
 	float length = realX - pos.x;
     float realMoveDuration = length/velocity;
 
-	return CCMoveTo::actionWithDuration(realMoveDuration, realDest);
+	CCMoveTo* moveTo = CCMoveTo::actionWithDuration(realMoveDuration, realDest);
+	return CCMoveToWrapper(realMoveDuration, realDest);
 }
 
 Utility::~Utility(void)

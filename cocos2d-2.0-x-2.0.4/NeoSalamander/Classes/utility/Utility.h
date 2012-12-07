@@ -5,6 +5,7 @@
 #include <iostream>
 #include "cocos2d.h"
 #include "NeoConstants.h"
+#include "action/CCMoveToWrapper.h"
 using namespace cocos2d;
 class Utility
 {
@@ -20,8 +21,8 @@ public:
 	static CCPoint getRandomPointOnOneSide(bool left);
 	static CCPoint* getRandomPointOnBothSides();
 	static bool getRandomBoolean();
-	static CCMoveTo* generateLinearMoveToDownAction(float velocity, bool moveLeft, CCSize size, CCPoint pos);
-	static CCMoveTo* generateLinearMoveToHorizontalAction(float velocity, bool moveLeft, CCSize size, CCPoint pos);
+	static CCMoveToWrapper generateLinearMoveToDownAction(float velocity, bool moveLeft, CCSize size, CCPoint pos);
+	static CCMoveToWrapper generateLinearMoveToHorizontalAction(float velocity, bool moveLeft, CCSize size, CCPoint pos);
 
 private:
 	Utility(void);

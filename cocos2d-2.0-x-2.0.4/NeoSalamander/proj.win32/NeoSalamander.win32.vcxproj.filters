@@ -61,6 +61,12 @@
     <Filter Include="include\utility">
       <UniqueIdentifier>{4848f247-5ae8-41e3-afdd-7be056081345}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\scheduler">
+      <UniqueIdentifier>{1c5fb397-0dc4-4f2e-aac2-62e431a1aaa4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\scheduler">
+      <UniqueIdentifier>{b572372e-b285-4329-aaa5-d15caaeffcbc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\NeoSalamander.ico">
@@ -112,6 +118,12 @@
     <ClInclude Include="..\Classes\layer\ObjectLayer.h">
       <Filter>include\layer</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\scheduler\ScheduleTempValHolder.h">
+      <Filter>include\scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\action\CCMoveToWrapper.h">
+      <Filter>include\action</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -140,6 +152,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\layer\ObjectLayer.cpp">
       <Filter>source\layer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\scheduler\ScheduleTempValHolder.cpp">
+      <Filter>source\scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\action\CCMoveToWrapper.cpp">
+      <Filter>source\action</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
