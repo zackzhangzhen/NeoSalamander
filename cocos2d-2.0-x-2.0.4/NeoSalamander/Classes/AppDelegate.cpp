@@ -5,6 +5,8 @@
 #include "SimpleAudioEngine.h"
 #include "layer/BgLayer.h";
 #include "utility/Utility.h"
+#include "sprite/ZSprite.h"
+#include "layer/ObjectLayer.h"
 using namespace CocosDenshion;
 
 USING_NS_CC;
@@ -39,12 +41,23 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 	/*CCSprite *player = CCSprite::spriteWithFile("Stewie.png", 
 		CCRectMake(0, 0, 55, 62) );*/
+
 	CCSprite *player = CCSprite::create();
 	player->setPosition(ccp(200,200));
 	player->runAction(ac);
-	pScene->addChild(player,1);
+
+	for(int i = 0; i < 0; i ++)
+	{
+		ZSprite* sprite = new ZSprite("pic\\object\\stewie.png",NeoConstants::MOVE_DOWN,200);
+		sprite->addToCCNode(pScene, 0);
+	}
+
+	ObjectLayer* l = ObjectLayer::createObjectLayer();
+	l->scheduleObjects();
+	pScene->addChild(l,1);
+	//pScene->addChild(player,2);
     // run
-    pDirector->runWithScene(pScene);
+	pDirector->runWithScene(pScene);
     return true;
 }
 
