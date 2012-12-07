@@ -1,5 +1,6 @@
 #include "BgLayer.h"
-
+#include "../sprite/Plane.h"
+#include "../utility/Utility.h"
 using namespace cocos2d;
 using namespace CocosDenshion;
 
@@ -10,6 +11,8 @@ const CCTexture2D* BgLayer::bgTex02 = NULL;
 
 float BgLayer::scrollFrequency = 0.01;
 float BgLayer::scrollVelocity = 1;
+
+ Plane* pl = NULL;
 
 BgLayer::BgLayer(void)
 {
@@ -26,8 +29,24 @@ BgLayer::BgLayer(void)
 	bgTex02 = CCTextureCache::sharedTextureCache()->addImage(BgLayer::BG_02);
 
 	this->scheduleScroll(this->scrollFrequency);
+
+	pl = new Plane("pic\\plane.png");
+	pl->SetPosition(100,100);
+	pl->AddToLayer(this);
+	pl->AddAnimation("exp",Utility::getAnimationAction("pic\\explosion\\","png",26,true));
+	//pl->PlayAnimation("exp");
+	pl->EquipBullet("pic\\bullet.png");
+
+	this->setTouchEnabled(true);
+	
 }
 
+void BgLayer::ccTouchesEnded(CCSet* touches, CCEvent* event)
+{
+	pl->Fire();
+	
+	m_bgSprite->runAction(CCShaky3D::actionWithRange(5, true, ccg(15, 10), 1.5));
+}
 
 BgLayer::~BgLayer(void)
 {
@@ -38,7 +57,6 @@ void BgLayer::scroll(float dt)
 	float x = this->m_bgSprite->getPositionX();
 	float y = this->m_bgSprite->getPositionY();
 
-	
 	if(y >= 576)
 	{
 		y = -0.5;
