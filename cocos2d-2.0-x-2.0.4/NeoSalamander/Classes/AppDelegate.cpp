@@ -7,17 +7,20 @@
 #include "utility/Utility.h"
 #include "sprite/ZSprite.h"
 #include "layer/ObjectLayer.h"
+#include "synchronization\GlobalFlag.h"
 using namespace CocosDenshion;
 
 USING_NS_CC;
 
 AppDelegate::AppDelegate()
 {
+	 InitializeCriticalSection(&GlobalFlag::m_csObject);
 }
 
 AppDelegate::~AppDelegate()
 {
     SimpleAudioEngine::end();
+	DeleteCriticalSection(&GlobalFlag::m_csObject);
 }
 
 bool AppDelegate::applicationDidFinishLaunching()

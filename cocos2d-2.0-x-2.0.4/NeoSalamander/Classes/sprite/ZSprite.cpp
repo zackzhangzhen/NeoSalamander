@@ -122,9 +122,13 @@ void ZSprite::addToCCNode(CCNode* node, int zOrder)
 
 void ZSprite::MoveDone(CCNode* sender)
 {
+	EnterCriticalSection(&GlobalFlag::m_csObject);
+	
 	CCSprite* sprite = (CCSprite*)sender;
 	this->m_parentNode->removeChild(sprite,true);	
 	sprite->autorelease();
+
+	LeaveCriticalSection(&GlobalFlag::m_csObject);
 }
 
 void ZSprite::linearMoveDownWithRandomDirection(float velocity)

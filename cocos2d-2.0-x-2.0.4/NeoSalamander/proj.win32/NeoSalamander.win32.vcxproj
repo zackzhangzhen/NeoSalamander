@@ -18,6 +18,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -142,6 +143,7 @@
     <ClInclude Include="..\Classes\scheduler\ScheduleTempValHolder.h" />
     <ClInclude Include="..\Classes\sprite\Plane.h" />
     <ClInclude Include="..\Classes\sprite\ZSprite.h" />
+    <ClInclude Include="..\Classes\synchronization\GlobalFlag.h" />
     <ClInclude Include="..\Classes\utility\Utility.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="NeoConstants.h" />
@@ -159,6 +161,7 @@
     <ClCompile Include="..\Classes\scheduler\ScheduleTempValHolder.cpp" />
     <ClCompile Include="..\Classes\sprite\Plane.cpp" />
     <ClCompile Include="..\Classes\sprite\ZSprite.cpp" />
+    <ClCompile Include="..\Classes\synchronization\GlobalFlag.cpp" />
     <ClCompile Include="..\Classes\utility\Utility.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NeoConstants.cpp" />

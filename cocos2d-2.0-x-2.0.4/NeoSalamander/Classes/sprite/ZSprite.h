@@ -9,6 +9,7 @@
 #include "NeoConstants.h"
 #include "utility/Utility.h";
 #include "action\CCMoveToWrapper.h"
+#include "synchronization\GlobalFlag.h"
 #include <map>
 #include <string>
 using namespace cocos2d;
