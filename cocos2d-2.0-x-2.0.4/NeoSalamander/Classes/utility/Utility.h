@@ -1,5 +1,6 @@
 #ifndef __UTILITY_H__
 #define __UTILITY_H__
+#include <stdlib.h>
 #include <string>
 #include <sstream>
 #include <iostream>
@@ -12,7 +13,7 @@ class Utility
 public:
 	
 	~Utility(void);
-
+	static float calcLength(CCPoint startPoint, CCPoint endPoint);
 	static char* appendIntToString(char*, char* extention, int i);
 	static char* convertStringToChar(std::string str);
 	static CCRepeatForever* getAnimationAction(char* filePrefix, char* extension, int suffixCount, bool startFromIndex0);

@@ -9,8 +9,10 @@
 #include "NeoConstants.h"
 #include "utility/Utility.h";
 #include "action\CCMoveToWrapper.h"
+#include <map>
+#include <string>
 using namespace cocos2d;
-class ZSprite
+class ZSprite:public CCObject
 {
 public:
 	ZSprite(void);
@@ -25,16 +27,27 @@ public:
 	void linearMoveLeft(float velocity);
 	void linearMoveRight(float velocity);
 	void linearMoveDown(float velocity, bool moveLeft);
+
+	CCSprite* getSprite();
+	CCPoint getPostion();
+	void setPosition(int x,int y);
+	void addAnimation(string animName,CCRepeatForever* anim);//Add an animation to the sprite's anim map
+	void playAnimation(string animName);//Play an animation of the sprite,designated by the animName
+
 	~ZSprite(void);
 
 
-private:
+protected:
 	CCSize m_originSize;	
 	CCSprite* m_sprite;
 	//used for the copy constructor - start
 	char* m_spriteFileName;
 	CCPoint m_startPoint;
 	CCMoveToWrapper m_moveToWrapper;	
+
+	CCRepeatForever* m_curAnim;
+    CCNode* m_parentNode;
+	map<string,CCRepeatForever*> m_AnimMap;
 };
 #endif
 

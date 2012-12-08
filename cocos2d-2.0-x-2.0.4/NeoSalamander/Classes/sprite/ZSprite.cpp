@@ -9,6 +9,8 @@ ZSprite::ZSprite(void)
 ZSprite::ZSprite(char* fileName)
 {
 	this->m_sprite = CCSprite::create(fileName);
+	m_sprite->setPosition(ccp(0,0));
+
 	this->m_spriteFileName = fileName;
 
 	this->m_originSize = this->m_sprite->getContentSize();
@@ -16,8 +18,9 @@ ZSprite::ZSprite(char* fileName)
 
 ZSprite::ZSprite(char* fileName, bool randomSpawn)
 {
-	this->m_sprite = CCSprite::create(fileName);
-	this->m_originSize = this->m_sprite->getContentSize();
+	this->ZSprite::ZSprite(fileName);
+	/*this->m_sprite = CCSprite::create(fileName);
+	this->m_originSize = this->m_sprite->getContentSize();*/
 	if(randomSpawn)
 	{
 		CCPoint pt = Utility::getRandomPointTop();
@@ -28,7 +31,8 @@ ZSprite::ZSprite(char* fileName, bool randomSpawn)
 
 ZSprite::ZSprite(ZSprite& rhs, float spawnInterval)
 {
-	this->m_sprite = CCSprite::create(rhs.m_spriteFileName);
+	this->ZSprite::ZSprite(rhs.m_spriteFileName);
+	//this->m_sprite = CCSprite::create(rhs.m_spriteFileName);
 	this->m_sprite->setPosition(rhs.m_startPoint);
 
 	this->m_startPoint = rhs.m_startPoint;
@@ -51,9 +55,11 @@ ZSprite::ZSprite(ZSprite& rhs, float spawnInterval)
 
 ZSprite::ZSprite(char* fileName, int direction, float velocity)
 {
-	this->m_sprite = CCSprite::create(fileName);
+	/*this->m_sprite = CCSprite::create(fileName);
 	this->m_spriteFileName = fileName;
-	this->m_originSize = this->m_sprite->getContentSize();
+	this->m_originSize = this->m_sprite->getContentSize();*/
+
+	this->ZSprite::ZSprite(fileName);
 
 	CCPoint pt;
 
@@ -90,7 +96,9 @@ ZSprite::ZSprite(char* fileName, int direction, float velocity)
 
 void ZSprite::addToCCNode(CCNode* node, int zOrder)
 {
+	assert(node!=NULL);
 	node->addChild(this->m_sprite, zOrder);
+	m_parentNode = node;
 }
 
 void ZSprite::linearMoveDownWithRandomDirection(float velocity)
@@ -130,6 +138,47 @@ bool ZSprite::isInScreen()
 	float bottom_edge = -y/2;
 
 	return (x > left_edge) && (x < right_edge) && (y > bottom_edge) && (y < top_edge);
+}
+
+
+
+CCSprite* ZSprite::getSprite()
+{
+    return m_sprite;
+}
+
+void ZSprite::setPosition(int x,int y)
+{
+	m_sprite->setPosition(ccp(x,y));
+}
+
+CCPoint ZSprite::getPostion()
+{
+	return m_sprite->getPosition();
+}
+
+
+void ZSprite::addAnimation(string animName,CCRepeatForever* anim)
+{
+	m_AnimMap.insert(map<string,CCRepeatForever*>::value_type(animName,anim));
+}
+
+void ZSprite::playAnimation(string animName)
+{
+	if(m_parentNode == NULL)
+	{
+		printf("This target has not been added to any layer yet");
+		return;
+	}
+
+	map<string,CCRepeatForever*>::iterator it = m_AnimMap.find(animName);
+	assert(it != m_AnimMap.end());
+
+	if(m_curAnim != NULL)
+		m_sprite->stopAction(m_curAnim);
+	m_curAnim = it->second;
+	m_sprite->runAction(it->second);
+
 }
 
 ZSprite::~ZSprite(void)

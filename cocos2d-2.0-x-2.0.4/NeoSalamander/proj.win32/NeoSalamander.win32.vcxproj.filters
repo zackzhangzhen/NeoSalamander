@@ -73,6 +73,12 @@
     <Filter Include="source\collision">
       <UniqueIdentifier>{40cb19fc-db28-4e02-b2e4-cdc00edf7aa4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\animation">
+      <UniqueIdentifier>{d916277c-ebc0-4c0a-bbf5-81115fdc4c34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\animation">
+      <UniqueIdentifier>{dd1cfcc5-2fa4-44b2-8976-3d7071a2176c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\NeoSalamander.ico">
@@ -133,11 +139,11 @@
     <ClInclude Include="..\Classes\scheduler\LayerScheduler.h">
       <Filter>include\scheduler</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\animation\AnimationWrapper.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\collision\CollisionDetector.h">
       <Filter>include\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\animation\AnimationWrapper.h">
+      <Filter>include\animation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -177,11 +183,11 @@
     <ClCompile Include="..\Classes\scheduler\LayerScheduler.cpp">
       <Filter>source\scheduler</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\animation\AnimationWrapper.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\collision\CollisionDetector.cpp">
       <Filter>source\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\animation\AnimationWrapper.cpp">
+      <Filter>source\animation</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

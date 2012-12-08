@@ -30,12 +30,12 @@ BgLayer::BgLayer(void)
 
 	this->scheduleScroll(this->scrollFrequency);
 
-	pl = new Plane("pic\\plane.png");
-	pl->SetPosition(100,100);
-	pl->AddToLayer(this);
-	pl->AddAnimation("exp",Utility::getAnimationAction("pic\\explosion\\","png",26,true));
+	pl = new Plane("pic\\object\\plane.png");
+	pl->setPosition(100,100);
+	pl->addToCCNode(this, 0);
+	pl->addAnimation("exp",Utility::getAnimationAction("pic\\explosion\\","png",26,false));
 	//pl->PlayAnimation("exp");
-	pl->EquipBullet("pic\\bullet.png");
+	pl->EquipBullet("pic\\bullet\\bullet.png");
 
 	this->setTouchEnabled(true);
 	
@@ -43,7 +43,7 @@ BgLayer::BgLayer(void)
 
 void BgLayer::ccTouchesEnded(CCSet* touches, CCEvent* event)
 {
-	pl->Fire();
+	pl->Fire(300.0f);
 	
 	m_bgSprite->runAction(CCShaky3D::actionWithRange(5, true, ccg(15, 10), 1.5));
 }

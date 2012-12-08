@@ -16,6 +16,15 @@ char* Utility::appendIntToString(char* origin, char* extention, int i)
 	return finalStr;
 }
 
+float Utility::calcLength(CCPoint startPoint, CCPoint endPoint)
+{
+	int xLen = endPoint.x - startPoint.x;
+	int yLen = endPoint.y - startPoint.y;
+	float length = sqrtf((xLen * xLen) 
+                                        + (yLen*yLen));
+	return length;
+}
+
 char* Utility::convertStringToChar(std::string str)
 {
 	int size = str.size();
@@ -152,11 +161,6 @@ char* Utility::convertStringToChar(std::string str)
 
 CCMoveToWrapper Utility::generateLinearMoveToHorizontalAction(float velocity, bool moveLeft, CCSize size, CCPoint pos)
 {
-
-	float ratioRange = 10 - 1;
-
-	float randomRatio = ( rand() % 9 ) + 1;
-
 	int realX ;
 	if(moveLeft)
 	{
@@ -169,7 +173,7 @@ CCMoveToWrapper Utility::generateLinearMoveToHorizontalAction(float velocity, bo
 	
     CCPoint realDest = ccp(realX, pos.y);
 
-	float length = realX - pos.x;
+	float length = abs(realX - pos.x);
     float realMoveDuration = length/velocity;
 
 	CCMoveTo* moveTo = CCMoveTo::actionWithDuration(realMoveDuration, realDest);
