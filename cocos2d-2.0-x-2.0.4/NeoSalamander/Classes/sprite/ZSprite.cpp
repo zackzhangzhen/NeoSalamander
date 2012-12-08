@@ -16,6 +16,23 @@ ZSprite::ZSprite(char* fileName)
 	this->m_originSize = this->m_sprite->getContentSize();
 }
 
+ZSprite::ZSprite(char* fileName, float duration, CCPoint startPt, CCPoint endPt)
+{
+	this->m_sprite = CCSprite::create(fileName);
+	m_sprite->setPosition(startPt);
+
+	CCMoveTo* moveTo = CCMoveTo::create(duration, endPt);
+
+	this->m_spriteFileName = fileName;
+
+	this->m_originSize = this->m_sprite->getContentSize();
+
+	this->m_moveToWrapper = CCMoveToWrapper(duration, endPt);
+
+	CCFiniteTimeAction* actionMoveDone = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ZSprite::MoveDone));
+	this->m_sprite->runAction(CCSequence::actions(moveTo, actionMoveDone, NULL));
+}
+
 ZSprite::ZSprite(char* fileName, bool randomSpawn)
 {
 	this->ZSprite::ZSprite(fileName);
@@ -45,11 +62,13 @@ ZSprite::ZSprite(ZSprite& rhs, float spawnInterval)
 	if(spawnInterval != 0.0f)
 	{
 		CCDelayTime *delayAction = CCDelayTime::actionWithDuration(spawnInterval);
-		this->m_sprite->runAction( CCSequence::actions(delayAction, m_moveToWrapper.getMoveTo(), NULL));
+		CCFiniteTimeAction* actionMoveDone = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ZSprite::MoveDone));
+		this->m_sprite->runAction( CCSequence::actions(delayAction, m_moveToWrapper.getMoveTo(), actionMoveDone, NULL));
 	}
 	else
 	{
-		this->m_sprite->runAction(m_moveToWrapper.getMoveTo());
+		CCFiniteTimeAction* actionMoveDone = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ZSprite::MoveDone));
+		this->m_sprite->runAction(CCSequence::actions(m_moveToWrapper.getMoveTo(), actionMoveDone, NULL));		
 	}
 }
 
@@ -101,23 +120,38 @@ void ZSprite::addToCCNode(CCNode* node, int zOrder)
 	m_parentNode = node;
 }
 
+void ZSprite::MoveDone(CCNode* sender)
+{
+	CCSprite* sprite = (CCSprite*)sender;
+	this->m_parentNode->removeChild(sprite,true);	
+	sprite->autorelease();
+}
+
 void ZSprite::linearMoveDownWithRandomDirection(float velocity)
 {
 	this->m_moveToWrapper = Utility::generateLinearMoveToDownAction(velocity, Utility::getRandomBoolean(),this->m_sprite->getContentSize(), this->m_sprite->getPosition());
-	//this->m_sprite->runAction( CCSequence::actions(move));
-	this->m_sprite->runAction( m_moveToWrapper.getMoveTo());
+
+	//this->m_sprite->runAction( m_moveToWrapper.getMoveTo());
+	CCFiniteTimeAction* actionMoveDone = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ZSprite::MoveDone));
+	this->m_sprite->runAction(CCSequence::actions(m_moveToWrapper.getMoveTo(), actionMoveDone, NULL));
 }
 
 void ZSprite::linearMoveLeft(float velocity)
 {
 	this->m_moveToWrapper = Utility::generateLinearMoveToHorizontalAction(velocity, true ,this->m_sprite->getContentSize(), this->m_sprite->getPosition());
 	this->m_sprite->runAction( m_moveToWrapper.getMoveTo());
+
+	CCFiniteTimeAction* actionMoveDone = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ZSprite::MoveDone));
+	this->m_sprite->runAction(CCSequence::actions(m_moveToWrapper.getMoveTo(), actionMoveDone, NULL));
 }
 
 void ZSprite::linearMoveRight(float velocity)
 {
 	this->m_moveToWrapper = Utility::generateLinearMoveToHorizontalAction(velocity, false ,this->m_sprite->getContentSize(), this->m_sprite->getPosition());
 	this->m_sprite->runAction( m_moveToWrapper.getMoveTo());
+
+	CCFiniteTimeAction* actionMoveDone = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ZSprite::MoveDone));
+	this->m_sprite->runAction(CCSequence::actions(m_moveToWrapper.getMoveTo(), actionMoveDone, NULL));
 }
 
 void ZSprite::linearMoveDown(float velocity, bool moveLeft)
@@ -125,6 +159,9 @@ void ZSprite::linearMoveDown(float velocity, bool moveLeft)
 	// Determine where we wish to shoot the projectile to
 	this->m_moveToWrapper = Utility::generateLinearMoveToDownAction(velocity, Utility::getRandomBoolean(),this->m_sprite->getContentSize(), this->m_sprite->getPosition());
 	this->m_sprite->runAction( m_moveToWrapper.getMoveTo());
+
+	CCFiniteTimeAction* actionMoveDone = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ZSprite::MoveDone));
+	this->m_sprite->runAction(CCSequence::actions(m_moveToWrapper.getMoveTo(), actionMoveDone, NULL));
 }
 
 bool ZSprite::isInScreen()
@@ -139,8 +176,6 @@ bool ZSprite::isInScreen()
 
 	return (x > left_edge) && (x < right_edge) && (y > bottom_edge) && (y < top_edge);
 }
-
-
 
 CCSprite* ZSprite::getSprite()
 {
