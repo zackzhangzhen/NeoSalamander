@@ -6,6 +6,13 @@
 #include <vector>
 using namespace cocos2d;
 
+class CollidableObject
+{
+public:
+	virtual bool IsCollidingWith(CollidableObject* obj);
+};
+
+
 class CollObjArray
 {
 public:
@@ -13,15 +20,20 @@ public:
 	~CollObjArray(void);
 
 	string m_Tag;
-	CCArray* m_objArr;
+	//CCArray* m_objArr;
+	vector<CollidableObject*>* m_objArr;
 };
+
 
 class CollisionHandler
 {
 public:
-	virtual void HandleCollison(CCLayer* layer,CCObject* obj1, CCObject* obj2) = 0; 
+	CollisionHandler(void);
+	virtual void HandleCollison(CCLayer* layer,CollidableObject* obj1, CollidableObject* obj2) = 0; 
 	CCLayer* m_Layer;
 };
+
+
 
 class CollisionDetector
 {

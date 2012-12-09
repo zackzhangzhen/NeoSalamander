@@ -1,5 +1,5 @@
 #include "CollisionDetector.h"
-extern int kkk;
+
 map<string,CollisionHandler*> collHandlers;
 
 CollObjArray::CollObjArray(void)
@@ -41,9 +41,10 @@ CollObjArray* CollisionDetector::FindArrayByTag(string tag)
 
 void CollisionDetector::CollideTwoArrays(CollObjArray* arrLeft,CollObjArray* arrRight)
 {
-	for(int i = 0;i<arrLeft->m_objArr->count();i++)
+	for(int i = 0;i<arrLeft->m_objArr->size();i++)
 	{
-		CCObject* leftObj = arrLeft->m_objArr->data->arr[i];
+		CollidableObject* leftObj = arrLeft->m_objArr->at(i);
+		/*CCObject* leftObj = arrLeft->m_objArr->data->arr[i];
 		CCObject* rightObj = NULL;
 		CCSprite* leftSprite = (CCSprite*)leftObj;
 		if(left == NULL)
@@ -51,11 +52,18 @@ void CollisionDetector::CollideTwoArrays(CollObjArray* arrLeft,CollObjArray* arr
 		CCSprite* rightSprite = NULL;
 		CCRect leftRect;
 		CCRect rightRect;
-		leftRect = CCRectMake(leftSprite->getPosition().x - (leftSprite->getContentSize().width/2),leftSprite->getPosition().y - (leftSprite->getContentSize().height/2),leftSprite->getContentSize().width,leftSprite->getContentSize().height);
+		leftRect = CCRectMake(leftSprite->getPosition().x - (leftSprite->getContentSize().width/2),leftSprite->getPosition().y - (leftSprite->getContentSize().height/2),leftSprite->getContentSize().width,leftSprite->getContentSize().height);*/
 
-		for(int j = 0; j<arrRight->m_objArr->count();j++)
+		for(int j = 0; j<arrRight->m_objArr->size();j++)
 		{
-			rightObj = arrRight->m_objArr->data->arr[j];
+			CollidableObject* rightObj = (CollidableObject*)arrRight->m_objArr->at(j);
+			if(leftObj->IsCollidingWith(rightObj))
+			{
+				string str = arrLeft->m_Tag + "_"+arrRight->m_Tag;
+				map<string,CollisionHandler*>::iterator it = collHandlers.find(str);
+				it->second->HandleCollison(it->second->m_Layer,leftObj,rightObj);
+			}
+			/*rightObj = arrRight->m_objArr->data->arr[j];
 			rightSprite = (CCSprite*)rightObj;
 			if(right == NULL)
 				continue; 
@@ -66,7 +74,7 @@ void CollisionDetector::CollideTwoArrays(CollObjArray* arrLeft,CollObjArray* arr
 				string str = arrLeft->m_Tag + "_"+arrRight->m_Tag;
 				map<string,CollisionHandler*>::iterator it = collHandlers.find(str);
 				it->second->HandleCollison(it->second->m_Layer,leftObj,rightObj);
-			}
+			}*/
 		}
 	}
 }
@@ -74,8 +82,6 @@ void CollisionDetector::CollideTwoArrays(CollObjArray* arrLeft,CollObjArray* arr
 
 void CollisionDetector::Detect()
 {
-	if(kkk==2)
-		kkk = 3;
 	for(map<string,vector<string>>::iterator it1 = m_tgtMap.begin();it1 != m_tgtMap.end();it1++)
 	{
 		CollObjArray* collSide1 = FindArrayByTag(it1->first);
@@ -86,4 +92,14 @@ void CollisionDetector::Detect()
 			CollideTwoArrays(collSide1,collSide2);
 		}	
 	}
+}
+
+CollisionHandler::CollisionHandler(void)
+{
+	m_Layer = NULL;
+}
+
+bool CollidableObject::IsCollidingWith(CollidableObject* obj)
+{
+   return true;
 }
