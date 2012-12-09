@@ -3,11 +3,16 @@ using namespace cocos2d;
 //The base class for the sprites
 ZSprite::ZSprite(void)
 {
-
+	this->m_curAnim = NULL;
+	this->m_parentNode = NULL;
+	this->m_sprite = NULL;
+	this->m_spriteFileName = NULL;
 }
 
 ZSprite::ZSprite(char* fileName)
 {
+	this->ZSprite::ZSprite();
+
 	this->m_sprite = CCSprite::create(fileName);
 	m_sprite->setPosition(ccp(0,0));
 
@@ -18,6 +23,9 @@ ZSprite::ZSprite(char* fileName)
 
 ZSprite::ZSprite(char* fileName, float duration, CCPoint startPt, CCPoint endPt)
 {
+
+	this->ZSprite::ZSprite();
+
 	this->m_sprite = CCSprite::create(fileName);
 	m_sprite->setPosition(startPt);
 
@@ -197,9 +205,9 @@ CCPoint ZSprite::getPostion()
 }
 
 
-void ZSprite::addAnimation(string animName,CCRepeatForever* anim)
+void ZSprite::addAnimation(string animName,CCActionInterval* anim)
 {
-	m_AnimMap.insert(map<string,CCRepeatForever*>::value_type(animName,anim));
+	m_AnimMap.insert(map<string,CCActionInterval*>::value_type(animName,anim));
 }
 
 void ZSprite::playAnimation(string animName)
@@ -210,7 +218,7 @@ void ZSprite::playAnimation(string animName)
 		return;
 	}
 
-	map<string,CCRepeatForever*>::iterator it = m_AnimMap.find(animName);
+	map<string,CCActionInterval*>::iterator it = m_AnimMap.find(animName);
 	assert(it != m_AnimMap.end());
 
 	if(m_curAnim != NULL)
@@ -218,6 +226,25 @@ void ZSprite::playAnimation(string animName)
 	m_curAnim = it->second;
 	m_sprite->runAction(it->second);
 
+}
+
+void ZSprite::playAnimationAndStop(string animName)
+{
+	if(m_parentNode == NULL)
+	{
+		printf("This target has not been added to any layer yet");
+		return;
+	}
+
+	map<string,CCActionInterval*>::iterator it = m_AnimMap.find(animName);
+	assert(it != m_AnimMap.end());
+
+	if(m_curAnim != NULL)
+		m_sprite->stopAction(m_curAnim);
+	m_curAnim = it->second;
+	
+	CCFiniteTimeAction* actionMoveDone = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ZSprite::MoveDone));
+	this->m_sprite->runAction(CCSequence::actions(it->second, actionMoveDone, NULL));
 }
 
 ZSprite::~ZSprite(void)

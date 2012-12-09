@@ -34,9 +34,9 @@ public:
 	CCSprite* getSprite();
 	CCPoint getPostion();
 	void setPosition(int x,int y);
-	void addAnimation(string animName,CCRepeatForever* anim);//Add an animation to the sprite's anim map
+	void addAnimation(string animName, CCActionInterval* anim);//Add an animation to the sprite's anim map
 	void playAnimation(string animName);//Play an animation of the sprite,designated by the animName
-
+	void playAnimationAndStop(string animName);
 	~ZSprite(void);
 
 
@@ -48,9 +48,9 @@ protected:
 	CCPoint m_startPoint;
 	CCMoveToWrapper m_moveToWrapper;	
 
-	CCRepeatForever* m_curAnim;
+	CCActionInterval* m_curAnim;
     CCNode* m_parentNode;
-	map<string,CCRepeatForever*> m_AnimMap;
+	map<string,CCActionInterval*> m_AnimMap;
 };
 #endif
 

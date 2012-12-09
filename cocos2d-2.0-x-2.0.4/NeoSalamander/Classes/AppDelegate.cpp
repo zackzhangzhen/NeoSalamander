@@ -40,7 +40,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	CCScene *pScene = CCScene::create();
 	pScene->addChild(new BgLayer());
 
-	CCRepeatForever* ac = Utility::getAnimationAction("pic\\explosion\\", "png",26, false);
+	CCActionInterval* ac = Utility::getAnimationAction("pic\\explosion\\", "png",26, false, false);
 
 	/*CCSprite *player = CCSprite::spriteWithFile("Stewie.png", 
 		CCRectMake(0, 0, 55, 62) );*/

@@ -16,7 +16,7 @@ public:
 	static float calcLength(CCPoint startPoint, CCPoint endPoint);
 	static char* appendIntToString(char*, char* extention, int i);
 	static char* convertStringToChar(std::string str);
-	static CCRepeatForever* getAnimationAction(char* filePrefix, char* extension, int suffixCount, bool startFromIndex0);
+	static CCActionInterval* getAnimationAction(char* filePrefix, char* extension, int suffixCount, bool startFromIndex0, bool repeat);
 	static CCPoint getRandomPointTop();
 	static CCPoint getRandomPointOnRandomSide();
 	static CCPoint getRandomPointOnOneSide(bool left);

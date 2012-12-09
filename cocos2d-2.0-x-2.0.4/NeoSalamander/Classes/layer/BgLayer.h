@@ -21,6 +21,7 @@ public:
    void BgLayer::scroll(float dt);
    void BgLayer::scheduleScroll(float dt);
    void ccTouchesEnded(CCSet* touches, CCEvent* event);
+   static bool pause;
 private:
 	bool bg01;
 	static const char* BG_01;
