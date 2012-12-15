@@ -58,6 +58,36 @@ bool AppDelegate::applicationDidFinishLaunching()
 	ObjectLayer* l = ObjectLayer::createObjectLayer();
 	l->scheduleObjects();
 	pScene->addChild(l,1);
+
+
+	// Create a label and initialize with string "Hello World".
+	CCLabelTTF* pLabel = CCLabelTTF::create("Hello World\nyeah", "Arial", 24, CCSizeMake(/*68*/NeoConstants::WIN_WIDTH/2, 480),kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter);
+
+    // Get window size and place the label upper. 
+    CCSize size = CCDirector::sharedDirector()->getWinSize();
+    pLabel->setPosition(ccp(size.width/2, size.height - 150));
+	//pLabel->setOpacity(100);
+
+	CCFadeIn* pCCFadeIn= CCFadeIn::actionWithDuration(5);
+	CCFadeOut* pCCFadeOut= CCFadeOut::actionWithDuration(5);
+	CCDelayTime *delayAction = CCDelayTime::actionWithDuration(5);
+	//pLabel->runAction(CCSequence::actions(pCCFadeIn, delayAction, pCCFadeOut, NULL));
+
+	CCScaleTo* scale = CCScaleTo::actionWithDuration(5,24);
+	//pLabel->runAction(scale);
+	
+	CCBlink* blink = CCBlink::actionWithDuration(5,6);
+	//pLabel->runAction(blink);
+
+	CCTintTo* tint = CCTintTo::actionWithDuration(5,100,50,60);
+	pLabel->runAction(tint);
+	
+
+    // Add the label to HelloWorld layer as a child layer.
+    pScene->addChild(pLabel, 5);
+
+
+
 	//pScene->addChild(player,2);
     // run
 	pDirector->runWithScene(pScene);

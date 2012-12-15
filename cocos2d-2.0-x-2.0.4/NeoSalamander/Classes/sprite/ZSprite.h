@@ -1,5 +1,4 @@
-#ifndef __Z_SPRITE_H__
-#define __Z_SPRITE_H__
+#pragma once
 
 #include "cocos2d.h"
 
@@ -33,7 +32,14 @@ public:
 
 	CCSprite* getSprite();
 	CCPoint getPostion();
+	int getPostionX();
+	int getPostionY();
+	CCSize getSize();
+	int getWidth();
+	int getHeight();
 	void setPosition(int x,int y);
+	void setPositionX(int x);
+	void setPositionY(int y);
 	void addAnimation(string animName, CCActionInterval* anim);//Add an animation to the sprite's anim map
 	void playAnimation(string animName);//Play an animation of the sprite,designated by the animName
 	void playAnimationAndStop(string animName);
@@ -52,5 +58,4 @@ protected:
     CCNode* m_parentNode;
 	map<string,CCActionInterval*> m_AnimMap;
 };
-#endif
 

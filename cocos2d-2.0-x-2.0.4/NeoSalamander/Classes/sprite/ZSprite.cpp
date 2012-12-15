@@ -199,11 +199,30 @@ void ZSprite::setPosition(int x,int y)
 	m_sprite->setPosition(ccp(x,y));
 }
 
+void ZSprite::setPositionX(int x)
+{
+	m_sprite->setPositionX(x);
+}
+
+void ZSprite::setPositionY(int y)
+{
+	m_sprite->setPositionX(y);
+}
+
 CCPoint ZSprite::getPostion()
 {
 	return m_sprite->getPosition();
 }
 
+int ZSprite::getPostionX()
+{
+	return m_sprite->getPosition().x;
+}
+
+int ZSprite::getPostionY()
+{
+	return m_sprite->getPosition().y;
+}
 
 void ZSprite::addAnimation(string animName,CCActionInterval* anim)
 {
@@ -245,6 +264,21 @@ void ZSprite::playAnimationAndStop(string animName)
 	
 	CCFiniteTimeAction* actionMoveDone = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ZSprite::MoveDone));
 	this->m_sprite->runAction(CCSequence::actions(it->second, actionMoveDone, NULL));
+}
+
+CCSize ZSprite::getSize()
+{
+	return this->getSprite()->getContentSize();
+}
+
+int ZSprite::getWidth()
+{
+	return this->getSprite()->getContentSize().width;
+}
+
+int ZSprite::getHeight()
+{
+	return this->getSprite()->getContentSize().height;
 }
 
 ZSprite::~ZSprite(void)
