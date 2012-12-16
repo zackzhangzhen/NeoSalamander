@@ -39,11 +39,98 @@ ZDlg::ZDlg(int pos, char* script, char* figureFileName, char* font, int size)
 
 }
 
+void ZDlg::addToCCNode(CCNode* node, int baseOrder)
+{
+	assert(node != NULL);
+
+	m_figure->addToCCNode(node, baseOrder);
+	m_frame->addToCCNode(node, baseOrder + 1);
+	node->addChild(m_scriptLabel, baseOrder + 2);
+}
+
+void ZDlg::FadeIn()
+{
+	switch(this->m_pos)
+	{
+		case (/*ZDlg::POS_FULL*/2):
+		{	
+			CCFadeIn* pCCFadeIn= CCFadeIn::actionWithDuration(3);
+			CCDelayTime *delayAction = CCDelayTime::actionWithDuration(3);
+
+			m_frame->getSprite()->runAction(pCCFadeIn);
+			m_figure->getSprite()->runAction(pCCFadeIn);
+			m_scriptLabel->runAction(CCSequence::actions(delayAction, pCCFadeIn, NULL));
+			break;
+		}
+		default:
+			{
+				CCMoveTo* frameMoveTo = CCMoveTo::actionWithDuration(4, m_framePos);
+				CCMoveTo* figureMoveTo = CCMoveTo::actionWithDuration(6, m_figurePos);
+				CCMoveTo* scriptMoveTo = CCMoveTo::actionWithDuration(4, m_scriptPos);
+
+				CCFadeIn* pCCFadeIn= CCFadeIn::actionWithDuration(4);
+				CCDelayTime *delayAction = CCDelayTime::actionWithDuration(1);
+
+				m_frame->getSprite()->runAction(frameMoveTo);
+				m_figure->getSprite()->runAction(figureMoveTo);
+				m_scriptLabel->runAction(CCSequence::actions(scriptMoveTo, delayAction, pCCFadeIn, NULL));
+
+			}
+	}
+}
+
+void ZDlg::FadeOut()
+{
+	switch(this->m_pos)
+	{
+		case (/*ZDlg::POS_FULL*/2):
+		{	
+			CCFadeIn* pCCFadeOut= CCFadeIn::actionWithDuration(3);
+			CCDelayTime *delayAction = CCDelayTime::actionWithDuration(3);
+
+			m_frame->getSprite()->runAction(CCSequence::actions(delayAction, pCCFadeOut, NULL));
+			m_figure->getSprite()->runAction(CCSequence::actions(delayAction, pCCFadeOut, NULL));
+			m_scriptLabel->runAction(pCCFadeOut);
+			break;
+		}
+		default:
+			{
+				CCMoveTo* frameMoveTo = CCMoveTo::actionWithDuration(4, m_frameInitPos);
+				CCMoveTo* figureMoveTo = CCMoveTo::actionWithDuration(6, m_figureInitPos);
+				CCMoveTo* scriptMoveTo = CCMoveTo::actionWithDuration(4, m_scriptInitPos);
+
+				CCFadeIn* pCCFadeOut= CCFadeIn::actionWithDuration(3);
+				CCDelayTime *delayAction = CCDelayTime::actionWithDuration(3);
+
+				m_frame->getSprite()->runAction(CCSequence::actions(delayAction, frameMoveTo));
+				m_figure->getSprite()->runAction(CCSequence::actions(delayAction, figureMoveTo));
+				m_scriptLabel->runAction(CCSequence::actions(pCCFadeOut,scriptMoveTo, NULL));
+
+			}
+	}
+}
+
 void ZDlg::init(void)
 {
 	calcFrameSizes();
 	calcPos();
 	calcInitPos();
+}
+
+void ZDlg::calcInitOpacity(void)
+{
+	m_scriptLabel->setOpacity(0);
+
+	switch(this->m_pos)
+	{
+		case (/*ZDlg::POS_FULL*/2):
+		{	
+			m_frame->setOpacity(0);
+			m_figure->setOpacity(0);
+			
+			break;
+		}
+	}
 }
 
 void ZDlg::calcInitPos(void)
@@ -55,9 +142,13 @@ void ZDlg::calcInitPos(void)
 			int x = m_framePos.x - m_frame->getWidth() - FRAME_MARGIN*2;
 			int distance = m_framePos.x - x;
 
+			m_frameInitPos = ccp(x,m_framePos.y);
+			m_scriptInitPos = ccp(m_scriptPos.x - distance, m_scriptPos.y);
+			m_figurePos = ccp(m_figurePos.x - distance, m_figurePos.y);
+
 			m_frame->setPositionX(x);
-			m_scriptLabel->setPositionX(m_scriptPos.x - distance);
-			m_figure->setPositionX(m_figurePos.x - distance);
+			m_scriptLabel->setPositionX(m_scriptInitPos.x);
+			m_figure->setPositionX(m_figurePos.x);
 			
 			break;
 		}
@@ -67,22 +158,30 @@ void ZDlg::calcInitPos(void)
 			int x = m_framePos.x + m_frame->getWidth() + FRAME_MARGIN*2;
 			int distance = x - m_framePos.x;
 
+			m_frameInitPos = ccp(x,m_framePos.y);
+			m_scriptInitPos = ccp(m_scriptPos.x + distance, m_scriptPos.y);
+			m_figurePos = ccp(m_figurePos.x + distance, m_figurePos.y);
+
 			m_frame->setPositionX(x);
-			m_scriptLabel->setPositionX(m_scriptPos.x + distance);
-			m_figure->setPositionX(m_figurePos.x + distance);
+			m_scriptLabel->setPositionX(m_scriptInitPos.x);
+			m_figure->setPositionX(m_figureInitPos.x);
 			
 			break;
 		}
 
 		case (/*ZDlg::POS_FULL*/2):
-		{			
-			int y = m_framePos.y - m_frame->getHeight() - FRAME_MARGIN*2;
+		{	
+			//In this case, don't slide in,make it fade in, so don't move them out of the screen.
+			/*int y = m_framePos.y - m_frame->getHeight() - FRAME_MARGIN*2;
 			int distance = m_framePos.y - y;
 
 			m_frame->setPositionY(y);
 			m_scriptLabel->setPositionY(m_scriptPos.y - distance);
-			m_figure->setPositionY(m_figurePos.y - distance);
+			m_figure->setPositionY(m_figurePos.y - distance);*/
 			
+			m_frame->setPosition(m_framePos);
+			m_scriptLabel->setPosition(m_scriptPos);
+			m_figure->setPosition(m_figurePos);
 			break;
 		}
 	}

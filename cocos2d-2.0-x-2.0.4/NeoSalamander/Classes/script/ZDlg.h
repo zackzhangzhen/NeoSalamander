@@ -14,6 +14,12 @@ public:
 	void calcPos(void);
 	void init(void);
 	void calcInitPos(void);
+	void calcInitOpacity(void);
+
+	void addToCCNode(CCNode* node, int baseOrder);
+
+	void FadeIn();
+	void FadeOut();
 
 	static int POS_LEFT;
 	static int POS_RIGHT;
@@ -47,9 +53,15 @@ private:
 	CCSize getScriptSize();
 
 	int m_pos;
+
+	CCPoint m_frameInitPos;
+	CCPoint m_figureInitPos;
+	CCPoint m_scriptInitPos;
+
 	CCPoint m_framePos;
 	CCPoint m_figurePos;
 	CCPoint m_scriptPos;
+
 	char* m_script;
 	CCLabelTTF* m_scriptLabel;
 	ZSprite * m_figure;

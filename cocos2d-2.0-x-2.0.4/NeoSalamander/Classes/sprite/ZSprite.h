@@ -37,7 +37,9 @@ public:
 	CCSize getSize();
 	int getWidth();
 	int getHeight();
+	void setOpacity(int opacity);
 	void setPosition(int x,int y);
+	void setPosition(CCPoint pt);
 	void setPositionX(int x);
 	void setPositionY(int y);
 	void addAnimation(string animName, CCActionInterval* anim);//Add an animation to the sprite's anim map

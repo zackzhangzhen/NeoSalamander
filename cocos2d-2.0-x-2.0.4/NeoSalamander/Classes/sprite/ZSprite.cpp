@@ -194,6 +194,16 @@ CCSprite* ZSprite::getSprite()
     return m_sprite;
 }
 
+void ZSprite::setPosition(CCPoint pt)
+{
+	m_sprite->setPosition(pt);
+}
+
+void ZSprite::setOpacity(int opacity)
+{
+	m_sprite->setOpacity(opacity);
+}
+
 void ZSprite::setPosition(int x,int y)
 {
 	m_sprite->setPosition(ccp(x,y));
