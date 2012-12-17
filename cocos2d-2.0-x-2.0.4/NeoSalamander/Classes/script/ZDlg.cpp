@@ -11,8 +11,8 @@ int ZDlg::FIGURE_MARGIN = 10;
 char* ZDlg::FONT_ARIAL = "Arial";
 int ZDlg::FONT_DEFAULT_SIZE = 24;
 
-char* ZDlg::FRAME_L_NAME = "pic\\script\\frame_l.png";
-char* ZDlg::FRAME_R_NAME = "pic\\script\\frame_r.png";
+char* ZDlg::FRAME_L_NAME = "pic\\script\\frame_lr.png";
+char* ZDlg::FRAME_R_NAME = "pic\\script\\frame_lr.png";
 char* ZDlg::FRAME_F_NAME = "pic\\script\\frame_f.png";
 
 CCSize ZDlg::FRAME_L_SIZE = CCSizeMake(0,0);

@@ -3,14 +3,12 @@
 #define __BG_LAYER_H__
 
 #include "cocos2d.h"
-
 #include "Box2D/Box2D.h"
-
 #include "SimpleAudioEngine.h"
-
-#include "sprite/ZSprite.h"
-
+#include "sprite\ZSprite.h"
 #include "NeoConstants.h"
+#include "script\ZDlg.h"
+
 class BgLayer : public cocos2d::CCLayer
 {
 public:
@@ -24,6 +22,9 @@ public:
    static bool pause;
 private:
 	bool bg01;
+	bool testFlag;//used to test script player, delete it after the testing
+	ZDlg* dlg;//used to test script player, delete it after the testing
+
 	static const char* BG_01;
 	static const char* BG_02;
 	static const cocos2d::CCTexture2D* bgTex01;

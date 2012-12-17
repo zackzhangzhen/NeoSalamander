@@ -91,12 +91,6 @@
     <Filter Include="include\script">
       <UniqueIdentifier>{6cd6ecaa-8327-4ec4-9c0f-91d8400b77db}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\scriptplayer">
-      <UniqueIdentifier>{42684006-3d32-4b8b-9c4a-b8d807d5e400}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="source\scriptplayer">
-      <UniqueIdentifier>{3d4fa12b-e0cd-49d3-aaf8-6aa4a6d0c595}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\NeoSalamander.ico">

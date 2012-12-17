@@ -79,12 +79,15 @@ bool AppDelegate::applicationDidFinishLaunching()
 	CCBlink* blink = CCBlink::actionWithDuration(5,6);
 	//pLabel->runAction(blink);
 
+
+
+		
 	CCTintTo* tint = CCTintTo::actionWithDuration(5,100,50,60);
 	pLabel->runAction(tint);
 	
 
     // Add the label to HelloWorld layer as a child layer.
-    pScene->addChild(pLabel, 5);
+    //pScene->addChild(pLabel, 5);
 
 
 
