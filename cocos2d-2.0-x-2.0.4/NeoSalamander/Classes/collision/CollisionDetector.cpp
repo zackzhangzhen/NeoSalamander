@@ -8,6 +8,15 @@ CollObjArray::CollObjArray(void)
    m_objArr = NULL;
 }
 
+CollObjArray::CollObjArray(string tag)
+{
+   m_Tag = tag;
+}
+CollisionHandler::CollisionHandler(CCNode* parent)
+{
+	m_Parent = parent;
+}
+
 CollisionDetector::CollisionDetector(void)
 {
 }
@@ -17,6 +26,10 @@ CollisionDetector::~CollisionDetector(void)
 {
 }
 
+void CollisionHandler::HandleCollison(CCNode* layer,CollidableObject* obj1, CollidableObject* obj2)
+{
+
+}
 
 void CollisionDetector::AddToCollArray(CollObjArray* _collObjArray)
 {
@@ -61,7 +74,7 @@ void CollisionDetector::CollideTwoArrays(CollObjArray* arrLeft,CollObjArray* arr
 			{
 				string str = arrLeft->m_Tag + "_"+arrRight->m_Tag;
 				map<string,CollisionHandler*>::iterator it = collHandlers.find(str);
-				it->second->HandleCollison(it->second->m_Layer,leftObj,rightObj);
+				it->second->HandleCollison(it->second->m_Parent,leftObj,rightObj);
 			}
 			/*rightObj = arrRight->m_objArr->data->arr[j];
 			rightSprite = (CCSprite*)rightObj;
@@ -96,7 +109,7 @@ void CollisionDetector::Detect()
 
 CollisionHandler::CollisionHandler(void)
 {
-	m_Layer = NULL;
+	m_Parent = NULL;
 }
 
 bool CollidableObject::IsCollidingWith(CollidableObject* obj)

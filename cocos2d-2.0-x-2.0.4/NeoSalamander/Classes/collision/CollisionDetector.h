@@ -17,7 +17,9 @@ class CollObjArray
 {
 public:
 	CollObjArray(void);
+	CollObjArray(string tag);
 	~CollObjArray(void);
+	
 
 	string m_Tag;
 	//CCArray* m_objArr;
@@ -25,12 +27,13 @@ public:
 };
 
 
-class CollisionHandler
+class CollisionHandler:public CCNode
 {
 public:
 	CollisionHandler(void);
-	virtual void HandleCollison(CCLayer* layer,CollidableObject* obj1, CollidableObject* obj2) = 0; 
-	CCLayer* m_Layer;
+	CollisionHandler(CCNode* parent);
+	virtual void HandleCollison(CCNode* layer,CollidableObject* obj1, CollidableObject* obj2); 
+	CCNode* m_Parent;
 };
 
 

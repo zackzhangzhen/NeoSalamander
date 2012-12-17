@@ -56,6 +56,8 @@ bool AppDelegate::applicationDidFinishLaunching()
 	}
 
 	ObjectLayer* l = ObjectLayer::createObjectLayer();
+	l->Initialize();
+	l->scheduleUpdate();
 	l->scheduleObjects();
 	pScene->addChild(l,1);
 	//pScene->addChild(player,2);

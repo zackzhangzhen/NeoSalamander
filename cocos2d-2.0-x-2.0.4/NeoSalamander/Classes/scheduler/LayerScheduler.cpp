@@ -1,13 +1,22 @@
 #include "LayerScheduler.h"
-
+#include "../../Classes/layer/ObjectLayer.h"
 
 LayerScheduler::LayerScheduler(void)
+{
+}
+
+LayerScheduler::LayerScheduler(CCNode* parentNode)
 {
 }
 
 ScheduleTempValHolder LayerScheduler::getTempValHolder()
 {
 	return tempValHolder;
+}
+
+void LayerScheduler::scheduleUpdate()
+{
+	this->schedule(schedule_selector(LayerScheduler::update));
 }
 
 LayerScheduler::LayerScheduler(char* fileName, int dir, int bulkCount, float spawnInterval, float velocity, int zOrder, CCNode* parentNode)
@@ -49,6 +58,12 @@ void LayerScheduler::randomSpawn(float dt)
 {
 	ZSprite* sprite = new ZSprite(tempValHolder.tempSpriteFileName, tempValHolder.tempDirection, tempValHolder.tempVelocity);
 	sprite->addToCCNode(parentNode, tempValHolder.tempZOrder);
+}
+
+void LayerScheduler::update(CCTime dt)
+{
+	//((ObjectLayer*)this->parentNode)->cd->Detect();
+	int kkk = 0;
 }
 
 LayerScheduler::~LayerScheduler(void)
