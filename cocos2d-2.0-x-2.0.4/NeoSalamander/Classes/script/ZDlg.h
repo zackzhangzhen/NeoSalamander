@@ -12,6 +12,8 @@ public:
 
 	void calcFrameSizes(void);
 	void calcPos(void);
+	void initFramePrototype();
+	void initFrame();
 	void init(void);
 	void calcInitPos(void);
 	void calcInitOpacity(void);

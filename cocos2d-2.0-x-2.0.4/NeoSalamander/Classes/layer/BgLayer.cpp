@@ -67,15 +67,15 @@ void BgLayer::ccTouchesEnded(CCSet* touches, CCEvent* event)
 		CCDirector::sharedDirector()->resume();
 		pause = false;
 	}*/
-	pl = new Plane("pic\\object\\plane.png");
+	/*pl = new Plane("pic\\object\\plane.png");
 	pl->setPosition(location.x,location.y);
 	pl->addToCCNode(this, 0);
 	pl->addAnimation("exp",Utility::getAnimationAction("pic\\explosion\\","png",26,false, false));
-	//pl->playAnimationAndStop("exp");
+	pl->playAnimationAndStop("exp");*/
 
-	if(dlg != NULL)
+	if(dlg == NULL)
 	{	
-		dlg = new ZDlg(ZDlg::POS_LEFT, "This is the script.", "pic\\figure\figure.png");
+		dlg = new ZDlg(ZDlg::POS_RIGHT, "This is the script.I want to add it long enough so that there will be a new line.", "pic\\figure\\figure.png");
 			dlg->addToCCNode(this, 10);
 	}
 

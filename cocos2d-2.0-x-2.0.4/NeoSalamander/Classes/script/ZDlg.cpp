@@ -19,9 +19,9 @@ CCSize ZDlg::FRAME_L_SIZE = CCSizeMake(0,0);
 CCSize ZDlg::FRAME_R_SIZE = CCSizeMake(0,0);
 CCSize ZDlg::FRAME_F_SIZE = CCSizeMake(0,0);
 
-ZSprite* ZDlg::FRAME_L = new ZSprite(FRAME_L_NAME);
-ZSprite* ZDlg::FRAME_R = new ZSprite(FRAME_R_NAME);
-ZSprite* ZDlg::FRAME_F = new ZSprite(FRAME_F_NAME);
+ZSprite* ZDlg::FRAME_L = NULL;
+ZSprite* ZDlg::FRAME_R = NULL;
+ZSprite* ZDlg::FRAME_F = NULL;
 
 ZDlg::ZDlg(void)
 {
@@ -29,7 +29,13 @@ ZDlg::ZDlg(void)
 
 ZDlg::ZDlg(int pos, char* script, char* figureFileName, char* font, int size)
 {
-	this->m_pos = pos;
+	this->m_frame = NULL;
+	 initFramePrototype();
+
+	 this->m_pos = pos;
+	 initFrame();
+
+	
 	this->m_script = script;
 	//this->m_scriptLabel = CCLabelTTF::create(script, font, size, CCSizeMake(/*68*/NeoConstants::WIN_WIDTH/2, 480),kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter);
 	this->m_scriptLabel = CCLabelTTF::create(script, font, size,this->getScriptSize(),kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter);
@@ -37,6 +43,44 @@ ZDlg::ZDlg(int pos, char* script, char* figureFileName, char* font, int size)
 
 	init();
 
+}
+
+void ZDlg::initFramePrototype()
+{
+	if(FRAME_L == NULL)
+	{
+		FRAME_L = new ZSprite(FRAME_L_NAME);
+	}
+	if(FRAME_R == NULL)
+	{
+		FRAME_R = new ZSprite(FRAME_R_NAME);
+	}
+	if(FRAME_F == NULL)
+	{
+		FRAME_F = new ZSprite(FRAME_F_NAME);
+	}
+}
+
+void ZDlg::initFrame()
+{
+	switch(this->m_pos)
+	{
+		case (/*ZDlg::POS_LEFT*/0):
+		{	
+			m_frame = FRAME_L;
+			break;
+		}
+		case (/*ZDlg::POS_RIGHT*/1):
+		{	
+			m_frame = FRAME_R;
+			break;
+		}
+		case (/*ZDlg::POS_FULL*/2):
+		{	
+			m_frame = FRAME_F;
+			break;
+		}
+	 }
 }
 
 void ZDlg::addToCCNode(CCNode* node, int baseOrder)
@@ -64,12 +108,14 @@ void ZDlg::FadeIn()
 		}
 		default:
 			{
-				CCMoveTo* frameMoveTo = CCMoveTo::actionWithDuration(4, m_framePos);
-				CCMoveTo* figureMoveTo = CCMoveTo::actionWithDuration(6, m_figurePos);
-				CCMoveTo* scriptMoveTo = CCMoveTo::actionWithDuration(4, m_scriptPos);
+				CCMoveTo* frameMoveTo = CCMoveTo::actionWithDuration(0.5, m_framePos);
+				CCMoveTo* figureMoveTo = CCMoveTo::actionWithDuration(1, m_figurePos);
+				CCMoveTo* scriptMoveTo = CCMoveTo::actionWithDuration(0.5, m_scriptPos);
 
-				CCFadeIn* pCCFadeIn= CCFadeIn::actionWithDuration(4);
-				CCDelayTime *delayAction = CCDelayTime::actionWithDuration(1);
+				CCFadeIn* pCCFadeIn= CCFadeIn::actionWithDuration(1);
+				CCDelayTime *delayAction = CCDelayTime::actionWithDuration(0.5);
+
+				m_scriptLabel->setOpacity(0);
 
 				m_frame->getSprite()->runAction(frameMoveTo);
 				m_figure->getSprite()->runAction(figureMoveTo);
@@ -160,7 +206,7 @@ void ZDlg::calcInitPos(void)
 
 			m_frameInitPos = ccp(x,m_framePos.y);
 			m_scriptInitPos = ccp(m_scriptPos.x + distance, m_scriptPos.y);
-			m_figurePos = ccp(m_figurePos.x + distance, m_figurePos.y);
+			m_figureInitPos = ccp(m_figurePos.x + distance, m_figurePos.y);
 
 			m_frame->setPositionX(x);
 			m_scriptLabel->setPositionX(m_scriptInitPos.x);
