@@ -20,8 +20,9 @@ public:
 
 	void addToCCNode(CCNode* node, int baseOrder);
 
-	void FadeIn();
-	void FadeOut();
+	void fadeIn();
+	void fadeOut();
+	bool play();
 
 	static int POS_LEFT;
 	static int POS_RIGHT;
@@ -30,6 +31,7 @@ public:
 	static int FRAME_MARGIN;
 	static int SCRIPT_MARGIN;
 	static int FIGURE_MARGIN;
+	static int FIGURE_OFFSET;
 
 	static char* FONT_ARIAL;
 	static int FONT_DEFAULT_SIZE;
@@ -55,6 +57,8 @@ private:
 	CCSize getScriptSize();
 
 	int m_pos;
+
+	bool fadingIn;
 
 	CCPoint m_frameInitPos;
 	CCPoint m_figureInitPos;

@@ -79,14 +79,7 @@ void BgLayer::ccTouchesEnded(CCSet* touches, CCEvent* event)
 			dlg->addToCCNode(this, 10);
 	}
 
-	if(!testFlag)
-	{
-		dlg->FadeIn();
-	}
-	else
-	{
-		dlg->FadeOut();
-	}
+	dlg->play();
 
 	
 }

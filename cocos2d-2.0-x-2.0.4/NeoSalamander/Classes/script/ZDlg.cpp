@@ -5,11 +5,12 @@ int ZDlg::POS_RIGHT = 1;
 int ZDlg::POS_FULL = 2;
 
 int ZDlg::FRAME_MARGIN = 6;
-int ZDlg::SCRIPT_MARGIN = 6;
+int ZDlg::SCRIPT_MARGIN = 20;
 int ZDlg::FIGURE_MARGIN = 10;
+int ZDlg::FIGURE_OFFSET = 80;
 
 char* ZDlg::FONT_ARIAL = "Arial";
-int ZDlg::FONT_DEFAULT_SIZE = 24;
+int ZDlg::FONT_DEFAULT_SIZE = 20;
 
 char* ZDlg::FRAME_L_NAME = "pic\\script\\frame_lr.png";
 char* ZDlg::FRAME_R_NAME = "pic\\script\\frame_lr.png";
@@ -29,6 +30,8 @@ ZDlg::ZDlg(void)
 
 ZDlg::ZDlg(int pos, char* script, char* figureFileName, char* font, int size)
 {
+	fadingIn = true;
+
 	this->m_frame = NULL;
 	 initFramePrototype();
 
@@ -92,14 +95,15 @@ void ZDlg::addToCCNode(CCNode* node, int baseOrder)
 	node->addChild(m_scriptLabel, baseOrder + 2);
 }
 
-void ZDlg::FadeIn()
+void ZDlg::fadeIn()
 {
+	fadingIn = false;
 	switch(this->m_pos)
 	{
 		case (/*ZDlg::POS_FULL*/2):
 		{	
-			CCFadeIn* pCCFadeIn= CCFadeIn::actionWithDuration(3);
-			CCDelayTime *delayAction = CCDelayTime::actionWithDuration(3);
+			CCFadeIn* pCCFadeIn= CCFadeIn::actionWithDuration(1);
+			CCDelayTime *delayAction = CCDelayTime::actionWithDuration(1);
 
 			m_frame->getSprite()->runAction(pCCFadeIn);
 			m_figure->getSprite()->runAction(pCCFadeIn);
@@ -108,14 +112,14 @@ void ZDlg::FadeIn()
 		}
 		default:
 			{
+				//m_frame->setPosition(m_frameInitPos);
+				//m_figure->setPosition(m_figureInitPos);
 				CCMoveTo* frameMoveTo = CCMoveTo::actionWithDuration(0.5, m_framePos);
-				CCMoveTo* figureMoveTo = CCMoveTo::actionWithDuration(1, m_figurePos);
+				CCMoveTo* figureMoveTo = CCMoveTo::actionWithDuration(0.5, m_figurePos);
 				CCMoveTo* scriptMoveTo = CCMoveTo::actionWithDuration(0.5, m_scriptPos);
 
 				CCFadeIn* pCCFadeIn= CCFadeIn::actionWithDuration(1);
 				CCDelayTime *delayAction = CCDelayTime::actionWithDuration(0.5);
-
-				m_scriptLabel->setOpacity(0);
 
 				m_frame->getSprite()->runAction(frameMoveTo);
 				m_figure->getSprite()->runAction(figureMoveTo);
@@ -125,14 +129,14 @@ void ZDlg::FadeIn()
 	}
 }
 
-void ZDlg::FadeOut()
+void ZDlg::fadeOut()
 {
 	switch(this->m_pos)
 	{
 		case (/*ZDlg::POS_FULL*/2):
 		{	
-			CCFadeIn* pCCFadeOut= CCFadeIn::actionWithDuration(3);
-			CCDelayTime *delayAction = CCDelayTime::actionWithDuration(3);
+			CCFadeOut* pCCFadeOut= CCFadeOut::actionWithDuration(1);
+			CCDelayTime *delayAction = CCDelayTime::actionWithDuration(1);
 
 			m_frame->getSprite()->runAction(CCSequence::actions(delayAction, pCCFadeOut, NULL));
 			m_figure->getSprite()->runAction(CCSequence::actions(delayAction, pCCFadeOut, NULL));
@@ -141,23 +145,36 @@ void ZDlg::FadeOut()
 		}
 		default:
 			{
-				CCMoveTo* frameMoveTo = CCMoveTo::actionWithDuration(4, m_frameInitPos);
-				CCMoveTo* figureMoveTo = CCMoveTo::actionWithDuration(6, m_figureInitPos);
-				CCMoveTo* scriptMoveTo = CCMoveTo::actionWithDuration(4, m_scriptInitPos);
+				CCMoveTo* frameMoveTo = CCMoveTo::actionWithDuration(1.5, m_frameInitPos);
+				CCMoveTo* figureMoveTo = CCMoveTo::actionWithDuration(0.8, m_figureInitPos);
+				CCMoveTo* scriptMoveTo = CCMoveTo::actionWithDuration(1.5, m_scriptInitPos);
 
-				CCFadeIn* pCCFadeOut= CCFadeIn::actionWithDuration(3);
-				CCDelayTime *delayAction = CCDelayTime::actionWithDuration(3);
+				CCFadeOut* pCCFadeOut= CCFadeOut::actionWithDuration(1);
+				CCDelayTime *delayAction = CCDelayTime::actionWithDuration(1);
 
-				m_frame->getSprite()->runAction(CCSequence::actions(delayAction, frameMoveTo));
-				m_figure->getSprite()->runAction(CCSequence::actions(delayAction, figureMoveTo));
+				m_frame->getSprite()->runAction(CCSequence::actions(delayAction, frameMoveTo, NULL));
+				m_figure->getSprite()->runAction(CCSequence::actions(delayAction, figureMoveTo, NULL));
 				m_scriptLabel->runAction(CCSequence::actions(pCCFadeOut,scriptMoveTo, NULL));
 
 			}
 	}
 }
 
+bool ZDlg::play()
+{
+	if(fadingIn)
+	{
+		this->fadeIn();
+		return false;
+	}
+
+	this->fadeOut();
+	return true;
+}
+
 void ZDlg::init(void)
 {
+	calcInitOpacity();
 	calcFrameSizes();
 	calcPos();
 	calcInitPos();
@@ -173,7 +190,7 @@ void ZDlg::calcInitOpacity(void)
 		{	
 			m_frame->setOpacity(0);
 			m_figure->setOpacity(0);
-			
+
 			break;
 		}
 	}
@@ -192,7 +209,7 @@ void ZDlg::calcInitPos(void)
 			m_scriptInitPos = ccp(m_scriptPos.x - distance, m_scriptPos.y);
 			m_figurePos = ccp(m_figurePos.x - distance, m_figurePos.y);
 
-			m_frame->setPositionX(x);
+			m_frame->setPosition(m_framePos);
 			m_scriptLabel->setPositionX(m_scriptInitPos.x);
 			m_figure->setPositionX(m_figurePos.x);
 			
@@ -300,6 +317,7 @@ void ZDlg::calcFramePos(void)
 			break;
 		}
 	}
+	this->m_frame->setPosition(m_framePos);
 }
 
 void ZDlg::calcFigurePos(void)
@@ -328,11 +346,18 @@ void ZDlg::calcFigurePos(void)
 	}
 
 	m_figurePos = figurePos;
+
+	m_figurePos.y = m_figurePos.y + FIGURE_OFFSET;
+
+	this->m_figure->setPosition(m_figurePos);
 }
 
 void ZDlg::calcScriptPos(void)
 {
+	//m_scriptPos = ccp(this->m_framePos.x + SCRIPT_MARGIN,this->m_framePos.y - SCRIPT_MARGIN) ;
 	m_scriptPos = this->m_framePos;
+
+	this->m_scriptLabel->setPosition(m_scriptPos);
 }
 
 ZDlg::~ZDlg(void)
