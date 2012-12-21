@@ -1,7 +1,17 @@
 #ifndef __APP_DELEGATE_H__
 #define __APP_DELEGATE_H__
 
+
+#include "script/ScriptLayer.h"
 #include "cocos2d.h"
+#include "CCEGLView.h"
+#include "HelloWorldScene.h"
+#include "SimpleAudioEngine.h"
+#include "layer/BgLayer.h";
+#include "utility/Utility.h"
+#include "sprite/ZSprite.h"
+#include "layer/ObjectLayer.h"
+#include "synchronization\GlobalFlag.h"
 /**
 @brief    The cocos2d Application.
 

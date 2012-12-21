@@ -9,7 +9,7 @@ int ZDlg::SCRIPT_MARGIN = 20;
 int ZDlg::FIGURE_MARGIN = 10;
 int ZDlg::FIGURE_OFFSET = 80;
 
-char* ZDlg::FONT_ARIAL = "Arial";
+char* ZDlg::FONT_COMIC = "Comic Sans MS";
 int ZDlg::FONT_DEFAULT_SIZE = 20;
 
 char* ZDlg::FRAME_L_NAME = "pic\\script\\frame_lr.png";
@@ -28,7 +28,7 @@ ZDlg::ZDlg(void)
 {
 }
 
-ZDlg::ZDlg(int pos, char* script, char* figureFileName, char* font, int size)
+ZDlg::ZDlg(int pos, char* script, char* figureFileName, CCNode* parentNode, char* font, int size)
 {
 	fadingIn = true;
 
@@ -46,6 +46,10 @@ ZDlg::ZDlg(int pos, char* script, char* figureFileName, char* font, int size)
 
 	init();
 
+	if(parentNode != NULL)
+	{
+		this->addToCCNode(parentNode, 10);
+	}
 }
 
 void ZDlg::initFramePrototype()
@@ -95,7 +99,7 @@ void ZDlg::addToCCNode(CCNode* node, int baseOrder)
 	node->addChild(m_scriptLabel, baseOrder + 2);
 }
 
-void ZDlg::fadeIn()
+void ZDlg::fadeIn(bool delay)
 {
 	fadingIn = false;
 	switch(this->m_pos)
@@ -108,13 +112,23 @@ void ZDlg::fadeIn()
 
 			CCDelayTime *delayAction = CCDelayTime::actionWithDuration(1);
 
-			//CCFadeOut* pCCFadeOut= CCFadeOut::actionWithDuration(3);
+			if(delay)
+			{
+				CCDelayTime *allDelayAction1 = CCDelayTime::actionWithDuration(1.5);
+				CCDelayTime *allDelayAction2 = CCDelayTime::actionWithDuration(1.5);
+				CCDelayTime *allDelayAction3 = CCDelayTime::actionWithDuration(1.5);
+
+				m_frame->getSprite()->runAction(CCSequence::actions(allDelayAction1,pCCFadeIn1, NULL));
+				m_figure->getSprite()->runAction(CCSequence::actions(allDelayAction2,pCCFadeIn2, NULL));
+				m_scriptLabel->runAction(CCSequence::actions(allDelayAction3, delayAction, pCCFadeIn3, NULL));
+
+				return ;
+			}
 
 			m_frame->getSprite()->runAction(pCCFadeIn1);
-			m_figure->getSprite()->runAction(pCCFadeIn2);
-			
-			
+			m_figure->getSprite()->runAction(pCCFadeIn2);			
 			m_scriptLabel->runAction(CCSequence::actions(delayAction, pCCFadeIn3, NULL));
+
 			break;
 		}
 		default:
@@ -127,6 +141,20 @@ void ZDlg::fadeIn()
 
 				CCFadeIn* pCCFadeIn= CCFadeIn::actionWithDuration(1);
 				CCDelayTime *delayAction = CCDelayTime::actionWithDuration(0.5);
+
+
+				if(delay)
+				{
+					CCDelayTime *allDelayAction1 = CCDelayTime::actionWithDuration(1.5);
+					CCDelayTime *allDelayAction2 = CCDelayTime::actionWithDuration(1.5);
+					CCDelayTime *allDelayAction3 = CCDelayTime::actionWithDuration(1.5);
+
+					m_frame->getSprite()->runAction(CCSequence::actions(allDelayAction1,frameMoveTo, NULL));
+					m_figure->getSprite()->runAction(CCSequence::actions(allDelayAction2,figureMoveTo, NULL));
+					m_scriptLabel->runAction(CCSequence::actions(allDelayAction3, scriptMoveTo, delayAction, pCCFadeIn, NULL));
+
+					return ;
+				}
 
 				m_frame->getSprite()->runAction(frameMoveTo);
 				m_figure->getSprite()->runAction(figureMoveTo);
@@ -170,11 +198,12 @@ void ZDlg::fadeOut()
 	}
 }
 
-bool ZDlg::play()
+bool ZDlg::play(bool delay)
 {
+
 	if(fadingIn)
 	{
-		this->fadeIn();
+		this->fadeIn(delay);
 		return false;
 	}
 

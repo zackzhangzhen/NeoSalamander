@@ -6,7 +6,7 @@ class ZDlg
 {
 public:
 	ZDlg(void);
-	ZDlg(int pos, char* script, char* figureFileName, char* font = FONT_ARIAL, int size = FONT_DEFAULT_SIZE);
+	ZDlg(int pos, char* script, char* figureFileName, CCNode* parentNode = NULL, char* font = FONT_COMIC, int size = FONT_DEFAULT_SIZE);
 	
 	~ZDlg(void);
 
@@ -20,9 +20,9 @@ public:
 
 	void addToCCNode(CCNode* node, int baseOrder);
 
-	void fadeIn();
+	void fadeIn(bool delay);
 	void fadeOut();
-	bool play();
+	bool play(bool delay);
 
 	static int POS_LEFT;
 	static int POS_RIGHT;
@@ -33,7 +33,7 @@ public:
 	static int FIGURE_MARGIN;
 	static int FIGURE_OFFSET;
 
-	static char* FONT_ARIAL;
+	static char* FONT_COMIC;
 	static int FONT_DEFAULT_SIZE;
 
 	static ZSprite* FRAME_L;

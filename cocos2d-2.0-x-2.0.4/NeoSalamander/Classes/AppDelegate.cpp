@@ -1,13 +1,5 @@
-#include "cocos2d.h"
-#include "CCEGLView.h"
 #include "AppDelegate.h"
-#include "HelloWorldScene.h"
-#include "SimpleAudioEngine.h"
-#include "layer/BgLayer.h";
-#include "utility/Utility.h"
-#include "sprite/ZSprite.h"
-#include "layer/ObjectLayer.h"
-#include "synchronization\GlobalFlag.h"
+
 using namespace CocosDenshion;
 
 USING_NS_CC;
@@ -39,6 +31,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     //CCScene *pScene = HelloWorld::scene();
 	CCScene *pScene = CCScene::create();
 	pScene->addChild(new BgLayer());
+	pScene->addChild(new ScriptLayer(), 10);
 
 	CCActionInterval* ac = Utility::getAnimationAction("pic\\explosion\\", "png",26, false, false);
 

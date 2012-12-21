@@ -166,6 +166,9 @@
     <ClInclude Include="..\Classes\script\ScriptPlayer.h">
       <Filter>include\script</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\script\ScriptLayer.h">
+      <Filter>include\layer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -218,6 +221,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\script\ScriptPlayer.cpp">
       <Filter>source\script</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\script\ScriptLayer.cpp">
+      <Filter>source\layer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -124,6 +124,12 @@ ZSprite::ZSprite(char* fileName, int direction, float velocity)
 void ZSprite::addToCCNode(CCNode* node, int zOrder)
 {
 	assert(node!=NULL);
+
+	if(this->m_sprite->getParent() != NULL)
+	{
+		return;
+	}
+
 	node->addChild(this->m_sprite, zOrder);
 	m_parentNode = node;
 }

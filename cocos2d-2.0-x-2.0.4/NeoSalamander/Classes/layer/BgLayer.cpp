@@ -18,10 +18,6 @@ BgLayer::BgLayer(void)
 {
 	this->bg01 = true;
 
-	//delete, for testing only
-	this->testFlag = false;
-	dlg = NULL;
-
 	//init the background sprite
 	this->m_bgSprite = CCSprite::create(this->BG_01);
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
@@ -71,17 +67,7 @@ void BgLayer::ccTouchesEnded(CCSet* touches, CCEvent* event)
 	pl->setPosition(location.x,location.y);
 	pl->addToCCNode(this, 0);
 	pl->addAnimation("exp",Utility::getAnimationAction("pic\\explosion\\","png",26,false, false));
-	pl->playAnimationAndStop("exp");*/
-
-	if(dlg == NULL)
-	{	
-		dlg = new ZDlg(ZDlg::POS_RIGHT, "This is the script.I want to add it long enough so that there will be a new line.", "pic\\figure\\figure.png");
-			dlg->addToCCNode(this, 10);
-	}
-
-	dlg->play();
-
-	
+	pl->playAnimationAndStop("exp");*/	
 }
 
 BgLayer::~BgLayer(void)
