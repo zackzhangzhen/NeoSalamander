@@ -102,12 +102,19 @@ void ZDlg::fadeIn()
 	{
 		case (/*ZDlg::POS_FULL*/2):
 		{	
-			CCFadeIn* pCCFadeIn= CCFadeIn::actionWithDuration(1);
+			CCFadeIn* pCCFadeIn1= CCFadeIn::actionWithDuration(1);
+			CCFadeIn* pCCFadeIn2= CCFadeIn::actionWithDuration(1.5);
+			CCFadeIn* pCCFadeIn3= CCFadeIn::actionWithDuration(1);
+
 			CCDelayTime *delayAction = CCDelayTime::actionWithDuration(1);
 
-			m_frame->getSprite()->runAction(pCCFadeIn);
-			m_figure->getSprite()->runAction(pCCFadeIn);
-			m_scriptLabel->runAction(CCSequence::actions(delayAction, pCCFadeIn, NULL));
+			//CCFadeOut* pCCFadeOut= CCFadeOut::actionWithDuration(3);
+
+			m_frame->getSprite()->runAction(pCCFadeIn1);
+			m_figure->getSprite()->runAction(pCCFadeIn2);
+			
+			
+			m_scriptLabel->runAction(CCSequence::actions(delayAction, pCCFadeIn3, NULL));
 			break;
 		}
 		default:
@@ -115,7 +122,7 @@ void ZDlg::fadeIn()
 				//m_frame->setPosition(m_frameInitPos);
 				//m_figure->setPosition(m_figureInitPos);
 				CCMoveTo* frameMoveTo = CCMoveTo::actionWithDuration(0.5, m_framePos);
-				CCMoveTo* figureMoveTo = CCMoveTo::actionWithDuration(0.5, m_figurePos);
+				CCMoveTo* figureMoveTo = CCMoveTo::actionWithDuration(1, m_figurePos);
 				CCMoveTo* scriptMoveTo = CCMoveTo::actionWithDuration(0.5, m_scriptPos);
 
 				CCFadeIn* pCCFadeIn= CCFadeIn::actionWithDuration(1);
@@ -135,12 +142,15 @@ void ZDlg::fadeOut()
 	{
 		case (/*ZDlg::POS_FULL*/2):
 		{	
-			CCFadeOut* pCCFadeOut= CCFadeOut::actionWithDuration(1);
+			CCFadeOut* pCCFadeOut1= CCFadeOut::actionWithDuration(1);
+			CCFadeOut* pCCFadeOut2= CCFadeOut::actionWithDuration(1.5);
+			CCFadeOut* pCCFadeOut3= CCFadeOut::actionWithDuration(1);
+
 			CCDelayTime *delayAction = CCDelayTime::actionWithDuration(1);
 
-			m_frame->getSprite()->runAction(CCSequence::actions(delayAction, pCCFadeOut, NULL));
-			m_figure->getSprite()->runAction(CCSequence::actions(delayAction, pCCFadeOut, NULL));
-			m_scriptLabel->runAction(pCCFadeOut);
+			m_frame->getSprite()->runAction(CCSequence::actions(delayAction, pCCFadeOut1, NULL));
+			m_figure->getSprite()->runAction(CCSequence::actions(delayAction, pCCFadeOut2, NULL));
+			m_scriptLabel->runAction(pCCFadeOut3);
 			break;
 		}
 		default:
@@ -207,11 +217,11 @@ void ZDlg::calcInitPos(void)
 
 			m_frameInitPos = ccp(x,m_framePos.y);
 			m_scriptInitPos = ccp(m_scriptPos.x - distance, m_scriptPos.y);
-			m_figurePos = ccp(m_figurePos.x - distance, m_figurePos.y);
+			m_figureInitPos = ccp(m_figurePos.x - distance, m_figurePos.y);
 
-			m_frame->setPosition(m_framePos);
-			m_scriptLabel->setPositionX(m_scriptInitPos.x);
-			m_figure->setPositionX(m_figurePos.x);
+			m_frame->setPosition(m_frameInitPos);
+			m_scriptLabel->setPosition(m_scriptInitPos);
+			m_figure->setPosition(m_figureInitPos);
 			
 			break;
 		}
