@@ -2,7 +2,7 @@
 #define __APP_DELEGATE_H__
 
 
-#include "script/ScriptLayer.h"
+#include "layer/ScriptLayer.h"
 #include "cocos2d.h"
 #include "CCEGLView.h"
 #include "HelloWorldScene.h"

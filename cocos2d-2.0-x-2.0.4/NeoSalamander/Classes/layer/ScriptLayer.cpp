@@ -18,13 +18,13 @@ void ScriptLayer::initScripts()
 	//==========================================================
 	vector<ZDlg*> vec1;
 
-	ZDlg* dlg = new ZDlg(ZDlg::POS_LEFT, "你好呀，大家都过来做一个简单的自我介绍好不好呀啊？", "pic\\figure\\figure.png", this);
+	ZDlg* dlg = new ZDlg(ZDlg::POS_LEFT, "你好呀，大家都过来做一个简单的自我介绍好不好呀啊？", "pic\\figure\\assassin.png", this);
 	vec1.push_back(dlg);
 
 	dlg = new ZDlg(ZDlg::POS_RIGHT, "Fine thank you! My name is Li Lei, what about you?", "pic\\figure\\master_chief.png", this);
 	vec1.push_back(dlg);
 
-	dlg = new ZDlg(ZDlg::POS_LEFT, "My name is Han Meimei, nice to meet you!", "pic\\figure\\figure.png", this);
+	dlg = new ZDlg(ZDlg::POS_LEFT, "My name is Han Meimei, nice to meet you!", "pic\\figure\\assassin.png", this);
 	vec1.push_back(dlg);
 
 	dlg = new ZDlg(ZDlg::POS_FULL, "Hi there, my name is Jim Green, don't forget me!", "pic\\figure\\jedi.png", this);
@@ -39,7 +39,7 @@ void ScriptLayer::initScripts()
 	dlg = new ZDlg(ZDlg::POS_LEFT, "What are you going to do now?", "pic\\figure\\jedi.png", this);
 	vec2.push_back(dlg);
 
-	dlg = new ZDlg(ZDlg::POS_RIGHT, "I'm going to play Halo 4!", "pic\\figure\\figure.png", this);
+	dlg = new ZDlg(ZDlg::POS_RIGHT, "I'm going to play Halo 4!", "pic\\figure\\assassin.png", this);
 	vec2.push_back(dlg);
 
 	dlg = new ZDlg(ZDlg::POS_LEFT, "Oh, I was just done playing it!", "pic\\figure\\jedi.png", this);
