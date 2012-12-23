@@ -1,4 +1,5 @@
 #include "ZDlg.h"
+#include "layer\ScriptLayer.h"
 
 int ZDlg::POS_LEFT = 0;
 int ZDlg::POS_RIGHT = 1;
@@ -8,10 +9,6 @@ int ZDlg::FRAME_MARGIN = 6;
 int ZDlg::SCRIPT_MARGIN = 20;
 int ZDlg::FIGURE_MARGIN = 10;
 int ZDlg::FIGURE_OFFSET = 80;
-
-char* ZDlg::FONT_COMIC = "Comic Sans MS";
-int ZDlg::FONT_DEFAULT_SIZE = 20;
-
 char* ZDlg::FRAME_L_NAME = "pic\\script\\frame_lr.png";
 char* ZDlg::FRAME_R_NAME = "pic\\script\\frame_lr.png";
 char* ZDlg::FRAME_F_NAME = "pic\\script\\frame_f.png";
@@ -28,9 +25,10 @@ ZDlg::ZDlg(void)
 {
 }
 
-ZDlg::ZDlg(int pos, char* script, char* figureFileName, CCNode* parentNode, char* font, int size)
+ZDlg::ZDlg(int pos, vector<char*>& scripts, char* figureFileName, CCNode* parentNode, char* font, int size)
 {
-	fadingIn = true;
+	m_scriptState = ScriptState::NOT_FADED_IN;
+	m_parentScriptLayer = NULL;
 
 	this->m_frame = NULL;
 	 initFramePrototype();
@@ -38,16 +36,40 @@ ZDlg::ZDlg(int pos, char* script, char* figureFileName, CCNode* parentNode, char
 	 this->m_pos = pos;
 	 initFrame();
 
-	
-	this->m_script = script;
 	//this->m_scriptLabel = CCLabelTTF::create(script, font, size, CCSizeMake(/*68*/NeoConstants::WIN_WIDTH/2, 480),kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter);
-	this->m_scriptLabel = CCLabelTTF::create(script, font, size,this->getScriptSize(),kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter);
+	this->m_scriptLabel = new ZLabelTTF(scripts, this->getScriptSize(), font);
 	this->m_figure = new ZSprite(figureFileName);
 
 	init();
 
 	if(parentNode != NULL)
 	{
+		this->m_parentScriptLayer = (ScriptLayer*)parentNode;
+		this->addToCCNode(parentNode, 10);
+	}
+}
+
+ZDlg::ZDlg(int pos, char* script, char* figureFileName, CCNode* parentNode, char* font, int size)
+{
+	m_scriptState = ScriptState::NOT_FADED_IN;
+	m_parentScriptLayer = NULL;
+
+	this->m_frame = NULL;
+	 initFramePrototype();
+
+	 this->m_pos = pos;
+	 initFrame();
+
+	//this->m_scriptLabel = CCLabelTTF::create(script, font, size, CCSizeMake(/*68*/NeoConstants::WIN_WIDTH/2, 480),kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter);
+	this->m_scriptLabel = new ZLabelTTF(script, this->getScriptSize(), font);
+	this->m_scriptLabel->setOpacity(0);
+	this->m_figure = new ZSprite(figureFileName);
+
+	init();
+
+	if(parentNode != NULL)
+	{
+		this->m_parentScriptLayer = (ScriptLayer*)parentNode;
 		this->addToCCNode(parentNode, 10);
 	}
 }
@@ -96,12 +118,20 @@ void ZDlg::addToCCNode(CCNode* node, int baseOrder)
 
 	m_figure->addToCCNode(node, baseOrder);
 	m_frame->addToCCNode(node, baseOrder + 1);
-	node->addChild(m_scriptLabel, baseOrder + 2);
+	m_scriptLabel->addToCCNode(node, baseOrder + 2);
+}
+
+
+void ZDlg::setAnimationPlayingDone(CCNode* sender)
+{
+	this->m_parentScriptLayer->setAnimationPlaying(false);
 }
 
 void ZDlg::fadeIn(bool delay)
 {
-	fadingIn = false;
+	m_scriptState = ScriptState::SCRIPT_ROLLING;
+	m_parentScriptLayer->setAnimationPlaying(true);
+	CCFiniteTimeAction* animationDone = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ZDlg::setAnimationPlayingDone));
 	switch(this->m_pos)
 	{
 		case (/*ZDlg::POS_FULL*/2):
@@ -114,20 +144,21 @@ void ZDlg::fadeIn(bool delay)
 
 			if(delay)
 			{
-				CCDelayTime *allDelayAction1 = CCDelayTime::actionWithDuration(1.5);
-				CCDelayTime *allDelayAction2 = CCDelayTime::actionWithDuration(1.5);
-				CCDelayTime *allDelayAction3 = CCDelayTime::actionWithDuration(1.5);
+
+				CCDelayTime *allDelayAction1 = CCDelayTime::actionWithDuration(2);
+				CCDelayTime *allDelayAction2 = CCDelayTime::actionWithDuration(2);
+				CCDelayTime *allDelayAction3 = CCDelayTime::actionWithDuration(2);
 
 				m_frame->getSprite()->runAction(CCSequence::actions(allDelayAction1,pCCFadeIn1, NULL));
 				m_figure->getSprite()->runAction(CCSequence::actions(allDelayAction2,pCCFadeIn2, NULL));
-				m_scriptLabel->runAction(CCSequence::actions(allDelayAction3, delayAction, pCCFadeIn3, NULL));
+				m_scriptLabel->runAction(CCSequence::actions(allDelayAction3, delayAction, pCCFadeIn3,animationDone, NULL));
 
 				return ;
 			}
 
 			m_frame->getSprite()->runAction(pCCFadeIn1);
 			m_figure->getSprite()->runAction(pCCFadeIn2);			
-			m_scriptLabel->runAction(CCSequence::actions(delayAction, pCCFadeIn3, NULL));
+			m_scriptLabel->runAction(CCSequence::actions(delayAction, pCCFadeIn3,animationDone, NULL));
 
 			break;
 		}
@@ -145,27 +176,51 @@ void ZDlg::fadeIn(bool delay)
 
 				if(delay)
 				{
-					CCDelayTime *allDelayAction1 = CCDelayTime::actionWithDuration(1.5);
-					CCDelayTime *allDelayAction2 = CCDelayTime::actionWithDuration(1.5);
-					CCDelayTime *allDelayAction3 = CCDelayTime::actionWithDuration(1.5);
+
+					m_parentScriptLayer->setAnimationPlaying(true);
+
+					CCDelayTime *allDelayAction1 = CCDelayTime::actionWithDuration(2);
+					CCDelayTime *allDelayAction2 = CCDelayTime::actionWithDuration(2);
+					CCDelayTime *allDelayAction3 = CCDelayTime::actionWithDuration(2);
 
 					m_frame->getSprite()->runAction(CCSequence::actions(allDelayAction1,frameMoveTo, NULL));
 					m_figure->getSprite()->runAction(CCSequence::actions(allDelayAction2,figureMoveTo, NULL));
-					m_scriptLabel->runAction(CCSequence::actions(allDelayAction3, scriptMoveTo, delayAction, pCCFadeIn, NULL));
+					m_scriptLabel->runAction(CCSequence::actions(allDelayAction3, scriptMoveTo, delayAction, pCCFadeIn,animationDone, NULL));
 
 					return ;
 				}
 
 				m_frame->getSprite()->runAction(frameMoveTo);
 				m_figure->getSprite()->runAction(figureMoveTo);
-				m_scriptLabel->runAction(CCSequence::actions(scriptMoveTo, delayAction, pCCFadeIn, NULL));
+				m_scriptLabel->runAction(CCSequence::actions(scriptMoveTo, delayAction, pCCFadeIn,animationDone, NULL));
 
 			}
 	}
 }
 
+void ZDlg::autoRelease(CCNode* sender)
+{
+	/*EnterCriticalSection(&GlobalFlag::m_csObject);
+	
+	CCSprite* sprite = (CCSprite*)sender;
+	this->m_parentScriptLayer->removeChild(sprite,true);
+	this->m_parentScriptLayer->removeChild(m_frame->getSprite(),true);
+	this->m_parentScriptLayer->removeChild(this->m_scriptLabel->getLabel(),true);
+
+	sprite->autorelease();
+	this->m_frame->getSprite()->autorelease();
+	this->m_scriptLabel->getLabel()->autorelease();
+
+	LeaveCriticalSection(&GlobalFlag::m_csObject);*/
+}
+
 void ZDlg::fadeOut()
 {
+	m_parentScriptLayer->setAnimationPlaying(true);
+
+	CCFiniteTimeAction* animationDone = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ZDlg::setAnimationPlayingDone));
+	CCFiniteTimeAction* autoReleaseAction = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ZDlg::autoRelease));
+
 	switch(this->m_pos)
 	{
 		case (/*ZDlg::POS_FULL*/2):
@@ -174,10 +229,11 @@ void ZDlg::fadeOut()
 			CCFadeOut* pCCFadeOut2= CCFadeOut::actionWithDuration(1.5);
 			CCFadeOut* pCCFadeOut3= CCFadeOut::actionWithDuration(1);
 
-			CCDelayTime *delayAction = CCDelayTime::actionWithDuration(1);
+			CCDelayTime *delayAction1 = CCDelayTime::actionWithDuration(1);
+			CCDelayTime *delayAction2 = CCDelayTime::actionWithDuration(1);
 
-			m_frame->getSprite()->runAction(CCSequence::actions(delayAction, pCCFadeOut1, NULL));
-			m_figure->getSprite()->runAction(CCSequence::actions(delayAction, pCCFadeOut2, NULL));
+			m_frame->getSprite()->runAction(CCSequence::actions(delayAction1, pCCFadeOut1, NULL));
+			m_figure->getSprite()->runAction(CCSequence::actions(delayAction2, pCCFadeOut2/*, animationDone*/,autoReleaseAction, NULL));
 			m_scriptLabel->runAction(pCCFadeOut3);
 			break;
 		}
@@ -188,10 +244,11 @@ void ZDlg::fadeOut()
 				CCMoveTo* scriptMoveTo = CCMoveTo::actionWithDuration(1.5, m_scriptInitPos);
 
 				CCFadeOut* pCCFadeOut= CCFadeOut::actionWithDuration(1);
-				CCDelayTime *delayAction = CCDelayTime::actionWithDuration(1);
+				CCDelayTime *delayAction1 = CCDelayTime::actionWithDuration(1);
+				CCDelayTime *delayAction2 = CCDelayTime::actionWithDuration(1);
 
-				m_frame->getSprite()->runAction(CCSequence::actions(delayAction, frameMoveTo, NULL));
-				m_figure->getSprite()->runAction(CCSequence::actions(delayAction, figureMoveTo, NULL));
+				m_frame->getSprite()->runAction(CCSequence::actions(delayAction1, frameMoveTo, NULL));
+				m_figure->getSprite()->runAction(CCSequence::actions(delayAction2, figureMoveTo/*, animationDone*/, autoReleaseAction, NULL));
 				m_scriptLabel->runAction(CCSequence::actions(pCCFadeOut,scriptMoveTo, NULL));
 
 			}
@@ -200,15 +257,24 @@ void ZDlg::fadeOut()
 
 bool ZDlg::play(bool delay)
 {
-
-	if(fadingIn)
+	switch(m_scriptState)
 	{
-		this->fadeIn(delay);
-		return false;
-	}
+		case(ScriptState::NOT_FADED_IN):
+		{
+			this->fadeIn(delay);
+			return false;
+		}
 
-	this->fadeOut();
-	return true;
+		case( ScriptState::SCRIPT_ROLLING):
+		{
+			if(this->m_scriptLabel->rollScript())
+			{
+				m_scriptState = ScriptState::SCRIPT_DONE;
+				this->fadeOut();
+				return true;
+			}
+		}
+	}
 }
 
 void ZDlg::init(void)

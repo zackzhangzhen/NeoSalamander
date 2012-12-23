@@ -169,6 +169,9 @@
     <ClInclude Include="..\Classes\layer\ScriptLayer.h">
       <Filter>include\layer</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\script\ZLabelTTF.h">
+      <Filter>include\script</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -224,6 +227,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\layer\ScriptLayer.cpp">
       <Filter>source\layer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\script\ZLabelTTF.cpp">
+      <Filter>source\script</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

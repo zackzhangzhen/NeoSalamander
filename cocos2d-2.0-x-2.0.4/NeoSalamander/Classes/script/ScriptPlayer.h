@@ -8,12 +8,10 @@ public:
 	~ScriptPlayer(void);
 	bool play();
 	char* getId();
-
 private:
 	vector<ZDlg*> m_vec;
 	vector<ZDlg*>::const_iterator m_iter;
 	char* m_id;
-
-
 };
+
 

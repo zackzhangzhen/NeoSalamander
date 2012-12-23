@@ -4,6 +4,7 @@
 ScriptLayer::ScriptLayer(void)
 {
 	this->setTouchEnabled(true);
+	this->m_isAnimationPlaying = false;
 	m_player = NULL;
 	initScripts();
 }
@@ -18,10 +19,19 @@ void ScriptLayer::initScripts()
 	//==========================================================
 	vector<ZDlg*> vec1;
 
-	ZDlg* dlg = new ZDlg(ZDlg::POS_LEFT, "你好呀，大家都过来做一个简单的自我介绍好不好呀啊？", "pic\\figure\\assassin.png", this);
+	vector<char*> charVec;
+	charVec.push_back("你好呀，大家都过来做一个简单的自我介绍好不好呀啊？");
+	charVec.push_back("其实没什么别的意思，我就是想测试一下剧本播放器");
+	charVec.push_back("有木有发现我现在在说着中文呢？");
+	ZDlg* dlg = new ZDlg(ZDlg::POS_LEFT, charVec, "pic\\figure\\assassin.png", this, ZLabelTTF::YAHEI);
+	//ZDlg* dlg = new ZDlg(ZDlg::POS_RIGHT, "Fine thank you! My name is Li Lei, what about you?", "pic\\figure\\master_chief.png", this);
 	vec1.push_back(dlg);
 
-	dlg = new ZDlg(ZDlg::POS_RIGHT, "Fine thank you! My name is Li Lei, what about you?", "pic\\figure\\master_chief.png", this);
+	vector<char*> charVec2;
+	charVec2.push_back("我是说英文的知道呢吗");
+	charVec2.push_back("Fine thank you! My name is Li Lei, what about you?");
+	charVec2.push_back("This is a very brief self-introduction!");
+	dlg = new ZDlg(ZDlg::POS_RIGHT, charVec2, "pic\\figure\\master_chief.png", this);
 	vec1.push_back(dlg);
 
 	dlg = new ZDlg(ZDlg::POS_LEFT, "My name is Han Meimei, nice to meet you!", "pic\\figure\\assassin.png", this);
@@ -69,8 +79,24 @@ ScriptPlayer* ScriptLayer::findScriptPlayerByKey(char* key)
 
 void ScriptLayer::ccTouchesEnded(CCSet* touches, CCEvent* event)
 {
+	if(this->isAnimationPlaying())
+	{
+		return;
+	}
+
 	if(m_player->play() && strcmp(m_player->getId(), "s1") == 0)
 	{
 		m_player = findScriptPlayerByKey("s2");
+		this->setAnimationPlaying(false);
 	}
+}
+
+bool ScriptLayer::isAnimationPlaying()
+{
+	return this->m_isAnimationPlaying;
+}
+
+void ScriptLayer::setAnimationPlaying(bool playing)
+{
+	this->m_isAnimationPlaying = playing;
 }

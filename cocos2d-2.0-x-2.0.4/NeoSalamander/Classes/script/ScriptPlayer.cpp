@@ -7,8 +7,9 @@ ScriptPlayer::ScriptPlayer(char* id, vector<ZDlg*>& vec)
 	this->m_vec = vec;
 
 	m_iter = m_vec.begin();
+	
+	
 }
-
 
 ScriptPlayer::~ScriptPlayer(void)
 {
@@ -36,8 +37,6 @@ bool ScriptPlayer::play()
 				return false;
 			}
 			return true;
-
-
 		}
 
 		return false;
@@ -47,3 +46,4 @@ bool ScriptPlayer::play()
 		return true;
 	}
 }
+

@@ -144,6 +144,7 @@
     <ClInclude Include="..\Classes\layer\ScriptLayer.h" />
     <ClInclude Include="..\Classes\script\ScriptPlayer.h" />
     <ClInclude Include="..\Classes\script\ZDlg.h" />
+    <ClInclude Include="..\Classes\script\ZLabelTTF.h" />
     <ClInclude Include="..\Classes\sprite\Plane.h" />
     <ClInclude Include="..\Classes\sprite\ZSprite.h" />
     <ClInclude Include="..\Classes\synchronization\GlobalFlag.h" />
@@ -165,6 +166,7 @@
     <ClCompile Include="..\Classes\layer\ScriptLayer.cpp" />
     <ClCompile Include="..\Classes\script\ScriptPlayer.cpp" />
     <ClCompile Include="..\Classes\script\ZDlg.cpp" />
+    <ClCompile Include="..\Classes\script\ZLabelTTF.cpp" />
     <ClCompile Include="..\Classes\sprite\Plane.cpp" />
     <ClCompile Include="..\Classes\sprite\ZSprite.cpp" />
     <ClCompile Include="..\Classes\synchronization\GlobalFlag.cpp" />
