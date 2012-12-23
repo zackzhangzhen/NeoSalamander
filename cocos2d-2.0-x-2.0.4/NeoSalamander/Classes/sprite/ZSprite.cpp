@@ -96,6 +96,9 @@ ZSprite::ZSprite(char* fileName, int direction, float velocity)
 	case (1/*NeoConstants::MOVE_LEFT*/):
 		{
 			 pt = Utility::getRandomPointOnOneSide(false);
+			 //needtofix
+			 pt.x = 320;
+			 pt.y = 100;
 			 this->m_sprite->setPosition(pt);
 			 this->m_startPoint = pt;
 			 linearMoveLeft(velocity);
@@ -105,6 +108,9 @@ ZSprite::ZSprite(char* fileName, int direction, float velocity)
 	case (2/*NeoConstants::MOVE_RIGHT*/):
 		{
 			pt = Utility::getRandomPointOnOneSide(true);
+			//needtofix
+			pt.x = 0;
+			pt.y = 100;
 			this->m_sprite->setPosition(pt);
 			this->m_startPoint = pt;
 			linearMoveRight(velocity);
@@ -147,6 +153,33 @@ void ZSprite::linearMoveLeft(float velocity)
 
 	CCFiniteTimeAction* actionMoveDone = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ZSprite::MoveDone));
 	this->m_sprite->runAction(CCSequence::actions(m_moveToWrapper.getMoveTo(), actionMoveDone, NULL));
+}
+
+bool ZSprite::IsCollidingWith(CollidableObject* obj)
+{
+
+	CCSprite* leftSide = this->getSprite();
+	CCSprite *rightSide =((ZSprite*)obj)->getSprite();
+	CCRect leftRect = CCRectMake(
+       leftSide->getPosition().x - (leftSide->getContentSize().width/2),
+        leftSide->getPosition().y - (leftSide->getContentSize().height/2),
+       leftSide->getContentSize().width,
+      leftSide->getContentSize().height);
+
+	CCRect rightRect = CCRectMake(
+       rightSide->getPosition().x - (rightSide->getContentSize().width/2),
+        rightSide->getPosition().y - (rightSide->getContentSize().height/2),
+       rightSide->getContentSize().width,
+      rightSide->getContentSize().height);
+
+     if (CCRect::CCRectIntersectsRect(leftRect, rightRect))
+     {
+       return true;
+     }
+	 else
+	 {
+	   return false;
+	 }
 }
 
 void ZSprite::linearMoveRight(float velocity)

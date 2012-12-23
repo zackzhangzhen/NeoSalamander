@@ -6,7 +6,7 @@
 #include <vector>
 using namespace cocos2d;
 
-class CollidableObject
+class CollidableObject:public CCNode
 {
 public:
 	virtual bool IsCollidingWith(CollidableObject* obj);

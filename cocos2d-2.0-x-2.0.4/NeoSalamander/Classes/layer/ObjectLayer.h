@@ -14,6 +14,14 @@
 
 #include "collision/CollisionDetector.h"
 
+enum TARGET_ARRAY_NO
+{
+	NOTHING,
+	HERO,
+	ENEMY,
+	FRIENDLY_FIRE,
+	HOSTILE_FIRE
+};
 
 class OLCollisionHandler:public CollisionHandler
 {
@@ -30,13 +38,20 @@ public:
 	void randomSpawn(float dt);
 	virtual void scheduleUpdate();
 	virtual void scheduleObjects();
-	void scheduleRandomSpawn(float dt, const char* spriteFileName,int direction, float velocity, int zOrder = 0);
+	//void scheduleRandomSpawn(float dt, const char* spriteFileName,int direction, float velocity, bool bHostile, int zOrder = 0);
+	void scheduleRandomSpawn(float dt, const char* spriteFileName,int direction, float velocity, int targetrArray,int zOrder = 0);
 	void scheduleRandomSpawnInBulk(float dt, const char* spriteFileName,int direction,int spawnBulkCount, float spawnInterval, float velocity,int zOrder = 0);
 	void randomSpawnInBulk(float dt);
+	CollObjArray* getHeroArray();
+	CollObjArray* getEnemyArray();
+	CollObjArray* getFreindlyFireArray();
+	CollObjArray* getHostileFireArray();
 	~ObjectLayer(void);
 	static ObjectLayer* createObjectLayer(void);
 
 	CollisionDetector* cd;
+	//needtofix
+	int m_curTargetArrayNo;
 
 private:
 	static const char* STEWIE;

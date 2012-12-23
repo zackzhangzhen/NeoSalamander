@@ -31,9 +31,6 @@
     <Filter Include="source\scene">
       <UniqueIdentifier>{e16af3a0-a8e3-45d0-9da2-a5f478a7354b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\action">
-      <UniqueIdentifier>{62b1fc2a-8089-47c5-9509-d7aa67839929}</UniqueIdentifier>
-    </Filter>
     <Filter Include="source\action">
       <UniqueIdentifier>{ecd1d3e5-bdd1-45e7-a2a3-dc35bf164e2c}</UniqueIdentifier>
     </Filter>
@@ -84,6 +81,9 @@
     </Filter>
     <Filter Include="source\synchronization">
       <UniqueIdentifier>{ffdd2dd4-5960-4fd8-a3f7-e686ebf6bf7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\animation\action">
+      <UniqueIdentifier>{62b1fc2a-8089-47c5-9509-d7aa67839929}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -140,7 +140,7 @@
       <Filter>include\scheduler</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\action\CCMoveToWrapper.h">
-      <Filter>include\action</Filter>
+      <Filter>include\animation\action</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\scheduler\LayerScheduler.h">
       <Filter>include\scheduler</Filter>

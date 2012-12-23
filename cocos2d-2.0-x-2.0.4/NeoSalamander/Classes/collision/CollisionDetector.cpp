@@ -10,6 +10,7 @@ CollObjArray::CollObjArray(void)
 
 CollObjArray::CollObjArray(string tag)
 {
+   m_objArr = new vector<CollidableObject*>;
    m_Tag = tag;
 }
 CollisionHandler::CollisionHandler(CCNode* parent)
@@ -24,6 +25,7 @@ CollisionDetector::CollisionDetector(void)
 
 CollisionDetector::~CollisionDetector(void)
 {
+	
 }
 
 void CollisionHandler::HandleCollison(CCNode* layer,CollidableObject* obj1, CollidableObject* obj2)

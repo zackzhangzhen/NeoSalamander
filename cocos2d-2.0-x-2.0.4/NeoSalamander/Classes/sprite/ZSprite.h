@@ -10,10 +10,11 @@
 #include "utility/Utility.h";
 #include "action\CCMoveToWrapper.h"
 #include "synchronization\GlobalFlag.h"
+#include "collision\CollisionDetector.h"
 #include <map>
 #include <string>
 using namespace cocos2d;
-class ZSprite:public CCObject
+class ZSprite:public CollidableObject
 {
 public:
 	ZSprite(void);
@@ -30,6 +31,8 @@ public:
 	void linearMoveLeft(float velocity);
 	void linearMoveRight(float velocity);
 	void linearMoveDown(float velocity, bool moveLeft);
+
+	virtual  bool IsCollidingWith(CollidableObject* obj);
 
 	CCSprite* getSprite();
 	CCPoint getPostion();

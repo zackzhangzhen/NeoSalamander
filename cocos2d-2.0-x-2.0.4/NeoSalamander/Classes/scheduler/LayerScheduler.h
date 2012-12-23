@@ -17,10 +17,14 @@ public:
 	LayerScheduler(CCNode* parentNode);
 	LayerScheduler(char* fileName, int dir, int bulkCount, float spawnInterval, float velocity, int zOrder, CCNode* parentNode);
 	ScheduleTempValHolder LayerScheduler::getTempValHolder();
-	void randomSpawn(float dt);
+	void randomSpawnHero(float dt);
+	void randomSpawnEnemy(float dt);
+	void randomSpawnFriendlyFire(float dt);
+	void randomSpawnHostileFire(float dt);
 	void randomSpawnInBulk(float dt);
 	void scheduleRandomSpawnInBulk(float dt);
-	void scheduleRandomSpawn(float dt);
+	//void scheduleRandomSpawn(float dt);
+	void scheduleRandomSpawn(float dt,int targetArray);
 	void update(CCTime dt);
 	void scheduleUpdate();
 	~LayerScheduler(void);
