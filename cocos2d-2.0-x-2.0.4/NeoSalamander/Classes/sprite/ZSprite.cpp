@@ -246,8 +246,8 @@ void ZSprite::playAnimation(string animName)
 	map<string,CCRepeatForever*>::iterator it = m_AnimMap.find(animName);
 	assert(it != m_AnimMap.end());
 
-	if(m_curAnim != NULL)
-		m_sprite->stopAction(m_curAnim);
+	/*if(m_curAnim != NULL)
+		m_sprite->stopAction(m_curAnim);*/
 	m_curAnim = it->second;
 	m_sprite->runAction(it->second);
 

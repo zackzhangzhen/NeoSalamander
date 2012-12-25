@@ -14,12 +14,17 @@ OLCollisionHandler::OLCollisionHandler(CCNode* parent)
 
 void OLCollisionHandler::HandleCollison(CCNode* layer,CollidableObject* obj1, CollidableObject* obj2)
 {
+	static int a = 0;
+	if(a>0)
+		return;
 	//layer->setVisible(false);
 	ZSprite* temp = (ZSprite*)obj2;
-	layer->removeChild(temp->getSprite(),true);
+	temp->playAnimation("explode");
+	//layer->removeChild(temp->getSprite(),true);
 	ObjectLayer* temp2 = (ObjectLayer*)this->m_Parent;
+	a++;
 	//temp2->getEnemyArray()->m_objArr->clear();
-	temp2->getHeroArray()->m_objArr->clear();
+	//temp2->getHeroArray()->m_objArr->clear();
 	//layer->removeChild(obj2,true);
 	//obj1->autorelease();
 	//obj2->autorelease();

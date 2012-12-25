@@ -19,8 +19,12 @@ public:
 	CollObjArray(void);
 	CollObjArray(string tag);
 	~CollObjArray(void);
-	
 
+	//tofillin
+	void addElement(CollidableObject* obj);
+	int getSize();
+	CollidableObject* getAt(int i);
+	void removeByPointer(CollidableObject* obj);
 	string m_Tag;
 	//CCArray* m_objArr;
 	vector<CollidableObject*>* m_objArr;
@@ -47,6 +51,8 @@ public:
 	void AddToTargetMap(string& tag, vector<string>& vec);
 	void Detect();
 
+	//tofillin
+	void removeObjectByPointer(CollidableObject* obj);
 	//void (__thiscall *test_handler)(CCNode*,CCNode*);
 
 protected:

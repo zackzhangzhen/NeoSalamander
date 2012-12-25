@@ -56,6 +56,7 @@ char* Utility::convertStringToChar(std::string str)
 
 	CCAnimate *theAnim = CCAnimate::create(anim);
 	CCRepeatForever * actionRepeat = CCRepeatForever::create(theAnim);
+	actionRepeat->retain();
 
 	return actionRepeat;
 }

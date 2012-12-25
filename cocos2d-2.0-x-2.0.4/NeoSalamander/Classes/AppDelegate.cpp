@@ -60,7 +60,6 @@ bool AppDelegate::applicationDidFinishLaunching()
 	l->scheduleUpdate();
 	l->scheduleObjects();
 	pScene->addChild(l,1);
-	//pScene->addChild(player,2);
     // run
 	pDirector->runWithScene(pScene);
     return true;

@@ -13,6 +13,38 @@ CollObjArray::CollObjArray(string tag)
    m_objArr = new vector<CollidableObject*>;
    m_Tag = tag;
 }
+
+void CollObjArray::addElement(CollidableObject* obj)
+{
+	m_objArr->push_back(obj);
+}
+
+int CollObjArray::getSize()
+{
+	return m_objArr->size();
+}
+
+CollidableObject* CollObjArray::getAt(int i)
+{
+	return (*m_objArr)[i];
+}
+
+
+
+void CollObjArray::removeByPointer(CollidableObject* obj)
+{
+	for(vector<CollidableObject*>::iterator it = m_objArr->begin();it!=m_objArr->end();it++)
+	{
+		CollidableObject* temp1 = obj;
+		CollidableObject* temp2 = *it;
+		if(temp1 == temp2)
+		{
+			m_objArr->erase(it);
+			return;
+		}
+	}
+}
+
 CollisionHandler::CollisionHandler(CCNode* parent)
 {
 	m_Parent = parent;
@@ -36,6 +68,22 @@ void CollisionHandler::HandleCollison(CCNode* layer,CollidableObject* obj1, Coll
 void CollisionDetector::AddToCollArray(CollObjArray* _collObjArray)
 {
 	m_AllCollObj.push_back(_collObjArray);
+}
+
+
+void CollisionDetector::removeObjectByPointer(CollidableObject* obj)
+{
+	for(int i = 0;i<m_AllCollObj.size();i++)
+	{
+		for(int j = 0;j<m_AllCollObj[i]->getSize();j++ )
+		{
+			if(obj == (m_AllCollObj[i]->getAt(j)))
+			{
+				m_AllCollObj[i]->removeByPointer(obj);
+				return;
+			}
+		}
+	}
 }
 
 void CollisionDetector::AddToTargetMap(string& tag, vector<string>& vec)
