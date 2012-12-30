@@ -36,8 +36,11 @@ class CollisionHandler:public CCNode
 public:
 	CollisionHandler(void);
 	CollisionHandler(CCNode* parent);
+	CCNode* getParentNode();
 	virtual void HandleCollison(CCNode* layer,CollidableObject* obj1, CollidableObject* obj2); 
-	CCNode* m_Parent;
+protected:
+	CCNode* m_ParentNode;
+
 };
 
 

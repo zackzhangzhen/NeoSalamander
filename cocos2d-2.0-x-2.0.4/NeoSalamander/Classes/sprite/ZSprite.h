@@ -36,9 +36,11 @@ public:
 
 	CCSprite* getSprite();
 	CCPoint getPostion();
+	CCNode* getParentNode();
 	void setPosition(int x,int y);
 	void addAnimation(string animName,CCRepeatForever* anim);//Add an animation to the sprite's anim map
 	void playAnimation(string animName);//Play an animation of the sprite,designated by the animName
+	void playAnimationWithNewSprite(string animName);
 
 	~ZSprite(void);
 

@@ -48,6 +48,7 @@ public:
 	CollObjArray* getHostileFireArray();
 	~ObjectLayer(void);
 	static ObjectLayer* createObjectLayer(void);
+	void ccTouchesEnded(CCSet* touches, CCEvent* event);
 
 	CollisionDetector* cd;
 	//needtofix

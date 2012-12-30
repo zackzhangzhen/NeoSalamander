@@ -47,7 +47,7 @@ void CollObjArray::removeByPointer(CollidableObject* obj)
 
 CollisionHandler::CollisionHandler(CCNode* parent)
 {
-	m_Parent = parent;
+	m_ParentNode = parent;
 }
 
 CollisionDetector::CollisionDetector(void)
@@ -60,9 +60,15 @@ CollisionDetector::~CollisionDetector(void)
 	
 }
 
+
 void CollisionHandler::HandleCollison(CCNode* layer,CollidableObject* obj1, CollidableObject* obj2)
 {
 
+}
+
+CCNode* CollisionHandler::getParentNode()
+{
+	return m_ParentNode;
 }
 
 void CollisionDetector::AddToCollArray(CollObjArray* _collObjArray)
@@ -124,7 +130,7 @@ void CollisionDetector::CollideTwoArrays(CollObjArray* arrLeft,CollObjArray* arr
 			{
 				string str = arrLeft->m_Tag + "_"+arrRight->m_Tag;
 				map<string,CollisionHandler*>::iterator it = collHandlers.find(str);
-				it->second->HandleCollison(it->second->m_Parent,leftObj,rightObj);
+				it->second->HandleCollison(it->second->getParentNode(),leftObj,rightObj);
 			}
 			/*rightObj = arrRight->m_objArr->data->arr[j];
 			rightSprite = (CCSprite*)rightObj;
@@ -159,7 +165,7 @@ void CollisionDetector::Detect()
 
 CollisionHandler::CollisionHandler(void)
 {
-	m_Parent = NULL;
+	m_ParentNode = NULL;
 }
 
 bool CollidableObject::IsCollidingWith(CollidableObject* obj)

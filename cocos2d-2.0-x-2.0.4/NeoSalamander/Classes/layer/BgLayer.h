@@ -20,7 +20,7 @@ public:
    BgLayer::~BgLayer(void);
    void BgLayer::scroll(float dt);
    void BgLayer::scheduleScroll(float dt);
-   void ccTouchesEnded(CCSet* touches, CCEvent* event);
+  // void ccTouchesEnded(CCSet* touches, CCEvent* event);
 private:
 	bool bg01;
 	static const char* BG_01;

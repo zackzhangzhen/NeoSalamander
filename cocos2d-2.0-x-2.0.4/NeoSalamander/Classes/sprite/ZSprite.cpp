@@ -110,7 +110,7 @@ ZSprite::ZSprite(char* fileName, int direction, float velocity)
 			pt = Utility::getRandomPointOnOneSide(true);
 			//needtofix
 			pt.x = 0;
-			pt.y = 100;
+			pt.y = 300;
 			this->m_sprite->setPosition(pt);
 			this->m_startPoint = pt;
 			linearMoveRight(velocity);
@@ -229,6 +229,10 @@ CCPoint ZSprite::getPostion()
 	return m_sprite->getPosition();
 }
 
+CCNode* ZSprite::getParentNode()
+{
+	return m_parentNode;
+}
 
 void ZSprite::addAnimation(string animName,CCRepeatForever* anim)
 {
@@ -251,6 +255,28 @@ void ZSprite::playAnimation(string animName)
 	m_curAnim = it->second;
 	m_sprite->runAction(it->second);
 
+}
+
+void ZSprite::playAnimationWithNewSprite(string animName)
+{
+	//if(m_parentNode == NULL)
+	//{
+	//	printf("This target has not been added to any layer yet");
+	//	return;
+	//}
+
+	//map<string,CCRepeatForever*>::iterator it = m_AnimMap.find(animName);
+	//assert(it != m_AnimMap.end());
+
+	///*if(m_curAnim != NULL)
+	//	m_sprite->stopAction(m_curAnim);*/
+	//m_curAnim = it->second;
+	ZSprite* newSprite = new ZSprite("pic\\explosion\\0.png");
+	newSprite->addAnimation("explode",Utility::getAnimationAction("pic\\explosion\\", "png",26, false));
+	newSprite->setPosition(m_sprite->getPositionX(),m_sprite->getPositionY());
+	newSprite->addToCCNode(m_parentNode,0);
+	newSprite->playAnimation("explode");
+	int kkk = 0;
 }
 
 ZSprite::~ZSprite(void)

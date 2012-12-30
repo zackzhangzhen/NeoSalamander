@@ -37,16 +37,16 @@ BgLayer::BgLayer(void)
 	//pl->PlayAnimation("exp");
 	pl->EquipBullet("pic\\bullet\\bullet.png");
 
-	this->setTouchEnabled(true);
+	//this->setTouchEnabled(true);
 	
 }
 
-void BgLayer::ccTouchesEnded(CCSet* touches, CCEvent* event)
-{
-	pl->Fire(300.0f);
-	
-	m_bgSprite->runAction(CCShaky3D::actionWithRange(5, true, ccg(15, 10), 1.5));
-}
+//void BgLayer::ccTouchesEnded(CCSet* touches, CCEvent* event)
+//{
+//	//pl->Fire(300.0f);
+//	
+//	//m_bgSprite->runAction(CCShaky3D::actionWithRange(5, true, ccg(15, 10), 1.5));
+//}
 
 BgLayer::~BgLayer(void)
 {

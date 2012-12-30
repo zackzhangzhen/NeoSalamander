@@ -80,6 +80,7 @@ void LayerScheduler::randomSpawnHero(float dt)
 		return;
 
 	ZSprite* sprite = new ZSprite(tempValHolder.tempSpriteFileName, tempValHolder.tempDirection, tempValHolder.tempVelocity);
+	sprite->setTag(OBJECT_TAG::OBJ_HERO);
 	sprite->addToCCNode(parentNode, tempValHolder.tempZOrder);
 	sprite->addAnimation("explode",Utility::getAnimationAction("pic\\explosion\\", "png",26, false));
 
@@ -97,6 +98,7 @@ void LayerScheduler::randomSpawnEnemy(float dt)
 		return;
 
 	ZSprite* sprite = new ZSprite(tempValHolder.tempSpriteFileName, tempValHolder.tempDirection, tempValHolder.tempVelocity);
+	sprite->setTag(OBJECT_TAG::OBJ_ENEMY);
 	sprite->addToCCNode(parentNode, tempValHolder.tempZOrder);
 	sprite->addAnimation("explode",Utility::getAnimationAction("pic\\explosion\\", "png",26, false));
 
@@ -112,6 +114,7 @@ void LayerScheduler::randomSpawnFriendlyFire(float dt)
 		return;
 
 	ZSprite* sprite = new ZSprite(tempValHolder.tempSpriteFileName, tempValHolder.tempDirection, tempValHolder.tempVelocity);
+	sprite->setTag(OBJECT_TAG::OBJ_BULLET);
 	sprite->addToCCNode(parentNode, tempValHolder.tempZOrder);
 
 	((ObjectLayer*)(this->parentNode))->getFreindlyFireArray()->m_objArr->push_back(sprite);
@@ -126,6 +129,7 @@ void LayerScheduler::randomSpawnHostileFire(float dt)
 		return;
 
 	ZSprite* sprite = new ZSprite(tempValHolder.tempSpriteFileName, tempValHolder.tempDirection, tempValHolder.tempVelocity);
+	sprite->setTag(OBJECT_TAG::OBJ_BULLET);
 	sprite->addToCCNode(parentNode, tempValHolder.tempZOrder);
 
 	((ObjectLayer*)(this->parentNode))->getHostileFireArray()->m_objArr->push_back(sprite);

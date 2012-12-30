@@ -1,4 +1,12 @@
 #pragma once
+
+enum OBJECT_TAG
+{
+	OBJ_HERO,
+	OBJ_ENEMY,
+	OBJ_BULLET
+};
+
 class NeoConstants
 {
 public:

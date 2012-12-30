@@ -1,4 +1,5 @@
 #include "ObjectLayer.h"
+#include "../sprite/Plane.h"
 
 extern map<string,CollisionHandler*> collHandlers;
 const char* ObjectLayer::STEWIE = "pic\\object\\stewie.png";
@@ -6,10 +7,12 @@ const char* ObjectLayer::BLACK_OPS = "pic\\enemy\\blackops.png";
 const char* ObjectLayer::LAND_ROVER = "pic\\enemy\\landrover.png";
 const char* ObjectLayer::RAVEN = "pic\\enemy\\raven.png";
 
+//needtofix
+ Plane* pll = NULL;
 
 OLCollisionHandler::OLCollisionHandler(CCNode* parent)
 {
-	m_Parent = parent;
+	m_ParentNode = parent;
 }
 
 void OLCollisionHandler::HandleCollison(CCNode* layer,CollidableObject* obj1, CollidableObject* obj2)
@@ -17,11 +20,19 @@ void OLCollisionHandler::HandleCollison(CCNode* layer,CollidableObject* obj1, Co
 	static int a = 0;
 	if(a>0)
 		return;
+
+	CollidableObject* objToRemove = NULL;
+	objToRemove = (obj1->getTag()==OBJECT_TAG::OBJ_ENEMY)?obj1:obj2;
+	ZSprite* temp = (ZSprite*)objToRemove;
+	temp->playAnimationWithNewSprite("explode");
+    temp->getParentNode()->removeChild(temp->getSprite(),true);
+
+	ObjectLayer* ol = (ObjectLayer*)this->getParentNode();
+	ol->cd->removeObjectByPointer((CollidableObject*)temp);
 	//layer->setVisible(false);
-	ZSprite* temp = (ZSprite*)obj2;
-	temp->playAnimation("explode");
+	///////////ZSprite* temp = (ZSprite*)obj2;
+	//////////temp->playAnimation("explode");
 	//layer->removeChild(temp->getSprite(),true);
-	ObjectLayer* temp2 = (ObjectLayer*)this->m_Parent;
 	a++;
 	//temp2->getEnemyArray()->m_objArr->clear();
 	//temp2->getHeroArray()->m_objArr->clear();
@@ -45,6 +56,8 @@ ObjectLayer::ObjectLayer(void)
 
 void ObjectLayer::Initialize(void)
 {
+	this->setTouchEnabled(true);
+
 	m_HeroArr = new CollObjArray("hero");
 	m_EnemyArr = new CollObjArray("enemy");
 	m_FriendlyFireArr = new CollObjArray("friendlyfire");
@@ -56,8 +69,16 @@ void ObjectLayer::Initialize(void)
 	cd->AddToTargetMap(string("hero"),temp);
 	OLCollisionHandler* ch = new OLCollisionHandler(this);
 	collHandlers.insert(map<string,CollisionHandler*>::value_type(string("hero_enemy"),ch));
+
+	pll = new Plane((char*)ObjectLayer::STEWIE);
+	pll->setTag(OBJECT_TAG::OBJ_HERO);
+	pll->addToCCNode(this,0);
+	pll->setPosition(100,100);
+	pll->EquipBullet("pic\\bullet\\bullet.png");
+	m_HeroArr->addElement(pll);
 	cd->AddToCollArray(m_EnemyArr);
 	cd->AddToCollArray(m_HeroArr);
+
 	//scheduleUpdate();
 
 	
@@ -80,7 +101,10 @@ ObjectLayer * ObjectLayer::createObjectLayer(void)
 }
 
 
-
+void ObjectLayer::ccTouchesEnded(CCSet* touches, CCEvent* event)
+{
+	pll->Fire(40.0f);
+}
 
 
 void ObjectLayer::scheduleUpdate()
@@ -97,8 +121,8 @@ void ObjectLayer::scheduleObjects()
 	//this->scheduleRandomSpawnInBulk(10.0F, STEWIE, NeoConstants::MOVE_DOWN,5,0.5f, 90.0F, 0);
 	//this->scheduleRandomSpawnInBulk(15.0F, LAND_ROVER, NeoConstants::MOVE_DOWN,3,0.8F,70.0f);
 	//this->scheduleRandomSpawnInBulk(6.0F, BLACK_OPS, NeoConstants::MOVE_DOWN,1,0.5f, 90.0F, 0);
-	this->scheduleRandomSpawn(2.0F, RAVEN, NeoConstants::MOVE_LEFT, 10.0F,TARGET_ARRAY_NO::HERO, 0);
-	this->scheduleRandomSpawn(2.0F, RAVEN, NeoConstants::MOVE_RIGHT, 10.0F,TARGET_ARRAY_NO::ENEMY, 0);
+	//this->scheduleRandomSpawn(2.0F, RAVEN, NeoConstants::MOVE_LEFT, 10.0F,TARGET_ARRAY_NO::HERO, 0);
+	this->scheduleRandomSpawn(2.0F, RAVEN, NeoConstants::MOVE_RIGHT, 20.0F,TARGET_ARRAY_NO::ENEMY, 0);
 }
 
 
