@@ -3,11 +3,16 @@ using namespace cocos2d;
 //The base class for the sprites
 ZSprite::ZSprite(void)
 {
-
+	this->m_curAnim = NULL;
+	this->m_parentNode = NULL;
+	this->m_sprite = NULL;
+	this->m_spriteFileName = NULL;
 }
 
 ZSprite::ZSprite(char* fileName)
 {
+	this->ZSprite::ZSprite();
+
 	this->m_sprite = CCSprite::create(fileName);
 	m_sprite->setPosition(ccp(0,0));
 
@@ -18,6 +23,9 @@ ZSprite::ZSprite(char* fileName)
 
 ZSprite::ZSprite(char* fileName, float duration, CCPoint startPt, CCPoint endPt)
 {
+
+	this->ZSprite::ZSprite();
+
 	this->m_sprite = CCSprite::create(fileName);
 	m_sprite->setPosition(startPt);
 
@@ -122,6 +130,12 @@ ZSprite::ZSprite(char* fileName, int direction, float velocity)
 void ZSprite::addToCCNode(CCNode* node, int zOrder)
 {
 	assert(node!=NULL);
+
+	if(this->m_sprite->getParent() != NULL)
+	{
+		return;
+	}
+
 	node->addChild(this->m_sprite, zOrder);
 	m_parentNode = node;
 }
@@ -219,9 +233,29 @@ CCSprite* ZSprite::getSprite()
     return m_sprite;
 }
 
+void ZSprite::setPosition(CCPoint pt)
+{
+	m_sprite->setPosition(pt);
+}
+
+void ZSprite::setOpacity(int opacity)
+{
+	m_sprite->setOpacity(opacity);
+}
+
 void ZSprite::setPosition(int x,int y)
 {
 	m_sprite->setPosition(ccp(x,y));
+}
+
+void ZSprite::setPositionX(int x)
+{
+	m_sprite->setPositionX(x);
+}
+
+void ZSprite::setPositionY(int y)
+{
+	m_sprite->setPositionX(y);
 }
 
 CCPoint ZSprite::getPostion()
@@ -229,14 +263,25 @@ CCPoint ZSprite::getPostion()
 	return m_sprite->getPosition();
 }
 
+<<<<<<< HEAD
 CCNode* ZSprite::getParentNode()
 {
 	return m_parentNode;
+=======
+int ZSprite::getPostionX()
+{
+	return m_sprite->getPosition().x;
 }
 
-void ZSprite::addAnimation(string animName,CCRepeatForever* anim)
+int ZSprite::getPostionY()
 {
-	m_AnimMap.insert(map<string,CCRepeatForever*>::value_type(animName,anim));
+	return m_sprite->getPosition().y;
+>>>>>>> ScriptGenerator
+}
+
+void ZSprite::addAnimation(string animName,CCActionInterval* anim)
+{
+	m_AnimMap.insert(map<string,CCActionInterval*>::value_type(animName,anim));
 }
 
 void ZSprite::playAnimation(string animName)
@@ -247,7 +292,7 @@ void ZSprite::playAnimation(string animName)
 		return;
 	}
 
-	map<string,CCRepeatForever*>::iterator it = m_AnimMap.find(animName);
+	map<string,CCActionInterval*>::iterator it = m_AnimMap.find(animName);
 	assert(it != m_AnimMap.end());
 
 	/*if(m_curAnim != NULL)
@@ -256,6 +301,7 @@ void ZSprite::playAnimation(string animName)
 	m_sprite->runAction(it->second);
 
 }
+
 
 void ZSprite::playAnimationWithNewSprite(string animName)
 {
@@ -277,6 +323,40 @@ void ZSprite::playAnimationWithNewSprite(string animName)
 	newSprite->addToCCNode(m_parentNode,0);
 	newSprite->playAnimation("explode");
 	int kkk = 0;
+
+void ZSprite::playAnimationAndStop(string animName)
+{
+	if(m_parentNode == NULL)
+	{
+		printf("This target has not been added to any layer yet");
+		return;
+	}
+
+	map<string,CCActionInterval*>::iterator it = m_AnimMap.find(animName);
+	assert(it != m_AnimMap.end());
+
+	if(m_curAnim != NULL)
+		m_sprite->stopAction(m_curAnim);
+	m_curAnim = it->second;
+	
+	CCFiniteTimeAction* actionMoveDone = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ZSprite::MoveDone));
+	this->m_sprite->runAction(CCSequence::actions(it->second, actionMoveDone, NULL));
+}
+
+CCSize ZSprite::getSize()
+{
+	return this->getSprite()->getContentSize();
+}
+
+int ZSprite::getWidth()
+{
+	return this->getSprite()->getContentSize().width;
+}
+
+int ZSprite::getHeight()
+{
+	return this->getSprite()->getContentSize().height;
+
 }
 
 ZSprite::~ZSprite(void)

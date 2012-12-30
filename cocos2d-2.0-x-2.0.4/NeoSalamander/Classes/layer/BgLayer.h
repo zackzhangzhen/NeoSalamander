@@ -3,14 +3,12 @@
 #define __BG_LAYER_H__
 
 #include "cocos2d.h"
-
 #include "Box2D/Box2D.h"
-
 #include "SimpleAudioEngine.h"
-
-#include "sprite/ZSprite.h"
-
+#include "sprite\ZSprite.h"
 #include "NeoConstants.h"
+#include "script\ZDlg.h"
+
 class BgLayer : public cocos2d::CCLayer
 {
 public:
@@ -19,9 +17,9 @@ public:
    
    BgLayer::~BgLayer(void);
    void BgLayer::scroll(float dt);
-   void BgLayer::scheduleScroll(float dt);
-  // void ccTouchesEnded(CCSet* touches, CCEvent* event);
-private:
+   void BgLayer::scheduleScroll(float dt);void ccTouchesEnded(CCSet* touches, CCEvent* event);
+   static bool pause;
+ private:
 	bool bg01;
 	static const char* BG_01;
 	static const char* BG_02;

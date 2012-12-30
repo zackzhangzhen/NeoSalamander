@@ -37,7 +37,7 @@ char* Utility::convertStringToChar(std::string str)
 	return target;
 }
 
- CCRepeatForever* Utility::getAnimationAction(char* filePrefix, char* extension, int suffixCount, bool startFromIndex0)
+ CCActionInterval* Utility::getAnimationAction(char* filePrefix, char* extension, int suffixCount, bool startFromIndex0, bool repeat)
 {
 	CCAnimation * anim = CCAnimation::create();
 	anim->setDelayPerUnit(0.03f);
@@ -55,10 +55,18 @@ char* Utility::convertStringToChar(std::string str)
 	}
 
 	CCAnimate *theAnim = CCAnimate::create(anim);
-	CCRepeatForever * actionRepeat = CCRepeatForever::create(theAnim);
-	actionRepeat->retain();
 
-	return actionRepeat;
+	if(!repeat)
+	{
+		return theAnim;
+	}
+	else
+	{
+		CCRepeatForever * actionRepeat = CCRepeatForever::create(theAnim);
+		actionRepeat->retain();
+
+		return actionRepeat;
+	}
 }
 
  CCPoint Utility::getRandomPointTop()

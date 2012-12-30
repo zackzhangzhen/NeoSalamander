@@ -1,5 +1,4 @@
-#ifndef __Z_SPRITE_H__
-#define __Z_SPRITE_H__
+#pragma once
 
 #include "cocos2d.h"
 
@@ -36,13 +35,26 @@ public:
 
 	CCSprite* getSprite();
 	CCPoint getPostion();
+<<<<<<< HEAD
 	CCNode* getParentNode();
+=======
+	int getPostionX();
+	int getPostionY();
+	CCSize getSize();
+	int getWidth();
+	int getHeight();
+	void setOpacity(int opacity);
+>>>>>>> ScriptGenerator
 	void setPosition(int x,int y);
-	void addAnimation(string animName,CCRepeatForever* anim);//Add an animation to the sprite's anim map
+	void setPosition(CCPoint pt);
+	void setPositionX(int x);
+	void setPositionY(int y);
+	void addAnimation(string animName, CCActionInterval* anim);//Add an animation to the sprite's anim map
 	void playAnimation(string animName);//Play an animation of the sprite,designated by the animName
-	void playAnimationWithNewSprite(string animName);
+void playAnimationWithNewSprite(string animName);
 
-	~ZSprite(void);
+void playAnimationAndStop(string animName);
+~ZSprite(void);
 
 
 protected:
@@ -53,9 +65,8 @@ protected:
 	CCPoint m_startPoint;
 	CCMoveToWrapper m_moveToWrapper;	
 
-	CCRepeatForever* m_curAnim;
+	CCActionInterval* m_curAnim;
     CCNode* m_parentNode;
-	map<string,CCRepeatForever*> m_AnimMap;
+	map<string,CCActionInterval*> m_AnimMap;
 };
-#endif
 

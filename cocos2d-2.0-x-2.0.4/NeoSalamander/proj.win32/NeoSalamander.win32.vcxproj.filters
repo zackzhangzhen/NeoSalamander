@@ -84,6 +84,11 @@
     </Filter>
     <Filter Include="include\animation\action">
       <UniqueIdentifier>{62b1fc2a-8089-47c5-9509-d7aa67839929}</UniqueIdentifier>
+    <Filter Include="source\script">
+      <UniqueIdentifier>{ec0f9e76-c293-48f6-840d-5f70e0eb5448}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\script">
+      <UniqueIdentifier>{6cd6ecaa-8327-4ec4-9c0f-91d8400b77db}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +159,18 @@
     <ClInclude Include="..\Classes\synchronization\GlobalFlag.h">
       <Filter>include\synchronization</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\script\ZDlg.h">
+      <Filter>include\script</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\script\ScriptPlayer.h">
+      <Filter>include\script</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\layer\ScriptLayer.h">
+      <Filter>include\layer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\script\ZLabelTTF.h">
+      <Filter>include\script</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -200,6 +217,18 @@
     </ClCompile>
     <ClCompile Include="..\Classes\synchronization\GlobalFlag.cpp">
       <Filter>source\synchronization</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\script\ZDlg.cpp">
+      <Filter>source\script</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\script\ScriptPlayer.cpp">
+      <Filter>source\script</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\layer\ScriptLayer.cpp">
+      <Filter>source\layer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\script\ZLabelTTF.cpp">
+      <Filter>source\script</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

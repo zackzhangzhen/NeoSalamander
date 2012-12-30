@@ -11,7 +11,7 @@ const CCTexture2D* BgLayer::bgTex02 = NULL;
 
 float BgLayer::scrollFrequency = 0.01;
 float BgLayer::scrollVelocity = 1;
-
+bool BgLayer::pause = false;
  Plane* pl = NULL;
 
 BgLayer::BgLayer(void)
@@ -33,7 +33,7 @@ BgLayer::BgLayer(void)
 	pl = new Plane("pic\\object\\plane.png");
 	pl->setPosition(100,100);
 	pl->addToCCNode(this, 0);
-	pl->addAnimation("exp",Utility::getAnimationAction("pic\\explosion\\","png",26,false));
+	pl->addAnimation("exp",Utility::getAnimationAction("pic\\explosion\\","png",26,false, false));
 	//pl->PlayAnimation("exp");
 	pl->EquipBullet("pic\\bullet\\bullet.png");
 
@@ -41,12 +41,43 @@ BgLayer::BgLayer(void)
 	
 }
 
+
 //void BgLayer::ccTouchesEnded(CCSet* touches, CCEvent* event)
 //{
 //	//pl->Fire(300.0f);
 //	
 //	//m_bgSprite->runAction(CCShaky3D::actionWithRange(5, true, ccg(15, 10), 1.5));
 //}
+
+
+void BgLayer::ccTouchesEnded(CCSet* touches, CCEvent* event)
+{
+
+	CCTouch* touch = (CCTouch*)( touches->anyObject() );
+	CCPoint location = touch->locationInView();
+	location = CCDirector::sharedDirector()->convertToGL(location);
+	//pl->Fire(300.0f);
+	
+	//m_bgSprite->runAction(CCShaky3D::actionWithRange(5, true, ccg(15, 10), 1.5));
+
+	
+
+	/*if(!pause)
+	{
+		CCDirector::sharedDirector()->pause();
+		pause = true;
+	}
+	else
+	{
+		CCDirector::sharedDirector()->resume();
+		pause = false;
+	}*/
+	/*pl = new Plane("pic\\object\\plane.png");
+	pl->setPosition(location.x,location.y);
+	pl->addToCCNode(this, 0);
+	pl->addAnimation("exp",Utility::getAnimationAction("pic\\explosion\\","png",26,false, false));
+	pl->playAnimationAndStop("exp");*/	
+}
 
 BgLayer::~BgLayer(void)
 {
