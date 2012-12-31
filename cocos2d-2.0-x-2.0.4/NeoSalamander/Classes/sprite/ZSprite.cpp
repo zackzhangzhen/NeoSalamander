@@ -147,6 +147,7 @@ void ZSprite::MoveDone(CCNode* sender)
 	CCSprite* sprite = (CCSprite*)sender;
 	this->m_parentNode->removeChild(sprite,true);	
 	sprite->autorelease();
+	//sprite->release();
 
 	LeaveCriticalSection(&GlobalFlag::m_csObject);
 }
@@ -185,6 +186,16 @@ bool ZSprite::IsCollidingWith(CollidableObject* obj)
         rightSide->getPosition().y - (rightSide->getContentSize().height/2),
        rightSide->getContentSize().width,
       rightSide->getContentSize().height);
+
+	int x1 = leftSide->getPosition().x;
+	int y1 = leftSide->getPosition().y;
+    int width1 = leftSide->getContentSize().width;
+	int height1 = leftSide->getContentSize().height;
+
+	int x2 = rightSide->getPosition().x;
+	int y2 = rightSide->getPosition().y;
+	int width2 = rightSide->getContentSize().width;
+	int height2 = rightSide->getContentSize().height;
 
      if (CCRect::CCRectIntersectsRect(leftRect, rightRect))
      {
@@ -263,11 +274,12 @@ CCPoint ZSprite::getPostion()
 	return m_sprite->getPosition();
 }
 
-<<<<<<< HEAD
+
 CCNode* ZSprite::getParentNode()
 {
 	return m_parentNode;
-=======
+}
+
 int ZSprite::getPostionX()
 {
 	return m_sprite->getPosition().x;
@@ -276,7 +288,6 @@ int ZSprite::getPostionX()
 int ZSprite::getPostionY()
 {
 	return m_sprite->getPosition().y;
->>>>>>> ScriptGenerator
 }
 
 void ZSprite::addAnimation(string animName,CCActionInterval* anim)
@@ -318,11 +329,12 @@ void ZSprite::playAnimationWithNewSprite(string animName)
 	//	m_sprite->stopAction(m_curAnim);*/
 	//m_curAnim = it->second;
 	ZSprite* newSprite = new ZSprite("pic\\explosion\\0.png");
-	newSprite->addAnimation("explode",Utility::getAnimationAction("pic\\explosion\\", "png",26, false));
+	newSprite->addAnimation("explode",Utility::getAnimationAction("pic\\explosion\\", "png",26, false,false));
 	newSprite->setPosition(m_sprite->getPositionX(),m_sprite->getPositionY());
 	newSprite->addToCCNode(m_parentNode,0);
-	newSprite->playAnimation("explode");
+	newSprite->playAnimationAndStop("explode");
 	int kkk = 0;
+}
 
 void ZSprite::playAnimationAndStop(string animName)
 {

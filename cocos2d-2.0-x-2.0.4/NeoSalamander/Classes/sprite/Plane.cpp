@@ -4,6 +4,8 @@
 using namespace cocos2d;
 
 
+extern map<void*,void*> g_AddressMap;
+
 Plane::Plane(void)
 {
 }
@@ -23,10 +25,17 @@ void Plane::FireDone(CCNode* sender)
 
 	EnterCriticalSection(&GlobalFlag::m_csObject);
 
-	CCSprite* bullet = (CCSprite*)sender;
-	this->m_parentNode->removeChild(bullet,true);	
+	CCSprite* sprite = (CCSprite*)sender;
+	map<void*,void*>::iterator it = g_AddressMap.find((void*)sender);
+	if(it == g_AddressMap.end())
+		return;
+	ZSprite* bullet = (ZSprite*)it->second;
+	this->m_parentNode->removeChild(bullet,true);
+	ObjectLayer* ol = (ObjectLayer*)this->m_parentNode;
+	ol->cd->removeObjectByPointer((CollidableObject*)bullet);
 	bullet->autorelease();
-
+	g_AddressMap.erase((void*)sender);
+	//bullet->release();
 	LeaveCriticalSection(&GlobalFlag::m_csObject);
 
 	
@@ -56,9 +65,14 @@ void Plane::Fire(float velocity)
 
 
 	CCFiniteTimeAction* actionMove = CCMoveTo::actionWithDuration(duration, endPoint);
-	CCFiniteTimeAction* actionMoveDone = CCCallFuncN::actionWithTarget(this,callfuncN_selector(Plane::FireDone));
+	//The target should be bullet!!!!
+	CCFiniteTimeAction* actionMoveDone = CCCallFuncN::actionWithTarget(bullet,callfuncN_selector(Plane::FireDone));
 	//bullet->getSprite()->runAction(CCSequence::actions(actionMove,actionMoveDone,NULL));
+
+	//Include the mapping of the sprite to its host ZSprite
+	g_AddressMap.insert(map<void*,void*>::value_type((void*)bullet->getSprite(),(void*)bullet));
 	bullet->getSprite()->runAction(CCSequence::actions(actionMove,actionMoveDone,NULL));
+	
 }
 
 Plane::~Plane(void)

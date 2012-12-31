@@ -35,16 +35,16 @@ public:
 
 	CCSprite* getSprite();
 	CCPoint getPostion();
-<<<<<<< HEAD
+
 	CCNode* getParentNode();
-=======
+
 	int getPostionX();
 	int getPostionY();
 	CCSize getSize();
 	int getWidth();
 	int getHeight();
 	void setOpacity(int opacity);
->>>>>>> ScriptGenerator
+
 	void setPosition(int x,int y);
 	void setPosition(CCPoint pt);
 	void setPositionX(int x);

@@ -23,6 +23,7 @@ enum TARGET_ARRAY_NO
 	HOSTILE_FIRE
 };
 
+
 class OLCollisionHandler:public CollisionHandler
 {
 public:

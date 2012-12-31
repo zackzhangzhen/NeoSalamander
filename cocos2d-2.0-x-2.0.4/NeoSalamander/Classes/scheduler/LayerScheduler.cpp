@@ -82,7 +82,7 @@ void LayerScheduler::randomSpawnHero(float dt)
 	ZSprite* sprite = new ZSprite(tempValHolder.tempSpriteFileName, tempValHolder.tempDirection, tempValHolder.tempVelocity);
 	sprite->setTag(OBJECT_TAG::OBJ_HERO);
 	sprite->addToCCNode(parentNode, tempValHolder.tempZOrder);
-	sprite->addAnimation("explode",Utility::getAnimationAction("pic\\explosion\\", "png",26, false));
+	sprite->addAnimation("explode",Utility::getAnimationAction("pic\\explosion\\", "png",26, false,false));
 
 	((ObjectLayer*)(this->parentNode))->getHeroArray()->addElement(sprite);
 
@@ -94,17 +94,17 @@ void LayerScheduler::randomSpawnHero(float dt)
 void LayerScheduler::randomSpawnEnemy(float dt)
 {
 		
-	if(hero>=1)
-		return;
+	//if(hero>=1)
+	//return;
 
 	ZSprite* sprite = new ZSprite(tempValHolder.tempSpriteFileName, tempValHolder.tempDirection, tempValHolder.tempVelocity);
 	sprite->setTag(OBJECT_TAG::OBJ_ENEMY);
 	sprite->addToCCNode(parentNode, tempValHolder.tempZOrder);
-	sprite->addAnimation("explode",Utility::getAnimationAction("pic\\explosion\\", "png",26, false));
+	sprite->addAnimation("explode",Utility::getAnimationAction("pic\\explosion\\", "png",26, false,false));
 
 	((ObjectLayer*)(this->parentNode))->getEnemyArray()->addElement(sprite);
 
-	hero++;
+	//hero++;
 }
 
 void LayerScheduler::randomSpawnFriendlyFire(float dt)
