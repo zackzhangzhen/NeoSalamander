@@ -3,6 +3,7 @@
 #include "script\ScriptPlayer.h"
 #include <vector>
 #include <map>
+#include "tinyxml.h"
 class ScriptLayer : public cocos2d::CCLayer
 {
 public:
@@ -13,6 +14,7 @@ public:
 	void ccTouchesEnded(CCSet* touches, CCEvent* event);
 	bool isAnimationPlaying();
 	void setAnimationPlaying(bool playing);
+	void loadScript(const char* fileName);
 private:
 	ScriptPlayer* findScriptPlayerByKey(char* key);
 	bool m_isAnimationPlaying;

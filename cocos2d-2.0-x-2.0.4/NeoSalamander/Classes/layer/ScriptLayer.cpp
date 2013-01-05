@@ -14,6 +14,27 @@ ScriptLayer::~ScriptLayer(void)
 {
 }
 
+void ScriptLayer::loadScript(const char* fileName)
+{
+	TiXmlDocument doc(fileName);
+	assert(doc.LoadFile());
+	TiXmlHandle hDoc(&doc);
+	TiXmlElement* pElem;
+	pElem=hDoc.FirstChildElement().Element();
+	assert(pElem != NULL);
+
+	TiXmlElement* scriptElem = pElem->FirstChildElement();
+	assert(scriptElem != NULL);
+
+	for( ; scriptElem != NULL; scriptElem=scriptElem->NextSiblingElement())
+	{
+		const char* id = scriptElem->Attribute("id");
+		ScriptPlayer* player = new ScriptPlayer(id, scriptElem);
+
+		m_map.insert(map<char*, ScriptPlayer*>::value_type((char*)id, player));
+	}
+}
+
 void ScriptLayer::initScripts()
 {
 	//==========================================================

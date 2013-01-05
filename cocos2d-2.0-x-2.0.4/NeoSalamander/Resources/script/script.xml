@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<play>
+  <script id="1">
+    <dlg id="1" pos="0" >
+        <line font="Microsoft JhengHei">你好呀，大家都过来做一个简单的自我介绍好不好呀啊？</line>
+        <line font="Microsoft JhengHei">其实没什么别的意思，我就是想测试一下剧本播放器。</line>
+        <line font="Microsoft JhengHei">有木有发现我现在在说着中文呢？</line>
+    </dlg>
+    <dlg id="2" pos="1">
+        <line font="Microsoft JhengHei">我是说英文的知道呢吗</line>
+        <line font="Comic Sans MS">Fine thank you! My name is Li Lei, what about you?</line>
+        <line font="Comic Sans MS">This is a very brief self-introduction!</line>
+    </dlg>
+    <dlg id="3" pos="0">
+        <line font="Comic Sans MS">My name is Han Meimei, nice to meet you!</line>          
+    </dlg>
+    <dlg id="4" pos="2">
+        <line font="Comic Sans MS">Hi there, my name is Jim Green, don't forget me!</line>          
+    </dlg>         
+  </script>
+  <script id="2">
+    <dlg id="1" pos="0">
+        <line font="Comic Sans MS">What are you going to do now?</line>
+    </dlg>
+    <dlg id="2" pos="1">
+        <line font="Comic Sans MS">I'm going to play Halo 4!</line>
+    </dlg>
+    <dlg id="3" pos="0">
+        <line font="Comic Sans MS">Oh, I was just done playing it!</line>
+    </dlg>
+    <dlg id="4" pos="2">
+        <line font="Comic Sans MS">Ok, I get it, now get lost!</line>
+    </dlg>
+  </script>
+</play>
