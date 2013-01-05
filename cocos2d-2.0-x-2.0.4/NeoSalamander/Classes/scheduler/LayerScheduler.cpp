@@ -1,8 +1,12 @@
 #include "LayerScheduler.h"
 #include "../../Classes/layer/ObjectLayer.h"
+#include "../../Classes/sprite/Plane.h"
 
 int enemy = 0;
 int hero = 0;
+
+extern map<void*,void*> g_AddressMap;
+
 LayerScheduler::LayerScheduler(void)
 {
 }
@@ -97,12 +101,14 @@ void LayerScheduler::randomSpawnEnemy(float dt)
 	//if(hero>=1)
 	//return;
 
-	ZSprite* sprite = new ZSprite(tempValHolder.tempSpriteFileName, tempValHolder.tempDirection, tempValHolder.tempVelocity);
+	Plane* sprite = new Plane(tempValHolder.tempSpriteFileName, tempValHolder.tempDirection, tempValHolder.tempVelocity);
 	sprite->setTag(OBJECT_TAG::OBJ_ENEMY);
 	sprite->addToCCNode(parentNode, tempValHolder.tempZOrder);
 	sprite->addAnimation("explode",Utility::getAnimationAction("pic\\explosion\\", "png",26, false,false));
 
 	((ObjectLayer*)(this->parentNode))->getEnemyArray()->addElement(sprite);
+	//Include the mapping of the sprite to its host ZSprite
+	g_AddressMap.insert(map<void*,void*>::value_type((void*)sprite->getSprite(),(void*)sprite));
 
 	//hero++;
 }

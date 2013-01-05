@@ -10,6 +10,11 @@ Plane::Plane(void)
 {
 }
 
+Plane::Plane(char* fileName, int direction, float velocity):ZSprite(fileName,direction,velocity)
+{
+
+}
+
 Plane::Plane(char* sprite):ZSprite(sprite)
 {
 }
@@ -19,6 +24,24 @@ void Plane::EquipBullet(char* sprite)
 {
     strcpy(m_SpriteFileBullet,sprite);
 }
+
+void Plane::MoveDoneExtra(CCNode* sender)
+{
+	EnterCriticalSection(&GlobalFlag::m_csObject);
+
+	CCSprite* sprite = (CCSprite*)sender;
+	map<void*,void*>::iterator it = g_AddressMap.find((void*)sender);
+	if(it == g_AddressMap.end())
+		return;
+	Plane* plane = (Plane*)it->second;
+
+	ObjectLayer* ol = (ObjectLayer*)this->m_parentNode;
+	ol->cd->removeObjectByPointer((CollidableObject*)plane);
+	sprite->autorelease();
+	g_AddressMap.erase((void*)sender);
+	LeaveCriticalSection(&GlobalFlag::m_csObject);
+}
+
 
 void Plane::FireDone(CCNode* sender)
 {

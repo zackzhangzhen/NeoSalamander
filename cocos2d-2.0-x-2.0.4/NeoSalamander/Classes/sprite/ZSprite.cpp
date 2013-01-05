@@ -149,7 +149,13 @@ void ZSprite::MoveDone(CCNode* sender)
 	sprite->autorelease();
 	//sprite->release();
 
+	this->MoveDoneExtra(sender);
 	LeaveCriticalSection(&GlobalFlag::m_csObject);
+}
+
+void ZSprite::MoveDoneExtra(CCNode* sender)
+{
+	
 }
 
 void ZSprite::linearMoveDownWithRandomDirection(float velocity)

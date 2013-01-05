@@ -20,11 +20,13 @@ class Plane:public ZSprite
 {
 public:
 	Plane(void);
+	Plane(char* fileName, int direction, float velocity);
 	Plane(char* sprite);//Pass the sprite file name to this constructor 
 	void Fire(float velocity);
 
 	void EquipBullet(char* sprite);
 	void FireDone(CCNode* sender);
+	virtual void MoveDoneExtra(CCNode* sender);
 	~Plane(void);
 
 protected:

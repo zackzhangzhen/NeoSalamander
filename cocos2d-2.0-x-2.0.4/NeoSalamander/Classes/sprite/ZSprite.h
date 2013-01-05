@@ -25,7 +25,7 @@ public:
 	bool isInScreen();
 	void addToCCNode(CCNode* node, int zOrder);
 	void MoveDone(CCNode* sender);
-
+	virtual void MoveDoneExtra(CCNode* sender);
 	void linearMoveDownWithRandomDirection(float velocity);
 	void linearMoveLeft(float velocity);
 	void linearMoveRight(float velocity);
