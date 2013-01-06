@@ -6,6 +6,7 @@
 #include "NeoConstants.h"
 #include "script\ZLabelTTF.h"
 #include <vector>
+#include "tinyxml.h"
 //#include "layer\ScriptLayer.h"
 
 
@@ -21,11 +22,13 @@ class ZDlg : public CCObject
 {
 public:
 	ZDlg(void);
+	ZDlg(TiXmlElement* dlgElem, CCNode* parentNode);
 	ZDlg(int pos, vector<char*>& scripts, char* figureFileName, CCNode* parentNode, char* font = ZLabelTTF::FONT_COMIC, int size = ZLabelTTF::FONT_DEFAULT_SIZE);
 	ZDlg(int pos, char* script, char* figureFileName, CCNode* parentNode, char* font = ZLabelTTF::FONT_COMIC, int size = ZLabelTTF::FONT_DEFAULT_SIZE);
 	
 	~ZDlg(void);
 
+	void ZDlgInit(int pos, vector<char*>& scripts, char* figureFileName, CCNode* parentNode, char* font, int size = ZLabelTTF::FONT_DEFAULT_SIZE);
 	void calcFrameSizes(void);
 	void calcPos(void);
 	void initFramePrototype();

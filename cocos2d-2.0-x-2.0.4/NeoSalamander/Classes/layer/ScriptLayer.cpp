@@ -28,8 +28,8 @@ void ScriptLayer::loadScript(const char* fileName)
 
 	for( ; scriptElem != NULL; scriptElem=scriptElem->NextSiblingElement())
 	{
-		const char* id = scriptElem->Attribute("id");
-		ScriptPlayer* player = new ScriptPlayer(id, scriptElem);
+		char* id = (char*)scriptElem->Attribute("id");
+		ScriptPlayer* player = new ScriptPlayer(id, scriptElem, this);
 
 		m_map.insert(map<char*, ScriptPlayer*>::value_type((char*)id, player));
 	}

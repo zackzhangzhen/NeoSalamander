@@ -9,19 +9,19 @@ ScriptPlayer::ScriptPlayer(char* id, vector<ZDlg*>& vec)
 	m_iter = m_vec.begin();
 }
 
-ScriptPlayer::ScriptPlayer(const char* id, TiXmlElement* scriptElem)
+ScriptPlayer::ScriptPlayer(char* id, TiXmlElement* scriptElem, CCNode* parentNode)
 {
 	TiXmlElement* dlgElem = scriptElem->FirstChildElement();
 	assert(dlgElem != NULL);
 
 	for( ; dlgElem != NULL; dlgElem=dlgElem->NextSiblingElement())
 	{
-		const char* id = scriptElem->Attribute("id");
-		ScriptPlayer* player = new ScriptPlayer(id, scriptElem);
-
-		//ZDlg* dlg = new ZDlg(ZDlg::POS_LEFT, charVec, "pic\\figure\\assassin.png", this, ZLabelTTF::YAHEI);
+		ZDlg* dlg = new ZDlg(dlgElem, parentNode);
+		m_vec.push_back(dlg);
 	}
-	
+
+	this->m_id = id;
+	m_iter = m_vec.begin();
 }
 
 ScriptPlayer::~ScriptPlayer(void)

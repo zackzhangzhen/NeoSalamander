@@ -25,7 +25,33 @@ ZDlg::ZDlg(void)
 {
 }
 
-ZDlg::ZDlg(int pos, vector<char*>& scripts, char* figureFileName, CCNode* parentNode, char* font, int size)
+ZDlg::ZDlg(TiXmlElement* dlgElem, CCNode* parentNode)
+{
+	TiXmlElement* lineElem = dlgElem->FirstChildElement();
+	assert(lineElem != NULL);
+
+	vector<char*> lines;
+
+	int pos = ZDlg::POS_LEFT;
+	dlgElem->Attribute("pos", &pos);
+
+	int size = ZLabelTTF::FONT_DEFAULT_SIZE;
+	dlgElem->Attribute("size", &size);
+
+	char* font = (char*)dlgElem->Attribute("font");
+	char* imageFile = (char*)dlgElem->Attribute("image");
+
+	for( ; lineElem != NULL; lineElem=lineElem->NextSiblingElement())
+	{
+		char* line = (char*)lineElem->GetText();
+	
+		lines.push_back(line);
+	}
+
+	ZDlgInit(pos, lines, imageFile, parentNode, font, size);
+}
+
+void ZDlg::ZDlgInit(int pos, vector<char*>& scripts, char* figureFileName, CCNode* parentNode, char* font, int size)
 {
 	m_scriptState = ScriptState::NOT_FADED_IN;
 	m_parentScriptLayer = NULL;
@@ -37,7 +63,7 @@ ZDlg::ZDlg(int pos, vector<char*>& scripts, char* figureFileName, CCNode* parent
 	 initFrame();
 
 	//this->m_scriptLabel = CCLabelTTF::create(script, font, size, CCSizeMake(/*68*/NeoConstants::WIN_WIDTH/2, 480),kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter);
-	this->m_scriptLabel = new ZLabelTTF(scripts, this->getScriptSize(), font);
+	this->m_scriptLabel = new ZLabelTTF(scripts, this->getScriptSize(), font, size);
 	this->m_figure = new ZSprite(figureFileName);
 
 	init();
@@ -47,6 +73,11 @@ ZDlg::ZDlg(int pos, vector<char*>& scripts, char* figureFileName, CCNode* parent
 		this->m_parentScriptLayer = (ScriptLayer*)parentNode;
 		this->addToCCNode(parentNode, 10);
 	}
+}
+
+ZDlg::ZDlg(int pos, vector<char*>& scripts, char* figureFileName, CCNode* parentNode, char* font, int size)
+{
+	ZDlgInit(pos, scripts, figureFileName, parentNode, font, size);
 }
 
 ZDlg::ZDlg(int pos, char* script, char* figureFileName, CCNode* parentNode, char* font, int size)

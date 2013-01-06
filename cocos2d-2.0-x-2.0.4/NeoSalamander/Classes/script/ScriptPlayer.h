@@ -6,7 +6,7 @@ class ScriptPlayer
 {
 public:
 	ScriptPlayer(char* id, vector<ZDlg*>& vec);
-	ScriptPlayer(const char* id, TiXmlElement* scriptElem);
+	ScriptPlayer(char* id, TiXmlElement* scriptElem, CCNode* parentNode);
 	~ScriptPlayer(void);
 	bool play();
 	char* getId();
