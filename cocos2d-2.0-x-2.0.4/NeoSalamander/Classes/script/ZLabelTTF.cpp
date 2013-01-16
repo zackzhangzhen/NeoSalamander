@@ -5,11 +5,12 @@ char* ZLabelTTF::FONT_COMIC = "Comic Sans MS";
 char* ZLabelTTF::YAHEI = "Microsoft JhengHei";
 int ZLabelTTF::FONT_DEFAULT_SIZE = 20;
 
-void ZLabelTTF::init(vector<char*>& scripts, CCSize scriptSize, char* font, int size)
+void ZLabelTTF::init(vector<char*> scripts, CCSize scriptSize, char* font, int size)
 {
 	this->m_scripts = scripts;
-	this->m_iter =  m_scripts.begin();
 
+	//this->m_scripts = scripts;
+	this->m_iter = m_scripts.begin();
 
 	//assert(m_iter != scripts.end());
 
@@ -95,8 +96,8 @@ void ZLabelTTF::setOpacity(int opacity)
 bool ZLabelTTF::rollScript()
 {
 	if(++m_iter != m_scripts.end())
-	{		
-		this->m_label->setString(*m_iter);	
+	{	
+		this->m_label->setString(*m_iter);
 		return false;
 	}
 

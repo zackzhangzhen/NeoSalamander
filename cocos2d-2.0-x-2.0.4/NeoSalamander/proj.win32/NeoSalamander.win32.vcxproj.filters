@@ -172,6 +172,9 @@
     <ClInclude Include="..\Classes\script\ZLabelTTF.h">
       <Filter>include\script</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\utility\CompareCString.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -230,6 +233,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\script\ZLabelTTF.cpp">
       <Filter>source\script</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\utility\CompareCString.cpp">
+      <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

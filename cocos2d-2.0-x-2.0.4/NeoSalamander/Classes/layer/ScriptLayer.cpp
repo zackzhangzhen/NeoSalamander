@@ -6,7 +6,7 @@ ScriptLayer::ScriptLayer(void)
 	this->setTouchEnabled(true);
 	this->m_isAnimationPlaying = false;
 	m_player = NULL;
-	initScripts();
+	loadScript("D:\\Tech\\NeoSalamander\\NeoSalamander\\cocos2d-2.0-x-2.0.4\\NeoSalamander\\Resources\\script\\script.xml");
 }
 
 
@@ -16,20 +16,31 @@ ScriptLayer::~ScriptLayer(void)
 
 void ScriptLayer::loadScript(const char* fileName)
 {
-	TiXmlDocument doc(fileName);
-	assert(doc.LoadFile());
-	TiXmlHandle hDoc(&doc);
+	//need to new the TiXmlDocument here otherwise the doc strucure will be lost after exiting the callee
+	TiXmlDocument* doc = new TiXmlDocument(fileName);
+	assert(doc->LoadFile());
+	TiXmlHandle hDoc(doc);
 	TiXmlElement* pElem;
 	pElem=hDoc.FirstChildElement().Element();
 	assert(pElem != NULL);
 
 	TiXmlElement* scriptElem = pElem->FirstChildElement();
+
 	assert(scriptElem != NULL);
 
+	bool firstScriptPlayer = true;
+	
 	for( ; scriptElem != NULL; scriptElem=scriptElem->NextSiblingElement())
 	{
 		char* id = (char*)scriptElem->Attribute("id");
+
 		ScriptPlayer* player = new ScriptPlayer(id, scriptElem, this);
+		
+		if(firstScriptPlayer)
+		{
+			this->m_player = player;
+			firstScriptPlayer = false;
+		}
 
 		m_map.insert(map<char*, ScriptPlayer*>::value_type((char*)id, player));
 	}
@@ -91,7 +102,7 @@ ScriptPlayer* ScriptLayer::findScriptPlayerByKey(char* key)
 {
 	assert(key != NULL);
 
-	map<char*, ScriptPlayer*>::const_iterator iter = m_map.find(key);
+	map<char*, ScriptPlayer*, CompareCString>::const_iterator iter = m_map.find(key);
 
 	assert(iter != m_map.end());
 

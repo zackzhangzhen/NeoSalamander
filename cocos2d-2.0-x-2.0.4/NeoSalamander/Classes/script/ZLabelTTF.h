@@ -8,7 +8,7 @@ class ZLabelTTF
 public:
 	ZLabelTTF(void);
 	~ZLabelTTF(void);
-	void init(vector<char*>& scripts, CCSize scriptSize, char* font, int size);
+	void init(vector<char*> scripts, CCSize scriptSize, char* font, int size);
 
 	static char* FONT_COMIC;
 	static char* YAHEI;

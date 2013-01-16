@@ -4,6 +4,7 @@
 #include <vector>
 #include <map>
 #include "tinyxml.h"
+#include "utility\CompareCString.h"
 class ScriptLayer : public cocos2d::CCLayer
 {
 public:
@@ -19,7 +20,7 @@ private:
 	ScriptPlayer* findScriptPlayerByKey(char* key);
 	bool m_isAnimationPlaying;
 
-	map<char*, ScriptPlayer*> m_map;
+	map<char*, ScriptPlayer*, CompareCString> m_map;
 
 	ScriptPlayer* m_player;
 };

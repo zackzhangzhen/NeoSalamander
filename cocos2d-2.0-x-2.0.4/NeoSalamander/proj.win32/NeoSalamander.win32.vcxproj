@@ -148,6 +148,7 @@
     <ClInclude Include="..\Classes\sprite\Plane.h" />
     <ClInclude Include="..\Classes\sprite\ZSprite.h" />
     <ClInclude Include="..\Classes\synchronization\GlobalFlag.h" />
+    <ClInclude Include="..\Classes\utility\CompareCString.h" />
     <ClInclude Include="..\Classes\utility\Utility.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="NeoConstants.h" />
@@ -170,6 +171,7 @@
     <ClCompile Include="..\Classes\sprite\Plane.cpp" />
     <ClCompile Include="..\Classes\sprite\ZSprite.cpp" />
     <ClCompile Include="..\Classes\synchronization\GlobalFlag.cpp" />
+    <ClCompile Include="..\Classes\utility\CompareCString.cpp" />
     <ClCompile Include="..\Classes\utility\Utility.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NeoConstants.cpp" />

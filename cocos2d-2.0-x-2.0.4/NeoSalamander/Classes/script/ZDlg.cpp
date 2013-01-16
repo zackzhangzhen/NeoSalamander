@@ -30,8 +30,8 @@ ZDlg::ZDlg(TiXmlElement* dlgElem, CCNode* parentNode)
 	TiXmlElement* lineElem = dlgElem->FirstChildElement();
 	assert(lineElem != NULL);
 
+	//vector<char*>* lines = new vector<char*>();
 	vector<char*> lines;
-
 	int pos = ZDlg::POS_LEFT;
 	dlgElem->Attribute("pos", &pos);
 
@@ -40,11 +40,9 @@ ZDlg::ZDlg(TiXmlElement* dlgElem, CCNode* parentNode)
 
 	char* font = (char*)dlgElem->Attribute("font");
 	char* imageFile = (char*)dlgElem->Attribute("image");
-
 	for( ; lineElem != NULL; lineElem=lineElem->NextSiblingElement())
 	{
 		char* line = (char*)lineElem->GetText();
-	
 		lines.push_back(line);
 	}
 
