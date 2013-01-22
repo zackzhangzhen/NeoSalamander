@@ -16,6 +16,15 @@ char* Utility::appendIntToString(char* origin, char* extention, int i)
 	return finalStr;
 }
 
+char* Utility::zstrcat(char* origin, char* extention)
+{
+	std::stringstream ss;
+	ss << origin << extention;
+	std::string str = ss.str();
+	char* finalStr =  convertStringToChar(str);
+	return finalStr;
+}
+
 float Utility::calcLength(CCPoint startPoint, CCPoint endPoint)
 {
 	int xLen = endPoint.x - startPoint.x;

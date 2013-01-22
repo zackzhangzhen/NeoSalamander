@@ -13,6 +13,7 @@ class Utility
 public:
 	
 	~Utility(void);
+	static char* zstrcat(char* origin, char* extention);
 	static float calcLength(CCPoint startPoint, CCPoint endPoint);
 	static char* appendIntToString(char*, char* extention, int i);
 	static char* convertStringToChar(std::string str);

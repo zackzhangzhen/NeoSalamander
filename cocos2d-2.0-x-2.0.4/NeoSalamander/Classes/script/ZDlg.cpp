@@ -303,6 +303,10 @@ bool ZDlg::play(bool delay)
 				return true;
 			}
 		}
+
+		default:
+
+			return false;
 	}
 }
 

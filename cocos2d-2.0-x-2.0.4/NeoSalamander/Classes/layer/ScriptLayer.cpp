@@ -1,4 +1,7 @@
+
 #include "ScriptLayer.h"
+#include "script\ScriptPlayer.h"
+
 
 
 ScriptLayer::ScriptLayer(void)
@@ -6,13 +9,14 @@ ScriptLayer::ScriptLayer(void)
 	this->setTouchEnabled(true);
 	this->m_isAnimationPlaying = false;
 	m_player = NULL;
-	loadScript("D:\\Tech\\NeoSalamander\\NeoSalamander\\cocos2d-2.0-x-2.0.4\\NeoSalamander\\Resources\\script\\script.xml");
+	loadScript("script\\script.xml");
 }
 
 
 ScriptLayer::~ScriptLayer(void)
 {
 }
+
 
 void ScriptLayer::loadScript(const char* fileName)
 {
@@ -119,7 +123,7 @@ void ScriptLayer::ccTouchesEnded(CCSet* touches, CCEvent* event)
 	if(m_player->play() && strcmp(m_player->getId(), "s1") == 0)
 	{
 		m_player = findScriptPlayerByKey("s2");
-		this->setAnimationPlaying(false);
+		//this->setAnimationPlaying(false);
 	}
 }
 

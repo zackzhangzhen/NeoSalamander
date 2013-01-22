@@ -17,6 +17,7 @@ class ZSprite:public CCObject
 public:
 	ZSprite(void);
 	ZSprite(char* fileName);	
+	ZSprite(char* fileName, CCNode* parentNode, int zOrder = 0);
 	ZSprite(char* fileName, float duration, CCPoint startPt, CCPoint endPt);
 	ZSprite(char* fileName, bool randomSpawn);
 	ZSprite(char* fileName, int direction, float velocity = 1);

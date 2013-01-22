@@ -21,6 +21,21 @@ ZSprite::ZSprite(char* fileName)
 	this->m_originSize = this->m_sprite->getContentSize();
 }
 
+ZSprite::ZSprite(char* fileName, CCNode* parentNode, int zOrder)
+{
+	this->ZSprite::ZSprite();
+
+	this->m_sprite = CCSprite::create(fileName);
+	m_sprite->setPosition(ccp(0,0));
+
+	this->m_spriteFileName = fileName;
+
+	this->m_originSize = this->m_sprite->getContentSize();
+
+	assert(parentNode!= NULL);
+	parentNode->addChild(this->m_sprite, zOrder);
+}
+
 ZSprite::ZSprite(char* fileName, float duration, CCPoint startPt, CCPoint endPt)
 {
 
