@@ -28,12 +28,12 @@ public:
 	
 	~ZDlg(void);
 
-	void ZDlgInit(int pos, vector<char*>& scripts, char* figureFileName, CCNode* parentNode, char* font, int size = ZLabelTTF::FONT_DEFAULT_SIZE);
+	void ZDlgInit(int pos, vector<char*>& scripts, char* figureFileName, CCNode* parentNode, char* font, int size = ZLabelTTF::FONT_DEFAULT_SIZE, int figure_vertical_offset = NeoConstants::FIGURE_VERTICAL_OFFSET);
 	void calcFrameSizes(void);
-	void calcPos(void);
+	void calcPos(int figure_vertical_offset = NeoConstants::FIGURE_VERTICAL_OFFSET);
 	void initFramePrototype();
 	void initFrame();
-	void init(void);
+	void init(int figure_vertical_offset = NeoConstants::FIGURE_VERTICAL_OFFSET);
 	void calcInitPos(void);
 	void calcInitOpacity(void);
 
@@ -53,7 +53,6 @@ public:
 	static int FRAME_MARGIN;
 	static int SCRIPT_MARGIN;
 	static int FIGURE_MARGIN;
-	static int FIGURE_OFFSET;
 
 	static ZSprite* FRAME_L;
 	static ZSprite* FRAME_R;
@@ -74,7 +73,7 @@ private:
 
 	void calcFrame();
 	void calcFramePos(void);
-	void calcFigurePos(void);
+	void calcFigurePos(int figure_vertical_offset = NeoConstants::FIGURE_VERTICAL_OFFSET);
 	void calcScriptPos(void);
 	CCSize getScriptSize();
 

@@ -19,7 +19,9 @@ public:
 	//script
 	static const char* BG_PIC_BASE;
 	static const char* SCRIPT_ATTR_PIC;
+	static const char* SCRIPT_ATTR_FIGURE_VERTICAL_OFFSET;
 
-
+	//Dlg elment's position
+	static int FIGURE_VERTICAL_OFFSET;
 };
 

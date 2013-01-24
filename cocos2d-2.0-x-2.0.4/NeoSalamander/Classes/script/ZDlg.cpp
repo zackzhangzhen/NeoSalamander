@@ -8,7 +8,6 @@ int ZDlg::POS_FULL = 2;
 int ZDlg::FRAME_MARGIN = 6;
 int ZDlg::SCRIPT_MARGIN = 20;
 int ZDlg::FIGURE_MARGIN = 10;
-int ZDlg::FIGURE_OFFSET = 80;
 char* ZDlg::FRAME_L_NAME = "pic\\script\\frame_lr.png";
 char* ZDlg::FRAME_R_NAME = "pic\\script\\frame_lr.png";
 char* ZDlg::FRAME_F_NAME = "pic\\script\\frame_f.png";
@@ -38,6 +37,9 @@ ZDlg::ZDlg(TiXmlElement* dlgElem, CCNode* parentNode)
 	int size = ZLabelTTF::FONT_DEFAULT_SIZE;
 	dlgElem->Attribute("size", &size);
 
+	int figure_vertical_offset = NeoConstants::FIGURE_VERTICAL_OFFSET;
+	dlgElem->Attribute(NeoConstants::SCRIPT_ATTR_FIGURE_VERTICAL_OFFSET, &figure_vertical_offset);
+
 	char* font = (char*)dlgElem->Attribute("font");
 	char* imageFile = (char*)dlgElem->Attribute("image");
 	for( ; lineElem != NULL; lineElem=lineElem->NextSiblingElement())
@@ -46,10 +48,10 @@ ZDlg::ZDlg(TiXmlElement* dlgElem, CCNode* parentNode)
 		lines.push_back(line);
 	}
 
-	ZDlgInit(pos, lines, imageFile, parentNode, font, size);
+	ZDlgInit(pos, lines, imageFile, parentNode, font, size, figure_vertical_offset);
 }
 
-void ZDlg::ZDlgInit(int pos, vector<char*>& scripts, char* figureFileName, CCNode* parentNode, char* font, int size)
+void ZDlg::ZDlgInit(int pos, vector<char*>& scripts, char* figureFileName, CCNode* parentNode, char* font, int size, int figure_vertical_offset)
 {
 	m_scriptState = ScriptState::NOT_FADED_IN;
 	m_parentScriptLayer = NULL;
@@ -64,7 +66,7 @@ void ZDlg::ZDlgInit(int pos, vector<char*>& scripts, char* figureFileName, CCNod
 	this->m_scriptLabel = new ZLabelTTF(scripts, this->getScriptSize(), font, size);
 	this->m_figure = new ZSprite(figureFileName);
 
-	init();
+	init(figure_vertical_offset);
 
 	if(parentNode != NULL)
 	{
@@ -310,11 +312,11 @@ bool ZDlg::play(bool delay)
 	}
 }
 
-void ZDlg::init(void)
+void ZDlg::init(int figure_vertical_offset)
 {
 	calcInitOpacity();
 	calcFrameSizes();
-	calcPos();
+	calcPos(figure_vertical_offset);
 	calcInitPos();
 }
 
@@ -423,10 +425,10 @@ void ZDlg::calcFrameSizes(void)
 	this->FRAME_F_SIZE = FRAME_F->getSize();
 }
 
-void ZDlg::calcPos(void)
+void ZDlg::calcPos(int figure_vertical_offset)
 {
 	calcFramePos();
-	calcFigurePos();
+	calcFigurePos(figure_vertical_offset);
 	calcScriptPos();
 }
 
@@ -458,12 +460,12 @@ void ZDlg::calcFramePos(void)
 	this->m_frame->setPosition(m_framePos);
 }
 
-void ZDlg::calcFigurePos(void)
+void ZDlg::calcFigurePos(int figure_vertical_offset)
 {
 	CCPoint figurePos;
 	switch(this->m_pos)
 	{
-		figurePos.y = m_framePos.y;
+		
 		case (/*ZDlg::POS_LEFT*/0):
 		{			
 			figurePos.x = m_framePos.x - FRAME_L->getWidth()/2 + FIGURE_MARGIN + m_figure->getWidth()/2;
@@ -484,9 +486,7 @@ void ZDlg::calcFigurePos(void)
 	}
 
 	m_figurePos = figurePos;
-
-	m_figurePos.y = m_figurePos.y + FIGURE_OFFSET;
-
+	m_figurePos.y = m_figurePos.y + figure_vertical_offset;
 	this->m_figure->setPosition(m_figurePos);
 }
 

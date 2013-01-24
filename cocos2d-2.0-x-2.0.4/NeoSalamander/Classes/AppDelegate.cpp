@@ -30,7 +30,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     // create a scene. it's an autorelease object
     //CCScene *pScene = HelloWorld::scene();
 	CCScene *pScene = CCScene::create();
-	pScene->addChild(new BgLayer());
+	//pScene->addChild(new BgLayer());
 	pScene->addChild(new ScriptLayer(), 10);
 
 	CCActionInterval* ac = Utility::getAnimationAction("pic\\explosion\\", "png",26, false, false);
@@ -50,7 +50,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 	ObjectLayer* l = ObjectLayer::createObjectLayer();
 	l->scheduleObjects();
-	pScene->addChild(l,1);
+	//pScene->addChild(l,1);
 
 
 	// Create a label and initialize with string "Hello World".

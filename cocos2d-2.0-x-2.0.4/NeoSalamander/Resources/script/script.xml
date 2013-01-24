@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
 <play>
-  <script id="s1" pic="assassin.png">
-    <dlg id="1" pos="0" font="Microsoft JhengHei" image="pic\\figure\\assassin.png" size="20">
-        <line>你好呀，大家都过来做一个简单的自我介绍好不好呀啊？</line>
+  <script id="s1" pic="bar.png">
+    <dlg id="1" pos="0" font="Microsoft JhengHei" image="pic\\figure\\assassin.png" size="20" figureVerticalOffset="300">
+        <line>你好呀，大家都过来做一个简单的自我介绍好不好呀啊？你好呀，大家都过来做一个简单的自我介绍好不好呀啊？你好呀，大家都过来做一个简单的自我介绍好不好呀啊？你好呀，大家都过来做一个简单的自我介绍好不好呀啊？</line>
         <!--line>我来测试一下下</line>
         <line>有木有发现我现在在说着中文呢？</line-->
     </dlg>
@@ -19,7 +19,7 @@
         <line font="Comic Sans MS">Hi there, my name is Jim Green, don't forget me!</line>          
     </dlg>         
   </script>
-  <script id="s2" pic="raven.png">
+  <script id="s2" pic="breakfast.png">
     <dlg id="1" pos="0" font="Comic Sans MS" image="pic\\figure\\jedi.png" size="20">
         <line font="Comic Sans MS">What are you going to do now?</line>
     </dlg>
