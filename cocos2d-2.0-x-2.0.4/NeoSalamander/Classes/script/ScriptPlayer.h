@@ -12,10 +12,13 @@ public:
 	~ScriptPlayer(void);
 	void initBg(TiXmlElement* scriptElem, CCNode* parentNode);
 	void setAnimationPlayingDone(CCNode* sender);
+	void switchCueOn(CCNode* sender);
+	void switchCueOff(CCNode* sender);
 	void fadeIn(bool delay);
 	void fadeOut(bool delay);
 	bool play();
 	char* getId();
+	void autoRelease(CCNode* sender);
 
 private:
 	vector<ZDlg*> m_vec;

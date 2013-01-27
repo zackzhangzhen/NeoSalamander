@@ -231,14 +231,18 @@ void ZDlg::fadeIn(bool delay)
 
 void ZDlg::autoRelease(CCNode* sender)
 {
+	CCSprite* sprite = (CCSprite*)sender;
+	this->m_parentScriptLayer->removeChild(sprite,true);
+	sprite->autorelease();
+
 	/*EnterCriticalSection(&GlobalFlag::m_csObject);
 	
 	CCSprite* sprite = (CCSprite*)sender;
-	this->m_parentScriptLayer->removeChild(sprite,true);
-	this->m_parentScriptLayer->removeChild(m_frame->getSprite(),true);
+	this->m_parentScriptLayer->removeChild(this->m_figure->getSprite(),true);
+	this->m_parentScriptLayer->removeChild(this->m_frame->getSprite(),true);
 	this->m_parentScriptLayer->removeChild(this->m_scriptLabel->getLabel(),true);
 
-	sprite->autorelease();
+	this->m_figure->getSprite()->autorelease();
 	this->m_frame->getSprite()->autorelease();
 	this->m_scriptLabel->getLabel()->autorelease();
 
@@ -263,9 +267,10 @@ void ZDlg::fadeOut()
 			CCDelayTime *delayAction1 = CCDelayTime::actionWithDuration(1);
 			CCDelayTime *delayAction2 = CCDelayTime::actionWithDuration(1);
 
+			//don't auto-release frames, they will be reused throught all the dlgs
 			m_frame->getSprite()->runAction(CCSequence::actions(delayAction1, pCCFadeOut1, NULL));
 			m_figure->getSprite()->runAction(CCSequence::actions(delayAction2, pCCFadeOut2/*, animationDone*/,autoReleaseAction, NULL));
-			m_scriptLabel->runAction(pCCFadeOut3);
+			m_scriptLabel->runAction(CCSequence::actions(pCCFadeOut3,autoReleaseAction, NULL));
 			break;
 		}
 		default:
@@ -278,9 +283,10 @@ void ZDlg::fadeOut()
 				CCDelayTime *delayAction1 = CCDelayTime::actionWithDuration(1);
 				CCDelayTime *delayAction2 = CCDelayTime::actionWithDuration(1);
 
+				//don't auto-release frames, they will be reused throught all the dlgs
 				m_frame->getSprite()->runAction(CCSequence::actions(delayAction1, frameMoveTo, NULL));
 				m_figure->getSprite()->runAction(CCSequence::actions(delayAction2, figureMoveTo/*, animationDone*/, autoReleaseAction, NULL));
-				m_scriptLabel->runAction(CCSequence::actions(pCCFadeOut,scriptMoveTo, NULL));
+				m_scriptLabel->runAction(CCSequence::actions(pCCFadeOut,scriptMoveTo,autoReleaseAction, NULL));
 
 			}
 	}
@@ -288,6 +294,9 @@ void ZDlg::fadeOut()
 
 bool ZDlg::play(bool delay)
 {
+	//when the background fades in, the cue is turned on, will need to turn it off when the scripts start to play.
+	this->m_parentScriptLayer->switchCue(false);
+
 	switch(m_scriptState)
 	{
 		case(ScriptState::NOT_FADED_IN):

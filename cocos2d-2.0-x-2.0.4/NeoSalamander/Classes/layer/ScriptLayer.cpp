@@ -9,7 +9,8 @@ ScriptLayer::ScriptLayer(void)
 	this->setTouchEnabled(true);
 	this->m_isAnimationPlaying = false;
 	m_player = NULL;
-	loadScript("script\\script.xml");
+	initCueSprite();
+	loadScript(NeoConstants::SCRIPT_FILE_LOC);
 }
 
 
@@ -17,6 +18,24 @@ ScriptLayer::~ScriptLayer(void)
 {
 }
 
+void ScriptLayer::initCueSprite(void)
+{
+	m_cue = new ZSprite(Utility::zstrcat((char*)NeoConstants::CUE_PIC_LOC,"0.png"), this, 1);
+
+	m_cue->addAnimation("cue",Utility::getAnimationAction((char*)NeoConstants::CUE_PIC_LOC,"png",5,true, true));
+	m_cue->playAnimation("cue");
+	m_cue->getSprite()->setVisible(true);
+
+	//put it in the right bottom corner
+	CCSize size = CCDirector::sharedDirector()->getWinSize();
+	CCSize spriteSize = m_cue->getSize();
+	m_cue->setPosition(ccp(size.width-spriteSize.width/2, spriteSize.height/2));
+}
+
+void ScriptLayer::switchCue(bool on)
+{
+	m_cue->getSprite()->setVisible(on);
+}
 
 void ScriptLayer::loadScript(const char* fileName)
 {
@@ -50,7 +69,7 @@ void ScriptLayer::loadScript(const char* fileName)
 	}
 }
 
-void ScriptLayer::initScripts()
+/*void ScriptLayer::initScripts()
 {
 	//==========================================================
 	vector<ZDlg*> vec1;
@@ -100,7 +119,7 @@ void ScriptLayer::initScripts()
 
 
 	m_player = findScriptPlayerByKey("s1");
-}
+}*/
 
 ScriptPlayer* ScriptLayer::findScriptPlayerByKey(char* key)
 {

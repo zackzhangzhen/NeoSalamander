@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <play>
   <script id="s1" pic="bar.png">
-    <dlg id="1" pos="0" font="Microsoft JhengHei" image="pic\\figure\\assassin.png" size="20" figureVerticalOffset="300">
+    <dlg id="1" pos="0" font="Microsoft JhengHei" image="pic\\figure\\assassin.png" size="20" figureVerticalOffset="180">
         <line>你好呀，大家都过来做一个简单的自我介绍好不好呀啊？你好呀，大家都过来做一个简单的自我介绍好不好呀啊？你好呀，大家都过来做一个简单的自我介绍好不好呀啊？你好呀，大家都过来做一个简单的自我介绍好不好呀啊？</line>
         <!--line>我来测试一下下</line>
         <line>有木有发现我现在在说着中文呢？</line-->

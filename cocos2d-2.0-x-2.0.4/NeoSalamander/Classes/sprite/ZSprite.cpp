@@ -13,27 +13,36 @@ ZSprite::ZSprite(char* fileName)
 {
 	this->ZSprite::ZSprite();
 
-	this->m_sprite = CCSprite::create(fileName);
-	m_sprite->setPosition(ccp(0,0));
+	if(fileName != NULL)
+	{
+		this->m_sprite = CCSprite::create(fileName);
+		m_sprite->setPosition(ccp(0,0));
 
-	this->m_spriteFileName = fileName;
+		this->m_spriteFileName = fileName;
 
-	this->m_originSize = this->m_sprite->getContentSize();
+		this->m_originSize = this->m_sprite->getContentSize();
+	}
 }
 
 ZSprite::ZSprite(char* fileName, CCNode* parentNode, int zOrder)
 {
 	this->ZSprite::ZSprite();
 
-	this->m_sprite = CCSprite::create(fileName);
-	m_sprite->setPosition(ccp(0,0));
-
-	this->m_spriteFileName = fileName;
-
-	this->m_originSize = this->m_sprite->getContentSize();
-
 	assert(parentNode!= NULL);
-	parentNode->addChild(this->m_sprite, zOrder);
+
+	if(fileName != NULL)
+	{
+		this->m_sprite = CCSprite::create(fileName);
+		m_sprite->setPosition(ccp(0,0));
+
+		this->m_spriteFileName = fileName;
+
+		this->m_originSize = this->m_sprite->getContentSize();
+
+		parentNode->addChild(this->m_sprite, zOrder);
+		
+		this->m_parentNode = parentNode;
+	}
 }
 
 ZSprite::ZSprite(char* fileName, float duration, CCPoint startPt, CCPoint endPt)

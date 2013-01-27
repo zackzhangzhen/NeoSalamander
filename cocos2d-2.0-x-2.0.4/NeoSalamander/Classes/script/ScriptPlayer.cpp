@@ -55,10 +55,22 @@ void ScriptPlayer::setAnimationPlayingDone(CCNode* sender)
 	this->m_parentScriptLayer->setAnimationPlaying(false);
 }
 
+void ScriptPlayer::switchCueOn(CCNode* sender)
+{
+	this->m_parentScriptLayer->switchCue(true);
+}
+
+void ScriptPlayer::switchCueOff(CCNode* sender)
+{
+	this->m_parentScriptLayer->switchCue(false);
+}
+
+
+
 void ScriptPlayer::fadeIn(bool delay)
 {
 	CCFiniteTimeAction* animationDone = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ScriptPlayer::setAnimationPlayingDone));
-
+	CCFiniteTimeAction* switchCueOn = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ScriptPlayer::switchCueOn));
 	CCFadeIn* pCCFadeIn= CCFadeIn::actionWithDuration(5);
 
 	m_parentScriptLayer->setAnimationPlaying(true);
@@ -66,17 +78,19 @@ void ScriptPlayer::fadeIn(bool delay)
 	if(delay)
 	{
 		CCDelayTime *delayAction = CCDelayTime::actionWithDuration(1);
-		m_bg->getSprite()->runAction(CCSequence::actions(delayAction, pCCFadeIn, animationDone, NULL));
+		m_bg->getSprite()->runAction(CCSequence::actions(delayAction, pCCFadeIn, animationDone, switchCueOn,  NULL));
 
 		return ;
 	}
 
-	m_bg->getSprite()->runAction(CCSequence::actions(pCCFadeIn, animationDone, NULL));
+	m_bg->getSprite()->runAction(CCSequence::actions(pCCFadeIn, animationDone, switchCueOn,  NULL));
 }
 
 void ScriptPlayer::fadeOut(bool delay)
 {
 	CCFiniteTimeAction* animationDone = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ScriptPlayer::setAnimationPlayingDone));
+	CCFiniteTimeAction* switchCueOn = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ScriptPlayer::switchCueOn));
+	CCFiniteTimeAction* autoReleaseAction = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ScriptPlayer::autoRelease));
 
 	CCFadeOut* pCCFadeOut= CCFadeOut::actionWithDuration(5);
 
@@ -85,12 +99,14 @@ void ScriptPlayer::fadeOut(bool delay)
 	if(delay)
 	{
 		CCDelayTime *delayAction = CCDelayTime::actionWithDuration(3);
-		m_bg->getSprite()->runAction(CCSequence::actions(delayAction, pCCFadeOut, animationDone, NULL));
+		m_bg->getSprite()->runAction(CCSequence::actions(delayAction, pCCFadeOut, switchCueOn, animationDone, autoReleaseAction, NULL));
+
 
 		return ;
 	}
 
-	m_bg->getSprite()->runAction(CCSequence::actions(pCCFadeOut, animationDone, NULL));
+	//remember to release the background sprite when it has faded out.
+	m_bg->getSprite()->runAction(CCSequence::actions(pCCFadeOut, switchCueOn, animationDone,autoReleaseAction, NULL));
 }
 
 
@@ -100,6 +116,10 @@ bool ScriptPlayer::play()
 	{
 		this->fadeIn(false);
 		this->fadedIn = true;
+
+		//turn off cue
+		this->m_parentScriptLayer->switchCue(false);
+
 		return false;
 	}
 
@@ -132,5 +152,12 @@ bool ScriptPlayer::play()
 	{
 		return true;
 	}
+}
+
+void ScriptPlayer::autoRelease(CCNode* sender)
+{
+	CCSprite* sprite = (CCSprite*)sender;
+	this->m_parentScriptLayer->removeChild(sprite,true);
+	sprite->autorelease();
 }
 
