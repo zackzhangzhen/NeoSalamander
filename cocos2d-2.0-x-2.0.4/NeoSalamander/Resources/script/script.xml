@@ -6,17 +6,17 @@
         <!--line>我来测试一下下</line>
         <line>有木有发现我现在在说着中文呢？</line-->
     </dlg>
-    <!--dlg id="2" pos="1" font="Comic Sans MS" image="pic\\figure\\master_chief.png" size="15">
-        <line font="Microsoft JhengHei">我是说英文的知道呢吗</line>
+    <dlg id="2" pos="1" font="Comic Sans MS" image="pic\\figure\\master_chief.png" size="15">
         <line font="Comic Sans MS">Fine thank you! My name is Li Lei, what about you?</line>
         <line font="Comic Sans MS">This is a very brief self-introduction!</line>
     </dlg>
     <dlg id="3" pos="0" font="Comic Sans MS" image="pic\\figure\\assassin.png" size="20">
         <line font="Comic Sans MS">My name is Han Meimei, nice to meet you!</line>    
          <line font="Comic Sans MS">Will you take my hand?</line>      
-    </dlg-->
+    </dlg>
     <dlg id="4" pos="2" font="Comic Sans MS" image="pic\\figure\\jedi.png" size="25">
-        <line font="Comic Sans MS">Hi there, my name is Jim Green, don't forget me!</line>          
+        <line font="Comic Sans MS">Hi there, my name is Jim Green, don't forget me!</line>   
+        <line font="Comic Sans MS">1 - 2 Hi there, my name is Jim Green, don't forget me!</line>       
     </dlg>         
   </script>
   <script id="s2" pic="breakfast.png">

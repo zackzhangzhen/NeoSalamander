@@ -91,6 +91,12 @@
     <Filter Include="include\script">
       <UniqueIdentifier>{6cd6ecaa-8327-4ec4-9c0f-91d8400b77db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\mail">
+      <UniqueIdentifier>{086e4e48-c68a-4ff2-a7dc-f8f2590ac3c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\mail">
+      <UniqueIdentifier>{ffccf2c6-ace6-488f-b058-3204052decd7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\NeoSalamander.ico">
@@ -175,6 +181,15 @@
     <ClInclude Include="..\Classes\utility\CompareCString.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\mail\CSmtp.h">
+      <Filter>include\mail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\mail\base64.h">
+      <Filter>include\mail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\mail\Courier.h">
+      <Filter>include\mail</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -236,6 +251,15 @@
     </ClCompile>
     <ClCompile Include="..\Classes\utility\CompareCString.cpp">
       <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\mail\CSmtp.cpp">
+      <Filter>source\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\mail\base64.cpp">
+      <Filter>source\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\mail\Courier.cpp">
+      <Filter>source\mail</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

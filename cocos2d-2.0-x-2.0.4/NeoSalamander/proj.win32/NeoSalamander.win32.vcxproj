@@ -139,6 +139,9 @@
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\layer\BgLayer.h" />
     <ClInclude Include="..\Classes\layer\ObjectLayer.h" />
+    <ClInclude Include="..\Classes\mail\base64.h" />
+    <ClInclude Include="..\Classes\mail\Courier.h" />
+    <ClInclude Include="..\Classes\mail\CSmtp.h" />
     <ClInclude Include="..\Classes\scheduler\LayerScheduler.h" />
     <ClInclude Include="..\Classes\scheduler\ScheduleTempValHolder.h" />
     <ClInclude Include="..\Classes\layer\ScriptLayer.h" />
@@ -162,6 +165,9 @@
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\layer\BgLayer.cpp" />
     <ClCompile Include="..\Classes\layer\ObjectLayer.cpp" />
+    <ClCompile Include="..\Classes\mail\base64.cpp" />
+    <ClCompile Include="..\Classes\mail\Courier.cpp" />
+    <ClCompile Include="..\Classes\mail\CSmtp.cpp" />
     <ClCompile Include="..\Classes\scheduler\LayerScheduler.cpp" />
     <ClCompile Include="..\Classes\scheduler\ScheduleTempValHolder.cpp" />
     <ClCompile Include="..\Classes\layer\ScriptLayer.cpp" />
