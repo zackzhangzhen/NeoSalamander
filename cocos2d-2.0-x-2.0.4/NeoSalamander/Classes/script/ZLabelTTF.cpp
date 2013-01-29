@@ -96,7 +96,7 @@ void ZLabelTTF::setOpacity(int opacity)
 bool ZLabelTTF::rollScript()
 {
 	if(++m_iter != m_scripts.end())
-	{	
+	{
 		this->m_label->setString(*m_iter);
 		return false;
 	}
