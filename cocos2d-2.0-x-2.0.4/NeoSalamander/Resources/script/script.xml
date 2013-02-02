@@ -3,10 +3,15 @@
   <script id="s1" pic="bar.png">
     <dlg id="1" pos="0" font="Microsoft JhengHei" image="pic\\figure\\assassin.png" size="20" figureVerticalOffset="180">
         <line>你好呀，大家都过来做一个简单的自我介绍好不好呀啊？你好呀，大家都过来做一个简单的自我介绍好不好呀啊？你好呀，大家都过来做一个简单的自我介绍好不好呀啊？你好呀，大家都过来做一个简单的自我介绍好不好呀啊？</line>
-        <!--line>我来测试一下下</line>
+        <!--options>
+          <option id="1" score="2">管你什么事</option>
+          <option id="2" score="3">可以的</option>
+          <option id="3" score="4" toScript="s2">我再想想</option>
+        <options>
+        <line>我来测试一下下</line>
         <line>有木有发现我现在在说着中文呢？</line-->
     </dlg>
-    <dlg id="2" pos="1" font="Comic Sans MS" image="pic\\figure\\master_chief.png" size="15">
+    <dlg id="2" pos="1" font="Comic Sans MS" image="pic\\figure\\master_chief.png" size="20">
         <line font="Comic Sans MS">Fine thank you! My name is Li Lei, what about you?</line>
         <line font="Comic Sans MS">1 - 2 This is a very brief self-introduction!</line>
     </dlg>

@@ -7,7 +7,7 @@
 #include "sprite\ZSprite.h"
 
 class ScriptPlayer;
-
+class ZMenu;
 class ScriptLayer : public cocos2d::CCLayer
 {
 public:
@@ -21,6 +21,7 @@ public:
 	void loadScript(const char* fileName);
 	void initCueSprite();
 	void switchCue(bool on);
+	void menuCallback(CCObject* sender);
 private:
 	ScriptPlayer* findScriptPlayerByKey(char* key);
 	bool m_isAnimationPlaying;

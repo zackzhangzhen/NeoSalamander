@@ -33,50 +33,56 @@ bool AppDelegate::applicationDidFinishLaunching()
 	//pScene->addChild(new BgLayer());
 	pScene->addChild(new ScriptLayer(), 10);
 
-	CCActionInterval* ac = Utility::getAnimationAction("pic\\explosion\\", "png",26, false, false);
 
-	/*CCSprite *player = CCSprite::spriteWithFile("Stewie.png", 
-		CCRectMake(0, 0, 55, 62) );*/
+
+
+
+
+
+
+
+
+
+
+
+	/*CCActionInterval* ac = Utility::getAnimationAction("pic\\explosion\\", "png",26, false, false);
+
+	CCSprite *player = CCSprite::spriteWithFile("Stewie.png", 
+		CCRectMake(0, 0, 55, 62) )
 
 	CCSprite *player = CCSprite::create();
 	player->setPosition(ccp(200,200));
 	player->runAction(ac);
 
-	for(int i = 0; i < 0; i ++)
-	{
-		ZSprite* sprite = new ZSprite("pic\\object\\stewie.png",NeoConstants::MOVE_DOWN,200);
-		sprite->addToCCNode(pScene, 0);
-	}
-
 	ObjectLayer* l = ObjectLayer::createObjectLayer();
-	l->scheduleObjects();
+	l->scheduleObjects();;*/
 	//pScene->addChild(l,1);
 
 
 	// Create a label and initialize with string "Hello World".
-	CCLabelTTF* pLabel = CCLabelTTF::create("Hello World\nyeah", "Arial", 24, CCSizeMake(/*68*/NeoConstants::WIN_WIDTH/2, 480),kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter);
+	//CCLabelTTF* pLabel = CCLabelTTF::create("Hello World\nyeah", "Arial", 24, CCSizeMake(/*68*/NeoConstants::WIN_WIDTH/2, 480),kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter);
 
     // Get window size and place the label upper. 
-    CCSize size = CCDirector::sharedDirector()->getWinSize();
-    pLabel->setPosition(ccp(size.width/2, size.height - 150));
+    //CCSize size = CCDirector::sharedDirector()->getWinSize();
+    //pLabel->setPosition(ccp(size.width/2, size.height - 150));
 	//pLabel->setOpacity(100);
 
-	CCFadeIn* pCCFadeIn= CCFadeIn::actionWithDuration(5);
-	CCFadeOut* pCCFadeOut= CCFadeOut::actionWithDuration(5);
-	CCDelayTime *delayAction = CCDelayTime::actionWithDuration(5);
+	//CCFadeIn* pCCFadeIn= CCFadeIn::actionWithDuration(5);
+	//CCFadeOut* pCCFadeOut= CCFadeOut::actionWithDuration(5);
+	//CCDelayTime *delayAction = CCDelayTime::actionWithDuration(5);
 	//pLabel->runAction(CCSequence::actions(pCCFadeIn, delayAction, pCCFadeOut, NULL));
 
-	CCScaleTo* scale = CCScaleTo::actionWithDuration(5,24);
+	//CCScaleTo* scale = CCScaleTo::actionWithDuration(5,24);
 	//pLabel->runAction(scale);
 	
-	CCBlink* blink = CCBlink::actionWithDuration(5,6);
+	//CCBlink* blink = CCBlink::actionWithDuration(5,6);
 	//pLabel->runAction(blink);
 
 
 
 		
-	CCTintTo* tint = CCTintTo::actionWithDuration(5,100,50,60);
-	pLabel->runAction(tint);
+	//CCTintTo* tint = CCTintTo::actionWithDuration(5,100,50,60);
+	//pLabel->runAction(tint);
 	
 
     // Add the label to HelloWorld layer as a child layer.

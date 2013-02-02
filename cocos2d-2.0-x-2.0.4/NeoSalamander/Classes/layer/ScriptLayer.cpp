@@ -1,11 +1,40 @@
 
 #include "ScriptLayer.h"
 #include "script\ScriptPlayer.h"
-
-
+#include "menu\ZMenu.h"
 
 ScriptLayer::ScriptLayer(void)
 {
+
+	/*CCSprite* spriteNormal1 = CCSprite::spriteWithFile("pic\\menu\\CloseNormal.png");
+	CCSprite* spriteSelected1 = CCSprite::spriteWithFile("pic\\menu\\CloseSelected.png");
+	CCSprite* spriteDisabled1 = CCSprite::spriteWithFile("pic\\menu\\CloseSelected.png");
+
+	CCSprite* spriteNormal2 = CCSprite::spriteWithFile("pic\\menu\\CloseNormal.png");
+	CCSprite* spriteSelected2 = CCSprite::spriteWithFile("pic\\menu\\CloseSelected.png");
+	CCSprite* spriteDisabled2 = CCSprite::spriteWithFile("pic\\menu\\CloseSelected.png");
+
+	CCMenuItemFont* menuItemStart = CCMenuItemFont::itemWithString("Start", this, menu_selector(ScriptLayer::menuCallback));  
+	CCMenuItemFont* menuItemStart2 = CCMenuItemFont::itemWithString("Yes let's do this", this, menu_selector(ScriptLayer::menuCallback));  
+	CCMenuItemFont* menuItemStart3 = CCMenuItemFont::itemWithString("Yes let's do that", this, menu_selector(ScriptLayer::menuCallback));  
+	
+
+
+	CCMenuItemSprite* item1 = CCMenuItemSprite::itemWithNormalSprite(spriteNormal1, spriteSelected1, spriteDisabled1, this, menu_selector(ScriptLayer::menuCallback));
+	item1->setTag(10);
+	CCMenuItemSprite* item2 = CCMenuItemSprite::itemWithNormalSprite(spriteNormal2, spriteSelected2, spriteDisabled2, this, menu_selector(ScriptLayer::menuCallback));
+	item2->setTag(20);
+	CCMenu* menu = CCMenu::menuWithItems( menuItemStart, menuItemStart2, menuItemStart3,NULL);
+
+
+	menu->alignItemsVertically();
+
+	 CCSize size = CCDirector::sharedDirector()->getWinSize();
+	 menu->setPosition(ccp(size.width/2, size.height/2));
+
+
+	this->addChild(menu,10);*/
+
 	this->setTouchEnabled(true);
 	this->m_isAnimationPlaying = false;
 	m_player = NULL;
@@ -13,6 +42,12 @@ ScriptLayer::ScriptLayer(void)
 	loadScript(NeoConstants::SCRIPT_FILE_LOC);
 }
 
+void ScriptLayer::menuCallback(CCObject* sender)
+{
+	/*CCMenuItemSprite* item = (CCMenuItemSprite*)sender;
+	int i = item->getTag();
+	int  j = 0;*/
+}
 
 ScriptLayer::~ScriptLayer(void)
 {
