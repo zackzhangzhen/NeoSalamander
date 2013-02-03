@@ -197,6 +197,13 @@ CCMoveToWrapper Utility::generateLinearMoveToHorizontalAction(float velocity, bo
 	return CCMoveToWrapper(realMoveDuration, realDest);
 }
 
+CCPoint Utility::getCenterPt()
+{
+	CCSize size = CCDirector::sharedDirector()->getWinSize();
+    return ccp(size.width/2, size.height - 150);
+}
+
+
 Utility::~Utility(void)
 {
 }

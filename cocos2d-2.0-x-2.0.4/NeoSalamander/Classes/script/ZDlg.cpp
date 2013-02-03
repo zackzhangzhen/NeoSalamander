@@ -1,6 +1,7 @@
 #include "ZDlg.h"
 #include "layer\ScriptLayer.h"
 
+
 int ZDlg::POS_LEFT = 0;
 int ZDlg::POS_RIGHT = 1;
 int ZDlg::POS_FULL = 2;
@@ -30,7 +31,7 @@ ZDlg::ZDlg(TiXmlElement* dlgElem, CCNode* parentNode)
 	assert(lineElem != NULL);
 
 	//vector<char*>* lines = new vector<char*>();
-	vector<char*> lines;
+	vector<ScriptElement*> lines;
 	int pos = ZDlg::POS_LEFT;
 	dlgElem->Attribute("pos", &pos);
 
@@ -45,13 +46,13 @@ ZDlg::ZDlg(TiXmlElement* dlgElem, CCNode* parentNode)
 	for( ; lineElem != NULL; lineElem=lineElem->NextSiblingElement())
 	{
 		char* line = (char*)lineElem->GetText();
-		lines.push_back(line);
+		lines.push_back(new ValueWrapper(line));
 	}
 
 	ZDlgInit(pos, lines, imageFile, parentNode, font, size, figure_vertical_offset);
 }
 
-void ZDlg::ZDlgInit(int pos, vector<char*>& scripts, char* figureFileName, CCNode* parentNode, char* font, int size, int figure_vertical_offset)
+void ZDlg::ZDlgInit(int pos, vector<ScriptElement*>& scripts, char* figureFileName, CCNode* parentNode, char* font, int size, int figure_vertical_offset)
 {
 	m_scriptState = ScriptState::NOT_FADED_IN;
 	m_parentScriptLayer = NULL;
@@ -75,34 +76,9 @@ void ZDlg::ZDlgInit(int pos, vector<char*>& scripts, char* figureFileName, CCNod
 	}
 }
 
-ZDlg::ZDlg(int pos, vector<char*>& scripts, char* figureFileName, CCNode* parentNode, char* font, int size)
+ZDlg::ZDlg(int pos, vector<ScriptElement*>& scripts, char* figureFileName, CCNode* parentNode, char* font, int size)
 {
 	ZDlgInit(pos, scripts, figureFileName, parentNode, font, size);
-}
-
-ZDlg::ZDlg(int pos, char* script, char* figureFileName, CCNode* parentNode, char* font, int size)
-{
-	m_scriptState = ScriptState::NOT_FADED_IN;
-	m_parentScriptLayer = NULL;
-
-	this->m_frame = NULL;
-	 initFramePrototype();
-
-	 this->m_pos = pos;
-	 initFrame();
-
-	//this->m_scriptLabel = CCLabelTTF::create(script, font, size, CCSizeMake(/*68*/NeoConstants::WIN_WIDTH/2, 480),kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter);
-	this->m_scriptLabel = new ZLabelTTF(script, this->getScriptSize(), font);
-	this->m_scriptLabel->setOpacity(0);
-	this->m_figure = new ZSprite(figureFileName);
-
-	init();
-
-	if(parentNode != NULL)
-	{
-		this->m_parentScriptLayer = (ScriptLayer*)parentNode;
-		this->addToCCNode(parentNode, 10);
-	}
 }
 
 void ZDlg::initFramePrototype()

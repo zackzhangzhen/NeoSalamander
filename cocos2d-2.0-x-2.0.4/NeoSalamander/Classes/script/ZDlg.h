@@ -7,6 +7,9 @@
 #include "script\ZLabelTTF.h"
 #include <vector>
 #include "tinyxml.h"
+#include "ValueWrapper.h"
+#include "ScriptElement.h"
+#include "menu\ZOption.h"
 //#include "layer\ScriptLayer.h"
 
 
@@ -23,12 +26,11 @@ class ZDlg : public CCObject
 public:
 	ZDlg(void);
 	ZDlg(TiXmlElement* dlgElem, CCNode* parentNode);
-	ZDlg(int pos, vector<char*>& scripts, char* figureFileName, CCNode* parentNode, char* font = ZLabelTTF::FONT_COMIC, int size = ZLabelTTF::FONT_DEFAULT_SIZE);
-	ZDlg(int pos, char* script, char* figureFileName, CCNode* parentNode, char* font = ZLabelTTF::FONT_COMIC, int size = ZLabelTTF::FONT_DEFAULT_SIZE);
+	ZDlg(int pos, vector<ScriptElement*>& scripts, char* figureFileName, CCNode* parentNode, char* font = ZLabelTTF::FONT_COMIC, int size = ZLabelTTF::FONT_DEFAULT_SIZE);	
 	
 	~ZDlg(void);
 
-	void ZDlgInit(int pos, vector<char*>& scripts, char* figureFileName, CCNode* parentNode, char* font, int size = ZLabelTTF::FONT_DEFAULT_SIZE, int figure_vertical_offset = NeoConstants::FIGURE_VERTICAL_OFFSET);
+	void ZDlgInit(int pos, vector<ScriptElement*>& scripts, char* figureFileName, CCNode* parentNode, char* font, int size = ZLabelTTF::FONT_DEFAULT_SIZE, int figure_vertical_offset = NeoConstants::FIGURE_VERTICAL_OFFSET);
 	void calcFrameSizes(void);
 	void calcPos(int figure_vertical_offset = NeoConstants::FIGURE_VERTICAL_OFFSET);
 	void initFramePrototype();

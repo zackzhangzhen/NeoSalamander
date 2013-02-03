@@ -25,6 +25,7 @@ public:
 	static bool getRandomBoolean();
 	static CCMoveToWrapper generateLinearMoveToDownAction(float velocity, bool moveLeft, CCSize size, CCPoint pos);
 	static CCMoveToWrapper generateLinearMoveToHorizontalAction(float velocity, bool moveLeft, CCSize size, CCPoint pos);
+	static CCPoint getCenterPt();
 
 private:
 	Utility(void);

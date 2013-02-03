@@ -194,7 +194,13 @@
       <Filter>include\menu</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\menu\ZOption.h">
-      <Filter>include</Filter>
+      <Filter>include\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\script\ScriptElement.h">
+      <Filter>include\script</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\script\ValueWrapper.h">
+      <Filter>include\script</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -271,7 +277,13 @@
       <Filter>source\menu</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\menu\ZOption.cpp">
-      <Filter>source</Filter>
+      <Filter>source\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\script\ScriptElement.cpp">
+      <Filter>source\script</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\script\ValueWrapper.cpp">
+      <Filter>source\script</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

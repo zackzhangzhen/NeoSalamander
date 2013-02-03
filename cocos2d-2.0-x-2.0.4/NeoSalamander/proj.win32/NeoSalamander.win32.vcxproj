@@ -147,7 +147,9 @@
     <ClInclude Include="..\Classes\scheduler\LayerScheduler.h" />
     <ClInclude Include="..\Classes\scheduler\ScheduleTempValHolder.h" />
     <ClInclude Include="..\Classes\layer\ScriptLayer.h" />
+    <ClInclude Include="..\Classes\script\ScriptElement.h" />
     <ClInclude Include="..\Classes\script\ScriptPlayer.h" />
+    <ClInclude Include="..\Classes\script\ValueWrapper.h" />
     <ClInclude Include="..\Classes\script\ZDlg.h" />
     <ClInclude Include="..\Classes\script\ZLabelTTF.h" />
     <ClInclude Include="..\Classes\sprite\Plane.h" />
@@ -175,7 +177,9 @@
     <ClCompile Include="..\Classes\scheduler\LayerScheduler.cpp" />
     <ClCompile Include="..\Classes\scheduler\ScheduleTempValHolder.cpp" />
     <ClCompile Include="..\Classes\layer\ScriptLayer.cpp" />
+    <ClCompile Include="..\Classes\script\ScriptElement.cpp" />
     <ClCompile Include="..\Classes\script\ScriptPlayer.cpp" />
+    <ClCompile Include="..\Classes\script\ValueWrapper.cpp" />
     <ClCompile Include="..\Classes\script\ZDlg.cpp" />
     <ClCompile Include="..\Classes\script\ZLabelTTF.cpp" />
     <ClCompile Include="..\Classes\sprite\Plane.cpp" />

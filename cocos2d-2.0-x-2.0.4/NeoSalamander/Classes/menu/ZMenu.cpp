@@ -8,11 +8,14 @@ ZMenu::ZMenu(void)
 
 ZMenu::ZMenu(TiXmlElement* optionsElem, CCNode* parentNode)
 {
+	assert(parentNode != NULL);
+
 	TiXmlElement* optionElem = optionsElem->FirstChildElement();
 	assert(optionElem != NULL);
 
 	CCMenu* menu = NULL;
 
+	//populate menu items and options 
 	for( ; optionElem != NULL; optionElem=optionElem->NextSiblingElement())
 	{
 		//id
@@ -43,6 +46,16 @@ ZMenu::ZMenu(TiXmlElement* optionsElem, CCNode* parentNode)
 		ZOption* option = new ZOption(id, score, menu, menuItem);
 		this->m_optionMap.insert(make_pair(id ,option));
 	}
+
+	//set position to center
+	CCPoint centerPt = Utility::getCenterPt();
+	menu->setPosition(centerPt);
+
+	this->m_menu = menu;
+
+	this->m_parentScriptLayer = (ScriptLayer*)parentNode;
+	this->m_parentScriptLayer->addChild(this->m_menu, 11);
+
 }
 
 void ZMenu::optionCallback(CCObject* sender)

@@ -1,7 +1,8 @@
 #pragma once
 #include "cocos2d.h"
+#include "script\ScriptElement.h"
 using namespace cocos2d;
-class ZOption
+class ZOption : public ScriptElement
 {
 public:
 	ZOption(int, int, CCMenu*, CCMenuItemFont* );
@@ -11,6 +12,7 @@ public:
 	int getScore();
 	CCMenu* getParentMenu();
 	CCMenuItemFont* getMenuItem();
+	char* getText();
 
 private:
 	int m_id;

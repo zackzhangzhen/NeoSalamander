@@ -5,31 +5,29 @@ char* ZLabelTTF::FONT_COMIC = "Comic Sans MS";
 char* ZLabelTTF::YAHEI = "Microsoft JhengHei";
 int ZLabelTTF::FONT_DEFAULT_SIZE = 20;
 
-void ZLabelTTF::init(vector<char*> scripts, CCSize scriptSize, char* font, int size)
+void ZLabelTTF::init(vector<ScriptElement*>& scripts, CCSize scriptSize, char* font, int size)
 {
 	this->m_scripts = scripts;
-
-	//this->m_scripts = scripts;
 	this->m_iter = m_scripts.begin();
 
 	//assert(m_iter != scripts.end());
 
-	this->m_label = CCLabelTTF::create(*m_iter, font, size,scriptSize,kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter);
+
+	ScriptElement* elem = *m_iter;
+	//Please put the first line of a dlg as a text, not an option.
+	assert(elem->isType(ScriptElementType::LINE));
+	
+	ValueWrapper* text = (ValueWrapper*)elem;
+	this->m_label = CCLabelTTF::create(text->getText(), font, size,scriptSize,kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter);
 
 	this->m_label->setOpacity(0);
 }
 
-ZLabelTTF::ZLabelTTF(vector<char*>& scripts, CCSize scriptSize, char* font, int size)
+ZLabelTTF::ZLabelTTF(vector<ScriptElement*>& scripts, CCSize scriptSize, char* font, int size)
 {
 	init(scripts, scriptSize, font, size);
 }
 
-ZLabelTTF::ZLabelTTF(char* script, CCSize scriptSize, char* font, int size)
-{
-	vector<char*> vec;
-	vec.push_back((char*)script);
-	init(vec, scriptSize, font, size);
-}
 
 ZLabelTTF::~ZLabelTTF(void)
 {
@@ -97,7 +95,12 @@ bool ZLabelTTF::rollScript()
 {
 	if(++m_iter != m_scripts.end())
 	{
-		this->m_label->setString(*m_iter);
+		ScriptElement* elem = *m_iter;
+		if(elem->isType(ScriptElementType::LINE))
+		{
+			this->m_label->setString(elem->getText());
+		}
+		
 		return false;
 	}
 
