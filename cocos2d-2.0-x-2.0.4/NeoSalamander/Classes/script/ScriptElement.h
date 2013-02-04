@@ -1,17 +1,17 @@
 #pragma once
-
+#include "cocos2d.h"
 
 enum ScriptElementType{
 	LINE,
 	OPTIONS
 };
 
-class ScriptElement
+class ScriptElement : public cocos2d::CCObject
 {
 public:
 	ScriptElement(ScriptElementType);
 	bool isType(ScriptElementType);
-	virtual char* getText() = 0;
+	virtual char* getText();
 	~ScriptElement(void);
 
 private:

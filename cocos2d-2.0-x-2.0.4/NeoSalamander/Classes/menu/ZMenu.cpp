@@ -1,12 +1,8 @@
 #include "ZMenu.h"
 #include "layer\ScriptLayer.h"
 
-ZMenu::ZMenu(void)
-{
-	this->m_menu = NULL;
-}
 
-ZMenu::ZMenu(TiXmlElement* optionsElem, CCNode* parentNode)
+ZMenu::ZMenu(TiXmlElement* optionsElem, CCNode* parentNode) : ScriptElement(ScriptElementType::OPTIONS)
 {
 	assert(parentNode != NULL);
 

@@ -1,7 +1,7 @@
 #include "ZOption.h"
 
 
-ZOption::ZOption(int id, int score, CCMenu* menu, CCMenuItemFont* item ) : ScriptElement(ScriptElementType::OPTIONS)
+ZOption::ZOption(int id, int score, CCMenu* menu, CCMenuItemFont* item )
 {
 	this->m_id = id;
 	this->m_score = score;
@@ -12,11 +12,6 @@ ZOption::ZOption(int id, int score, CCMenu* menu, CCMenuItemFont* item ) : Scrip
 int ZOption::getId()
 {
 	return m_id;
-}
-
-char* ZOption::getText()
-{
-	return "";
 }
 
 int ZOption::getScore()

@@ -45,8 +45,18 @@ ZDlg::ZDlg(TiXmlElement* dlgElem, CCNode* parentNode)
 	char* imageFile = (char*)dlgElem->Attribute("image");
 	for( ; lineElem != NULL; lineElem=lineElem->NextSiblingElement())
 	{
-		char* line = (char*)lineElem->GetText();
-		lines.push_back(new ValueWrapper(line));
+		const char* tagName = lineElem->Value();
+		if(strcmp(tagName, "line"))
+		{
+			char* line = (char*)lineElem->GetText();
+			lines.push_back(new ValueWrapper(line));
+		}
+		else if(strcmp(tagName, "options"))
+		{
+			ZMenu* menu = new ZMenu(lineElem, this->m_parentScriptLayer);
+			lines.push_back(menu);
+		}
+		
 	}
 
 	ZDlgInit(pos, lines, imageFile, parentNode, font, size, figure_vertical_offset);

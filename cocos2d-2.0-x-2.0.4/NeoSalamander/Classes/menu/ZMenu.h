@@ -7,13 +7,13 @@
 #include <vector>
 #include "tinyxml.h"
 #include <map>
+#include "script\ScriptElement.h"
 #include "ZOption.h"
 
 class ScriptLayer;
-class ZMenu: public CCObject
+class ZMenu: public ScriptElement
 {
 public:
-	ZMenu(void);
 	ZMenu(TiXmlElement* dlgElem, CCNode* parentNode);
 	void optionCallback(CCObject* sender);
 	~ZMenu(void);

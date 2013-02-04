@@ -10,6 +10,7 @@
 #include "ValueWrapper.h"
 #include "ScriptElement.h"
 #include "menu\ZOption.h"
+#include "menu\ZMenu.h"
 //#include "layer\ScriptLayer.h"
 
 

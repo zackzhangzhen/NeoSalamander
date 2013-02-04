@@ -100,7 +100,11 @@ bool ZLabelTTF::rollScript()
 		{
 			this->m_label->setString(elem->getText());
 		}
-		
+		else if(elem->isType(ScriptElementType::OPTIONS))
+		{
+
+		}
+
 		return false;
 	}
 
