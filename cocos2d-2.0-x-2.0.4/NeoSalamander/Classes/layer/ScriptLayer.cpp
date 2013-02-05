@@ -37,6 +37,7 @@ ScriptLayer::ScriptLayer(void)
 
 	this->setTouchEnabled(true);
 	this->m_isAnimationPlaying = false;
+	this->m_isInOption = false;
 	m_player = NULL;
 	initCueSprite();
 	loadScript(NeoConstants::SCRIPT_FILE_LOC);
@@ -169,7 +170,8 @@ ScriptPlayer* ScriptLayer::findScriptPlayerByKey(char* key)
 
 void ScriptLayer::ccTouchesEnded(CCSet* touches, CCEvent* event)
 {
-	if(this->isAnimationPlaying())
+	if(this->isAnimationPlaying() ||
+		this->isInOption())
 	{
 		return;
 	}
@@ -189,4 +191,14 @@ bool ScriptLayer::isAnimationPlaying()
 void ScriptLayer::setAnimationPlaying(bool playing)
 {
 	this->m_isAnimationPlaying = playing;
+}
+
+bool ScriptLayer::isInOption()
+{
+	return this->m_isInOption;
+}
+
+void ScriptLayer::setInOption(bool inOption)
+{
+	this->m_isInOption = inOption;
 }

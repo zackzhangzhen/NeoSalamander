@@ -5,6 +5,7 @@
 #include <vector>
 #include "ScriptElement.h"
 #include "ValueWrapper.h"
+#include "menu\ZMenu.h"
 class ZLabelTTF
 {
 public:

@@ -14,13 +14,15 @@ class ScriptLayer;
 class ZMenu: public ScriptElement
 {
 public:
-	ZMenu(TiXmlElement* dlgElem, CCNode* parentNode);
+	ZMenu(TiXmlElement* dlgElem, CCNode* parentNode, bool visible = false);
 	void optionCallback(CCObject* sender);
+	void show();
+	void hide();
 	~ZMenu(void);
 
 private:
 	CCMenu* m_menu;
 	ScriptLayer* m_parentScriptLayer;
-	std::map<int, ZOption*> m_optionMap;
+	//std::map<int, ZOption*> m_optionMap;
 };
 

@@ -27,6 +27,9 @@ ZDlg::ZDlg(void)
 
 ZDlg::ZDlg(TiXmlElement* dlgElem, CCNode* parentNode)
 {
+	//set the parent layer to the script layer
+	m_parentScriptLayer = (ScriptLayer*)parentNode;
+
 	TiXmlElement* lineElem = dlgElem->FirstChildElement();
 	assert(lineElem != NULL);
 
@@ -46,12 +49,12 @@ ZDlg::ZDlg(TiXmlElement* dlgElem, CCNode* parentNode)
 	for( ; lineElem != NULL; lineElem=lineElem->NextSiblingElement())
 	{
 		const char* tagName = lineElem->Value();
-		if(strcmp(tagName, "line"))
+		if(strcmp(tagName, "line") == 0)
 		{
 			char* line = (char*)lineElem->GetText();
 			lines.push_back(new ValueWrapper(line));
 		}
-		else if(strcmp(tagName, "options"))
+		else if(strcmp(tagName, "options") == 0)
 		{
 			ZMenu* menu = new ZMenu(lineElem, this->m_parentScriptLayer);
 			lines.push_back(menu);

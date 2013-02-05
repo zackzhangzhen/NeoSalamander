@@ -16,8 +16,10 @@ public:
 
 	//void initScripts();
 	void ccTouchesEnded(cocos2d::CCSet* touches, cocos2d::CCEvent* event);
-	bool isAnimationPlaying();
+	bool isAnimationPlaying();	
 	void setAnimationPlaying(bool playing);
+	bool isInOption();
+	void setInOption(bool inOption);
 	void loadScript(const char* fileName);
 	void initCueSprite();
 	void switchCue(bool on);
@@ -25,6 +27,7 @@ public:
 private:
 	ScriptPlayer* findScriptPlayerByKey(char* key);
 	bool m_isAnimationPlaying;
+	bool m_isInOption;
 	//need to specify a comparator here since the default one compares the address of the char* pointer...
 	std::map<char*, ScriptPlayer*, CompareCString> m_map;
 

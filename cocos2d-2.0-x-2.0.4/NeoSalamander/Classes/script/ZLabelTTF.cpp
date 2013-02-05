@@ -102,7 +102,8 @@ bool ZLabelTTF::rollScript()
 		}
 		else if(elem->isType(ScriptElementType::OPTIONS))
 		{
-
+			ZMenu* menu = (ZMenu*)elem;
+			menu->show();
 		}
 
 		return false;
