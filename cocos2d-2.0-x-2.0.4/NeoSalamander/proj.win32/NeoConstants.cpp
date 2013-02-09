@@ -10,6 +10,7 @@ const int NeoConstants::MOVE_LEFT = 1;
 const int NeoConstants::MOVE_RIGHT = 2;
 const char* NeoConstants::BG_PIC_BASE = "pic\\bg\\";
 const char* NeoConstants::SCRIPT_ATTR_PIC = "pic";
+const char* NeoConstants::SCRIPT_ATTR_NEXT = "next";
 const char* NeoConstants::SCRIPT_ATTR_FIGURE_VERTICAL_OFFSET = "figureVerticalOffset";
 const char* NeoConstants::SCRIPT_FILE_LOC = "script\\script.xml";
 const char* NeoConstants::CUE_PIC_LOC = "pic\\script\\cue\\";

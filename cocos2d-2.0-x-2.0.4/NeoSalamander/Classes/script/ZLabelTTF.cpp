@@ -3,7 +3,7 @@
 
 char* ZLabelTTF::FONT_COMIC = "Comic Sans MS";
 char* ZLabelTTF::YAHEI = "Microsoft JhengHei";
-int ZLabelTTF::FONT_DEFAULT_SIZE = 20;
+int ZLabelTTF::FONT_DEFAULT_SIZE = 28;
 
 void ZLabelTTF::init(vector<ScriptElement*>& scripts, CCSize scriptSize, char* font, int size)
 {

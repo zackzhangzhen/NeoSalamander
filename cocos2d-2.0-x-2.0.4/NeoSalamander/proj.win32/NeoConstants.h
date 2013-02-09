@@ -20,6 +20,7 @@ public:
 	static const char* SCRIPT_FILE_LOC;
 	static const char* BG_PIC_BASE;
 	static const char* SCRIPT_ATTR_PIC;
+	static const char* SCRIPT_ATTR_NEXT;
 	static const char* SCRIPT_ATTR_FIGURE_VERTICAL_OFFSET;
 	static const char* CUE_PIC_LOC;
 

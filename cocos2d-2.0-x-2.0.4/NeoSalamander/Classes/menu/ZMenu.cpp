@@ -22,6 +22,13 @@ ZMenu::ZMenu(TiXmlElement* optionsElem, CCNode* parentNode, bool visible) : Scri
 		int score = 0;
 		optionElem->Attribute("score", &score);
 
+		//toScript
+		const char* toScript = optionElem->Attribute("toScript");
+
+		//isJump
+		const char* jump = optionElem->Attribute("jump");
+		bool isJump = jump == NULL? false:true;
+
 		//text
 		char* text = (char*)optionElem->GetText();
 
@@ -40,7 +47,7 @@ ZMenu::ZMenu(TiXmlElement* optionsElem, CCNode* parentNode, bool visible) : Scri
 		}
 
 		//create ZOption
-		ZOption* option = new ZOption(id, score, menu, menuItem);
+		ZOption* option = new ZOption(id, score,toScript,isJump, menu, menuItem);
 
 		menuItem->setUserObject(option);
 
@@ -58,6 +65,11 @@ ZMenu::ZMenu(TiXmlElement* optionsElem, CCNode* parentNode, bool visible) : Scri
 	this->m_parentScriptLayer->addChild(this->m_menu, 11);
 	this->m_menu->setVisible(false);
 
+}
+
+ScriptLayer* ZMenu::getParentScriptLayer()
+{
+	return m_parentScriptLayer;
 }
 
 void ZMenu::show()
@@ -84,6 +96,19 @@ void ZMenu::optionCallback(CCObject* sender)
 	CCMenu* menu = option->getParentMenu();
 	ZMenu* zMenu = (ZMenu*)menu->getUserObject();
 	zMenu->hide();
+
+	ScriptLayer* parLayer = zMenu->getParentScriptLayer();
+
+	bool jump = option->isJump();
+	char* nextScriptId = (char*)option->getToScript();
+	if(jump)
+	{		
+		parLayer->setNextScriptPlayerSync(nextScriptId);
+	}
+	else
+	{
+		parLayer->setNextScriptPlayerAsync(nextScriptId);
+	}
 }
 
 ZMenu::~ZMenu(void)

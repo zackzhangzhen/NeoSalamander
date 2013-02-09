@@ -240,6 +240,7 @@ void ZDlg::autoRelease(CCNode* sender)
 
 void ZDlg::fadeOut()
 {
+	m_scriptState = ScriptState::SCRIPT_DONE;
 	m_parentScriptLayer->setAnimationPlaying(true);
 
 	CCFiniteTimeAction* animationDone = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ZDlg::setAnimationPlayingDone));

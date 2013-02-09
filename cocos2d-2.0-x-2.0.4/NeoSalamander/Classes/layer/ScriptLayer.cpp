@@ -167,6 +167,30 @@ ScriptPlayer* ScriptLayer::findScriptPlayerByKey(char* key)
 
 	return iter->second;
 }
+void ScriptLayer::setNextScriptPlayerAsync(char* id)
+{
+	if(id != NULL)// if for some reason the id was not configured for this option, just ignore and go on rolling the script
+	{
+		this->m_player->setNextScriptPlayerId(id);
+	}
+	
+	this->m_player->play();
+}
+
+void ScriptLayer::setNextScriptPlayerSync(char* id)
+{	
+	fadeOutCurrentScript();
+	if(id != NULL)// if for some reason the id was not configured for this option, just ignore and move on to the currently configured script
+	{
+		m_player = findScriptPlayerByKey(id);
+	}		
+}
+
+void ScriptLayer::fadeOutCurrentScript()
+{
+	assert(m_player != NULL);
+	m_player->fadeOut();
+}
 
 void ScriptLayer::ccTouchesEnded(CCSet* touches, CCEvent* event)
 {
@@ -176,9 +200,13 @@ void ScriptLayer::ccTouchesEnded(CCSet* touches, CCEvent* event)
 		return;
 	}
 
-	if(m_player->play() && strcmp(m_player->getId(), "s1") == 0)
+	if(m_player->play())
 	{
-		m_player = findScriptPlayerByKey("s2");
+		char* nextScriptId = m_player->getNextScriptPlayerId();
+		if(nextScriptId != NULL)
+		{
+			m_player = findScriptPlayerByKey(nextScriptId);
+		}		
 		//this->setAnimationPlaying(false);
 	}
 }

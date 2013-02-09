@@ -25,6 +25,7 @@ ScriptPlayer::ScriptPlayer(char* id, TiXmlElement* scriptElem, CCNode* parentNod
 		m_vec.push_back(dlg);
 	}
 
+	this->m_nextScriptPlayerId = (char*)scriptElem->Attribute(NeoConstants::SCRIPT_ATTR_NEXT);
 	this->m_id = id;
 	m_iter = m_vec.begin();
 	this->m_parentScriptLayer = (ScriptLayer*) parentNode;
@@ -49,6 +50,15 @@ char* ScriptPlayer::getId()
 	return m_id;
 }
 
+char* ScriptPlayer::getNextScriptPlayerId()
+{
+	return this->m_nextScriptPlayerId;
+}
+
+void ScriptPlayer::setNextScriptPlayerId(char* id)
+{
+	this->m_nextScriptPlayerId = id;
+}
 
 void ScriptPlayer::setAnimationPlayingDone(CCNode* sender)
 {
@@ -109,6 +119,15 @@ void ScriptPlayer::fadeOut(bool delay)
 	m_bg->getSprite()->runAction(CCSequence::actions(pCCFadeOut, switchCueOn, animationDone,autoReleaseAction, NULL));
 }
 
+void ScriptPlayer::fadeOut()
+{
+	assert(m_iter != m_vec.end());
+
+	ZDlg* dlg = *m_iter;
+	dlg->fadeOut();
+	//no next dlg, conclude the script with fading out the background
+	this->fadeOut(true);
+}
 
 bool ScriptPlayer::play()
 {

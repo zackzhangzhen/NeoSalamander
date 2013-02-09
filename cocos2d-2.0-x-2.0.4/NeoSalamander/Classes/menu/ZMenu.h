@@ -18,6 +18,7 @@ public:
 	void optionCallback(CCObject* sender);
 	void show();
 	void hide();
+	ScriptLayer* getParentScriptLayer();
 	~ZMenu(void);
 
 private:

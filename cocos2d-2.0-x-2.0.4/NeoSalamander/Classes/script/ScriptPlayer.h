@@ -17,17 +17,20 @@ public:
 	void fadeIn(bool delay);
 	void fadeOut(bool delay);
 	bool play();
+	void fadeOut();
 	char* getId();
+	char* getNextScriptPlayerId();
+	void setNextScriptPlayerId(char* id);
 	void autoRelease(CCNode* sender);
 
 private:
 	vector<ZDlg*> m_vec;
 	vector<ZDlg*>::const_iterator m_iter;
 	char* m_id;
+	char* m_nextScriptPlayerId;
 	ZSprite* m_bg;
 	ScriptLayer* m_parentScriptLayer;
 	bool fadedIn;
-
 };
 
 

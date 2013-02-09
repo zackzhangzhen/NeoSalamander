@@ -16,6 +16,7 @@ public:
 
 	//void initScripts();
 	void ccTouchesEnded(cocos2d::CCSet* touches, cocos2d::CCEvent* event);
+	void fadeOutCurrentScript();
 	bool isAnimationPlaying();	
 	void setAnimationPlaying(bool playing);
 	bool isInOption();
@@ -24,6 +25,8 @@ public:
 	void initCueSprite();
 	void switchCue(bool on);
 	void menuCallback(CCObject* sender);
+	void setNextScriptPlayerAsync(char* id);
+	void setNextScriptPlayerSync(char* id);
 private:
 	ScriptPlayer* findScriptPlayerByKey(char* key);
 	bool m_isAnimationPlaying;
