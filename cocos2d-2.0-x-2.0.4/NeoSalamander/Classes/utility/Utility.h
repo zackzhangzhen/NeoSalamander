@@ -7,6 +7,7 @@
 #include "cocos2d.h"
 #include "NeoConstants.h"
 #include "action/CCMoveToWrapper.h"
+#include "SimpleAudioEngine.h" 
 using namespace cocos2d;
 class Utility
 {
@@ -22,6 +23,9 @@ public:
 	static CCPoint getRandomPointOnRandomSide();
 	static CCPoint getRandomPointOnOneSide(bool left);
 	static CCPoint* getRandomPointOnBothSides();
+	static void playSound(const char* soundName, bool repeat = false);
+	static void playMusic(const char* musicName, bool repeat = true);
+	static void stopMusic();
 	static bool getRandomBoolean();
 	static CCMoveToWrapper generateLinearMoveToDownAction(float velocity, bool moveLeft, CCSize size, CCPoint pos);
 	static CCMoveToWrapper generateLinearMoveToHorizontalAction(float velocity, bool moveLeft, CCSize size, CCPoint pos);

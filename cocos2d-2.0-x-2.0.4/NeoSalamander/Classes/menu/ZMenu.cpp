@@ -25,6 +25,9 @@ ZMenu::ZMenu(TiXmlElement* optionsElem, CCNode* parentNode, bool visible) : Scri
 		//toScript
 		const char* toScript = optionElem->Attribute("toScript");
 
+		//sound
+		const char* sound = optionElem->Attribute("sound");
+
 		//isJump
 		const char* jump = optionElem->Attribute("jump");
 		bool isJump = jump == NULL? false:true;
@@ -47,7 +50,7 @@ ZMenu::ZMenu(TiXmlElement* optionsElem, CCNode* parentNode, bool visible) : Scri
 		}
 
 		//create ZOption
-		ZOption* option = new ZOption(id, score,toScript,isJump, menu, menuItem);
+		ZOption* option = new ZOption(id, score,toScript, sound, isJump, menu, menuItem);
 
 		menuItem->setUserObject(option);
 
@@ -109,6 +112,9 @@ void ZMenu::optionCallback(CCObject* sender)
 	{
 		parLayer->setNextScriptPlayerAsync(nextScriptId);
 	}
+
+	//play the sound
+	Utility::playSound(option->getSound());
 }
 
 ZMenu::~ZMenu(void)

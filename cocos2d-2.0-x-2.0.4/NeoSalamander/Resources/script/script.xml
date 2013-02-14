@@ -1,42 +1,41 @@
 <?xml version="1.0" ?>
 <play>
-  <script id="s1" pic="bar.png" next="s2">
-    <dlg id="1" pos="0" font="Microsoft JhengHei" image="pic\\figure\\assassin.png" size="28">
+  <script id="s1" pic="bar.png" next="s2" >
+    <dlg id="1" pos="0" image="pic\\figure\\assassin.png" size="28" music="mySong">
         <line >我就开门见山吧，我想约你出来，豪华游轮和甜美早餐，你自己选一个吧～</line>
         <options>
-          <option id="1" score="2" toScript="s2">甜美早餐</option>
-          <option id="2" score="3" toScript="s3">豪华游轮</option>
-          <option id="3" score="4" toScript="s4" jump="y">给我滚一边去！</option>
+          <option id="1" score="2" toScript="s2" sound="option_correct">甜美早餐</option>
+          <option id="2" score="3" toScript="s3" sound="hooray">豪华游轮</option>
+          <option id="3" score="4" toScript="s4" jump="y" sound="bummer">给我滚一边去！</option>
         </options>
         <line>呵呵，谢谢你接受我的邀请，但是我先声明，我只是请客，钱不是我付哟～</line>
     </dlg>
-    <!--dlg id="2" pos="1" font="Comic Sans MS" image="pic\\figure\\master_chief.png" size="20" figureVerticalOffset="180">
+    <!--dlg id="2" pos="1" font="Comic Sans MS/Microsoft JhengHei" image="pic\\figure\\master_chief.png" size="20" figureVerticalOffset="180">
         <line font="Comic Sans MS">Fine thank you! My name is Li Lei, what about you?</line>
         <line font="Comic Sans MS">1 - 2 This is a very brief self-introduction!</line>
     </dlg-->
-    <dlg id="2" pos="1" font="Microsoft JhengHei" image="pic\\figure\\jedi.png" >
+    <dlg id="2" pos="1" image="pic\\figure\\jedi.png" >
         <line font="Comic Sans MS" size="50">What the fuck are you saying!!!!!</line>   
         <line>。。。。。。</line> 
         <line>哎，真是拿你么办法，我就这么被你骗走了。。。</line>      
     </dlg>  
-    <dlg id="3" pos="0" font="Microsoft JhengHei" image="pic\\figure\\assassin.png" figureVerticalOffset="180">
+    <dlg id="3" pos="0" image="pic\\figure\\assassin.png" figureVerticalOffset="180">
         <line>呵呵呵，你不要先入为主呀~~~到了那里，我确定你会乐不思蜀的！</line>
     </dlg> 
-    <dlg id="4" pos="1" font="Microsoft JhengHei" image="pic\\figure\\jedi.png">
+    <dlg id="4" pos="1" image="pic\\figure\\jedi.png" stopMusic="yes">
         <line font="Comic Sans MS">Whatever......</line>   
         <line>走吧。。。</line>       
     </dlg>        
   </script>
   <script id="s2" pic="breakfast.png">
-    <dlg id="1" pos="2" font="Microsoft JhengHei" image="pic\\figure\\assassin.png">
+    <dlg id="1" pos="2" image="pic\\figure\\assassin.png" music="mySong">
         <line>[说真话，这是我第一次约她出来，先前也没有摸清楚她的兴趣爱好]</line>
         <line>[不知道我准备的这一切她到底喜不喜欢。。。]</line>
+    </dlg> 
+    <dlg id="2" pos="0" image="pic\\figure\\assassin.png">
         <line>呵呵呵，早餐好吃伐？</line>
     </dlg> 
-    <dlg id="2" pos="0" font="Microsoft JhengHei" image="pic\\figure\\assassin.png">
-        <line>呵呵呵，早餐好吃伐？</line>
-    </dlg> 
-    <dlg id="3" pos="1" font="Microsoft JhengHei" image="pic\\figure\\jedi.png">
+    <dlg id="3" pos="1" image="pic\\figure\\jedi.png">
         <line font="Comic Sans MS">It's... not bad...</line>   
         <line>但是你TMD还不付钱。。。这算哪门子的请客。。。</line>    
         <options>
@@ -45,19 +44,18 @@
           <option id="3" score="4" >对不起，是我不好这次。</option>
         </options>   
     </dlg>  
-
-    <dlg id="4" pos="1" font="Microsoft JhengHei" image="pic\\figure\\jedi.png">
+    <dlg id="4" pos="1" image="pic\\figure\\jedi.png">
         <line>你呀，就是这副德行。。。</line>  
     </dlg>   
   </script>
   <script id="s3" pic="ship.png">
-    <dlg id="1" pos="2" font="Microsoft JhengHei" image="pic\\figure\\assassin.png">
+    <dlg id="1" pos="2" image="pic\\figure\\assassin.png" music="canon">
         <line>这艘船不错哟！</line>
         <line>希望她会喜欢啦~</line>
     </dlg> 
   </script>
   <script id="s4" pic="ship.png">
-    <dlg id="1" pos="2" font="Microsoft JhengHei" image="pic\\figure\\jedi.png">
+    <dlg id="1" pos="2" image="pic\\figure\\jedi.png">
         <line>你这种骗小姑娘的伎俩我见多了。。。给我滚开！</line>  
     </dlg> 
   </script>

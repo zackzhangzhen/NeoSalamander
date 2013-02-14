@@ -1,13 +1,14 @@
 #include "ZOption.h"
 
 
-ZOption::ZOption(int id, int score, const char* toScript, bool isJump, CCMenu* menu, CCMenuItemFont* item )
+ZOption::ZOption(int id, int score, const char* toScript, const char* sound, bool isJump, CCMenu* menu, CCMenuItemFont* item )
 {
 	this->m_id = id;
 	this->m_score = score;
 	this->m_parentMenu = menu;
 	this->m_menuItem = item;
 	this->m_toScript = toScript;
+	this->m_sound = sound;
 	this->m_isJump = isJump;
 }
 
@@ -29,6 +30,11 @@ bool ZOption::isJump()
 const char* ZOption::getToScript()
 {
 	return m_toScript;
+}
+
+const char* ZOption::getSound()
+{
+	return m_sound;
 }
 
 CCMenu* ZOption::getParentMenu()

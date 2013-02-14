@@ -36,25 +36,30 @@ ZDlg::ZDlg(TiXmlElement* dlgElem, CCNode* parentNode)
 	//vector<char*>* lines = new vector<char*>();
 	vector<ScriptElement*> lines;
 	int pos = ZDlg::POS_LEFT;
-	dlgElem->Attribute("pos", &pos);
+	dlgElem->Attribute(NeoConstants::SCRIPT_ATTR_POS, &pos);
 
 	int size = ZLabelTTF::FONT_DEFAULT_SIZE;
-	dlgElem->Attribute("size", &size);
+	dlgElem->Attribute(NeoConstants::SCRIPT_ATTR_SIZE, &size);
 
 	int figure_vertical_offset = NeoConstants::FIGURE_VERTICAL_OFFSET;
 	dlgElem->Attribute(NeoConstants::SCRIPT_ATTR_FIGURE_VERTICAL_OFFSET, &figure_vertical_offset);
 
-	char* font = (char*)dlgElem->Attribute("font");
-	char* imageFile = (char*)dlgElem->Attribute("image");
+	char* font = (char*)dlgElem->Attribute(NeoConstants::SCRIPT_ATTR_FONT);
+	char* imageFile = (char*)dlgElem->Attribute(NeoConstants::SCRIPT_ATTR_IMAGE);
+	char* musicName = (char*)dlgElem->Attribute(NeoConstants::SCRIPT_ATTR_MUSIC);
+
+	char* stopMusic = (char*)dlgElem->Attribute(NeoConstants::SCRIPT_ATTR_STOP_MUSIC);
+	bool isStopMusic = stopMusic == NULL?false:true;
+
 	for( ; lineElem != NULL; lineElem=lineElem->NextSiblingElement())
 	{
 		const char* tagName = lineElem->Value();
-		if(strcmp(tagName, "line") == 0)
+		if(strcmp(tagName, NeoConstants::SCRIPT_TAG_LINE) == 0)
 		{
 			char* line = (char*)lineElem->GetText();
 			lines.push_back(new ValueWrapper(line));
 		}
-		else if(strcmp(tagName, "options") == 0)
+		else if(strcmp(tagName, NeoConstants::SCRIPT_TAG_OPTIONS) == 0)
 		{
 			ZMenu* menu = new ZMenu(lineElem, this->m_parentScriptLayer);
 			lines.push_back(menu);
@@ -62,13 +67,15 @@ ZDlg::ZDlg(TiXmlElement* dlgElem, CCNode* parentNode)
 		
 	}
 
-	ZDlgInit(pos, lines, imageFile, parentNode, font, size, figure_vertical_offset);
+	ZDlgInit(pos, lines, imageFile, musicName, isStopMusic, parentNode, font, size, figure_vertical_offset);
 }
 
-void ZDlg::ZDlgInit(int pos, vector<ScriptElement*>& scripts, char* figureFileName, CCNode* parentNode, char* font, int size, int figure_vertical_offset)
+void ZDlg::ZDlgInit(int pos, vector<ScriptElement*>& scripts, char* figureFileName, char* musicName, bool isStopMusic, CCNode* parentNode, char* font, int size, int figure_vertical_offset)
 {
 	m_scriptState = ScriptState::NOT_FADED_IN;
 	m_parentScriptLayer = NULL;
+	m_musicName = musicName;
+	m_stopMusic = isStopMusic;
 
 	this->m_frame = NULL;
 	 initFramePrototype();
@@ -77,7 +84,7 @@ void ZDlg::ZDlgInit(int pos, vector<ScriptElement*>& scripts, char* figureFileNa
 	 initFrame();
 
 	//this->m_scriptLabel = CCLabelTTF::create(script, font, size, CCSizeMake(/*68*/NeoConstants::WIN_WIDTH/2, 480),kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter);
-	this->m_scriptLabel = new ZLabelTTF(scripts, this->getScriptSize(), font, size);
+	this->m_scriptLabel = new ZLabelTTF(scripts, this->getScriptSize(), font == NULL? ZLabelTTF::YAHEI : font, size);
 	this->m_figure = new ZSprite(figureFileName);
 
 	init(figure_vertical_offset);
@@ -87,11 +94,6 @@ void ZDlg::ZDlgInit(int pos, vector<ScriptElement*>& scripts, char* figureFileNa
 		this->m_parentScriptLayer = (ScriptLayer*)parentNode;
 		this->addToCCNode(parentNode, 10);
 	}
-}
-
-ZDlg::ZDlg(int pos, vector<ScriptElement*>& scripts, char* figureFileName, CCNode* parentNode, char* font, int size)
-{
-	ZDlgInit(pos, scripts, figureFileName, parentNode, font, size);
 }
 
 void ZDlg::initFramePrototype()
@@ -147,8 +149,18 @@ void ZDlg::setAnimationPlayingDone(CCNode* sender)
 	this->m_parentScriptLayer->setAnimationPlaying(false);
 }
 
+void ZDlg::playMusic()
+{
+	if(m_musicName != NULL)
+	{
+		Utility::playMusic(m_musicName);
+	}	
+}
+
 void ZDlg::fadeIn(bool delay)
 {
+	playMusic();
+
 	m_scriptState = ScriptState::SCRIPT_ROLLING;
 	m_parentScriptLayer->setAnimationPlaying(true);
 	CCFiniteTimeAction* animationDone = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ZDlg::setAnimationPlayingDone));
@@ -240,6 +252,12 @@ void ZDlg::autoRelease(CCNode* sender)
 
 void ZDlg::fadeOut()
 {
+	//stop 
+	if(this->isStopMusic())
+	{
+		Utility::stopMusic();
+	}
+
 	m_scriptState = ScriptState::SCRIPT_DONE;
 	m_parentScriptLayer->setAnimationPlaying(true);
 
@@ -495,6 +513,17 @@ void ZDlg::calcScriptPos(void)
 	m_scriptPos = this->m_framePos;
 
 	this->m_scriptLabel->setPosition(m_scriptPos);
+}
+
+
+char* ZDlg::getMusicName()
+{
+	return m_musicName;
+}
+
+bool ZDlg::isStopMusic()
+{
+	return m_stopMusic;
 }
 
 ZDlg::~ZDlg(void)

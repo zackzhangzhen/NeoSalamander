@@ -27,11 +27,11 @@ class ZDlg : public CCObject
 public:
 	ZDlg(void);
 	ZDlg(TiXmlElement* dlgElem, CCNode* parentNode);
-	ZDlg(int pos, vector<ScriptElement*>& scripts, char* figureFileName, CCNode* parentNode, char* font = ZLabelTTF::FONT_COMIC, int size = ZLabelTTF::FONT_DEFAULT_SIZE);	
+	//ZDlg(int pos, vector<ScriptElement*>& scripts, char* figureFileName, CCNode* parentNode, char* font = ZLabelTTF::FONT_COMIC, int size = ZLabelTTF::FONT_DEFAULT_SIZE);	
 	
 	~ZDlg(void);
 
-	void ZDlgInit(int pos, vector<ScriptElement*>& scripts, char* figureFileName, CCNode* parentNode, char* font, int size = ZLabelTTF::FONT_DEFAULT_SIZE, int figure_vertical_offset = NeoConstants::FIGURE_VERTICAL_OFFSET);
+	void ZDlgInit(int pos, vector<ScriptElement*>& scripts, char* figureFileName, char* musicName, bool isStopMusic, CCNode* parentNode, char* font, int size = ZLabelTTF::FONT_DEFAULT_SIZE, int figure_vertical_offset = NeoConstants::FIGURE_VERTICAL_OFFSET);
 	void calcFrameSizes(void);
 	void calcPos(int figure_vertical_offset = NeoConstants::FIGURE_VERTICAL_OFFSET);
 	void initFramePrototype();
@@ -43,11 +43,14 @@ public:
 	void addToCCNode(CCNode* node, int baseOrder);
 
 	void fadeIn(bool delay);
+	void playMusic();
 	void fadeOut();
 	bool play(bool delay);
 	ScriptLayer* getParentScriptLayer();
 	void setAnimationPlayingDone(CCNode* sender);
 	void autoRelease(CCNode* sender);
+	char* getMusicName();
+	bool isStopMusic();
 
 	static int POS_LEFT;
 	static int POS_RIGHT;
@@ -94,6 +97,8 @@ private:
 	ZLabelTTF* m_scriptLabel;
 	ScriptLayer* m_parentScriptLayer;
 	ScriptState m_scriptState;
+	char* m_musicName;
+	bool m_stopMusic;
 };
 
 

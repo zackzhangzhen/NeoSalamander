@@ -203,6 +203,41 @@ CCPoint Utility::getCenterPt()
     return ccp(size.width/2, size.height - 150);
 }
 
+void Utility::playSound(const char* soundName, bool repeat)
+{
+	if(soundName == NULL)
+	{
+		return;
+	}
+
+	//concatenate the sound file name including the .wav extension
+	char* seg = zstrcat("sound\\",(char*)soundName);
+	char* finalStr = zstrcat(seg,".wav");
+
+
+
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(finalStr);
+	//CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("sound\\my_song.mp3", repeat);
+}
+
+void Utility::playMusic(const char* musicName, bool repeat)
+{
+	if(musicName == NULL)
+	{
+		return;
+	}
+
+	//concatenate the sound file name including the .mp3 extension
+	char* seg = zstrcat("music\\",(char*)musicName);
+	char* finalStr = zstrcat(seg,".mp3");
+
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic(finalStr, repeat);
+}
+
+void Utility::stopMusic()
+{
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic(true);
+}
 
 Utility::~Utility(void)
 {

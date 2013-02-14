@@ -9,6 +9,7 @@
 #include <map>
 #include "script\ScriptElement.h"
 #include "ZOption.h"
+#include "SimpleAudioEngine.h" 
 
 class ScriptLayer;
 class ZMenu: public ScriptElement
