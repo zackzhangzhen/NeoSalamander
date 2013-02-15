@@ -31,7 +31,7 @@ public:
 	
 	~ZDlg(void);
 
-	void ZDlgInit(int pos, vector<ScriptElement*>& scripts, char* figureFileName, char* musicName, bool isStopMusic, CCNode* parentNode, char* font, int size = ZLabelTTF::FONT_DEFAULT_SIZE, int figure_vertical_offset = NeoConstants::FIGURE_VERTICAL_OFFSET);
+	void ZDlgInit(int pos, vector<ScriptElement*>& scripts, char* figureFileName, char* musicName, bool isStopMusic, CCNode* parentNode, int colorCode, char* font, int size = ZLabelTTF::FONT_DEFAULT_SIZE, int figure_vertical_offset = NeoConstants::FIGURE_VERTICAL_OFFSET);
 	void calcFrameSizes(void);
 	void calcPos(int figure_vertical_offset = NeoConstants::FIGURE_VERTICAL_OFFSET);
 	void initFramePrototype();

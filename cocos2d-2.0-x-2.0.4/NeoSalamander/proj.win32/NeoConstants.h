@@ -22,6 +22,7 @@ public:
 	static const char* SCRIPT_ATTR_POS;
 	static const char* SCRIPT_ATTR_SIZE;
 	static const char* SCRIPT_ATTR_FONT;
+	static const char* SCRIPT_ATTR_COLOR;
 	static const char* SCRIPT_ATTR_IMAGE;
 	static const char* SCRIPT_ATTR_PIC;
 	static const char* SCRIPT_ATTR_NEXT;

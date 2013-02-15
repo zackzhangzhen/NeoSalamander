@@ -4,14 +4,15 @@
 char* ZLabelTTF::FONT_COMIC = "Comic Sans MS";
 char* ZLabelTTF::YAHEI = "Microsoft JhengHei";
 int ZLabelTTF::FONT_DEFAULT_SIZE = 28;
+int ZLabelTTF::FONT_COLOR_DEFAULT = 0;
+int ZLabelTTF::FONT_COLOR_BLUE = 1;
 
-void ZLabelTTF::init(vector<ScriptElement*>& scripts, CCSize scriptSize, char* font, int size)
+void ZLabelTTF::init(vector<ScriptElement*>& scripts, CCSize scriptSize,int colorCode, char* font,  int size)
 {
 	this->m_scripts = scripts;
 	this->m_iter = m_scripts.begin();
 
 	//assert(m_iter != scripts.end());
-
 
 	ScriptElement* elem = *m_iter;
 	//Please put the first line of a dlg as a text, not an option.
@@ -21,11 +22,74 @@ void ZLabelTTF::init(vector<ScriptElement*>& scripts, CCSize scriptSize, char* f
 	this->m_label = CCLabelTTF::create(text->getText(), font, size,scriptSize,kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter);
 
 	this->m_label->setOpacity(0);
+
+	setColor(colorCode);
 }
 
-ZLabelTTF::ZLabelTTF(vector<ScriptElement*>& scripts, CCSize scriptSize, char* font, int size)
+void ZLabelTTF::setColor(int colorCode)
 {
-	init(scripts, scriptSize, font, size);
+	//0 : WHITE
+	//1 : BLUE
+	//2 : YELLOW 
+	//3 : MAGENTA
+	//4 : ORANGE
+	//5 : GREEN
+	//6 : RED
+	//7 : BLACK
+	//8 : GRAY
+	//default(0) : WHITE
+	switch(colorCode)
+	{
+	case 1:
+		{
+			this->m_label->setColor(ccBLUE  );
+			break;
+		}
+	case 2:
+		{
+			this->m_label->setColor(ccYELLOW  );
+			break;
+		}
+	case 3:
+		{
+			this->m_label->setColor(ccMAGENTA  );
+			break;
+		}
+	case 4:
+		{
+			this->m_label->setColor(ccORANGE  );
+			break;
+		}
+	case 5:
+		{
+			this->m_label->setColor(ccGREEN  );
+			break;
+		}
+	case 6:
+		{
+			this->m_label->setColor(ccRED  );
+			break;
+		}
+	case 7:
+		{
+			this->m_label->setColor(ccBLACK  );
+			break;
+		}
+	case 8:
+		{
+			this->m_label->setColor(ccGRAY  );
+			break;
+		}
+	default:
+		{
+			return;
+		}
+	}
+}
+
+ZLabelTTF::ZLabelTTF(vector<ScriptElement*>& scripts, CCSize scriptSize, int colorCode, char* font, int size)
+{
+	init(scripts, scriptSize, colorCode, font, size);
 }
 
 

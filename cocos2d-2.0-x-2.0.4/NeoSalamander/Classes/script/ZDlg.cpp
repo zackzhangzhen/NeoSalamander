@@ -41,6 +41,9 @@ ZDlg::ZDlg(TiXmlElement* dlgElem, CCNode* parentNode)
 	int size = ZLabelTTF::FONT_DEFAULT_SIZE;
 	dlgElem->Attribute(NeoConstants::SCRIPT_ATTR_SIZE, &size);
 
+	int colorCode = ZLabelTTF::FONT_COLOR_DEFAULT;
+	dlgElem->Attribute(NeoConstants::SCRIPT_ATTR_COLOR, &colorCode);
+
 	int figure_vertical_offset = NeoConstants::FIGURE_VERTICAL_OFFSET;
 	dlgElem->Attribute(NeoConstants::SCRIPT_ATTR_FIGURE_VERTICAL_OFFSET, &figure_vertical_offset);
 
@@ -67,10 +70,10 @@ ZDlg::ZDlg(TiXmlElement* dlgElem, CCNode* parentNode)
 		
 	}
 
-	ZDlgInit(pos, lines, imageFile, musicName, isStopMusic, parentNode, font, size, figure_vertical_offset);
+	ZDlgInit(pos, lines, imageFile, musicName, isStopMusic, parentNode, colorCode, font, size, figure_vertical_offset);
 }
 
-void ZDlg::ZDlgInit(int pos, vector<ScriptElement*>& scripts, char* figureFileName, char* musicName, bool isStopMusic, CCNode* parentNode, char* font, int size, int figure_vertical_offset)
+void ZDlg::ZDlgInit(int pos, vector<ScriptElement*>& scripts, char* figureFileName, char* musicName, bool isStopMusic, CCNode* parentNode,int colorCode, char* font, int size, int figure_vertical_offset)
 {
 	m_scriptState = ScriptState::NOT_FADED_IN;
 	m_parentScriptLayer = NULL;
@@ -84,7 +87,8 @@ void ZDlg::ZDlgInit(int pos, vector<ScriptElement*>& scripts, char* figureFileNa
 	 initFrame();
 
 	//this->m_scriptLabel = CCLabelTTF::create(script, font, size, CCSizeMake(/*68*/NeoConstants::WIN_WIDTH/2, 480),kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter);
-	this->m_scriptLabel = new ZLabelTTF(scripts, this->getScriptSize(), font == NULL? ZLabelTTF::YAHEI : font, size);
+	this->m_scriptLabel = new ZLabelTTF(scripts, this->getScriptSize(), colorCode, font == NULL? ZLabelTTF::YAHEI : font,  size);
+		
 	this->m_figure = new ZSprite(figureFileName);
 
 	init(figure_vertical_offset);

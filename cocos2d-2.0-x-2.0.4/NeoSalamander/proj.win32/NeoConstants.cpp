@@ -13,6 +13,7 @@ const char* NeoConstants::SCRIPT_ATTR_PIC = "pic";
 const char* NeoConstants::SCRIPT_ATTR_POS = "pos";
 const char* NeoConstants::SCRIPT_ATTR_SIZE = "size";
 const char* NeoConstants::SCRIPT_ATTR_FONT = "font";
+const char* NeoConstants::SCRIPT_ATTR_COLOR = "color";
 const char* NeoConstants::SCRIPT_ATTR_IMAGE = "image";
 const char* NeoConstants::SCRIPT_ATTR_NEXT = "next";
 const char* NeoConstants::SCRIPT_ATTR_MUSIC = "music";
