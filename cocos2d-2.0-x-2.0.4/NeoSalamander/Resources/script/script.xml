@@ -6,7 +6,7 @@
         <options>
           <option id="1" score="2" toScript="s2" sound="option_correct">甜美早餐</option>
           <option id="2" score="3" toScript="s3" sound="option_correct">豪华游轮</option>
-          <option id="3" score="4" toScript="s4" jump="y" sound="bummer">给我滚一边去！</option>
+          <option id="3" score="4" toScript="s4" jump="y" sound="thunder">给我滚一边去！</option>
         </options>
         <line>呵呵，谢谢你接受我的邀请，但是我先声明，我只是请客，钱不是我付哟～</line>
     </dlg>
