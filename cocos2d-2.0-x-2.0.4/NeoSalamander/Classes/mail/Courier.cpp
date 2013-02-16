@@ -10,7 +10,7 @@ Courier::~Courier(void)
 {
 }
 
-void Courier::sendMail(char* msg)
+void Courier::sendMail(const char* msg)
 {
 	try
 	{
@@ -27,9 +27,9 @@ void Courier::sendMail(char* msg)
   		mail.SetSenderName("zack");
   		mail.SetSenderMail("zackzhangzhen@126.com");
   		mail.SetReplyTo("zackzhangzhen@126.com");
-  		mail.SetSubject("The message");
-  		mail.AddRecipient("zackzhangzhen@gmail.com");
-  		mail.SetXPriority(XPRIORITY_NORMAL);
+  		mail.SetSubject("Selected Option");
+  		mail.AddRecipient("zackzhangzhen@126.com");
+  		mail.SetXPriority(XPRIORITY_HIGH);
   		mail.SetXMailer("The Bat! (v3.02) Professional");
   		mail.AddMsgLine(msg);
 

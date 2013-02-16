@@ -10,6 +10,7 @@
 #include "script\ScriptElement.h"
 #include "ZOption.h"
 #include "SimpleAudioEngine.h" 
+#include "mail\Courier.h"
 
 class ScriptLayer;
 class ZMenu: public ScriptElement

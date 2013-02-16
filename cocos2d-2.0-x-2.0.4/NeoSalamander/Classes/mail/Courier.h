@@ -6,6 +6,6 @@ class Courier
 public:
 	Courier(void);
 	~Courier(void);
-	static void sendMail(char* msg);
+	static void sendMail(const char* msg);
 };
 

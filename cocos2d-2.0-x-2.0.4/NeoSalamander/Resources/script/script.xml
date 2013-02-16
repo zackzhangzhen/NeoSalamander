@@ -17,7 +17,11 @@
     <dlg id="2" pos="1" image="pic\\figure\\jedi.png" color="2">
         <line font="Comic Sans MS" size="50">What the fuck are you saying!!!!!</line>   
         <line>。。。。。。</line> 
-        <line>哎，真是拿你么办法，我就这么被你骗走了。。。</line>      
+        <line>哎，真是拿你么办法，我就这么被你骗走了。。。</line>    
+        <options>
+          <option id="1" sound="thunder">真讨厌</option>
+          <option id="2" sound="thunder">真无聊</option>
+        </options>    
     </dlg>  
     <dlg id="3" pos="0" image="pic\\figure\\assassin.png" figureVerticalOffset="180" color="3">
         <line>呵呵呵，你不要先入为主呀~~~到了那里，我确定你会乐不思蜀的！</line>
@@ -39,13 +43,18 @@
         <line font="Comic Sans MS">It's... not bad...</line>   
         <line>但是你TMD还不付钱。。。这算哪门子的请客。。。</line>    
         <options>
-          <option id="1" score="2" >这个。。。心意在了嘛~</option>
-          <option id="2" score="3" >我就是这么无赖了。。。</option>
-          <option id="3" score="4" >对不起，是我不好这次。</option>
+          <option id="1" score="2" sound="option_correct">这个。。。心意在了嘛~</option>
+          <option id="2" score="3" sound="option_correct">我就是这么无赖了。。。</option>
+          <option id="3" score="4" sound="option_correct">对不起，是我不好这次。</option>
         </options>   
     </dlg>  
     <dlg id="4" pos="1" image="pic\\figure\\jedi.png" color="8">
         <line>你呀，就是这副德行。。。</line>  
+        <options>
+          <option id="1" sound="thunder">不理解你</option>
+          <option id="2" sound="option_correct">我了解你</option>
+          <option id="3" sound="option_correct">我发现我开始喜欢你了~</option>
+        </options>  
     </dlg>   
   </script>
   <script id="s3" pic="ship.png">

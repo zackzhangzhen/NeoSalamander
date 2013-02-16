@@ -4,10 +4,11 @@ using namespace cocos2d;
 class ZOption : public CCObject
 {
 public:
-	ZOption(int, int,const char* toScript, const char* sound, bool isJump, CCMenu*, CCMenuItemFont* );
+	ZOption(int, const char* idStr, int,const char* toScript, const char* sound, bool isJump, CCMenu*, CCMenuItemFont* );
 	~ZOption(void);
 
 	int getId();
+	const char* getIdStr();
 	int getScore();
 	bool isJump();
 	const char* getSound();
@@ -18,6 +19,7 @@ public:
 
 private:
 	int m_id;
+	const char* m_idStr;
 	int m_score;
 	bool m_isJump;
 	const char* m_toScript;

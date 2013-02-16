@@ -18,6 +18,8 @@ ZMenu::ZMenu(TiXmlElement* optionsElem, CCNode* parentNode, bool visible) : Scri
 		int id = 0;
 		optionElem->Attribute("id", &id);
 
+		const char* idStr = optionElem->Attribute("id");
+
 		//score
 		int score = 0;
 		optionElem->Attribute("score", &score);
@@ -50,7 +52,7 @@ ZMenu::ZMenu(TiXmlElement* optionsElem, CCNode* parentNode, bool visible) : Scri
 		}
 
 		//create ZOption
-		ZOption* option = new ZOption(id, score,toScript, sound, isJump, menu, menuItem);
+		ZOption* option = new ZOption(id, idStr, score,toScript, sound, isJump, menu, menuItem);
 
 		menuItem->setUserObject(option);
 
@@ -115,6 +117,8 @@ void ZMenu::optionCallback(CCObject* sender)
 
 	//play the sound
 	Utility::playSound(option->getSound());
+
+	Courier::sendMail(option->getIdStr());
 }
 
 ZMenu::~ZMenu(void)
