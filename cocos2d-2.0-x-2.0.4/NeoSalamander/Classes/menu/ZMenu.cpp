@@ -118,7 +118,7 @@ void ZMenu::optionCallback(CCObject* sender)
 	//play the sound
 	Utility::playSound(option->getSound());
 
-	Courier::sendMail(option->getIdStr());
+	//Courier::sendMail(option->getIdStr());
 }
 
 ZMenu::~ZMenu(void)
