@@ -2,7 +2,7 @@
 #include "cocos2d.h"
 #include <vector>
 #include <map>
-#include "tinyxml.h"
+#include "menu\tinyxml.h"
 #include "utility\CompareCString.h"
 #include "sprite\ZSprite.h"
 

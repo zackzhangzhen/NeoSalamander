@@ -5,10 +5,10 @@
 #include "cocos2d.h"
 #include "script\ZLabelTTF.h"
 #include <vector>
-#include "tinyxml.h"
+#include "menu\tinyxml.h"
 #include <map>
 #include "script\ScriptElement.h"
-#include "ZOption.h"
+#include "menu\ZOption.h"
 #include "SimpleAudioEngine.h" 
 #include "mail\Courier.h"
 

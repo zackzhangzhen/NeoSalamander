@@ -32,7 +32,7 @@
     </dlg>        
   </script>
   <script id="s2" pic="breakfast.png">
-    <dlg id="1" pos="2" image="pic\\figure\\assassin.png" music="mySong" color="5">
+    <dlg id="1" pos="2" image="pic\\figure\\assassin.png" music="ami" color="5">
         <line>[说真话，这是我第一次约她出来，先前也没有摸清楚她的兴趣爱好]</line>
         <line>[不知道我准备的这一切她到底喜不喜欢。。。]</line>
     </dlg> 

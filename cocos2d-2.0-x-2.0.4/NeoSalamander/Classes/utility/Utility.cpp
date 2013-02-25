@@ -231,8 +231,24 @@ void Utility::playMusic(const char* musicName, bool repeat)
 	char* seg = zstrcat("music\\",(char*)musicName);
 	char* finalStr = zstrcat(seg,".mp3");
 
+	//CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic(finalStr);
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic(finalStr, repeat);
 }
+
+/*void Utility::playMusic(const char* musicName, bool repeat)
+{
+	if(musicName == NULL)
+	{
+		return;
+	}
+
+	//concatenate the sound file name including the .mp3 extension
+	char* seg = zstrcat("music\\",(char*)musicName);
+	char* finalStr = zstrcat(seg,".wav");
+
+	//CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic(finalStr);
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic(finalStr, repeat);
+}*/
 
 void Utility::stopMusic()
 {

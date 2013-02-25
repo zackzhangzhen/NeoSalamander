@@ -1,7 +1,7 @@
 #pragma once
 #include "script\ZDlg.h"
 #include <vector>
-#include "tinyxml.h"
+#include "menu\tinyxml.h"
 class ScriptLayer;
 
 class ScriptPlayer: public CCObject
