@@ -18,6 +18,7 @@ public:
 	void ccTouchesEnded(cocos2d::CCSet* touches, cocos2d::CCEvent* event);
 	void fadeOutCurrentScript();
 	bool isAnimationPlaying();	
+	void jumpToLine(char* lineId);
 	void setAnimationPlaying(bool playing);
 	bool isInOption();
 	void setInOption(bool inOption);

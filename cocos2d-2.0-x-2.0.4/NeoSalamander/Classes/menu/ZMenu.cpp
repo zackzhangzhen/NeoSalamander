@@ -25,14 +25,21 @@ ZMenu::ZMenu(TiXmlElement* optionsElem, CCNode* parentNode, bool visible) : Scri
 		optionElem->Attribute("score", &score);
 
 		//toScript
-		const char* toScript = optionElem->Attribute("toScript");
+		const char* toScript = optionElem->Attribute(NeoConstants::SCRIPT_ATTR_TO_SCRIPT);
+
+		//toLine
+		const char* toLine = optionElem->Attribute("toLine");
 
 		//sound
 		const char* sound = optionElem->Attribute("sound");
 
-		//isJump
-		const char* jump = optionElem->Attribute("jump");
-		bool isJump = jump == NULL? false:true;
+		//isJumpL
+		const char* jumpL = optionElem->Attribute("jumpL");
+		bool isJumpL = jumpL == NULL? false:true;
+
+		//isJumpS
+		const char* jumpS = optionElem->Attribute("jumpS");
+		bool isJumpS = jumpS == NULL? false:true;
 
 		//text
 		char* text = (char*)optionElem->GetText();
@@ -52,8 +59,17 @@ ZMenu::ZMenu(TiXmlElement* optionsElem, CCNode* parentNode, bool visible) : Scri
 		}
 
 		//create ZOption
-		ZOption* option = new ZOption(id, idStr, score,toScript, sound, isJump, menu, menuItem);
-
+		ZOption* option = NULL;
+		
+		if(isJumpL)
+		{
+			option = new ZOption(id, idStr, score,toLine, sound, isJumpL, isJumpS, menu, menuItem);
+		}
+		else
+		{
+			option = new ZOption(id, idStr, score,toScript, sound, isJumpL, isJumpS, menu, menuItem);
+		}
+		
 		menuItem->setUserObject(option);
 
 		//this->m_optionMap.insert(make_pair(id ,option));
@@ -104,13 +120,20 @@ void ZMenu::optionCallback(CCObject* sender)
 
 	ScriptLayer* parLayer = zMenu->getParentScriptLayer();
 
-	bool jump = option->isJump();
+	bool jumpL = option->isJumpL();
+	bool jumpS = option->isJumpS();
+
 	char* nextScriptId = (char*)option->getToScript();
-	if(jump)
-	{		
+	if(jumpS)
+	{
 		parLayer->setNextScriptPlayerSync(nextScriptId);
 	}
-	else
+	else if(jumpL)
+	{
+		char* nextLineId = (char*)option->getToLine();
+		parLayer->jumpToLine(nextLineId);
+	}
+	else if(nextScriptId != NULL)
 	{
 		parLayer->setNextScriptPlayerAsync(nextScriptId);
 	}

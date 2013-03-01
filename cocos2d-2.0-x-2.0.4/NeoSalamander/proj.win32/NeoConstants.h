@@ -25,8 +25,9 @@ public:
 	static const char* SCRIPT_ATTR_COLOR;
 	static const char* SCRIPT_ATTR_IMAGE;
 	static const char* SCRIPT_ATTR_PIC;
-	static const char* SCRIPT_ATTR_NEXT;
+	static const char* SCRIPT_ATTR_TO_SCRIPT;
 	static const char* SCRIPT_ATTR_MUSIC;
+	static const char* SCRIPT_ATTR_ID;
 	static const char* SCRIPT_ATTR_STOP_MUSIC;
 	static const char* SCRIPT_ATTR_FIGURE_VERTICAL_OFFSET;
 	static const char* CUE_PIC_LOC;

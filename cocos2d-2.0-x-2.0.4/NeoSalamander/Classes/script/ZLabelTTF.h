@@ -28,6 +28,7 @@ public:
 	int getPositionY();
 	CCPoint getPosition();
 	bool rollScript();
+	void jumpToLine(char* lineId);
 	CCLabelTTF* getLabel();
 	void addToCCNode(CCNode* node, int zOrder);
 	CCAction * runAction(CCAction* action);

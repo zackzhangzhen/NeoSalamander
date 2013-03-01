@@ -45,6 +45,7 @@ public:
 	void fadeIn(bool delay);
 	void playMusic();
 	void fadeOut();
+	void jumpToLine(char* lineId);
 	bool play(bool delay);
 	ScriptLayer* getParentScriptLayer();
 	void setAnimationPlayingDone(CCNode* sender);

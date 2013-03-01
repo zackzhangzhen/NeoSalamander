@@ -177,6 +177,12 @@ void ScriptLayer::setNextScriptPlayerAsync(char* id)
 	this->m_player->play();
 }
 
+void ScriptLayer::jumpToLine(char* lineId)
+{
+	assert(m_player != NULL);
+	m_player->jumpToLine(lineId);
+}
+
 void ScriptLayer::setNextScriptPlayerSync(char* id)
 {	
 	fadeOutCurrentScript();

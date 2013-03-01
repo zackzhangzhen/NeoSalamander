@@ -175,3 +175,24 @@ bool ZLabelTTF::rollScript()
 
 	return true;
 }
+
+void ZLabelTTF::jumpToLine(char* lineId)
+{
+	while(m_iter != m_scripts.end())
+	{
+		ScriptElement* elem = *m_iter;
+		if(elem->isType(ScriptElementType::LINE))
+		{
+			ValueWrapper* line = (ValueWrapper*) elem;
+			char* id = line->getLineId();
+
+			if(id != NULL && strcmp(lineId, id) == 0)
+			{
+				this->m_label->setString(elem->getText());
+				break;
+			}			
+		}
+
+		m_iter++;
+	}
+}

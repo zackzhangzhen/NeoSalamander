@@ -4,15 +4,18 @@ using namespace cocos2d;
 class ZOption : public CCObject
 {
 public:
-	ZOption(int, const char* idStr, int,const char* toScript, const char* sound, bool isJump, CCMenu*, CCMenuItemFont* );
+	ZOption(int id, const char* idStr, int score, const char* toLineOrScript, const char* sound, bool isJumpL, bool isJumpS, CCMenu* menu, CCMenuItemFont* item );
+	
 	~ZOption(void);
 
 	int getId();
 	const char* getIdStr();
 	int getScore();
-	bool isJump();
+	bool isJumpS();
+	bool isJumpL();
 	const char* getSound();
 	const char* getToScript();
+	const char* getToLine();
 	CCMenu* getParentMenu();
 	CCMenuItemFont* getMenuItem();
 	
@@ -21,8 +24,10 @@ private:
 	int m_id;
 	const char* m_idStr;
 	int m_score;
-	bool m_isJump;
+	bool m_isJumpS;
+	bool m_isJumpL;
 	const char* m_toScript;
+	const char* m_toLine;
 	const char* m_sound;
 	CCMenu* m_parentMenu;
 	CCMenuItemFont* m_menuItem;

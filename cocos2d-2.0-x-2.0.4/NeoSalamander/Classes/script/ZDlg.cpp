@@ -60,7 +60,8 @@ ZDlg::ZDlg(TiXmlElement* dlgElem, CCNode* parentNode)
 		if(strcmp(tagName, NeoConstants::SCRIPT_TAG_LINE) == 0)
 		{
 			char* line = (char*)lineElem->GetText();
-			lines.push_back(new ValueWrapper(line));
+			char* lineId = (char*)lineElem->Attribute(NeoConstants::SCRIPT_ATTR_ID);
+			lines.push_back(new ValueWrapper(lineId, line));
 		}
 		else if(strcmp(tagName, NeoConstants::SCRIPT_TAG_OPTIONS) == 0)
 		{
@@ -302,6 +303,11 @@ void ZDlg::fadeOut()
 
 			}
 	}
+}
+
+void ZDlg::jumpToLine(char* lineId)
+{
+	this->m_scriptLabel->jumpToLine(lineId);
 }
 
 bool ZDlg::play(bool delay)
