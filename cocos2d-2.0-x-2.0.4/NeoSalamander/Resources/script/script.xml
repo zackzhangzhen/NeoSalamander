@@ -7,13 +7,13 @@
           <option id="1" score="2" toScript="s2" sound="option_correct">甜美早餐</option>
           <option id="2" score="3" toScript="S3" jumpS="y" sound="option_correct">豪华游轮</option>
           <option id="3" score="4" toScript="s4" jumpS="y" sound="thunder">给我滚一边去！</option>
-          <option id="4" score="4" toLine="l1" jumpL="y" sound="option_correct">再多跟我说说话！</option>
+          <option id="4" score="4" toLine="l1" toScript="s3" jumpL="y" sound="option_correct">再多跟我说说话！</option>
         </options>
         <line>呵呵，谢谢你接受我的邀请，但是我先声明，我只是请客，钱不是我付哟～</line>
         <line>点击了豪华游轮，就会跑到这里来，说明测试成功了哟</line>
         <line id="l1">哟哟哟~</line>
-        <line>现在想找我配你说话啦？</line>
-        <line>那我们找个地方去吃饭吧～</line>
+        <line>现在想找我陪你说话啦？</line>
+        <line>那我们找个地方去吃饭吧～我建议豪华游艇，哇哈哈～</line>
     </dlg>
     <!--dlg id="2" pos="1" font="Comic Sans MS/Microsoft JhengHei" image="pic\\figure\\master_chief.png" size="20" figureVerticalOffset="180">
         <line font="Comic Sans MS">Fine thank you! My name is Li Lei, what about you?</line>

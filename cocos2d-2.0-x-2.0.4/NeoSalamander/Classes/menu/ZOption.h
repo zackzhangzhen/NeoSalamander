@@ -4,7 +4,7 @@ using namespace cocos2d;
 class ZOption : public CCObject
 {
 public:
-	ZOption(int id, const char* idStr, int score, const char* toLineOrScript, const char* sound, bool isJumpL, bool isJumpS, CCMenu* menu, CCMenuItemFont* item );
+	ZOption::ZOption(int id, const char* idStr, int score, const char* toLine, const char* toScript, const char* sound, bool isJumpL, bool isJumpS, CCMenu* menu, CCMenuItemFont* item );
 	
 	~ZOption(void);
 

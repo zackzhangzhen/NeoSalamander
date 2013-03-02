@@ -1,7 +1,7 @@
 #include "ZOption.h"
 
 
-ZOption::ZOption(int id, const char* idStr, int score, const char* toLineOrScript, const char* sound, bool isJumpL, bool isJumpS, CCMenu* menu, CCMenuItemFont* item )
+ZOption::ZOption(int id, const char* idStr, int score, const char* toLine, const char* toScript, const char* sound, bool isJumpL, bool isJumpS, CCMenu* menu, CCMenuItemFont* item )
 {
 	this->m_id = id;
 	this->m_idStr = idStr;
@@ -13,8 +13,8 @@ ZOption::ZOption(int id, const char* idStr, int score, const char* toLineOrScrip
 	this->m_isJumpS = isJumpS;
 	this->m_isJumpL = isJumpL;
 
-	this->m_toScript = toLineOrScript;	
-	this->m_toLine = toLineOrScript;
+	this->m_toLine = toLine;
+	this->m_toScript = toScript;		
 }
 
 

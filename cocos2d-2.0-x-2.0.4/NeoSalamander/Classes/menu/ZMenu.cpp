@@ -61,14 +61,7 @@ ZMenu::ZMenu(TiXmlElement* optionsElem, CCNode* parentNode, bool visible) : Scri
 		//create ZOption
 		ZOption* option = NULL;
 		
-		if(isJumpL)
-		{
-			option = new ZOption(id, idStr, score,toLine, sound, isJumpL, isJumpS, menu, menuItem);
-		}
-		else
-		{
-			option = new ZOption(id, idStr, score,toScript, sound, isJumpL, isJumpS, menu, menuItem);
-		}
+		option = new ZOption(id, idStr, score, toLine, toScript, sound, isJumpL, isJumpS, menu, menuItem);
 		
 		menuItem->setUserObject(option);
 
@@ -128,12 +121,15 @@ void ZMenu::optionCallback(CCObject* sender)
 	{
 		parLayer->setNextScriptPlayerSync(nextScriptId);
 	}
-	else if(jumpL)
+
+	if(jumpL)
 	{
 		char* nextLineId = (char*)option->getToLine();
 		parLayer->jumpToLine(nextLineId);
+
 	}
-	else if(nextScriptId != NULL)
+
+	if(nextScriptId != NULL)
 	{
 		parLayer->setNextScriptPlayerAsync(nextScriptId);
 	}
