@@ -77,6 +77,16 @@ char* Utility::convertStringToChar(std::string str)
 	}
 }
 
+ int Utility::getRangedNumber(float min, float max)
+ {
+	int range = max - min;
+	int random = rand();
+
+	int actual = random % range;
+	
+	return actual + min;
+ }
+
  CCPoint Utility::getRandomPointTop()
  {
 	 CCSize winSize = CCDirector::sharedDirector()->getWinSize();

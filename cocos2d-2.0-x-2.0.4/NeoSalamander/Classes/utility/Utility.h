@@ -19,6 +19,7 @@ public:
 	static char* appendIntToString(char*, char* extention, int i);
 	static char* convertStringToChar(std::string str);
 	static CCActionInterval* getAnimationAction(char* filePrefix, char* extension, int suffixCount, bool startFromIndex0, bool repeat);
+	static int getRangedNumber(float min, float max);
 	static CCPoint getRandomPointTop();
 	static CCPoint getRandomPointOnRandomSide();
 	static CCPoint getRandomPointOnOneSide(bool left);

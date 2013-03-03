@@ -1,6 +1,7 @@
 #ifndef __APP_DELEGATE_H__
 #define __APP_DELEGATE_H__
 
+#include <time.h>
 #include "layer/ScriptLayer.h"
 #include "cocos2d.h"
 #include "CCEGLView.h"

@@ -18,7 +18,28 @@ LayerScheduler::LayerScheduler(char* fileName, int dir, int bulkCount, float spa
 
 void LayerScheduler::scheduleRandomSpawnInBulk(float dt)
 {
+	//spawn first round immediately 
+	randomSpawnInBulk();
 	this->schedule(schedule_selector(LayerScheduler::randomSpawnInBulk), dt);
+}
+
+void LayerScheduler::randomSpawnInBulk()
+{
+	bool firstOne = true;
+	ZSprite* firstSprite = NULL;
+	for(int i = 0; i < tempValHolder.tempSpawnBulkCount; i++)
+	{
+		if(firstOne)
+		{
+			firstOne = false;
+			firstSprite = new ZSprite(tempValHolder.tempSpriteFileName, tempValHolder.tempDirection, tempValHolder.tempVelocity);
+			firstSprite->addToCCNode(this, tempValHolder.tempZOrder);
+			continue;
+		}
+
+		ZSprite* sprite = new ZSprite(*firstSprite, tempValHolder.tempSpawnInterval*(i));	
+		sprite->addToCCNode(parentNode, tempValHolder.tempZOrder);
+	}
 }
 
 void LayerScheduler::randomSpawnInBulk(float dt)

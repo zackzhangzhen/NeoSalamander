@@ -28,10 +28,15 @@ ObjectLayer * ObjectLayer::createObjectLayer(void)
 
 void ObjectLayer::scheduleObjects()
 {
-	this->scheduleRandomSpawnInBulk(10.0F, STEWIE, NeoConstants::MOVE_DOWN,5,0.5f, 90.0F, 0);
+	/*this->scheduleRandomSpawnInBulk(10.0F, STEWIE, NeoConstants::MOVE_DOWN,5,0.5f, 90.0F, 0);
 	this->scheduleRandomSpawnInBulk(15.0F, LAND_ROVER, NeoConstants::MOVE_DOWN,3,0.8F,70.0f);
 	this->scheduleRandomSpawnInBulk(6.0F, BLACK_OPS, NeoConstants::MOVE_DOWN,1,0.5f, 90.0F, 0);
-	this->scheduleRandomSpawn(30.0F, RAVEN, NeoConstants::MOVE_LEFT, 10.0F, 0);
+	this->scheduleRandomSpawn(30.0F, RAVEN, NeoConstants::MOVE_LEFT, 10.0F, 0);*/
+
+	this->scheduleRandomSpawnInBulk(Utility::getRangedNumber(8,11), STEWIE, Utility::getRangedNumber(0,3),Utility::getRangedNumber(1,4),1.0f, Utility::getRangedNumber(1,91), 0);
+	this->scheduleRandomSpawnInBulk(Utility::getRangedNumber(8,11), LAND_ROVER, Utility::getRangedNumber(0,3),Utility::getRangedNumber(1,4),1.0f, Utility::getRangedNumber(1,91), 0);
+	this->scheduleRandomSpawnInBulk(Utility::getRangedNumber(8,11), BLACK_OPS, Utility::getRangedNumber(0,3),Utility::getRangedNumber(1,4),1.0f, Utility::getRangedNumber(1,91), 0);
+	this->scheduleRandomSpawnInBulk(Utility::getRangedNumber(8,11), RAVEN, Utility::getRangedNumber(0,3),Utility::getRangedNumber(1,4),1.0f, Utility::getRangedNumber(1,91), 0);
 }
 
 void ObjectLayer::scheduleRandomSpawn(float dt, const char* spriteFileName,int direction, float velocity, int zOrder)

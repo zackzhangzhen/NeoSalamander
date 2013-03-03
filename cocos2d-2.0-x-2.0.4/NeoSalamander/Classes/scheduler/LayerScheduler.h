@@ -18,6 +18,7 @@ public:
 	ScheduleTempValHolder LayerScheduler::getTempValHolder();
 	void randomSpawn(float dt);
 	void randomSpawnInBulk(float dt);
+	void randomSpawnInBulk();
 	void scheduleRandomSpawnInBulk(float dt);
 	void scheduleRandomSpawn(float dt);
 

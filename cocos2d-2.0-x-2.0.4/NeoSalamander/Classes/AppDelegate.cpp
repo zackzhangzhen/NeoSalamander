@@ -17,6 +17,9 @@ AppDelegate::~AppDelegate()
 
 bool AppDelegate::applicationDidFinishLaunching()
 {
+	//seed the random algorhitm
+	 srand (time(NULL));
+
     // initialize director
     CCDirector *pDirector = CCDirector::sharedDirector();
     pDirector->setOpenGLView(CCEGLView::sharedOpenGLView());
@@ -31,19 +34,12 @@ bool AppDelegate::applicationDidFinishLaunching()
     //CCScene *pScene = HelloWorld::scene();
 	CCScene *pScene = CCScene::create();
 	//pScene->addChild(new BgLayer());
-	pScene->addChild(new ScriptLayer(), 10);
+	//pScene->addChild(new ScriptLayer(), 10);
 
 
-
-
-
-
-
-
-
-
-
-
+	ObjectLayer* l = ObjectLayer::createObjectLayer();
+	l->scheduleObjects();
+	pScene->addChild(l,1);
 
 	/*CCActionInterval* ac = Utility::getAnimationAction("pic\\explosion\\", "png",26, false, false);
 
@@ -55,7 +51,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	player->runAction(ac);
 
 	ObjectLayer* l = ObjectLayer::createObjectLayer();
-	l->scheduleObjects();;*/
+	l->scheduleObjects();*/
 	//pScene->addChild(l,1);
 
 
