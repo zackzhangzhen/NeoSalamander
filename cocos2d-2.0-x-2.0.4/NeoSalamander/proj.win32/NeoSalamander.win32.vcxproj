@@ -102,7 +102,7 @@
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libcocos2d.lib;libExtensions.lib;opengl32.lib;glew32.lib;libBox2d.lib;libCocosDenshion.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcocos2d.lib;libExtensions.lib;opengl32.lib;glew32.lib;libBox2d.lib;libCocosDenshion.lib;D:\Tech\NeoSalamander\NeoSalamander\cocos2d-2.0-x-2.0.4\Releasetinyxml\tinyxml.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ResourceCompile>
       <Culture>0x0409</Culture>
@@ -142,6 +142,10 @@
     <ClInclude Include="..\Classes\mail\base64.h" />
     <ClInclude Include="..\Classes\mail\Courier.h" />
     <ClInclude Include="..\Classes\mail\CSmtp.h" />
+    <ClInclude Include="..\Classes\menu\ZGameMenu.h" />
+    <ClInclude Include="..\Classes\menu\ZGameMenuContainer.h" />
+    <ClInclude Include="..\Classes\menu\ZGameOption.h" />
+    <ClInclude Include="..\Classes\menu\ZMainMenu.h" />
     <ClInclude Include="..\Classes\menu\ZMenu.h" />
     <ClInclude Include="..\Classes\menu\ZOption.h" />
     <ClInclude Include="..\Classes\scheduler\LayerScheduler.h" />
@@ -172,6 +176,10 @@
     <ClCompile Include="..\Classes\mail\base64.cpp" />
     <ClCompile Include="..\Classes\mail\Courier.cpp" />
     <ClCompile Include="..\Classes\mail\CSmtp.cpp" />
+    <ClCompile Include="..\Classes\menu\ZGameMenu.cpp" />
+    <ClCompile Include="..\Classes\menu\ZGameMenuContainer.cpp" />
+    <ClCompile Include="..\Classes\menu\ZGameOption.cpp" />
+    <ClCompile Include="..\Classes\menu\ZMainMenu.cpp" />
     <ClCompile Include="..\Classes\menu\ZMenu.cpp" />
     <ClCompile Include="..\Classes\menu\ZOption.cpp" />
     <ClCompile Include="..\Classes\scheduler\LayerScheduler.cpp" />

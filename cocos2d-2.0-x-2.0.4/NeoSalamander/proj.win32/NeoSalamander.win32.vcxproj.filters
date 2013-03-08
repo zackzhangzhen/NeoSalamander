@@ -202,6 +202,18 @@
     <ClInclude Include="..\Classes\script\ValueWrapper.h">
       <Filter>include\script</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\menu\ZGameMenu.h">
+      <Filter>include\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\menu\ZMainMenu.h">
+      <Filter>include\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\menu\ZGameOption.h">
+      <Filter>include\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\menu\ZGameMenuContainer.h">
+      <Filter>include\menu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -284,6 +296,18 @@
     </ClCompile>
     <ClCompile Include="..\Classes\script\ValueWrapper.cpp">
       <Filter>source\script</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\menu\ZGameMenu.cpp">
+      <Filter>source\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\menu\ZMainMenu.cpp">
+      <Filter>source\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\menu\ZGameOption.cpp">
+      <Filter>source\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\menu\ZGameMenuContainer.cpp">
+      <Filter>source\menu</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -4,8 +4,9 @@ using namespace cocos2d;
 class ZOption : public CCObject
 {
 public:
-	ZOption::ZOption(int id, const char* idStr, int score, const char* toLine, const char* toScript, const char* sound, bool isJumpL, bool isJumpS, CCMenu* menu, CCMenuItemFont* item );
-	
+	ZOption(int id, const char* idStr, int score, const char* toLine, const char* toScript, const char* sound, bool isJumpL, bool isJumpS, CCMenu* menu, CCMenuItemFont* item );
+	ZOption(int id, const char* idStr,const char* sound, CCMenu*  menu, CCMenuItemFont* menuItem);//for option in game menu
+
 	~ZOption(void);
 
 	int getId();

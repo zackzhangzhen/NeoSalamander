@@ -17,6 +17,15 @@ ZOption::ZOption(int id, const char* idStr, int score, const char* toLine, const
 	this->m_toScript = toScript;		
 }
 
+//for option in game menu
+ZOption::ZOption(int id, const char* idStr,const char* sound, CCMenu*  menu, CCMenuItemFont* menuItem)
+{
+	this->m_id = id;
+	this->m_idStr = idStr;
+	this->m_parentMenu = menu;
+	this->m_menuItem = menuItem;
+	this->m_sound = sound;
+}
 
 int ZOption::getId()
 {
