@@ -15,6 +15,7 @@ const char* NeoConstants::SCRIPT_ATTR_SIZE = "size";
 const char* NeoConstants::SCRIPT_ATTR_FONT = "font";
 const char* NeoConstants::SCRIPT_ATTR_COLOR = "color";
 const char* NeoConstants::SCRIPT_ATTR_IMAGE = "image";
+const char* NeoConstants::SCRIPT_ATTR_TITLE = "title";
 const char* NeoConstants::SCRIPT_ATTR_TO_SCRIPT = "toScript";
 const char* NeoConstants::SCRIPT_ATTR_MUSIC = "music";
 const char* NeoConstants::SCRIPT_ATTR_ID = "id";

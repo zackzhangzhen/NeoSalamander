@@ -214,6 +214,9 @@
     <ClInclude Include="..\Classes\menu\ZGameMenuContainer.h">
       <Filter>include\menu</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\menu\ZLoadMenu.h">
+      <Filter>include\menu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -307,6 +310,9 @@
       <Filter>source\menu</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\menu\ZGameMenuContainer.cpp">
+      <Filter>source\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\menu\ZLoadMenu.cpp">
       <Filter>source\menu</Filter>
     </ClCompile>
   </ItemGroup>

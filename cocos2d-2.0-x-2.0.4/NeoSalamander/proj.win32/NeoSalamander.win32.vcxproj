@@ -145,6 +145,7 @@
     <ClInclude Include="..\Classes\menu\ZGameMenu.h" />
     <ClInclude Include="..\Classes\menu\ZGameMenuContainer.h" />
     <ClInclude Include="..\Classes\menu\ZGameOption.h" />
+    <ClInclude Include="..\Classes\menu\ZLoadMenu.h" />
     <ClInclude Include="..\Classes\menu\ZMainMenu.h" />
     <ClInclude Include="..\Classes\menu\ZMenu.h" />
     <ClInclude Include="..\Classes\menu\ZOption.h" />
@@ -179,6 +180,7 @@
     <ClCompile Include="..\Classes\menu\ZGameMenu.cpp" />
     <ClCompile Include="..\Classes\menu\ZGameMenuContainer.cpp" />
     <ClCompile Include="..\Classes\menu\ZGameOption.cpp" />
+    <ClCompile Include="..\Classes\menu\ZLoadMenu.cpp" />
     <ClCompile Include="..\Classes\menu\ZMainMenu.cpp" />
     <ClCompile Include="..\Classes\menu\ZMenu.cpp" />
     <ClCompile Include="..\Classes\menu\ZOption.cpp" />

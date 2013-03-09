@@ -20,6 +20,7 @@ public:
 	bool play();
 	void fadeOut();
 	char* getId();
+	char* getTitle();
 	char* getNextScriptPlayerId();
 	void setNextScriptPlayerId(char* id);
 	void autoRelease(CCNode* sender);
@@ -28,6 +29,7 @@ private:
 	vector<ZDlg*> m_vec;
 	vector<ZDlg*>::const_iterator m_iter;
 	char* m_id;
+	char* m_title;
 	char* m_nextScriptPlayerId;
 	ZSprite* m_bg;
 	ScriptLayer* m_parentScriptLayer;

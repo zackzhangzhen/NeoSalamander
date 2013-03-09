@@ -28,6 +28,7 @@ public:
 	void menuCallback(CCObject* sender);
 	void setNextScriptPlayerAsync(char* id);
 	void setNextScriptPlayerSync(char* id);
+	ScriptPlayer* getCurrentScriptPlayer();
 private:
 	ScriptPlayer* findScriptPlayerByKey(char* key);
 	bool m_isAnimationPlaying;

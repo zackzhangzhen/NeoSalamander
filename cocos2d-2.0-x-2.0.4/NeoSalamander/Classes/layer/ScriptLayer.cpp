@@ -177,6 +177,11 @@ void ScriptLayer::setNextScriptPlayerAsync(char* id)
 	this->m_player->play();
 }
 
+ScriptPlayer* ScriptLayer::getCurrentScriptPlayer()
+{
+	return this->m_player;
+}
+
 void ScriptLayer::jumpToLine(char* lineId)
 {
 	assert(m_player != NULL);

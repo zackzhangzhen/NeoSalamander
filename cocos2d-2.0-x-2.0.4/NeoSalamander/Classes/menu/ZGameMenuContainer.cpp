@@ -1,22 +1,51 @@
 #include "ZGameMenuContainer.h"
 #include "ZMainMenu.h"
+#include "ZLoadMenu.h"
 
-map<int, ZGameMenu*> ZGameMenuContainer::m_optionMap;
+ZGameMenuContainer* ZGameMenuContainer::m_instance;
 
-ZGameMenuContainer::ZGameMenuContainer(void)
+ZGameMenuContainer::ZGameMenuContainer()
 {
-
 }
 
-ZGameMenuContainer& ZGameMenuContainer::getInstance()
+ScriptLayer* ZGameMenuContainer::getScriptLayer()
 {
-	static ZGameMenuContainer instance;
-	return instance;
+	return m_scriptLayer;
 }
 
-void ZGameMenuContainer::init()
+ScriptPlayer* ZGameMenuContainer::getCurrentScriptPayer()
 {
+	ScriptPlayer* player = m_scriptLayer->getCurrentScriptPlayer();
+	assert(player != NULL);	
+	return player;
+}
+
+char* ZGameMenuContainer::getCurrentScriptId()
+{
+	ScriptPlayer* player = getCurrentScriptPayer();
+	return player->getId();
+	
+}
+
+ZGameMenuContainer* ZGameMenuContainer::getInstance()
+{
+	if(m_instance == 0)
+	{
+		m_instance  = new ZGameMenuContainer();
+	}
+
+	return m_instance;
+}
+
+void ZGameMenuContainer::init(ScriptLayer* scriptLayer)
+{
+	assert(scriptLayer != NULL);
+	/**
+		0 - Main Menu
+		1 - Load Menu
+	*/
 	m_optionMap.insert(make_pair(0 ,new ZMainMenu(NULL, NULL, false)));
+	m_optionMap.insert(make_pair(1 ,new ZLoadMenu(NULL, NULL, false)));
 }
 
 ZGameMenuContainer::~ZGameMenuContainer(void)

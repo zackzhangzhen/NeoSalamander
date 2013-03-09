@@ -25,6 +25,7 @@ public:
 	static const char* SCRIPT_ATTR_COLOR;
 	static const char* SCRIPT_ATTR_IMAGE;
 	static const char* SCRIPT_ATTR_PIC;
+	static const char* SCRIPT_ATTR_TITLE;
 	static const char* SCRIPT_ATTR_TO_SCRIPT;
 	static const char* SCRIPT_ATTR_MUSIC;
 	static const char* SCRIPT_ATTR_ID;

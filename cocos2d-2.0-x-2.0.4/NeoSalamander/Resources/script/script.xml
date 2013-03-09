@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <play>
-  <script id="s1" pic="bar.png" toScript="s2" >
+  <script title="初遇" id="s1" pic="bar.png" toScript="s2" >
     <dlg id="1" pos="0" image="pic\\figure\\assassin.png" size="28" music="mySong" color="1">
         <line >我就开门见山吧，我想约你出来，豪华游轮和甜美早餐，你自己选一个吧～</line>
         <options>
@@ -36,7 +36,7 @@
         <line>走吧。。。</line>       
     </dlg>        
   </script>
-  <script id="s2" pic="breakfast.png">
+  <script title="约会" id="s2" pic="breakfast.png">
     <dlg id="1" pos="2" image="pic\\figure\\assassin.png" music="ami" color="5">
         <line>[说真话，这是我第一次约她出来，先前也没有摸清楚她的兴趣爱好]</line>
         <line>[不知道我准备的这一切她到底喜不喜欢。。。]</line>
