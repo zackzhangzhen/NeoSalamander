@@ -4,8 +4,8 @@
     <dlg id="1" pos="0" image="pic\\figure\\assassin.png" size="28" music="mySong" color="1">
         <line >我就开门见山吧，我想约你出来，豪华游轮和甜美早餐，你自己选一个吧～</line>
         <options>
-          <option id="1" score="2" toScript="s2" sound="option_correct">甜美早餐</option>
-          <option id="2" score="3" toScript="S3" jumpS="y" sound="option_correct">豪华游轮</option>
+          <option id="1" score="2" sound="option_correct">甜美早餐</option>
+          <option id="2" score="3" toScript="s3" jumpS="y" sound="option_correct">豪华游轮</option>
           <option id="3" score="4" toScript="s4" jumpS="y" sound="thunder">给我滚一边去！</option>
           <option id="4" score="4" toLine="l1" toScript="s3" jumpL="y" sound="option_correct">再多跟我说说话！</option>
         </options>

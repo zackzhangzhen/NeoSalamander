@@ -87,13 +87,15 @@ void ScriptPlayer::fadeIn(bool delay)
 {
 	CCFiniteTimeAction* animationDone = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ScriptPlayer::setAnimationPlayingDone));
 	CCFiniteTimeAction* switchCueOn = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ScriptPlayer::switchCueOn));
+	
 	CCFadeIn* pCCFadeIn= CCFadeIn::actionWithDuration(5);
 
 	m_parentScriptLayer->setAnimationPlaying(true);
 
 	if(delay)
 	{
-		CCDelayTime *delayAction = CCDelayTime::actionWithDuration(1);
+		//3+5 means 5s fadeout + 3s delay for the last script
+		CCDelayTime *delayAction = CCDelayTime::actionWithDuration(3+5);
 		m_bg->getSprite()->runAction(CCSequence::actions(delayAction, pCCFadeIn, animationDone, switchCueOn,  NULL));
 
 		return ;
@@ -102,12 +104,25 @@ void ScriptPlayer::fadeIn(bool delay)
 	m_bg->getSprite()->runAction(CCSequence::actions(pCCFadeIn, animationDone, switchCueOn,  NULL));
 }
 
-void ScriptPlayer::fadeOut(bool delay)
-{
-	CCFiniteTimeAction* animationDone = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ScriptPlayer::setAnimationPlayingDone));
-	CCFiniteTimeAction* switchCueOn = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ScriptPlayer::switchCueOn));
+void ScriptPlayer::bgFadeOut(bool delay, bool switchCueOnAndSetAnimationDone)
+{	
+	CCFiniteTimeAction* animationDone = NULL;
+	CCFiniteTimeAction* switchCueOnAction = NULL;
+	
+	//only one scenario that we need to pass switchCueOn as false : when the user selects an option that jumps 
+	//to another script, the cue will be switched on when the next script fades in, so don't need to switch it 
+	//on when this one fades out (thus default value is true);
+	//animation done is the same, since the fading out script and the fading in script can kindof be considered
+	//play this fade-out-fade-in animation together, we do not reset the state for the fade-out and only do it 
+	//after the fade-in is done.
+	if(switchCueOnAndSetAnimationDone)
+	{
+		animationDone = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ScriptPlayer::setAnimationPlayingDone));
+		switchCueOnAction = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ScriptPlayer::switchCueOn));
+	}
 	CCFiniteTimeAction* autoReleaseAction = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ScriptPlayer::autoRelease));
 
+	
 	CCFadeOut* pCCFadeOut= CCFadeOut::actionWithDuration(5);
 
 	m_parentScriptLayer->setAnimationPlaying(true);
@@ -115,24 +130,39 @@ void ScriptPlayer::fadeOut(bool delay)
 	if(delay)
 	{
 		CCDelayTime *delayAction = CCDelayTime::actionWithDuration(3);
-		m_bg->getSprite()->runAction(CCSequence::actions(delayAction, pCCFadeOut, switchCueOn, animationDone, autoReleaseAction, NULL));
 
-
+		if(switchCueOnAndSetAnimationDone)
+		{
+			m_bg->getSprite()->runAction(CCSequence::actions(delayAction, pCCFadeOut, switchCueOnAction, animationDone, autoReleaseAction, NULL));
+		}
+		else
+		{
+			m_bg->getSprite()->runAction(CCSequence::actions(delayAction, pCCFadeOut, autoReleaseAction, NULL));
+		}
+		
 		return ;
 	}
 
 	//remember to release the background sprite when it has faded out.
-	m_bg->getSprite()->runAction(CCSequence::actions(pCCFadeOut, switchCueOn, animationDone,autoReleaseAction, NULL));
+	if(switchCueOnAndSetAnimationDone)
+	{
+		m_bg->getSprite()->runAction(CCSequence::actions(pCCFadeOut, switchCueOnAction, animationDone,autoReleaseAction, NULL));
+	}
+	else
+	{
+		m_bg->getSprite()->runAction(CCSequence::actions(pCCFadeOut, autoReleaseAction, NULL));
+	}
+	
 }
 
-void ScriptPlayer::fadeOut()
+void ScriptPlayer::fadeOut(bool switchCueOn)
 {
 	assert(m_iter != m_vec.end());
 
 	ZDlg* dlg = *m_iter;
 	dlg->fadeOut();
 	//no next dlg, conclude the script with fading out the background
-	this->fadeOut(true);
+	this->bgFadeOut(true,switchCueOn);
 }
 
 void ScriptPlayer::jumpToLine(char* lineId)
@@ -142,11 +172,11 @@ void ScriptPlayer::jumpToLine(char* lineId)
 	dlg->jumpToLine(lineId);
 }
 
-bool ScriptPlayer::play()
+bool ScriptPlayer::play(bool delay)
 {
 	if(!fadedIn)
 	{
-		this->fadeIn(false);
+		this->fadeIn(delay);
 		this->fadedIn = true;
 
 		//turn off cue
@@ -174,7 +204,7 @@ bool ScriptPlayer::play()
 			}
 
 			//no next dlg, conclude the script with fading out the background
-			this->fadeOut(true);
+			this->bgFadeOut(true);
 			return true;
 		}
 

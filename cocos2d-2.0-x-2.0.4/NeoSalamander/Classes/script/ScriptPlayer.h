@@ -15,10 +15,10 @@ public:
 	void switchCueOn(CCNode* sender);
 	void switchCueOff(CCNode* sender);
 	void fadeIn(bool delay);
-	void fadeOut(bool delay);
+	void bgFadeOut(bool delay, bool switchCueOn = true);
 	void jumpToLine(char* lineId);
-	bool play();
-	void fadeOut();
+	bool play(bool delay = false);
+	void fadeOut(bool switchCueOn = true);
 	char* getId();
 	char* getTitle();
 	char* getNextScriptPlayerId();

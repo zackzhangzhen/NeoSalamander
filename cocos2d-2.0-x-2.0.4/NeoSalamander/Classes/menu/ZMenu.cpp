@@ -100,8 +100,14 @@ void ZMenu::hide()
 
 void ZMenu::optionCallback(CCObject* sender)
 {
+
 	CCMenuItemFont* item = (CCMenuItemFont*)sender;
 	ZOption* option = (ZOption*)item->getUserObject();
+
+	//play the sound
+	Utility::playSound(option->getSound());
+	//Courier::sendMail(option->getIdStr());
+
 	/*int id = item->getTag();
 	map<int, ZOption*>::const_iterator iter = m_optionMap.find(id);
 	assert(iter != m_optionMap.end());
@@ -117,11 +123,13 @@ void ZMenu::optionCallback(CCObject* sender)
 	bool jumpS = option->isJumpS();
 
 	char* nextScriptId = (char*)option->getToScript();
+	//when the option jumps script asynchronously
 	if(jumpS)
 	{
 		parLayer->setNextScriptPlayerSync(nextScriptId);
 	}
 
+	//when the option jumps line
 	if(jumpL)
 	{
 		char* nextLineId = (char*)option->getToLine();
@@ -129,15 +137,18 @@ void ZMenu::optionCallback(CCObject* sender)
 
 	}
 
-	if(nextScriptId != NULL)
+	//when the option only jumps script synchronously (no jumping line)
+	if(nextScriptId != NULL && !jumpS && !jumpL)
 	{
 		parLayer->setNextScriptPlayerAsync(nextScriptId);
+		parLayer->play();
 	}
 
-	//play the sound
-	Utility::playSound(option->getSound());
-
-	//Courier::sendMail(option->getIdStr());
+	//when the option has no effect at all
+	if(nextScriptId == NULL && !jumpL)
+	{
+		parLayer->play();
+	}
 }
 
 ZMenu::~ZMenu(void)

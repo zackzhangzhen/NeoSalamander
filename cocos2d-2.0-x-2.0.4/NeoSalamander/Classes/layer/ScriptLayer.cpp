@@ -75,13 +75,8 @@ void ScriptLayer::switchCue(bool on)
 
 void ScriptLayer::loadScript(const char* fileName)
 {
-	//need to new the TiXmlDocument here otherwise the doc strucure will be lost after exiting the callee
-	TiXmlDocument* doc = new TiXmlDocument(fileName);
-	assert(doc->LoadFile());
-	TiXmlHandle hDoc(doc);
-	TiXmlElement* pElem;
-	pElem=hDoc.FirstChildElement().Element();
-	assert(pElem != NULL);
+
+	TiXmlElement* pElem = Utility::getRootElementFromFile(fileName);
 
 	TiXmlElement* scriptElem = pElem->FirstChildElement();
 
@@ -174,6 +169,10 @@ void ScriptLayer::setNextScriptPlayerAsync(char* id)
 		this->m_player->setNextScriptPlayerId(id);
 	}
 	
+}
+
+void ScriptLayer::play()
+{
 	this->m_player->play();
 }
 
@@ -194,13 +193,15 @@ void ScriptLayer::setNextScriptPlayerSync(char* id)
 	if(id != NULL)// if for some reason the id was not configured for this option, just ignore and move on to the currently configured script
 	{
 		m_player = findScriptPlayerByKey(id);
+		//set delay to true to wait for the cut-off dlg to fade out
+		m_player->play(true);
 	}		
 }
 
 void ScriptLayer::fadeOutCurrentScript()
 {
 	assert(m_player != NULL);
-	m_player->fadeOut();
+	m_player->fadeOut(false);
 }
 
 void ScriptLayer::ccTouchesEnded(CCSet* touches, CCEvent* event)

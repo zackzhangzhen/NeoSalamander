@@ -265,6 +265,18 @@ void Utility::stopMusic()
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic(true);
 }
 
+TiXmlElement* Utility::getRootElementFromFile(const char* fileName)
+{
+	//need to new the TiXmlDocument here otherwise the doc strucure will be lost after exiting the callee
+	TiXmlDocument* doc = new TiXmlDocument(fileName);
+	assert(doc->LoadFile());
+	TiXmlHandle hDoc(doc);
+	TiXmlElement* pElem;
+	pElem=hDoc.FirstChildElement().Element();
+	assert(pElem != NULL);
+	return pElem;
+}
+
 Utility::~Utility(void)
 {
 }

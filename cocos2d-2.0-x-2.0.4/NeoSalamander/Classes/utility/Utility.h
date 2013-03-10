@@ -8,6 +8,7 @@
 #include "NeoConstants.h"
 #include "action/CCMoveToWrapper.h"
 #include "SimpleAudioEngine.h" 
+#include "menu\tinyxml.h"
 using namespace cocos2d;
 class Utility
 {
@@ -27,6 +28,7 @@ public:
 	static void playSound(const char* soundName, bool repeat = false);
 	static void playMusic(const char* musicName, bool repeat = true);
 	static void stopMusic();
+	static TiXmlElement* Utility::getRootElementFromFile(const char* fileName);
 	static bool getRandomBoolean();
 	static CCMoveToWrapper generateLinearMoveToDownAction(float velocity, bool moveLeft, CCSize size, CCPoint pos);
 	static CCMoveToWrapper generateLinearMoveToHorizontalAction(float velocity, bool moveLeft, CCSize size, CCPoint pos);

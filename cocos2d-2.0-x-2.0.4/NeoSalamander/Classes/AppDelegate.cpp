@@ -34,12 +34,12 @@ bool AppDelegate::applicationDidFinishLaunching()
     //CCScene *pScene = HelloWorld::scene();
 	CCScene *pScene = CCScene::create();
 	//pScene->addChild(new BgLayer());
-	//pScene->addChild(new ScriptLayer(), 10);
+	pScene->addChild(new ScriptLayer(), 10);
 
 
 	ObjectLayer* l = ObjectLayer::createObjectLayer();
 	l->scheduleObjects();
-	pScene->addChild(l,1);
+	//pScene->addChild(l,1);
 
 	/*CCActionInterval* ac = Utility::getAnimationAction("pic\\explosion\\", "png",26, false, false);
 

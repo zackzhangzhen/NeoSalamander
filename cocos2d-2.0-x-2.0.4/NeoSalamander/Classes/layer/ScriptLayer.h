@@ -25,6 +25,7 @@ public:
 	void loadScript(const char* fileName);
 	void initCueSprite();
 	void switchCue(bool on);
+	void play();
 	void menuCallback(CCObject* sender);
 	void setNextScriptPlayerAsync(char* id);
 	void setNextScriptPlayerSync(char* id);
