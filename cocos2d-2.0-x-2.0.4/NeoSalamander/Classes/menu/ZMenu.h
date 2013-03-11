@@ -8,11 +8,13 @@
 #include "menu\tinyxml.h"
 #include <map>
 #include "script\ScriptElement.h"
-#include "menu\ZOption.h"
+
 #include "SimpleAudioEngine.h" 
 #include "mail\Courier.h"
 
 class ScriptLayer;
+class ZOption;
+
 class ZMenu: public ScriptElement
 {
 public:

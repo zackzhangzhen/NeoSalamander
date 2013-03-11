@@ -33,6 +33,11 @@ void ZMainMenu::optionCallback(CCObject* sender)
 	case 2:
 		{
 			//save game
+			ZMenu* menu = option->getParentZMenu();
+			ScriptLayer* scriptLayer = menu->getParentScriptLayer();
+			ScriptPlayer* scriptPlayer = scriptLayer->getCurrentScriptPlayer();
+			char* title = scriptPlayer->getTitle();
+
 			break;
 		}
 	}

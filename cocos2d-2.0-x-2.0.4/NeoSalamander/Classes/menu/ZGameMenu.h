@@ -1,7 +1,7 @@
 #pragma once
 
 
-//#include "layer\ScriptLayer.h"
+#include "layer\ScriptLayer.h"
 #include "cocos2d.h"
 #include "script\ZLabelTTF.h"
 #include <vector>
@@ -11,6 +11,11 @@
 #include "menu\ZOption.h"
 #include "SimpleAudioEngine.h" 
 #include "mail\Courier.h"
+#include "script\ScriptPlayer.h"
+#include "cocos2d.h"
+#include "script\ZLabelTTF.h"
+#include <vector>
+#include "menu\tinyxml.h"
 
 class ScriptLayer;
 class ZGameMenu: public ScriptElement

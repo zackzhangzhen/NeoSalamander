@@ -1,6 +1,6 @@
 #include "ZMenu.h"
 #include "layer\ScriptLayer.h"
-
+#include "menu\ZOption.h"
 
 ZMenu::ZMenu(TiXmlElement* optionsElem, CCNode* parentNode, bool visible) : ScriptElement(ScriptElementType::OPTIONS)
 {
@@ -150,6 +150,7 @@ void ZMenu::optionCallback(CCObject* sender)
 		parLayer->play();
 	}
 }
+
 
 ZMenu::~ZMenu(void)
 {

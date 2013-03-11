@@ -1,6 +1,7 @@
 #include "ZDlg.h"
 #include "layer\ScriptLayer.h"
-
+#include "menu\ZOption.h"
+#include "menu\ZMenu.h"
 
 int ZDlg::POS_LEFT = 0;
 int ZDlg::POS_RIGHT = 1;

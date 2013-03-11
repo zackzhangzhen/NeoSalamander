@@ -9,12 +9,11 @@
 #include "menu\tinyxml.h"
 #include "script\ValueWrapper.h"
 #include "script\ScriptElement.h"
-#include "menu\ZOption.h"
-#include "menu\ZMenu.h"
-//#include "layer\ScriptLayer.h"
 
 
 class ScriptLayer;
+class ZOption;
+class ZMenu;
 
 enum ScriptState{
 	NOT_FADED_IN,

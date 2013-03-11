@@ -1,5 +1,5 @@
 #include "ZOption.h"
-
+#include "menu\ZMenu.h"
 
 ZOption::ZOption(int id, const char* idStr, int score, const char* toLine, const char* toScript, const char* sound, bool isJumpL, bool isJumpS, CCMenu* menu, CCMenuItemFont* item )
 {
@@ -75,6 +75,21 @@ CCMenu* ZOption::getParentMenu()
 CCMenuItemFont* ZOption::getMenuItem()
 {
 	return m_menuItem;
+}
+
+ZMenu* ZOption::getParentZMenu()
+{
+	CCMenu* menu = this->getParentMenu();
+	ZMenu* zMenu = (ZMenu*)menu->getUserObject();
+	return zMenu;
+}
+
+ScriptLayer* ZOption::getParentScriptLayer()
+{
+
+	ScriptLayer* scriptLayer = this->getParentScriptLayer();
+	ScriptPlayer* player = scriptLayer->getCurrentScriptPlayer();
+	return scriptLayer;
 }
 
 ZOption::~ZOption(void)

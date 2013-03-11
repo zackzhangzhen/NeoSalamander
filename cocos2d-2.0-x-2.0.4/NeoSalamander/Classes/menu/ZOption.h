@@ -1,6 +1,9 @@
 #pragma once
 #include "cocos2d.h"
+#include "layer\ScriptLayer.h"
+#include "script\ScriptPlayer.h"
 using namespace cocos2d;
+class ZMenu;
 class ZOption : public CCObject
 {
 public:
@@ -18,8 +21,9 @@ public:
 	const char* getToScript();
 	const char* getToLine();
 	CCMenu* getParentMenu();
+	ZMenu* getParentZMenu();
 	CCMenuItemFont* getMenuItem();
-	
+	ScriptLayer* getParentScriptLayer();
 
 private:
 	int m_id;
