@@ -277,6 +277,45 @@ TiXmlElement* Utility::getRootElementFromFile(const char* fileName)
 	return pElem;
 }
 
+char* Utility::getCurrentTime()
+{
+	try
+	{
+		time_t now = time(0);
+
+		// Convert now to tm struct for local timezone
+		tm* localtm = localtime(&now);
+		return asctime(localtm);
+	}
+	catch(...)
+	{
+		return "Save Point";
+	}
+}
+
+char* Utility::getSaveString(char* title)
+{
+	char* timeString = Utility::getCurrentTime();
+	if(title == NULL && timeString == NULL)
+	{
+		return "Place Holder";
+	}
+
+	if(title == NULL)
+	{
+		return timeString;
+	}
+
+	if(timeString == NULL)
+	{
+		return title;
+	}
+
+
+	char* temp = Utility::zstrcat(title, " - ");
+	return Utility::zstrcat(temp, timeString);
+}
+
 Utility::~Utility(void)
 {
 }

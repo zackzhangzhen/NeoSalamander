@@ -38,6 +38,21 @@ void ZMainMenu::optionCallback(CCObject* sender)
 			ScriptPlayer* scriptPlayer = scriptLayer->getCurrentScriptPlayer();
 			char* title = scriptPlayer->getTitle();
 
+			char* saveString = Utility::getSaveString(title);
+
+			char* scriptId = scriptPlayer->getId();
+
+
+			TiXmlElement* pElem = Utility::getRootElementFromFile(NeoConstants::SAVE_FILE_LOC);
+			TiXmlElement * element = new TiXmlElement( NeoConstants::SAVE_NODE_TAG );
+			element->SetAttribute(NeoConstants::SCRIPT_ATTR_ID, scriptId);
+			TiXmlText * text = new TiXmlText( saveString );
+			element->LinkEndChild(text);
+			pElem->LinkEndChild(element);
+
+			TiXmlDocument* doc = element->GetDocument();
+			doc->SaveFile();
+
 			break;
 		}
 	}

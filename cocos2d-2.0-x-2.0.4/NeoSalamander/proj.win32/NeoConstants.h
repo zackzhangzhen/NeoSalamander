@@ -41,5 +41,10 @@ public:
 	static int FIGURE_VERTICAL_OFFSET;
 
 	static const char* DUMMY_PIC_LOC;
+
+	//Save	
+	static const char* SAVE_FILE_LOC;
+	static const char* SAVE_NODE_ROOT_TAG;
+	static const char* SAVE_NODE_TAG;
 };
 

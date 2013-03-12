@@ -33,6 +33,8 @@ public:
 	static CCMoveToWrapper generateLinearMoveToDownAction(float velocity, bool moveLeft, CCSize size, CCPoint pos);
 	static CCMoveToWrapper generateLinearMoveToHorizontalAction(float velocity, bool moveLeft, CCSize size, CCPoint pos);
 	static CCPoint getCenterPt();
+	static char* getCurrentTime();
+	static char* getSaveString(char* title);
 
 private:
 	Utility(void);
