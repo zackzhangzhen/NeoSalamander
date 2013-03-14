@@ -1,7 +1,7 @@
 #include "ZMainMenu.h"
 
 
-ZMainMenu::ZMainMenu(TiXmlElement* optionsElem, CCNode* parentNode, bool visible) : ZGameMenu(optionsElem, parentNode, visible)
+ZMainMenu::ZMainMenu(CCNode* parentNode, bool visible) : ZGameMenu(parentNode, visible)
 {
 }
 
@@ -11,6 +11,71 @@ CCMenuItemFont* ZMainMenu::createMenuItemWithString(char* text, CCObject* target
 	return menuItem;
 }
 
+
+
+void ZMainMenu::init()
+{
+	TiXmlElement* pElem = Utility::getRootElementFromFile(NeoConstants::MAIN_MENU_FILE_LOC);
+	this->m_optionsElem = pElem;
+
+	TiXmlElement* optionElem = m_optionsElem->FirstChildElement();
+	assert(optionElem != NULL);
+
+	CCMenu* menu = NULL;
+
+	//populate menu items and options 
+	for( ; optionElem != NULL; optionElem=optionElem->NextSiblingElement())
+	{
+		//id
+		int id = 0;
+		optionElem->Attribute("id", &id);
+
+		const char* idStr = optionElem->Attribute("id");
+
+		//text
+		char* text = (char*)optionElem->GetText();
+
+		//sound
+		const char* sound = optionElem->Attribute("sound");
+
+		//use virtual function to create menu item
+		CCMenuItemFont* menuItem = createMenuItemWithString(text, this);
+		 
+		menuItem->setTag(id);
+
+		if(menu == NULL)
+		{
+			menu = CCMenu::menuWithItem(menuItem);
+			menu->setUserObject(this);
+		}
+		else
+		{
+			menu->addChild(menuItem);
+		}
+
+		//create ZOption
+		ZOption* option = NULL;
+		
+
+		option = new ZOption(id, idStr, sound, menu, menuItem);
+		
+		menuItem->setUserObject(option);
+
+		//this->m_optionMap.insert(make_pair(id ,option));
+	}
+
+	//set position to center
+	CCPoint centerPt = Utility::getCenterPt();
+	menu->setPosition(centerPt);
+	menu->alignItemsVertically();
+
+	this->m_menu = menu;
+
+	this->m_parentScriptLayer->addChild(this->m_menu, 11);
+	this->m_menu->setVisible(this->m_visible);
+}
+
+
 void ZMainMenu::optionCallback(CCObject* sender)
 {
 	CCMenuItemFont* item = (CCMenuItemFont*)sender;
@@ -18,19 +83,19 @@ void ZMainMenu::optionCallback(CCObject* sender)
 	int id = option->getId();
 	switch(id)
 	{
-	case 0:
+	case 1:
 		{
 			//new game
 			break;
 		}
 
-	case 1:
+	case 2:
 		{
 			//load game
 			break;
 		}
 
-	case 2:
+	case 3:
 		{
 			//save game
 			ZMenu* menu = option->getParentZMenu();
@@ -46,6 +111,7 @@ void ZMainMenu::optionCallback(CCObject* sender)
 			TiXmlElement* pElem = Utility::getRootElementFromFile(NeoConstants::SAVE_FILE_LOC);
 			TiXmlElement * element = new TiXmlElement( NeoConstants::SAVE_NODE_TAG );
 			element->SetAttribute(NeoConstants::SCRIPT_ATTR_ID, scriptId);
+			element->SetAttribute(NeoConstants::SCRIPT_ATTR_SOUND, NeoConstants::SCRIPT_ATTR_SOUND_OPTION_CORRECT);
 			TiXmlText * text = new TiXmlText( saveString );
 			element->LinkEndChild(text);
 			pElem->LinkEndChild(element);

@@ -39,6 +39,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 	ObjectLayer* l = ObjectLayer::createObjectLayer();
 	l->scheduleObjects();
+	l->addGameMenu();
 	//pScene->addChild(l,1);
 
 	/*CCActionInterval* ac = Utility::getAnimationAction("pic\\explosion\\", "png",26, false, false);

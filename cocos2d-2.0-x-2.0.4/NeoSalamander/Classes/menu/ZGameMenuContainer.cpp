@@ -44,8 +44,8 @@ void ZGameMenuContainer::init(ScriptLayer* scriptLayer)
 		0 - Main Menu
 		1 - Load Menu
 	*/
-	m_optionMap.insert(make_pair(0 ,new ZMainMenu(NULL, NULL, false)));
-	m_optionMap.insert(make_pair(1 ,new ZLoadMenu(NULL, NULL, false)));
+	m_optionMap.insert(make_pair(0 ,new ZMainMenu(NULL, false)));
+	m_optionMap.insert(make_pair(1 ,new ZLoadMenu(NULL, false)));
 }
 
 ZGameMenuContainer::~ZGameMenuContainer(void)

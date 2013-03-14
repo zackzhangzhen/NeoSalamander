@@ -7,9 +7,12 @@
 class ZLoadMenu : public ZGameMenu
 {
 public:
-	ZLoadMenu(TiXmlElement* optionsElem, CCNode* parentNode, bool visible);
+	ZLoadMenu(CCNode* parentNode, bool visible);
+	CCMenu* addBackMenu();
+	virtual void init();
 	virtual CCMenuItemFont* createMenuItemWithString(char* text, CCObject* target);
 	void optionCallback(CCObject* sender);
+	void optionBackCallback(CCObject* sender);
 	~ZLoadMenu(void);
 };
 

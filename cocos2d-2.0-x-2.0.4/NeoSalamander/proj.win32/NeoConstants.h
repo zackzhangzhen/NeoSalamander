@@ -28,6 +28,8 @@ public:
 	static const char* SCRIPT_ATTR_TITLE;
 	static const char* SCRIPT_ATTR_TO_SCRIPT;
 	static const char* SCRIPT_ATTR_MUSIC;
+	static const char* SCRIPT_ATTR_SOUND;
+	static const char* SCRIPT_ATTR_SOUND_OPTION_CORRECT;
 	static const char* SCRIPT_ATTR_ID;
 	static const char* SCRIPT_ATTR_STOP_MUSIC;
 	static const char* SCRIPT_ATTR_FIGURE_VERTICAL_OFFSET;
@@ -46,5 +48,8 @@ public:
 	static const char* SAVE_FILE_LOC;
 	static const char* SAVE_NODE_ROOT_TAG;
 	static const char* SAVE_NODE_TAG;
+
+	//Menu	
+	static const char* MAIN_MENU_FILE_LOC;
 };
 

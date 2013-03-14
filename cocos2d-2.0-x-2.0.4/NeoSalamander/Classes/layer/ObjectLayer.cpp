@@ -39,6 +39,13 @@ void ObjectLayer::scheduleObjects()
 	this->scheduleRandomSpawnInBulk(Utility::getRangedNumber(8,11), RAVEN, Utility::getRangedNumber(0,3),Utility::getRangedNumber(1,4),1.0f, Utility::getRangedNumber(1,91), 0);
 }
 
+void ObjectLayer::addGameMenu()
+{
+	ZMainMenu* mainMenu = new ZMainMenu(this,true);
+	//ZLoadMenu* loadMenu = new ZLoadMenu(this,true);
+
+}
+
 void ObjectLayer::scheduleRandomSpawn(float dt, const char* spriteFileName,int direction, float velocity, int zOrder)
 {
 	LayerScheduler* scheduler = new LayerScheduler((char*)spriteFileName, direction, 0, 0.0F, velocity, zOrder, this);
