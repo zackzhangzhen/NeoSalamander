@@ -178,9 +178,6 @@
     <ClInclude Include="..\Classes\script\ZLabelTTF.h">
       <Filter>include\script</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\utility\CompareCString.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\mail\CSmtp.h">
       <Filter>include\mail</Filter>
     </ClInclude>
@@ -216,6 +213,21 @@
     </ClInclude>
     <ClInclude Include="..\Classes\menu\ZLoadMenu.h">
       <Filter>include\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\scene\ZScene.h">
+      <Filter>include\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\scene\ZTitleScene.h">
+      <Filter>include\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\utility\CompareCString.h">
+      <Filter>include\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\scene\ZMainScene.h">
+      <Filter>include\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\scene\ZSceneMgr.h">
+      <Filter>include\scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -276,9 +288,6 @@
     <ClCompile Include="..\Classes\script\ZLabelTTF.cpp">
       <Filter>source\script</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\utility\CompareCString.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\mail\CSmtp.cpp">
       <Filter>source\mail</Filter>
     </ClCompile>
@@ -314,6 +323,21 @@
     </ClCompile>
     <ClCompile Include="..\Classes\menu\ZLoadMenu.cpp">
       <Filter>source\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\scene\ZScene.cpp">
+      <Filter>source\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\scene\ZTitleScene.cpp">
+      <Filter>source\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\utility\CompareCString.cpp">
+      <Filter>source\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\scene\ZMainScene.cpp">
+      <Filter>source\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\scene\ZSceneMgr.cpp">
+      <Filter>source\scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

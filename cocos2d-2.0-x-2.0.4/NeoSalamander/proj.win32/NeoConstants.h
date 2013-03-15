@@ -51,5 +51,9 @@ public:
 
 	//Menu	
 	static const char* MAIN_MENU_FILE_LOC;
+
+	//Scene
+	static const char* SCENE_NAME_TITLE;
+	static const char* SCENE_NAME_MAIN;
 };
 

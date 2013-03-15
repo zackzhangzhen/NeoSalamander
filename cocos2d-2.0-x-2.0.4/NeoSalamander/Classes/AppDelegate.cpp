@@ -32,14 +32,14 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     // create a scene. it's an autorelease object
     //CCScene *pScene = HelloWorld::scene();
-	CCScene *pScene = CCScene::create();
+	//CCScene *pScene = CCScene::create();
 	//pScene->addChild(new BgLayer());
-	pScene->addChild(new ScriptLayer(), 10);
+	//pScene->addChild(new ScriptLayer(), 10);
 
 
-	ObjectLayer* l = ObjectLayer::createObjectLayer();
-	l->scheduleObjects();
-	l->addGameMenu();
+	//ObjectLayer* l = ObjectLayer::createObjectLayer();
+	//l->scheduleObjects();
+	//l->addGameMenu();
 	//pScene->addChild(l,1);
 
 	/*CCActionInterval* ac = Utility::getAnimationAction("pic\\explosion\\", "png",26, false, false);
@@ -84,12 +84,19 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     // Add the label to HelloWorld layer as a child layer.
     //pScene->addChild(pLabel, 5);
-
-
-
 	//pScene->addChild(player,2);
-    // run
-	pDirector->runWithScene(pScene);
+
+	// run
+	//pDirector->runWithScene(pScene);
+
+	ZTitleScene* pTitleScene = new ZTitleScene();
+	pTitleScene->init();
+
+	//ZMainScene* pMainScene = new ZMainScene();
+	//pTitleScene->init();
+
+	pTitleScene->runByDirector(pDirector);
+    
     return true;
 }
 

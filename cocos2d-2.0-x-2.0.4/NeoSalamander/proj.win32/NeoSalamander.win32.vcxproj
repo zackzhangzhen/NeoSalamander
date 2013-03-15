@@ -149,6 +149,10 @@
     <ClInclude Include="..\Classes\menu\ZMainMenu.h" />
     <ClInclude Include="..\Classes\menu\ZMenu.h" />
     <ClInclude Include="..\Classes\menu\ZOption.h" />
+    <ClInclude Include="..\Classes\scene\ZMainScene.h" />
+    <ClInclude Include="..\Classes\scene\ZScene.h" />
+    <ClInclude Include="..\Classes\scene\ZSceneMgr.h" />
+    <ClInclude Include="..\Classes\scene\ZTitleScene.h" />
     <ClInclude Include="..\Classes\scheduler\LayerScheduler.h" />
     <ClInclude Include="..\Classes\scheduler\ScheduleTempValHolder.h" />
     <ClInclude Include="..\Classes\layer\ScriptLayer.h" />
@@ -184,6 +188,10 @@
     <ClCompile Include="..\Classes\menu\ZMainMenu.cpp" />
     <ClCompile Include="..\Classes\menu\ZMenu.cpp" />
     <ClCompile Include="..\Classes\menu\ZOption.cpp" />
+    <ClCompile Include="..\Classes\scene\ZMainScene.cpp" />
+    <ClCompile Include="..\Classes\scene\ZScene.cpp" />
+    <ClCompile Include="..\Classes\scene\ZSceneMgr.cpp" />
+    <ClCompile Include="..\Classes\scene\ZTitleScene.cpp" />
     <ClCompile Include="..\Classes\scheduler\LayerScheduler.cpp" />
     <ClCompile Include="..\Classes\scheduler\ScheduleTempValHolder.cpp" />
     <ClCompile Include="..\Classes\layer\ScriptLayer.cpp" />

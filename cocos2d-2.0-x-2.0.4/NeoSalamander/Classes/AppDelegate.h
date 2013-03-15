@@ -12,6 +12,8 @@
 #include "sprite/ZSprite.h"
 #include "layer/ObjectLayer.h"
 #include "synchronization\GlobalFlag.h"
+#include "scene\ZTitleScene.h"
+#include "scene\ZMainScene.h"
 /**
 @brief    The cocos2d Application.
 
