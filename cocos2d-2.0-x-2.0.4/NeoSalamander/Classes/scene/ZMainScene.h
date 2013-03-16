@@ -1,10 +1,11 @@
 #pragma once
 #include "scene\ZScene.h"
-#include "layer\ScriptLayer.h"
+
+class ScriptLayer;
 class ZMainScene : public ZScene
 {
 public:
-	ZMainScene(void);
+	ZMainScene(ZSceneMgr*);
 	virtual void init();
 	~ZMainScene(void);
 };

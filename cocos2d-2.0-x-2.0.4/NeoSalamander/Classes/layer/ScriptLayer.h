@@ -8,13 +8,15 @@
 
 class ScriptPlayer;
 class ZMenu;
+class ZMainScene;
 class ScriptLayer : public cocos2d::CCLayer
 {
 public:
-	ScriptLayer(void);
+	ScriptLayer(ZMainScene* parentScene);
 	~ScriptLayer(void);
 
 	//void initScripts();
+	ZMainScene* getParentMainScene();
 	void ccTouchesEnded(cocos2d::CCSet* touches, cocos2d::CCEvent* event);
 	void fadeOutCurrentScript();
 	bool isAnimationPlaying();	
@@ -40,4 +42,5 @@ private:
 	ZSprite* m_cue;
 
 	ScriptPlayer* m_player;
+	ZMainScene* m_parentScene;
 };

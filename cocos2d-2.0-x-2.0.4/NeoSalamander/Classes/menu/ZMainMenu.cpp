@@ -16,7 +16,7 @@ CCMenuItemFont* ZMainMenu::createMenuItemWithString(char* text, CCObject* target
 void ZMainMenu::init()
 {
 	TiXmlElement* pElem = Utility::getRootElementFromFile(NeoConstants::MAIN_MENU_FILE_LOC);
-	this->m_optionsElem = pElem;
+	this->m_optionsElem = pElem->FirstChildElement();
 
 	TiXmlElement* optionElem = m_optionsElem->FirstChildElement();
 	assert(optionElem != NULL);
@@ -86,6 +86,16 @@ void ZMainMenu::optionCallback(CCObject* sender)
 	case 1:
 		{
 			//new game
+			ZMainScene* mainScene = this->m_parentScriptLayer->getParentMainScene();
+			ZSceneMgr* sceneMgr = mainScene->getSceneMgr();
+			ZScene* titleScene = sceneMgr->getTitleScene();
+
+
+			CCDirector::sharedDirector()->setDepthTest(true);
+			CCTransitionScene *transition = CCTransitionPageTurn::create(3.0f, titleScene->getScene(), false); 
+			CCDirector::sharedDirector()->replaceScene(transition); 
+
+
 			break;
 		}
 

@@ -14,6 +14,7 @@
 #include "synchronization\GlobalFlag.h"
 #include "scene\ZTitleScene.h"
 #include "scene\ZMainScene.h"
+#include "scene\ZSceneMgr.h"
 /**
 @brief    The cocos2d Application.
 

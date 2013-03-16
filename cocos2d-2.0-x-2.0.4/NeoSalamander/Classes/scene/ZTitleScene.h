@@ -1,11 +1,17 @@
 #pragma once
 #include "scene\ZScene.h"
-#include "layer\ObjectLayer.h"
+#include "scene\ZSceneMgr.h"
+class ObjectLayer;
+class ZGameMenuContainer;
 class ZTitleScene : public ZScene
 {
 public:
-	ZTitleScene(void);
-	virtual void init();
+	ZTitleScene(ZSceneMgr*);
+	virtual void init();	
+	ZGameMenuContainer* getMenuContainer();
 	~ZTitleScene(void);
+
+private:
+	ZGameMenuContainer* m_menuContainer;
 };
 

@@ -1,5 +1,7 @@
 #pragma once
-#include "ZGameMenu.h"
+#include "menu\ZGameMenu.h"
+#include "scene\ZMainScene.h"
+#include "scene\ZSceneMgr.h"
 class ZMainMenu : public ZGameMenu
 {
 public:

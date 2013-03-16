@@ -1,21 +1,19 @@
 #include "ZGameMenuContainer.h"
-#include "ZMainMenu.h"
-#include "ZLoadMenu.h"
-
-ZGameMenuContainer* ZGameMenuContainer::m_instance;
-
-ZGameMenuContainer::ZGameMenuContainer()
+#include "scene\ZSceneMgr.h"
+ZGameMenuContainer::ZGameMenuContainer(ZSceneMgr* sceneMgr)
 {
+	this->m_sceneMgr = sceneMgr;
+	init();
 }
 
 ScriptLayer* ZGameMenuContainer::getScriptLayer()
 {
-	return m_scriptLayer;
+	return m_sceneMgr->getScriptLayer();
 }
 
 ScriptPlayer* ZGameMenuContainer::getCurrentScriptPayer()
 {
-	ScriptPlayer* player = m_scriptLayer->getCurrentScriptPlayer();
+	ScriptPlayer* player = m_sceneMgr->getScriptLayer()->getCurrentScriptPlayer();
 	assert(player != NULL);	
 	return player;
 }
@@ -27,19 +25,9 @@ char* ZGameMenuContainer::getCurrentScriptId()
 	
 }
 
-ZGameMenuContainer* ZGameMenuContainer::getInstance()
+void ZGameMenuContainer::init()
 {
-	if(m_instance == 0)
-	{
-		m_instance  = new ZGameMenuContainer();
-	}
-
-	return m_instance;
-}
-
-void ZGameMenuContainer::init(ScriptLayer* scriptLayer)
-{
-	assert(scriptLayer != NULL);
+	assert(m_sceneMgr != NULL);
 	/**
 		0 - Main Menu
 		1 - Load Menu

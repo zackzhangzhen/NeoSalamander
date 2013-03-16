@@ -89,14 +89,17 @@ bool AppDelegate::applicationDidFinishLaunching()
 	// run
 	//pDirector->runWithScene(pScene);
 
-	ZTitleScene* pTitleScene = new ZTitleScene();
-	pTitleScene->init();
+	//ZTitleScene* pTitleScene = new ZTitleScene();
+	//pTitleScene->init();
 
 	//ZMainScene* pMainScene = new ZMainScene();
 	//pTitleScene->init();
 
-	pTitleScene->runByDirector(pDirector);
+	//pTitleScene->runByDirector(pDirector);
     
+	ZSceneMgr* mgr = new ZSceneMgr(pDirector);
+	mgr->runTitleScene();
+
     return true;
 }
 

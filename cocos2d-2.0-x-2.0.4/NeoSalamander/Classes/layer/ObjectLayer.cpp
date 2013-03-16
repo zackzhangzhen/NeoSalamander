@@ -1,18 +1,19 @@
-#include "ObjectLayer.h"
+#include "layer\ObjectLayer.h"
+#include "scene\ZTitleScene.h"
 
 const char* ObjectLayer::STEWIE = "pic\\object\\stewie.png";
 const char* ObjectLayer::BLACK_OPS = "pic\\enemy\\blackops.png";
 const char* ObjectLayer::LAND_ROVER = "pic\\enemy\\landrover.png";
 const char* ObjectLayer::RAVEN = "pic\\enemy\\raven.png";
 
-ObjectLayer::ObjectLayer(void)
+ObjectLayer::ObjectLayer(ZTitleScene* parentScene)
 {
-
+	this->m_parentScene = parentScene;
 }
 
-ObjectLayer * ObjectLayer::createObjectLayer(void)
+ObjectLayer * ObjectLayer::createObjectLayer(ZTitleScene* parentScene)
 {
-	ObjectLayer *pRet = new ObjectLayer();
+	ObjectLayer *pRet = new ObjectLayer(parentScene);
 	
     if (pRet && pRet->init())
     {
@@ -42,6 +43,7 @@ void ObjectLayer::scheduleObjects()
 void ObjectLayer::addGameMenu()
 {
 	ZMainMenu* mainMenu = new ZMainMenu(this,true);
+	mainMenu->init();
 	//ZLoadMenu* loadMenu = new ZLoadMenu(this,true);
 
 }
@@ -58,6 +60,11 @@ void ObjectLayer::scheduleRandomSpawnInBulk(float dt, const char* spriteFileName
 	LayerScheduler* scheduler = new LayerScheduler((char*)spriteFileName, direction, spawnBulkCount, spawnInterval, velocity, zOrder, this);
 	this->addChild(scheduler, 0);
 	scheduler->scheduleRandomSpawnInBulk(dt);	
+}
+
+ZTitleScene* ObjectLayer::getParentTitleScene()
+{
+	return this->m_parentScene;
 }
 
 ObjectLayer::~ObjectLayer(void)

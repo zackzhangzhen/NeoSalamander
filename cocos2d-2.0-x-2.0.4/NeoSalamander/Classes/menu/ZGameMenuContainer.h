@@ -1,14 +1,15 @@
 #pragma once
 #include <iostream>
 #include "ZGameMenu.h"
-#include "layer\ScriptLayer.h"
-#include "script\ScriptPlayer.h"
+#include "ZMainMenu.h"
+#include "ZLoadMenu.h"
 using namespace std;
+class ZSceneMgr;
 class ZGameMenuContainer
 {
 public:
 	
-
+	ZGameMenuContainer(ZSceneMgr* parentSceneMgr);
 	static ZGameMenuContainer* getInstance();
 
 	ScriptLayer* getScriptLayer();
@@ -20,12 +21,10 @@ public:
 	
 
 private:
-	ZGameMenuContainer();
-	void init(ScriptLayer* scriptLayer);
+	
+	void init();
 
-	ScriptLayer* m_scriptLayer;
-	static ZGameMenuContainer* m_instance;
+	ZSceneMgr* m_sceneMgr;
 	map<int, ZGameMenu*> m_optionMap;
-	bool m_initialized;
 };
 

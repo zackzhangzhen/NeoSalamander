@@ -2,8 +2,8 @@
 #include "ScriptLayer.h"
 #include "script\ScriptPlayer.h"
 #include "menu\ZMenu.h"
-
-ScriptLayer::ScriptLayer(void)
+#include "scene\ZMainScene.h"
+ScriptLayer::ScriptLayer(ZMainScene* parentScene)
 {
 
 	/*CCSprite* spriteNormal1 = CCSprite::spriteWithFile("pic\\menu\\CloseNormal.png");
@@ -38,9 +38,15 @@ ScriptLayer::ScriptLayer(void)
 	this->setTouchEnabled(true);
 	this->m_isAnimationPlaying = false;
 	this->m_isInOption = false;
+	m_parentScene = parentScene;
 	m_player = NULL;
 	initCueSprite();
 	loadScript(NeoConstants::SCRIPT_FILE_LOC);
+}
+
+ZMainScene* ScriptLayer::getParentMainScene()
+{
+	return m_parentScene;
 }
 
 void ScriptLayer::menuCallback(CCObject* sender)
