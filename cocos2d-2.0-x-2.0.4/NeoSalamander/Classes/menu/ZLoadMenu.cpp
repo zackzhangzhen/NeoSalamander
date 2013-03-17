@@ -58,7 +58,7 @@ void ZLoadMenu::init()
 
 	this->m_menu = menu;
 
-	this->m_parentScriptLayer->addChild(this->m_menu, 11);
+	this->m_parentLayer->addChild(this->m_menu, 11);
 	this->m_menu->setVisible(this->m_visible);
 }
 

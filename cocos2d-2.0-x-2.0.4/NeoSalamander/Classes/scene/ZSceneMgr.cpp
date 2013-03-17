@@ -16,12 +16,14 @@ void ZSceneMgr::addScene(char* key, ZScene* scene)
 void ZSceneMgr::init()
 {
 	ZScene* pTitleScene = new ZTitleScene(this);
-	pTitleScene->init();
+	//need to call addScene before pTitleScene->init() otherwise ZGameMenuContainer::init() called by the latter won't find the scene in the map
 	addScene(pTitleScene->getSceneName(), pTitleScene);
+	pTitleScene->init();
 
 	ZScene* pMainScene = new ZMainScene(this);
-	pMainScene->init();
 	addScene(pMainScene->getSceneName(), pMainScene);
+	pMainScene->init();
+	
 }
 
 void ZSceneMgr::runScene(const char* key)

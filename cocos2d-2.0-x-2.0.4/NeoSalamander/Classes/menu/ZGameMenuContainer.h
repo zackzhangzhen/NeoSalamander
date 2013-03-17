@@ -5,6 +5,7 @@
 #include "ZLoadMenu.h"
 using namespace std;
 class ZSceneMgr;
+class ObjectLayer;
 class ZGameMenuContainer
 {
 public:
@@ -15,7 +16,7 @@ public:
 	ScriptLayer* getScriptLayer();
 	ScriptPlayer* getCurrentScriptPayer();
 	char* getCurrentScriptId();
-
+	
 	~ZGameMenuContainer(void);
 
 	

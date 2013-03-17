@@ -1,5 +1,4 @@
 #include "ZGameMenu.h"
-#include "layer\ScriptLayer.h"
 
 
 ZGameMenu::ZGameMenu(CCNode* parentNode, bool visible) : ScriptElement(ScriptElementType::OPTIONS)
@@ -7,25 +6,23 @@ ZGameMenu::ZGameMenu(CCNode* parentNode, bool visible) : ScriptElement(ScriptEle
 	assert(parentNode != NULL);
 
 	
-	this->m_parentScriptLayer = (ScriptLayer*)parentNode;
+	this->m_parentLayer = (CCLayer*)parentNode;
 	this->m_visible = visible;
 }
 
-ScriptLayer* ZGameMenu::getParentScriptLayer()
+CCLayer* ZGameMenu::getParentLayer()
 {
-	return m_parentScriptLayer;
+	return m_parentLayer;
 }
 
 void ZGameMenu::show()
 {
 	this->m_menu->setVisible(true);
-	this->m_parentScriptLayer->setInOption(true);
 }
 
 void ZGameMenu::hide()
 {
 	this->m_menu->setVisible(false);
-	this->m_parentScriptLayer->setInOption(false);
 }
 
 

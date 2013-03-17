@@ -1,5 +1,6 @@
 #include "ZGameMenuContainer.h"
 #include "scene\ZSceneMgr.h"
+#include "layer\ObjectLayer.h"
 ZGameMenuContainer::ZGameMenuContainer(ZSceneMgr* sceneMgr)
 {
 	this->m_sceneMgr = sceneMgr;
@@ -32,8 +33,11 @@ void ZGameMenuContainer::init()
 		0 - Main Menu
 		1 - Load Menu
 	*/
-	m_optionMap.insert(make_pair(0 ,new ZMainMenu(NULL, false)));
-	m_optionMap.insert(make_pair(1 ,new ZLoadMenu(NULL, false)));
+
+	CCNode* objLayer = this->m_sceneMgr->getObjectLayer();
+
+	m_optionMap.insert(make_pair(0 ,new ZMainMenu(objLayer, false)));
+	m_optionMap.insert(make_pair(1 ,new ZLoadMenu(objLayer, false)));
 }
 
 ZGameMenuContainer::~ZGameMenuContainer(void)

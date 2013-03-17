@@ -17,7 +17,6 @@
 #include <vector>
 #include "menu\tinyxml.h"
 
-class ScriptLayer;
 class ZGameMenu: public ScriptElement
 {
 public:
@@ -27,7 +26,7 @@ public:
 	virtual void optionCallback(CCObject* sender) = 0;
 	void show();
 	void hide();
-	ScriptLayer* getParentScriptLayer();
+	CCLayer* getParentLayer();
 	~ZGameMenu(void);
 
 protected:
@@ -36,6 +35,6 @@ protected:
 	bool m_visible;
 
 	CCMenu* m_menu;
-	ScriptLayer* m_parentScriptLayer;
+	CCLayer* m_parentLayer;
 };
 

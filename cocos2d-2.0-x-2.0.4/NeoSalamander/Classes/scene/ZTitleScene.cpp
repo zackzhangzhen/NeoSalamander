@@ -4,11 +4,12 @@
 
 ZTitleScene::ZTitleScene(ZSceneMgr* sceneMgr):ZScene(sceneMgr)
 {
+	m_sceneName = (char*)NeoConstants::SCENE_NAME_TITLE;
 }
 
 void ZTitleScene::init()
 {
-	m_menuContainer = new ZGameMenuContainer(this->getSceneMgr());
+	
 
 	m_layer = ObjectLayer::createObjectLayer(this);
 	ObjectLayer* objLayer = (ObjectLayer*)m_layer;
@@ -19,12 +20,18 @@ void ZTitleScene::init()
 
 	m_scene->addChild(objLayer,1);
 
-	m_sceneName = (char*)NeoConstants::SCENE_NAME_TITLE;
+	m_menuContainer = new ZGameMenuContainer(this->getSceneMgr());
+	
 }
 
 ZGameMenuContainer* ZTitleScene::getMenuContainer()
 {
 	return this->m_menuContainer;
+}
+
+ObjectLayer* ZTitleScene::getObjectLayer()
+{
+	return (ObjectLayer*)this->m_layer;
 }
 
 ZTitleScene::~ZTitleScene(void)

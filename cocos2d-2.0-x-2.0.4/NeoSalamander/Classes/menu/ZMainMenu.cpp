@@ -1,5 +1,5 @@
 #include "ZMainMenu.h"
-
+#include "layer\ObjectLayer.h"
 
 ZMainMenu::ZMainMenu(CCNode* parentNode, bool visible) : ZGameMenu(parentNode, visible)
 {
@@ -71,7 +71,7 @@ void ZMainMenu::init()
 
 	this->m_menu = menu;
 
-	this->m_parentScriptLayer->addChild(this->m_menu, 11);
+	this->m_parentLayer->addChild(this->m_menu, 11);
 	this->m_menu->setVisible(this->m_visible);
 }
 
@@ -86,13 +86,14 @@ void ZMainMenu::optionCallback(CCObject* sender)
 	case 1:
 		{
 			//new game
-			ZMainScene* mainScene = this->m_parentScriptLayer->getParentMainScene();
-			ZSceneMgr* sceneMgr = mainScene->getSceneMgr();
-			ZScene* titleScene = sceneMgr->getTitleScene();
+			CCLayer* layer = this->m_parentLayer;
+			ZScene* titlenScene = ((ObjectLayer*)layer)->getParentTitleScene();
+			ZSceneMgr* sceneMgr = titlenScene->getSceneMgr();
+			ZScene* mainScene = sceneMgr->getMainScene();
 
 
 			CCDirector::sharedDirector()->setDepthTest(true);
-			CCTransitionScene *transition = CCTransitionPageTurn::create(3.0f, titleScene->getScene(), false); 
+			CCTransitionRotoZoom *transition = CCTransitionRotoZoom::create(3.0f, mainScene->getScene()); 
 			CCDirector::sharedDirector()->replaceScene(transition); 
 
 

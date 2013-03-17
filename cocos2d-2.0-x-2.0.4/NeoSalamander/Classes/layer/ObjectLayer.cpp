@@ -1,6 +1,6 @@
 #include "layer\ObjectLayer.h"
 #include "scene\ZTitleScene.h"
-
+#include "menu\ZGameMenuContainer.h"
 const char* ObjectLayer::STEWIE = "pic\\object\\stewie.png";
 const char* ObjectLayer::BLACK_OPS = "pic\\enemy\\blackops.png";
 const char* ObjectLayer::LAND_ROVER = "pic\\enemy\\landrover.png";

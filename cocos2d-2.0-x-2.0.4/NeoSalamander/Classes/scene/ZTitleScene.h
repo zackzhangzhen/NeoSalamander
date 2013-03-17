@@ -9,6 +9,7 @@ public:
 	ZTitleScene(ZSceneMgr*);
 	virtual void init();	
 	ZGameMenuContainer* getMenuContainer();
+	ObjectLayer* getObjectLayer();
 	~ZTitleScene(void);
 
 private:

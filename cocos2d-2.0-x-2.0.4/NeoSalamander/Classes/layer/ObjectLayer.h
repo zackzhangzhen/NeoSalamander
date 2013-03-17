@@ -14,7 +14,8 @@
 #include "menu/ZMainMenu.h"
 #include "menu/ZLoadMenu.h"
 class ZTitleScene;
-class ObjectLayer: public cocos2d::CCLayer
+class ZGameMenuContainer;
+class ObjectLayer : public cocos2d::CCLayer
 {
 public:
 	ObjectLayer(ZTitleScene* );
