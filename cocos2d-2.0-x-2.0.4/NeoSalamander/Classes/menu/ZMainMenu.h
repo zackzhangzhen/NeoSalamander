@@ -2,7 +2,9 @@
 #include "menu\ZGameMenu.h"
 #include "scene\ZMainScene.h"
 #include "scene\ZSceneMgr.h"
+
 class ObjectLayer;
+class ZGameMenuContainer;
 class ZMainMenu : public ZGameMenu
 {
 public:

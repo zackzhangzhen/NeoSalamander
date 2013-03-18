@@ -12,8 +12,6 @@ void ZMainScene::init()
 	CCDirector::sharedDirector()->pushScene(m_scene);
 	m_layer = new ScriptLayer(this);
 	m_scene->addChild(m_layer, 10);
-
-	
 }
 
 ZMainScene::~ZMainScene(void)

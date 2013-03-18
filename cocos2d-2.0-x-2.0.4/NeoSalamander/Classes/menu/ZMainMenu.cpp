@@ -1,6 +1,6 @@
 #include "ZMainMenu.h"
 #include "layer\ObjectLayer.h"
-
+#include "menu\ZGameMenuContainer.h"
 ZMainMenu::ZMainMenu(CCNode* parentNode, bool visible) : ZGameMenu(parentNode, visible)
 {
 }
@@ -103,6 +103,14 @@ void ZMainMenu::optionCallback(CCObject* sender)
 	case 2:
 		{
 			//load game
+			CCLayer* layer = this->m_parentLayer;
+			ZTitleScene* titlenScene = ((ObjectLayer*)layer)->getParentTitleScene();
+			ZGameMenuContainer* container = titlenScene->getMenuContainer();
+			ZLoadMenu* loadMenu = container->getLoadMenu();
+			ZMainMenu* mainMenu = container->getMainMenu();
+			loadMenu->show();
+			mainMenu->hide();
+
 			break;
 		}
 
