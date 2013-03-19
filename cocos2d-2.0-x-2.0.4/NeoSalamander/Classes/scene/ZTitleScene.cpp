@@ -14,7 +14,6 @@ void ZTitleScene::init()
 	m_layer = ObjectLayer::createObjectLayer(this);
 	ObjectLayer* objLayer = (ObjectLayer*)m_layer;
 	objLayer->scheduleObjects();
-	objLayer->addGameMenu();
 
 	m_scene = CCScene::create();
 
@@ -22,6 +21,24 @@ void ZTitleScene::init()
 
 	m_menuContainer = new ZGameMenuContainer(this->getSceneMgr());
 	
+}
+
+void ZTitleScene::switchMainLoadMenu(bool mainOn)
+{
+	ZGameMenuContainer* container = this->getMenuContainer();
+	ZLoadMenu* loadMenu = container->getLoadMenu();
+	ZMainMenu* mainMenu = container->getMainMenu();
+	if(mainOn)
+	{
+		loadMenu->hide();
+		mainMenu->show();
+	}
+	else
+	{
+		loadMenu->show();
+		mainMenu->hide();
+	}
+
 }
 
 ZGameMenuContainer* ZTitleScene::getMenuContainer()

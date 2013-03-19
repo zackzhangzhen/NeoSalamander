@@ -9,7 +9,7 @@ class ZMainMenu : public ZGameMenu
 {
 public:
 	ZMainMenu(CCNode* parentNode, bool visible);
-	virtual CCMenuItemFont* createMenuItemWithString(char* text, CCObject* target);
+	virtual CCMenuItemFont* createMenuItemWithString(const char* strId, char* text, CCObject* target);
 	virtual void init();
 	void optionCallback(CCObject* sender);
 	~ZMainMenu(void);

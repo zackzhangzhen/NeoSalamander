@@ -3,9 +3,10 @@
 #include "menu\ZGameMenuContainer.h"
 ZMainMenu::ZMainMenu(CCNode* parentNode, bool visible) : ZGameMenu(parentNode, visible)
 {
+	init();
 }
 
-CCMenuItemFont* ZMainMenu::createMenuItemWithString(char* text, CCObject* target)
+CCMenuItemFont* ZMainMenu::createMenuItemWithString(const char* strId, char* text, CCObject* target)
 {
 	CCMenuItemFont* menuItem = CCMenuItemFont::itemWithString(text, this, menu_selector(ZMainMenu::optionCallback)); 
 	return menuItem;
@@ -39,7 +40,7 @@ void ZMainMenu::init()
 		const char* sound = optionElem->Attribute("sound");
 
 		//use virtual function to create menu item
-		CCMenuItemFont* menuItem = createMenuItemWithString(text, this);
+		CCMenuItemFont* menuItem = createMenuItemWithString(NULL,text, this);
 		 
 		menuItem->setTag(id);
 
@@ -81,6 +82,10 @@ void ZMainMenu::optionCallback(CCObject* sender)
 	CCMenuItemFont* item = (CCMenuItemFont*)sender;
 	ZOption* option = (ZOption*)item->getUserObject();
 	int id = option->getId();
+
+	const char* sound = option->getSound();
+	Utility::playSound(sound);
+
 	switch(id)
 	{
 	case 1:
@@ -104,12 +109,8 @@ void ZMainMenu::optionCallback(CCObject* sender)
 		{
 			//load game
 			CCLayer* layer = this->m_parentLayer;
-			ZTitleScene* titlenScene = ((ObjectLayer*)layer)->getParentTitleScene();
-			ZGameMenuContainer* container = titlenScene->getMenuContainer();
-			ZLoadMenu* loadMenu = container->getLoadMenu();
-			ZMainMenu* mainMenu = container->getMainMenu();
-			loadMenu->show();
-			mainMenu->hide();
+			ZTitleScene* titleScene = ((ObjectLayer*)layer)->getParentTitleScene();
+			titleScene->switchMainLoadMenu(false);
 
 			break;
 		}

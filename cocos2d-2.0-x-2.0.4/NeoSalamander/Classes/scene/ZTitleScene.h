@@ -10,6 +10,7 @@ public:
 	virtual void init();	
 	ZGameMenuContainer* getMenuContainer();
 	ObjectLayer* getObjectLayer();
+	void switchMainLoadMenu(bool);
 	~ZTitleScene(void);
 
 private:

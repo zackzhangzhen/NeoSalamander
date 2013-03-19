@@ -36,6 +36,7 @@ const char* NeoConstants::SCENE_NAME_TITLE = "titleScene";
 const char* NeoConstants::SCENE_NAME_MAIN = "mainScene";
 const int NeoConstants::MAIN_MENU_ID = 0;
 const int NeoConstants::LOAD_MENU_ID = 1;
+const char* NeoConstants::LOAD_MENU_BACK_BUTTON_ID = "back";
 NeoConstants::NeoConstants(void)
 {
 }

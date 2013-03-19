@@ -53,6 +53,7 @@ public:
 	static const char* MAIN_MENU_FILE_LOC;
 	static const int MAIN_MENU_ID;
 	static const int LOAD_MENU_ID;
+	static const char* LOAD_MENU_BACK_BUTTON_ID;
 
 	//Scene
 	static const char* SCENE_NAME_TITLE;

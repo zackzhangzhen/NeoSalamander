@@ -7,18 +7,21 @@ ZLoadMenu::ZLoadMenu( CCNode* parentNode, bool visible) : ZGameMenu(parentNode, 
 
 void ZLoadMenu::init()
 {
+	if(this->m_menu != NULL)
+	{
+		//this->m_menu->removeFromParentAndCleanup(true);
+	}
 
 	TiXmlElement* pElem = Utility::getRootElementFromFile(NeoConstants::SAVE_FILE_LOC);
 
 	TiXmlElement* saveElem = pElem->FirstChildElement();
 
-	CCMenu* menu = this->addBackMenu();
+	CCMenu* menu = NULL;
 
 	//populate menu items and options 
 	for( ; saveElem != NULL; saveElem=saveElem->NextSiblingElement())
 	{
 		//id		
-
 		const char* idStr = saveElem->Attribute(NeoConstants::SCRIPT_ATTR_ID);
 
 		//text
@@ -28,7 +31,8 @@ void ZLoadMenu::init()
 		const char* sound = saveElem->Attribute(NeoConstants::SCRIPT_ATTR_SOUND);
 
 		//use virtual function to create menu item
-		CCMenuItemFont* menuItem = createMenuItemWithString(text, this);
+		CCMenuItemFont* menuItem = createMenuItemWithString(idStr, text, this);
+		menuItem->setFontSize(20);
 
 		if(menu == NULL)
 		{
@@ -62,9 +66,17 @@ void ZLoadMenu::init()
 	this->m_menu->setVisible(this->m_visible);
 }
 
-CCMenuItemFont* ZLoadMenu::createMenuItemWithString(char* text, CCObject* target)
+CCMenuItemFont* ZLoadMenu::createMenuItemWithString(const char* idStr, char* text, CCObject* target)
 {
-	CCMenuItemFont* menuItem = CCMenuItemFont::itemWithString(text, this, menu_selector(ZLoadMenu::optionCallback)); 
+	CCMenuItemFont* menuItem = NULL;
+	if(strcmp(idStr,NeoConstants::LOAD_MENU_BACK_BUTTON_ID) == 0)
+	{
+		menuItem = CCMenuItemFont::itemWithString(text, this, menu_selector(ZLoadMenu::optionBackCallback)); 
+	}
+	else
+	{
+		menuItem = CCMenuItemFont::itemWithString(text, this, menu_selector(ZLoadMenu::optionCallback)); 
+	}
 	return menuItem;
 }
 
@@ -91,6 +103,9 @@ void ZLoadMenu::optionCallback(CCObject* sender)
 	ZGameMenu* zMenu = (ZGameMenu*)menu->getUserObject();
 	zMenu->hide();
 
+	ObjectLayer* objLayer = (ObjectLayer*)zMenu->getParentLayer();
+	ZTitleScene* titleScene = objLayer->getParentTitleScene();
+	titleScene->switchMainLoadMenu(true);
 
 	//play the sound
 	Utility::playSound(option->getSound());
@@ -100,15 +115,21 @@ void ZLoadMenu::optionBackCallback(CCObject* sender)
 {
 	CCMenuItemFont* item = (CCMenuItemFont*)sender;
 	ZOption* option = (ZOption*)item->getUserObject();
-	int id = option->getId();
-	
-	//Hide main menu and show the sub menu
 	CCMenu* menu = option->getParentMenu();
 	ZGameMenu* zMenu = (ZGameMenu*)menu->getUserObject();
-	zMenu->hide();
+	
+	ObjectLayer* objLayer = (ObjectLayer*)zMenu->getParentLayer();
+	ZTitleScene* titleScene = objLayer->getParentTitleScene();
+	titleScene->switchMainLoadMenu(true);
 
 	//play the sound
 	Utility::playSound(option->getSound());
+}
+
+void ZLoadMenu::show()
+{
+	this->init();
+	this->m_menu->setVisible(true);
 }
 
 ZLoadMenu::~ZLoadMenu(void)
