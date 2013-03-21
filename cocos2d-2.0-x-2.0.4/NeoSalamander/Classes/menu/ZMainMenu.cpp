@@ -47,13 +47,13 @@ void ZMainMenu::init()
 		if(menu == NULL)
 		{
 			menu = CCMenu::menuWithItem(menuItem);
-			menu->setUserObject(this);
+			
 		}
 		else
 		{
 			menu->addChild(menuItem);
 		}
-
+		menu->setUserObject(this);
 		//create ZOption
 		ZOption* option = NULL;
 		
@@ -92,8 +92,8 @@ void ZMainMenu::optionCallback(CCObject* sender)
 		{
 			//new game
 			CCLayer* layer = this->m_parentLayer;
-			ZScene* titlenScene = ((ObjectLayer*)layer)->getParentTitleScene();
-			ZSceneMgr* sceneMgr = titlenScene->getSceneMgr();
+			ZScene* titleScene = ((ObjectLayer*)layer)->getParentTitleScene();
+			ZSceneMgr* sceneMgr = titleScene->getSceneMgr();
 			ZScene* mainScene = sceneMgr->getMainScene();
 
 
@@ -118,8 +118,10 @@ void ZMainMenu::optionCallback(CCObject* sender)
 	case 3:
 		{
 			//save game
-			ZMenu* menu = option->getParentZMenu();
-			ScriptLayer* scriptLayer = menu->getParentScriptLayer();
+			CCLayer* layer = this->m_parentLayer;
+			ZScene* titleScene = ((ObjectLayer*)layer)->getParentTitleScene();
+			ZSceneMgr* sceneMgr = titleScene->getSceneMgr();
+			ScriptLayer* scriptLayer = sceneMgr->getScriptLayer();
 			ScriptPlayer* scriptPlayer = scriptLayer->getCurrentScriptPlayer();
 			char* title = scriptPlayer->getTitle();
 
@@ -139,15 +141,11 @@ void ZMainMenu::optionCallback(CCObject* sender)
 			TiXmlDocument* doc = element->GetDocument();
 			doc->SaveFile();
 
+			((ZTitleScene*)titleScene)->switchMainLoadMenu(true);
+
 			break;
 		}
 	}
-	
-	//Hide main menu and show the sub menu
-	CCMenu* menu = option->getParentMenu();
-	ZGameMenu* zMenu = (ZGameMenu*)menu->getUserObject();
-	zMenu->hide();
-
 
 	//play the sound
 	Utility::playSound(option->getSound());

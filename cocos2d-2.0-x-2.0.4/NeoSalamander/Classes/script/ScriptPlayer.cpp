@@ -27,7 +27,7 @@ ScriptPlayer::ScriptPlayer(char* id, TiXmlElement* scriptElem, CCNode* parentNod
 
 	this->m_nextScriptPlayerId = (char*)scriptElem->Attribute(NeoConstants::SCRIPT_ATTR_TO_SCRIPT);
 	this->m_id = id;
-	this->m_title = (char*)scriptElem->Attribute(NeoConstants::SCRIPT_ATTR_TO_SCRIPT);
+	this->m_title = (char*)scriptElem->Attribute(NeoConstants::SCRIPT_ATTR_TITLE);
 	m_iter = m_vec.begin();
 	this->m_parentScriptLayer = (ScriptLayer*) parentNode;
 	this->fadedIn = false;

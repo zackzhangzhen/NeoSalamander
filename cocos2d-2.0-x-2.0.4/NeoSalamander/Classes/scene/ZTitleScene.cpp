@@ -41,6 +41,16 @@ void ZTitleScene::switchMainLoadMenu(bool mainOn)
 
 }
 
+void ZTitleScene::switchOffAllMenus()
+{
+	ZGameMenuContainer* container = this->getMenuContainer();
+	ZLoadMenu* loadMenu = container->getLoadMenu();
+	ZMainMenu* mainMenu = container->getMainMenu();
+	
+	loadMenu->hide();
+	mainMenu->hide();
+}
+
 ZGameMenuContainer* ZTitleScene::getMenuContainer()
 {
 	return this->m_menuContainer;

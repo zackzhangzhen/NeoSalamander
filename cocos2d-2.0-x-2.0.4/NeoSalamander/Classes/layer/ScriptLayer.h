@@ -29,11 +29,13 @@ public:
 	void switchCue(bool on);
 	void play();
 	void menuCallback(CCObject* sender);
+	void setScriptPlayer(ScriptPlayer* player);
 	void setNextScriptPlayerAsync(char* id);
 	void setNextScriptPlayerSync(char* id);
 	ScriptPlayer* getCurrentScriptPlayer();
-private:
 	ScriptPlayer* findScriptPlayerByKey(char* key);
+private:
+	
 	bool m_isAnimationPlaying;
 	bool m_isInOption;
 	//need to specify a comparator here since the default one compares the address of the char* pointer...

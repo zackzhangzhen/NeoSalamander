@@ -168,6 +168,10 @@ ScriptPlayer* ScriptLayer::findScriptPlayerByKey(char* key)
 
 	return iter->second;
 }
+void ScriptLayer::setScriptPlayer(ScriptPlayer* player)
+{
+	this->m_player = player;
+}
 void ScriptLayer::setNextScriptPlayerAsync(char* id)
 {
 	if(id != NULL)// if for some reason the id was not configured for this option, just ignore and go on rolling the script

@@ -285,7 +285,13 @@ char* Utility::getCurrentTime()
 
 		// Convert now to tm struct for local timezone
 		tm* localtm = localtime(&now);
-		return asctime(localtm);
+
+		char* output = new char[30];
+		strftime(output, 30, "%Y-%m-%d-%H:%M:%S %a", localtm);
+
+		return output;
+
+		//return asctime(localtm);
 	}
 	catch(...)
 	{

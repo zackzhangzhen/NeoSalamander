@@ -11,6 +11,7 @@ public:
 	ZGameMenuContainer* getMenuContainer();
 	ObjectLayer* getObjectLayer();
 	void switchMainLoadMenu(bool);
+	void switchOffAllMenus();
 	~ZTitleScene(void);
 
 private:

@@ -1,12 +1,6 @@
 <?xml version="1.0" ?>
 <saves>
-    <save id = "back" sound="option_correct">
-	   返回
-    </save> 
-    <save id = "s2" sound="option_correct">
-	   约会 - 2013-03-12:21:05
-    </save>     
-    <save id = "s2" sound="option_correct">
-	   疑问 - 2013-03-19:21:05
-    </save>           
+    <save id="back" sound="option_correct">返回</save>
+    <save id="s1" sound="option_correct">初遇 - 2013 03-21 21-56-43 Thu</save>
+    <save id="s1" sound="option_correct">初遇 - 2013-03-21-22:02:55 Thu</save>
 </saves>
