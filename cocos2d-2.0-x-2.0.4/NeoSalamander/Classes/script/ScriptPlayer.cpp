@@ -16,8 +16,9 @@ ScriptPlayer::ScriptPlayer(char* id, TiXmlElement* scriptElem, CCNode* parentNod
 	TiXmlElement* dlgElem = scriptElem->FirstChildElement();
 	assert(dlgElem != NULL);
 
-	//Initialize the background sprite
-	initBg(scriptElem, parentNode);
+	//Initialize the background sprite, don't initialize here, will lazy-initialize it, so that it saves memory, and also when loading a game it will be re-initialized, this is necessary as it might have been manually GCed.
+	//initBg(scriptElem, parentNode);
+	m_bgPic = (char*)scriptElem->Attribute(NeoConstants::SCRIPT_ATTR_PIC);
 
 	for( ; dlgElem != NULL; dlgElem=dlgElem->NextSiblingElement())
 	{
@@ -36,10 +37,9 @@ ScriptPlayer::ScriptPlayer(char* id, TiXmlElement* scriptElem, CCNode* parentNod
 ScriptPlayer::~ScriptPlayer(void)
 {
 }
-void ScriptPlayer::initBg(TiXmlElement* scriptElem, CCNode* parentNode)
-{
-	char* bg_pic_name = (char*)scriptElem->Attribute(NeoConstants::SCRIPT_ATTR_PIC);
-	this->m_bg = new ZSprite(Utility::zstrcat((char*)NeoConstants::BG_PIC_BASE, bg_pic_name), parentNode);
+void ScriptPlayer::initBg()
+{	
+	this->m_bg = new ZSprite(Utility::zstrcat((char*)NeoConstants::BG_PIC_BASE, m_bgPic), m_parentScriptLayer);
 	this->m_bg->setOpacity(0); // will fade in when the script plays
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 
@@ -176,6 +176,9 @@ bool ScriptPlayer::play(bool delay)
 {
 	if(!fadedIn)
 	{
+		//lazy-initialization
+		this->initBg();
+
 		this->fadeIn(delay);
 		this->fadedIn = true;
 

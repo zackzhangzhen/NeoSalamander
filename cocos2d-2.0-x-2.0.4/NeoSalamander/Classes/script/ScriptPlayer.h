@@ -10,7 +10,7 @@ public:
 	ScriptPlayer(char* id, vector<ZDlg*>& vec);
 	ScriptPlayer(char* id, TiXmlElement* scriptElem, CCNode* parentNode);
 	~ScriptPlayer(void);
-	void initBg(TiXmlElement* scriptElem, CCNode* parentNode);
+	void initBg();
 	void setAnimationPlayingDone(CCNode* sender);
 	void switchCueOn(CCNode* sender);
 	void switchCueOff(CCNode* sender);
@@ -34,6 +34,7 @@ private:
 	ZSprite* m_bg;
 	ScriptLayer* m_parentScriptLayer;
 	bool fadedIn;
+	char* m_bgPic;
 };
 
 

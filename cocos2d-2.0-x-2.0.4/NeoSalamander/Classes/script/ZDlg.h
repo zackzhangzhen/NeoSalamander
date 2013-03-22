@@ -31,9 +31,10 @@ public:
 	~ZDlg(void);
 
 	void ZDlgInit(int pos, vector<ScriptElement*>& scripts, char* figureFileName, char* musicName, bool isStopMusic, CCNode* parentNode, int colorCode, char* font, int size = ZLabelTTF::FONT_DEFAULT_SIZE, int figure_vertical_offset = NeoConstants::FIGURE_VERTICAL_OFFSET);
+	void ZDlgLazyInit();
 	void calcFrameSizes(void);
 	void calcPos(int figure_vertical_offset = NeoConstants::FIGURE_VERTICAL_OFFSET);
-	void initFramePrototype();
+	void initFramePrototype(CCNode*, int);
 	void initFrame();
 	void init(int figure_vertical_offset = NeoConstants::FIGURE_VERTICAL_OFFSET);
 	void calcInitPos(void);
@@ -99,6 +100,12 @@ private:
 	ScriptState m_scriptState;
 	char* m_musicName;
 	bool m_stopMusic;
+	int m_figureVerticalOffset;
+	char* m_figureFileName;
+	vector<ScriptElement*> m_scripts;
+	int m_colorCode;
+	char* m_font;
+	int m_size;
 };
 
 

@@ -98,7 +98,8 @@ void ZMainMenu::optionCallback(CCObject* sender)
 
 
 			CCDirector::sharedDirector()->setDepthTest(true);
-			CCTransitionRotoZoom *transition = CCTransitionRotoZoom::create(3.0f, mainScene->getScene()); 
+			//CCTransitionScene *transition = CCTransitionPageTurn::create(3.0f, mainScene->getScene(), true);
+			CCTransitionScene *transition = CCTransitionRotoZoom::create(3.0f, mainScene->getScene()); 
 			CCDirector::sharedDirector()->replaceScene(transition); 
 
 

@@ -79,42 +79,68 @@ void ZDlg::ZDlgInit(int pos, vector<ScriptElement*>& scripts, char* figureFileNa
 {
 	m_scriptState = ScriptState::NOT_FADED_IN;
 	m_parentScriptLayer = NULL;
+	m_figureFileName = figureFileName;
 	m_musicName = musicName;
 	m_stopMusic = isStopMusic;
-
+	m_figureVerticalOffset = figure_vertical_offset;
+	m_scripts = scripts;
+	m_colorCode = colorCode;
+	m_font = font;
+	m_size = size;
 	this->m_frame = NULL;
-	 initFramePrototype();
+	
 
 	 this->m_pos = pos;
-	 initFrame();
 
-	//this->m_scriptLabel = CCLabelTTF::create(script, font, size, CCSizeMake(/*68*/NeoConstants::WIN_WIDTH/2, 480),kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter);
-	this->m_scriptLabel = new ZLabelTTF(scripts, this->getScriptSize(), colorCode, font == NULL? ZLabelTTF::YAHEI : font,  size);
-		
-	this->m_figure = new ZSprite(figureFileName);
-
-	init(figure_vertical_offset);
-
-	if(parentNode != NULL)
+	 if(parentNode != NULL)
 	{
 		this->m_parentScriptLayer = (ScriptLayer*)parentNode;
-		this->addToCCNode(parentNode, 10);
+		//move to ZDlgLazyInit()
+		//this->addToCCNode(parentNode, 10);
 	}
+
+	 
+
+	//this->m_scriptLabel = CCLabelTTF::create(script, font, size, CCSizeMake(/*68*/NeoConstants::WIN_WIDTH/2, 480),kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter);
+	
+		
+	//move to ZDlgLazyInit()
+	//this->m_figure = new ZSprite(figureFileName);
+
 }
 
-void ZDlg::initFramePrototype()
+void ZDlg::ZDlgLazyInit()
+{		
+	initFramePrototype(m_parentScriptLayer, 10+1);
+	initFrame();
+	this->m_scriptLabel = new ZLabelTTF(m_scripts, this->getScriptSize(), m_colorCode, m_font == NULL? ZLabelTTF::YAHEI : m_font,  m_size);
+	this->m_figure = new ZSprite(m_figureFileName);
+	
+
+	init(m_figureVerticalOffset);
+	this->addToCCNode(m_parentScriptLayer, 10);
+}
+
+void ZDlg::initFramePrototype(CCNode* parent, int zOrder)
 {
+	//In here, must add all the frames in to a parent, otherwise they will be destroyed soon.
 	if(FRAME_L == NULL)
 	{
 		FRAME_L = new ZSprite(FRAME_L_NAME);
+		FRAME_L->addToCCNode(parent, zOrder);
+		FRAME_L->setOpacity(0);
 	}
 	if(FRAME_R == NULL)
 	{
 		FRAME_R = new ZSprite(FRAME_R_NAME);
+		FRAME_R->addToCCNode(parent, zOrder);
+		FRAME_R->setOpacity(0);
 	}
 	if(FRAME_F == NULL)
 	{
 		FRAME_F = new ZSprite(FRAME_F_NAME);
+		FRAME_F->addToCCNode(parent, zOrder);
+		FRAME_F->setOpacity(0);
 	}
 }
 
@@ -139,6 +165,7 @@ void ZDlg::initFrame()
 		}
 	 }
 }
+
 
 void ZDlg::addToCCNode(CCNode* node, int baseOrder)
 {
@@ -320,6 +347,7 @@ bool ZDlg::play(bool delay)
 	{
 		case(ScriptState::NOT_FADED_IN):
 		{
+			this->ZDlgLazyInit();
 			this->fadeIn(delay);
 			return false;
 		}
@@ -361,6 +389,8 @@ void ZDlg::calcInitOpacity(void)
 
 			break;
 		}
+		default:
+			m_frame->setOpacity(255);
 	}
 }
 
