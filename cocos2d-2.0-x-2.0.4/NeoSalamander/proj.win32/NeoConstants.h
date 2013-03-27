@@ -54,6 +54,11 @@ public:
 	static const int MAIN_MENU_ID;
 	static const int LOAD_MENU_ID;
 	static const char* LOAD_MENU_BACK_BUTTON_ID;
+	static const char* BACK_MENU_NORMAL_IMAGE_PATH;
+	static const char* BACK_MENU_SELECTED_IMAGE_PATH;
+
+	//Sound
+	static const char* DEFAULT_SOUND_NAME;
 
 	//Scene
 	static const char* SCENE_NAME_TITLE;

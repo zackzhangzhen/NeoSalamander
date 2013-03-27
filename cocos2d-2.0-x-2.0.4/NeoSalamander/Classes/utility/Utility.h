@@ -9,6 +9,7 @@
 #include "action/CCMoveToWrapper.h"
 #include "SimpleAudioEngine.h" 
 #include "menu\tinyxml.h"
+#include "scene\ZSceneMgr.h"
 using namespace cocos2d;
 class Utility
 {
@@ -33,6 +34,10 @@ public:
 	static CCMoveToWrapper generateLinearMoveToDownAction(float velocity, bool moveLeft, CCSize size, CCPoint pos);
 	static CCMoveToWrapper generateLinearMoveToHorizontalAction(float velocity, bool moveLeft, CCSize size, CCPoint pos);
 	static CCPoint getCenterPt();
+	static CCPoint getTopRightPt();
+	static void replaceTitleWithMainScene(ZSceneMgr* mgr);
+	static void replaceMainWithTitleScene(ZSceneMgr* mgr);
+	static void replaceScene(ZScene* originScene, ZScene* targetScene);
 	static char* getCurrentTime();
 	static char* getSaveString(char* title);
 

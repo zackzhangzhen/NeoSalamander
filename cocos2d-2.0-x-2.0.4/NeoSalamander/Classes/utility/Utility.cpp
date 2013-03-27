@@ -212,6 +212,11 @@ CCPoint Utility::getCenterPt()
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
     return ccp(size.width/2, size.height - 150);
 }
+CCPoint Utility::getTopRightPt()
+{
+	CCSize size = CCDirector::sharedDirector()->getWinSize();
+    return ccp(size.width, size.height);
+}
 
 void Utility::playSound(const char* soundName, bool repeat)
 {
@@ -320,6 +325,38 @@ char* Utility::getSaveString(char* title)
 
 	char* temp = Utility::zstrcat(title, " - ");
 	return Utility::zstrcat(temp, timeString);
+}
+void Utility::replaceTitleWithMainScene(ZSceneMgr* mgr)
+{
+	ZScene* titleScene = mgr->getTitleScene();
+	ZScene* mainScene = mgr->getMainScene();
+
+	replaceScene(titleScene, mainScene);
+}
+
+void Utility::replaceMainWithTitleScene(ZSceneMgr* mgr)
+{
+	ZScene* titleScene = mgr->getTitleScene();
+	ZScene* mainScene = mgr->getMainScene();
+
+	replaceScene(mainScene, titleScene);
+}
+
+void Utility::replaceScene(ZScene* originScene, ZScene* targetScene)
+{
+
+	//CCDirector::sharedDirector()->popScene();
+	//CCDirector::sharedDirector()->pushScene(originScene->getScene());
+	CCDirector::sharedDirector()->setDepthTest(true);
+	//CCTransitionScene *transition = CCTransitionPageTurn::create(3.0f, mainScene->getScene(), true);
+	
+	CCTransitionScene *transition = CCTransitionRotoZoom::create(3.0f, targetScene->getScene()); 
+	
+	
+	CCDirector::sharedDirector()->replaceScene(transition); 
+	//CCDirector::sharedDirector()->startAnimation();
+	//targetScene->getScene()->resumeSchedulerAndActions();
+	
 }
 
 Utility::~Utility(void)

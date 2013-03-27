@@ -72,10 +72,10 @@ ZDlg::ZDlg(TiXmlElement* dlgElem, CCNode* parentNode)
 		
 	}
 
-	ZDlgInit(pos, lines, imageFile, musicName, isStopMusic, parentNode, colorCode, font, size, figure_vertical_offset);
+	zDlgInit(pos, lines, imageFile, musicName, isStopMusic, parentNode, colorCode, font, size, figure_vertical_offset);
 }
 
-void ZDlg::ZDlgInit(int pos, vector<ScriptElement*>& scripts, char* figureFileName, char* musicName, bool isStopMusic, CCNode* parentNode,int colorCode, char* font, int size, int figure_vertical_offset)
+void ZDlg::zDlgInit(int pos, vector<ScriptElement*>& scripts, char* figureFileName, char* musicName, bool isStopMusic, CCNode* parentNode,int colorCode, char* font, int size, int figure_vertical_offset)
 {
 	m_scriptState = ScriptState::NOT_FADED_IN;
 	m_parentScriptLayer = NULL;
@@ -109,7 +109,7 @@ void ZDlg::ZDlgInit(int pos, vector<ScriptElement*>& scripts, char* figureFileNa
 
 }
 
-void ZDlg::ZDlgLazyInit()
+void ZDlg::zDlgLazyInit()
 {		
 	initFramePrototype(m_parentScriptLayer, 10+1);
 	initFrame();
@@ -338,6 +338,12 @@ void ZDlg::jumpToLine(char* lineId)
 	this->m_scriptLabel->jumpToLine(lineId);
 }
 
+void ZDlg::refresh()
+{
+	m_scriptState = ScriptState::NOT_FADED_IN;
+	this->zDlgLazyInit();
+}
+
 bool ZDlg::play(bool delay)
 {
 	//when the background fades in, the cue is turned on, will need to turn it off when the scripts start to play.
@@ -347,7 +353,7 @@ bool ZDlg::play(bool delay)
 	{
 		case(ScriptState::NOT_FADED_IN):
 		{
-			this->ZDlgLazyInit();
+			this->zDlgLazyInit();
 			this->fadeIn(delay);
 			return false;
 		}

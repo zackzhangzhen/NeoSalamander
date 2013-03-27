@@ -94,15 +94,7 @@ void ZMainMenu::optionCallback(CCObject* sender)
 			CCLayer* layer = this->m_parentLayer;
 			ZScene* titleScene = ((ObjectLayer*)layer)->getParentTitleScene();
 			ZSceneMgr* sceneMgr = titleScene->getSceneMgr();
-			ZScene* mainScene = sceneMgr->getMainScene();
-
-
-			CCDirector::sharedDirector()->setDepthTest(true);
-			//CCTransitionScene *transition = CCTransitionPageTurn::create(3.0f, mainScene->getScene(), true);
-			CCTransitionScene *transition = CCTransitionRotoZoom::create(3.0f, mainScene->getScene()); 
-			CCDirector::sharedDirector()->replaceScene(transition); 
-
-
+			Utility::replaceTitleWithMainScene(sceneMgr);
 			break;
 		}
 

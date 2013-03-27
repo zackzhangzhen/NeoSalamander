@@ -9,6 +9,7 @@
 class ScriptPlayer;
 class ZMenu;
 class ZMainScene;
+class ZBackMenu;
 class ScriptLayer : public cocos2d::CCLayer
 {
 public:
@@ -29,9 +30,12 @@ public:
 	void switchCue(bool on);
 	void play();
 	void menuCallback(CCObject* sender);
-	void setScriptPlayer(ScriptPlayer* player);
+	void refresh(char* strId);
+	void resetCurrentScriptPlayer(char* strId);
+	void setCurrentScriptPlayer(ScriptPlayer* player);
 	void setNextScriptPlayerAsync(char* id);
 	void setNextScriptPlayerSync(char* id);
+	void switchBackMenu(bool on);
 	ScriptPlayer* getCurrentScriptPlayer();
 	ScriptPlayer* findScriptPlayerByKey(char* key);
 private:
@@ -45,4 +49,5 @@ private:
 
 	ScriptPlayer* m_player;
 	ZMainScene* m_parentScene;
+	ZBackMenu* m_backMenu;
 };

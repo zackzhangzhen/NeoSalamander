@@ -97,27 +97,23 @@ void ZLoadMenu::optionCallback(CCObject* sender)
 	ZOption* option = (ZOption*)item->getUserObject();
 	const char* scriptIdStr = option->getIdStr();
 	
+
 	
 	//Hide main menu and show the sub menu
 	CCMenu* menu = option->getParentMenu();
 	ZGameMenu* zMenu = (ZGameMenu*)menu->getUserObject();
 	zMenu->hide();
 
-	//set the script id
+
 	ObjectLayer* objLayer = (ObjectLayer*)zMenu->getParentLayer();
 	ZTitleScene* titleScene = objLayer->getParentTitleScene();
+	titleScene->switchMainLoadMenu(true);
 	ZSceneMgr* mgr = titleScene->getSceneMgr();
-	ScriptLayer* scriptLayer = mgr->getScriptLayer();
-	ScriptPlayer* player = scriptLayer->findScriptPlayerByKey((char*)scriptIdStr);
-	scriptLayer->setScriptPlayer(player);
+	
+	//reset the script to play
+	mgr->refreshMainScene((char*)scriptIdStr);
 
-	//pop out main scene, push title scene and transition from title scene to main scene
-	ZScene* mainScene = mgr->getMainScene();
-	CCDirector::sharedDirector()->popScene();
-	CCDirector::sharedDirector()->pushScene(titleScene->getScene());
-	CCDirector::sharedDirector()->setDepthTest(true);
-	CCTransitionRotoZoom *transition = CCTransitionRotoZoom::create(3.0f, mainScene->getScene()); 
-	CCDirector::sharedDirector()->replaceScene(transition); 
+	Utility::replaceTitleWithMainScene(mgr);
 
 	//play the sound
 	Utility::playSound(option->getSound());

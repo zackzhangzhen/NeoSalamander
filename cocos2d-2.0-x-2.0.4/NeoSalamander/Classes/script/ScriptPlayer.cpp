@@ -27,6 +27,9 @@ ScriptPlayer::ScriptPlayer(char* id, TiXmlElement* scriptElem, CCNode* parentNod
 	}
 
 	this->m_nextScriptPlayerId = (char*)scriptElem->Attribute(NeoConstants::SCRIPT_ATTR_TO_SCRIPT);
+	this->m_originNextScriptPlayerId = (char*)scriptElem->Attribute(NeoConstants::SCRIPT_ATTR_TO_SCRIPT);
+
+
 	this->m_id = id;
 	this->m_title = (char*)scriptElem->Attribute(NeoConstants::SCRIPT_ATTR_TITLE);
 	m_iter = m_vec.begin();
@@ -37,6 +40,32 @@ ScriptPlayer::ScriptPlayer(char* id, TiXmlElement* scriptElem, CCNode* parentNod
 ScriptPlayer::~ScriptPlayer(void)
 {
 }
+
+void ScriptPlayer::refresh()
+{
+	//when making choices, sometimes the next script id will be reset, so when loading that script,will need to set it back.
+	this->resetNextScriptId();
+	//when the script faded out, the background sprite will be released, so when loading that script, will need to create it again.
+	this->initBg();
+
+	//when the gamer load a game in the middle of playing, the iterator would have moved, and the state would have chanegd, reset them to default.
+	m_iter = m_vec.begin();
+	this->fadedIn = false;			
+	this->m_parentScriptLayer->switchCue(false);//turn off cue
+
+	refreshChildrenDlg();
+}
+
+void ScriptPlayer::refreshChildrenDlg()
+{
+	vector<ZDlg*>::iterator iter = m_vec.begin();
+	for(; iter != m_vec.end(); iter++)
+	{
+		ZDlg* dlg = *iter;
+		dlg->refresh();
+	}
+}
+
 void ScriptPlayer::initBg()
 {	
 	this->m_bg = new ZSprite(Utility::zstrcat((char*)NeoConstants::BG_PIC_BASE, m_bgPic), m_parentScriptLayer);
@@ -59,6 +88,16 @@ char* ScriptPlayer::getTitle()
 char* ScriptPlayer::getNextScriptPlayerId()
 {
 	return this->m_nextScriptPlayerId;
+}
+
+char* ScriptPlayer::getOriginNextScriptPlayerId()
+{
+	return this->m_originNextScriptPlayerId;
+}
+
+void ScriptPlayer::resetNextScriptId()
+{
+	this->m_nextScriptPlayerId = this->m_originNextScriptPlayerId;
 }
 
 void ScriptPlayer::setNextScriptPlayerId(char* id)

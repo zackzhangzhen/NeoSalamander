@@ -3,6 +3,7 @@
 #include "script\ScriptPlayer.h"
 #include "menu\ZMenu.h"
 #include "scene\ZMainScene.h"
+#include "menu\ZBackMenu.h"
 ScriptLayer::ScriptLayer(ZMainScene* parentScene)
 {
 
@@ -40,6 +41,8 @@ ScriptLayer::ScriptLayer(ZMainScene* parentScene)
 	this->m_isInOption = false;
 	m_parentScene = parentScene;
 	m_player = NULL;
+	m_backMenu = new ZBackMenu(this, true);
+	m_backMenu->init();
 	initCueSprite();
 	loadScript(NeoConstants::SCRIPT_FILE_LOC);
 }
@@ -77,6 +80,18 @@ void ScriptLayer::initCueSprite(void)
 void ScriptLayer::switchCue(bool on)
 {
 	m_cue->getSprite()->setVisible(on);
+}
+
+void ScriptLayer::switchBackMenu(bool on)
+{
+	if(on)
+	{
+		this->m_backMenu->show();
+	}
+	else
+	{
+		this->m_backMenu->hide();
+	}
 }
 
 void ScriptLayer::loadScript(const char* fileName)
@@ -168,7 +183,7 @@ ScriptPlayer* ScriptLayer::findScriptPlayerByKey(char* key)
 
 	return iter->second;
 }
-void ScriptLayer::setScriptPlayer(ScriptPlayer* player)
+void ScriptLayer::setCurrentScriptPlayer(ScriptPlayer* player)
 {
 	this->m_player = player;
 }
@@ -184,6 +199,24 @@ void ScriptLayer::setNextScriptPlayerAsync(char* id)
 void ScriptLayer::play()
 {
 	this->m_player->play();
+}
+
+void ScriptLayer::refresh(char* strId)
+{
+	resetCurrentScriptPlayer(strId);
+
+	this->setInOption(false);
+	this->setAnimationPlaying(false);
+	this->switchBackMenu(true);
+	this->switchCue(true);
+}
+
+void ScriptLayer::resetCurrentScriptPlayer(char* idStr)
+{
+	ScriptPlayer* scriptPlayer = this->findScriptPlayerByKey(idStr);
+	scriptPlayer->refresh();
+
+	this->setCurrentScriptPlayer(scriptPlayer);
 }
 
 ScriptPlayer* ScriptLayer::getCurrentScriptPlayer()

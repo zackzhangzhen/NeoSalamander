@@ -18,11 +18,15 @@ public:
 	void bgFadeOut(bool delay, bool switchCueOn = true);
 	void jumpToLine(char* lineId);
 	bool play(bool delay = false);
+	void refresh();
+	void refreshChildrenDlg();
 	void fadeOut(bool switchCueOn = true);
 	char* getId();
 	char* getTitle();
 	char* getNextScriptPlayerId();
 	void setNextScriptPlayerId(char* id);
+	void resetNextScriptId();
+	char* getOriginNextScriptPlayerId();
 	void autoRelease(CCNode* sender);
 
 private:
@@ -31,6 +35,7 @@ private:
 	char* m_id;
 	char* m_title;
 	char* m_nextScriptPlayerId;
+	char* m_originNextScriptPlayerId;
 	ZSprite* m_bg;
 	ScriptLayer* m_parentScriptLayer;
 	bool fadedIn;

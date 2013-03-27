@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "layer\ScriptLayer.h"
+
 #include "cocos2d.h"
 #include "script\ZLabelTTF.h"
 #include <vector>
@@ -17,12 +17,13 @@
 #include <vector>
 #include "menu\tinyxml.h"
 
+class ScriptLayer;
 class ZGameMenu: public ScriptElement
 {
 public:
 	ZGameMenu(CCNode* parentNode, bool visible = false);
 	virtual void init() = 0;
-	virtual CCMenuItemFont* createMenuItemWithString(const char* strId, char* text, CCObject* target) = 0;
+	virtual CCMenuItemFont* createMenuItemWithString(const char* strId, char* text, CCObject* target);
 	virtual void optionCallback(CCObject* sender) = 0;
 	virtual void show();
 	virtual void hide();

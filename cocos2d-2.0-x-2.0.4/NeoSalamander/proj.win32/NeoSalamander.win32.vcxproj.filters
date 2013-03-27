@@ -229,6 +229,9 @@
     <ClInclude Include="..\Classes\scene\ZSceneMgr.h">
       <Filter>include\scene</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\menu\ZBackMenu.h">
+      <Filter>include\menu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -338,6 +341,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\scene\ZSceneMgr.cpp">
       <Filter>source\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\menu\ZBackMenu.cpp">
+      <Filter>source\menu</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

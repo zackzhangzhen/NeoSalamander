@@ -1,5 +1,5 @@
 #include "ZGameMenu.h"
-
+#include "layer\ScriptLayer.h"
 
 ZGameMenu::ZGameMenu(CCNode* parentNode, bool visible) : ScriptElement(ScriptElementType::OPTIONS)
 {
@@ -8,6 +8,11 @@ ZGameMenu::ZGameMenu(CCNode* parentNode, bool visible) : ScriptElement(ScriptEle
 	
 	this->m_parentLayer = (CCLayer*)parentNode;
 	this->m_visible = visible;
+}
+
+CCMenuItemFont* ZGameMenu::createMenuItemWithString(const char* strId, char* text, CCObject* target)
+{
+	return NULL;
 }
 
 CCLayer* ZGameMenu::getParentLayer()

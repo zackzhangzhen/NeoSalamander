@@ -6,6 +6,7 @@ class ZMainScene : public ZScene
 {
 public:
 	ZMainScene(ZSceneMgr*);
+	void refresh(char* idStr);
 	virtual void init();
 	~ZMainScene(void);
 };

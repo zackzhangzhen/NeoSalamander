@@ -68,6 +68,12 @@ ScriptLayer* ZSceneMgr::getScriptLayer()
 	return (ScriptLayer*)mainScene->getLayer();
 }
 
+void ZSceneMgr::refreshMainScene(char* idStr)
+{
+	ZMainScene* mainScene = (ZMainScene*)getMainScene();
+	return mainScene->refresh(idStr);
+}
+
 ObjectLayer* ZSceneMgr::getObjectLayer()
 {
 	ZScene* titleScene = getTitleScene();

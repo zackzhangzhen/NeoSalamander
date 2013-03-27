@@ -14,6 +14,13 @@ void ZMainScene::init()
 	m_scene->addChild(m_layer, 10);
 }
 
+void ZMainScene::refresh(char* idStr)
+{
+	ScriptLayer* scriptLayer = (ScriptLayer*)m_layer;
+
+	scriptLayer->refresh(idStr);
+}
+
 ZMainScene::~ZMainScene(void)
 {
 }

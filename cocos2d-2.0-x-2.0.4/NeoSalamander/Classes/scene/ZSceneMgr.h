@@ -26,6 +26,7 @@ public:
 	void runScene(const char* key);
 	void runTitleScene();
 	void runMainScene();
+	void refreshMainScene(char* idStr);
 	~ZSceneMgr(void);
 
 private:

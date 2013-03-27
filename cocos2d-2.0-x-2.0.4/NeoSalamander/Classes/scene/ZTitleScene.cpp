@@ -18,7 +18,7 @@ void ZTitleScene::init()
 	m_scene = CCScene::create();
 
 	m_scene->addChild(objLayer,1);
-
+	CCDirector::sharedDirector()->pushScene(m_scene);
 	m_menuContainer = new ZGameMenuContainer(this->getSceneMgr());
 	
 }
