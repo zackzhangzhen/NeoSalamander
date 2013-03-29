@@ -12,6 +12,7 @@ void ZBackMenu::optionCallback(CCObject* sender)
 	CCMenuItemImage* item = (CCMenuItemImage*)sender;
 	ZBackMenu* menu = (ZBackMenu*)item->getUserObject();
 	ScriptLayer* scriptLayer = (ScriptLayer*)menu->getParentLayer();
+	scriptLayer->fadeOutCurrentScriptInstantly();
 	ZMainScene* mainScene = scriptLayer->getParentMainScene();
 	ZSceneMgr* sceneMgr = mainScene->getSceneMgr();
 

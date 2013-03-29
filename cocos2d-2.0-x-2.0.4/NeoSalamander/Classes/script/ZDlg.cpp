@@ -99,7 +99,7 @@ void ZDlg::zDlgInit(int pos, vector<ScriptElement*>& scripts, char* figureFileNa
 		//this->addToCCNode(parentNode, 10);
 	}
 
-	 
+	 this->m_scriptState = ScriptState::NOT_FADED_IN;
 
 	//this->m_scriptLabel = CCLabelTTF::create(script, font, size, CCSizeMake(/*68*/NeoConstants::WIN_WIDTH/2, 480),kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter);
 	
@@ -283,7 +283,8 @@ void ZDlg::autoRelease(CCNode* sender)
 	LeaveCriticalSection(&GlobalFlag::m_csObject);*/
 }
 
-void ZDlg::fadeOut()
+
+void ZDlg::fadeOut(float interval0,float interval1,float interval2,float interval3,float interval4,float interval5,float interval6,float interval7,float interval8,float interval9,float interval10)
 {
 	//stop 
 	if(this->isStopMusic())
@@ -301,12 +302,12 @@ void ZDlg::fadeOut()
 	{
 		case (/*ZDlg::POS_FULL*/2):
 		{	
-			CCFadeOut* pCCFadeOut1= CCFadeOut::actionWithDuration(1);
-			CCFadeOut* pCCFadeOut2= CCFadeOut::actionWithDuration(1.5);
-			CCFadeOut* pCCFadeOut3= CCFadeOut::actionWithDuration(1);
+			CCFadeOut* pCCFadeOut1= CCFadeOut::actionWithDuration(interval0);
+			CCFadeOut* pCCFadeOut2= CCFadeOut::actionWithDuration(interval1);
+			CCFadeOut* pCCFadeOut3= CCFadeOut::actionWithDuration(interval2);
 
-			CCDelayTime *delayAction1 = CCDelayTime::actionWithDuration(1);
-			CCDelayTime *delayAction2 = CCDelayTime::actionWithDuration(1);
+			CCDelayTime *delayAction1 = CCDelayTime::actionWithDuration(interval3);
+			CCDelayTime *delayAction2 = CCDelayTime::actionWithDuration(interval4);
 
 			//don't auto-release frames, they will be reused throught all the dlgs
 			m_frame->getSprite()->runAction(CCSequence::actions(delayAction1, pCCFadeOut1, NULL));
@@ -316,13 +317,13 @@ void ZDlg::fadeOut()
 		}
 		default:
 			{
-				CCMoveTo* frameMoveTo = CCMoveTo::actionWithDuration(1.5, m_frameInitPos);
-				CCMoveTo* figureMoveTo = CCMoveTo::actionWithDuration(0.8, m_figureInitPos);
-				CCMoveTo* scriptMoveTo = CCMoveTo::actionWithDuration(1.5, m_scriptInitPos);
+				CCMoveTo* frameMoveTo = CCMoveTo::actionWithDuration(interval5, m_frameInitPos);
+				CCMoveTo* figureMoveTo = CCMoveTo::actionWithDuration(interval6, m_figureInitPos);
+				CCMoveTo* scriptMoveTo = CCMoveTo::actionWithDuration(interval7, m_scriptInitPos);
 
-				CCFadeOut* pCCFadeOut= CCFadeOut::actionWithDuration(1);
-				CCDelayTime *delayAction1 = CCDelayTime::actionWithDuration(1);
-				CCDelayTime *delayAction2 = CCDelayTime::actionWithDuration(1);
+				CCFadeOut* pCCFadeOut= CCFadeOut::actionWithDuration(interval8);
+				CCDelayTime *delayAction1 = CCDelayTime::actionWithDuration(interval9);
+				CCDelayTime *delayAction2 = CCDelayTime::actionWithDuration(interval10);
 
 				//don't auto-release frames, they will be reused throught all the dlgs
 				m_frame->getSprite()->runAction(CCSequence::actions(delayAction1, frameMoveTo, NULL));
@@ -331,6 +332,23 @@ void ZDlg::fadeOut()
 
 			}
 	}
+}
+
+void ZDlg::fadeOut()
+{
+	fadeOut(1, 1.5, 1, 1, 1,1.5,0.8,1.5,1,1,1);
+}
+
+bool ZDlg::fadeOutInstantly()
+{
+	if(m_scriptState != ScriptState::NOT_FADED_IN && m_scriptState != ScriptState::SCRIPT_DONE)
+	{
+		fadeOut(0.1, 0.1, 0.1, 0.1, 0.1,0.1,0.1,0.1,0.1,0.1,0.1);
+		return true;
+	}
+
+	return false;
+	
 }
 
 void ZDlg::jumpToLine(char* lineId)

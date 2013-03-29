@@ -16,6 +16,9 @@ public:
 	void switchCueOff(CCNode* sender);
 	void fadeIn(bool delay);
 	void bgFadeOut(bool delay, bool switchCueOn = true);
+	void bgFadeOut(float interval1, float interval2, bool delay, bool switchCueOn = true);
+	void bgFadeOutInstantly();
+	void fadeOutInstantly();
 	void jumpToLine(char* lineId);
 	bool play(bool delay = false);
 	void refresh();

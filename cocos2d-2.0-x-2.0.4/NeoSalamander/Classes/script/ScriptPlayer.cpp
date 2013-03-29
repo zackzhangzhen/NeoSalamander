@@ -143,7 +143,8 @@ void ScriptPlayer::fadeIn(bool delay)
 	m_bg->getSprite()->runAction(CCSequence::actions(pCCFadeIn, animationDone, switchCueOn,  NULL));
 }
 
-void ScriptPlayer::bgFadeOut(bool delay, bool switchCueOnAndSetAnimationDone)
+
+void ScriptPlayer::bgFadeOut(float interval0, float interval1, bool delay, bool switchCueOnAndSetAnimationDone)
 {	
 	CCFiniteTimeAction* animationDone = NULL;
 	CCFiniteTimeAction* switchCueOnAction = NULL;
@@ -162,13 +163,13 @@ void ScriptPlayer::bgFadeOut(bool delay, bool switchCueOnAndSetAnimationDone)
 	CCFiniteTimeAction* autoReleaseAction = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ScriptPlayer::autoRelease));
 
 	
-	CCFadeOut* pCCFadeOut= CCFadeOut::actionWithDuration(5);
+	CCFadeOut* pCCFadeOut= CCFadeOut::actionWithDuration(interval0);
 
 	m_parentScriptLayer->setAnimationPlaying(true);
 
 	if(delay)
 	{
-		CCDelayTime *delayAction = CCDelayTime::actionWithDuration(3);
+		CCDelayTime *delayAction = CCDelayTime::actionWithDuration(interval1);
 
 		if(switchCueOnAndSetAnimationDone)
 		{
@@ -194,6 +195,17 @@ void ScriptPlayer::bgFadeOut(bool delay, bool switchCueOnAndSetAnimationDone)
 	
 }
 
+
+void ScriptPlayer::bgFadeOut(bool delay, bool switchCueOnAndSetAnimationDone)
+{	
+	this->bgFadeOut(5,3,delay,switchCueOnAndSetAnimationDone);	
+}
+
+void ScriptPlayer::bgFadeOutInstantly()
+{	
+	this->bgFadeOut(0.1,0.1,false,true);	
+}
+
 void ScriptPlayer::fadeOut(bool switchCueOn)
 {
 	assert(m_iter != m_vec.end());
@@ -202,6 +214,22 @@ void ScriptPlayer::fadeOut(bool switchCueOn)
 	dlg->fadeOut();
 	//no next dlg, conclude the script with fading out the background
 	this->bgFadeOut(true,switchCueOn);
+}
+
+void ScriptPlayer::fadeOutInstantly()
+{
+	if(m_iter != m_vec.end())
+	{
+		ZDlg* dlg = *m_iter;
+		//if dlg->fadeOutInstantly() returns true, then the current state indicates that bg has been intialized and hasn't been faded out, then do it
+		if(dlg->fadeOutInstantly())
+		{
+			this->bgFadeOutInstantly();
+		}
+		
+	}	
+	
+	Utility::stopMusic();
 }
 
 void ScriptPlayer::jumpToLine(char* lineId)

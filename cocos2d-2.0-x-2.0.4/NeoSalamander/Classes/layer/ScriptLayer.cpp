@@ -247,6 +247,15 @@ void ScriptLayer::fadeOutCurrentScript()
 	m_player->fadeOut(false);
 }
 
+void ScriptLayer::fadeOutCurrentScriptInstantly()
+{
+	if(m_player == NULL)
+	{
+		return;
+	}
+	m_player->fadeOutInstantly();
+}
+
 void ScriptLayer::ccTouchesEnded(CCSet* touches, CCEvent* event)
 {
 	if(this->isAnimationPlaying() ||
@@ -274,6 +283,14 @@ bool ScriptLayer::isAnimationPlaying()
 void ScriptLayer::setAnimationPlaying(bool playing)
 {
 	this->m_isAnimationPlaying = playing;
+	if(playing)
+	{
+		this->m_backMenu->hide();
+	}
+	else
+	{
+		this->m_backMenu->show();
+	}
 }
 
 bool ScriptLayer::isInOption()
@@ -284,4 +301,12 @@ bool ScriptLayer::isInOption()
 void ScriptLayer::setInOption(bool inOption)
 {
 	this->m_isInOption = inOption;
+	if(inOption)
+	{
+		this->m_backMenu->hide();
+	}
+	else
+	{
+		this->m_backMenu->show();
+	}
 }

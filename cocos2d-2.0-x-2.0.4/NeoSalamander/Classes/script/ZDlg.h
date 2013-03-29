@@ -46,6 +46,8 @@ public:
 	void fadeIn(bool delay);
 	void playMusic();
 	void fadeOut();
+	void fadeOut(float interval0,float interval1,float interval2,float interval3,float interval4,float interval5,float interval6,float interval7,float interval8,float interval9,float interval10);
+	bool fadeOutInstantly();
 	void jumpToLine(char* lineId);
 	bool play(bool delay);
 	ScriptLayer* getParentScriptLayer();
