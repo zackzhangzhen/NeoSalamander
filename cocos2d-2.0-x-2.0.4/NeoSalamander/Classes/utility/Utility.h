@@ -9,7 +9,11 @@
 #include "action/CCMoveToWrapper.h"
 #include "SimpleAudioEngine.h" 
 #include "menu\tinyxml.h"
+#include "menu\ZMenu.h"
 #include "scene\ZSceneMgr.h"
+#include "script\ScriptElement.h"
+#include "script\ValueWrapper.h"
+#include "script\ZAutoLines.h"
 using namespace cocos2d;
 class Utility
 {
@@ -40,6 +44,8 @@ public:
 	static void replaceScene(ZScene* originScene, ZScene* targetScene);
 	static char* getCurrentTime();
 	static char* getSaveString(char* title);
+	static vector<ScriptElement*> createLines(TiXmlElement* lineElem, CCNode* parentLayer);
+	static CCSize getDefaultScriptSize();
 
 private:
 	Utility(void);

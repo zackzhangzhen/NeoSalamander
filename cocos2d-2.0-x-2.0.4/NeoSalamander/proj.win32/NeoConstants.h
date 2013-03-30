@@ -38,6 +38,8 @@ public:
 	//script - tag
 	static const char* SCRIPT_TAG_LINE;
 	static const char* SCRIPT_TAG_OPTIONS;
+	static const char* SCRIPT_TAG_AUTO_LINES;
+	static const char* SCRIPT_TAG_AUTO_SCRIPT;
 
 	//Dlg elment's position
 	static int FIGURE_VERTICAL_OFFSET;

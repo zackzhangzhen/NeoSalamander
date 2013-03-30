@@ -3,7 +3,8 @@
 
 enum ScriptElementType{
 	LINE,
-	OPTIONS
+	OPTIONS,
+	AUTO_LINES
 };
 
 class ScriptElement : public cocos2d::CCObject

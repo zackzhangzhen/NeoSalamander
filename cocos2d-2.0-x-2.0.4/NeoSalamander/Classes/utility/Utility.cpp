@@ -359,6 +359,40 @@ void Utility::replaceScene(ZScene* originScene, ZScene* targetScene)
 	
 }
 
+vector<ScriptElement*> Utility::createLines(TiXmlElement* lineElem, CCNode* parentLayer)
+{
+	assert(lineElem != NULL);
+	vector<ScriptElement*> lines;
+	for( ; lineElem != NULL; lineElem=lineElem->NextSiblingElement())
+	{
+		const char* tagName = lineElem->Value();
+		if(strcmp(tagName, NeoConstants::SCRIPT_TAG_LINE) == 0)
+		{
+			char* line = (char*)lineElem->GetText();
+			char* lineId = (char*)lineElem->Attribute(NeoConstants::SCRIPT_ATTR_ID);
+			lines.push_back(new ValueWrapper(lineId, line));
+		}
+		else if(strcmp(tagName, NeoConstants::SCRIPT_TAG_OPTIONS) == 0)
+		{
+			ZMenu* menu = new ZMenu(lineElem, parentLayer);
+			lines.push_back(menu);
+		}
+		else if(strcmp(tagName, NeoConstants::SCRIPT_TAG_AUTO_LINES) == 0)
+		{
+			ZAutoLines* autolines = new ZAutoLines(lineElem, parentLayer);
+			lines.push_back(autolines);
+		}
+
+	}
+
+	return lines;
+}
+
+CCSize Utility::getDefaultScriptSize()
+{
+	return  CCSizeMake(NeoConstants::WIN_WIDTH, NeoConstants::WIN_HEIGHT);
+}
+
 Utility::~Utility(void)
 {
 }

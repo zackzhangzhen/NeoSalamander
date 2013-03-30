@@ -232,6 +232,9 @@
     <ClInclude Include="..\Classes\menu\ZBackMenu.h">
       <Filter>include\menu</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\script\ZAutoLines.h">
+      <Filter>include\script</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -344,6 +347,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\menu\ZBackMenu.cpp">
       <Filter>source\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\script\ZAutoLines.cpp">
+      <Filter>source\script</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

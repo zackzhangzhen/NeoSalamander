@@ -34,8 +34,7 @@ ZDlg::ZDlg(TiXmlElement* dlgElem, CCNode* parentNode)
 	TiXmlElement* lineElem = dlgElem->FirstChildElement();
 	assert(lineElem != NULL);
 
-	//vector<char*>* lines = new vector<char*>();
-	vector<ScriptElement*> lines;
+
 	int pos = ZDlg::POS_LEFT;
 	dlgElem->Attribute(NeoConstants::SCRIPT_ATTR_POS, &pos);
 
@@ -55,22 +54,7 @@ ZDlg::ZDlg(TiXmlElement* dlgElem, CCNode* parentNode)
 	char* stopMusic = (char*)dlgElem->Attribute(NeoConstants::SCRIPT_ATTR_STOP_MUSIC);
 	bool isStopMusic = stopMusic == NULL?false:true;
 
-	for( ; lineElem != NULL; lineElem=lineElem->NextSiblingElement())
-	{
-		const char* tagName = lineElem->Value();
-		if(strcmp(tagName, NeoConstants::SCRIPT_TAG_LINE) == 0)
-		{
-			char* line = (char*)lineElem->GetText();
-			char* lineId = (char*)lineElem->Attribute(NeoConstants::SCRIPT_ATTR_ID);
-			lines.push_back(new ValueWrapper(lineId, line));
-		}
-		else if(strcmp(tagName, NeoConstants::SCRIPT_TAG_OPTIONS) == 0)
-		{
-			ZMenu* menu = new ZMenu(lineElem, this->m_parentScriptLayer);
-			lines.push_back(menu);
-		}
-		
-	}
+	vector<ScriptElement*> lines = Utility::createLines(lineElem, this->m_parentScriptLayer);
 
 	zDlgInit(pos, lines, imageFile, musicName, isStopMusic, parentNode, colorCode, font, size, figure_vertical_offset);
 }
