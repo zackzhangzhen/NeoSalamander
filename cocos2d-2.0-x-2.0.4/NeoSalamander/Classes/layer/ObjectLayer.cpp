@@ -45,6 +45,7 @@ void ObjectLayer::addGameMenu()
 	ZMainMenu* mainMenu = new ZMainMenu(this,true);
 	mainMenu->init();
 	ZLoadMenu* loadMenu = new ZLoadMenu(this,false);
+	loadMenu->init();
 
 }
 

@@ -14,6 +14,7 @@ public:
 	static ZGameMenuContainer* getInstance();
 	ZLoadMenu* getLoadMenu();
 	ZMainMenu* getMainMenu();
+	void reloadLoadMenu();
 	ScriptLayer* getScriptLayer();
 	ScriptPlayer* getCurrentScriptPayer();
 	char* getCurrentScriptId();

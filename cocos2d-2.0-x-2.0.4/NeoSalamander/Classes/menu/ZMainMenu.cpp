@@ -112,7 +112,7 @@ void ZMainMenu::optionCallback(CCObject* sender)
 		{
 			//save game
 			CCLayer* layer = this->m_parentLayer;
-			ZScene* titleScene = ((ObjectLayer*)layer)->getParentTitleScene();
+			ZTitleScene* titleScene = ((ObjectLayer*)layer)->getParentTitleScene();
 			ZSceneMgr* sceneMgr = titleScene->getSceneMgr();
 			ScriptLayer* scriptLayer = sceneMgr->getScriptLayer();
 			ScriptPlayer* scriptPlayer = scriptLayer->getCurrentScriptPlayer();
@@ -133,6 +133,9 @@ void ZMainMenu::optionCallback(CCObject* sender)
 
 			TiXmlDocument* doc = element->GetDocument();
 			doc->SaveFile();
+
+			ZGameMenuContainer* menuContainer = titleScene->getMenuContainer();
+			menuContainer->reloadLoadMenu();
 
 			((ZTitleScene*)titleScene)->switchMainLoadMenu(true);
 

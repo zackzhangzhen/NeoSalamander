@@ -42,6 +42,13 @@ void ZGameMenuContainer::init()
 	m_optionMap.insert(make_pair(NeoConstants::LOAD_MENU_ID ,new ZLoadMenu(objLayer, false)));
 }
 
+void ZGameMenuContainer::reloadLoadMenu()
+{
+	CCNode* objLayer = this->m_sceneMgr->getObjectLayer();
+	m_optionMap.erase(NeoConstants::LOAD_MENU_ID);
+	m_optionMap.insert(make_pair(NeoConstants::LOAD_MENU_ID ,new ZLoadMenu(objLayer, false)));
+}
+
 ZLoadMenu* ZGameMenuContainer::getLoadMenu()
 {
 	map<int, ZGameMenu*>::const_iterator iter = m_optionMap.find(NeoConstants::LOAD_MENU_ID);

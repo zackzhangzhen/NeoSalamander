@@ -15,15 +15,19 @@ void ZLabelTTF::init(vector<ScriptElement*>& scripts, CCSize scriptSize,int colo
 	//assert(m_iter != scripts.end());
 
 	ScriptElement* elem = *m_iter;
-	//Please put the first line of a dlg as a text, not an option.
-	assert(elem->isType(ScriptElementType::LINE));
+	//Please don't put the first line of a dlg as an option.
+	assert(elem->isType(ScriptElementType::LINE) || elem->isType(ScriptElementType::AUTO_LINES));
 	
-	ValueWrapper* text = (ValueWrapper*)elem;
-	this->m_label = CCLabelTTF::create(text->getText(), font, size,scriptSize,kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter);
+	if(elem->isType(ScriptElementType::LINE))
+	{
+		ValueWrapper* text = (ValueWrapper*)elem;
+		this->m_label = CCLabelTTF::create(text->getText(), font, size,scriptSize,kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter);
 
-	this->m_label->setOpacity(0);
+		this->m_label->setOpacity(0);
 
-	setColor(colorCode);
+		setColor(colorCode);
+	}
+
 }
 
 void ZLabelTTF::setColor(int colorCode)
@@ -167,7 +171,11 @@ bool ZLabelTTF::rollScript()
 		else if(elem->isType(ScriptElementType::OPTIONS))
 		{
 			ZMenu* menu = (ZMenu*)elem;
-			menu->show();
+		}
+		else if(elem->isType(ScriptElementType::AUTO_LINES))
+		{
+			ZAutoLines* autoLines = (ZAutoLines*)elem;
+			autoLines->play();
 		}
 
 		return false;

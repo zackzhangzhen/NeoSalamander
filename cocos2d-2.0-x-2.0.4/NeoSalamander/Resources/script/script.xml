@@ -1,5 +1,17 @@
 <?xml version="1.0" ?>
 <play>
+  <script title="前传" id="s0" pic="breakfast.png" toScript="s1" >
+    <dlg id="1" pos="0" image="pic\\figure\\assassin.png" size="28" music="mySong" color="1">
+        <autolines >
+               <autoscript size="50" color="2" font="Microsoft JhengHei">
+                2011年四月的Lingo，故事开始的地方
+               </autoscript>
+                <autoscript>
+                很好玩的哟
+               </autoscript>
+        </autolines>            
+    </dlg>      
+  </script>
   <script title="初遇" id="s1" pic="bar.png" toScript="s2" >
     <dlg id="1" pos="0" image="pic\\figure\\assassin.png" size="28" music="mySong" color="1">
         <line >我就开门见山吧，我想约你出来，豪华游轮和甜美早餐，你自己选一个吧～</line>

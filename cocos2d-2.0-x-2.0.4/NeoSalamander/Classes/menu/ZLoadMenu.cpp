@@ -3,6 +3,7 @@
 
 ZLoadMenu::ZLoadMenu( CCNode* parentNode, bool visible) : ZGameMenu(parentNode, visible)
 {
+	init();
 }
 
 void ZLoadMenu::init()
@@ -136,7 +137,7 @@ void ZLoadMenu::optionBackCallback(CCObject* sender)
 
 void ZLoadMenu::show()
 {
-	this->init();
+	//this->init();
 	this->m_menu->setVisible(true);
 }
 

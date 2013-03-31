@@ -28,17 +28,35 @@ ZAutoLines::ZAutoLines(TiXmlElement* autolinesElem, CCNode* parentNode, bool vis
 		//text
 		char* text = (char*)autoScriptElem->GetText();
 
-		this->m_label = CCLabelTTF::create(text, font, size, Utility::getDefaultScriptSize(), kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter);
-
-		this->m_label->setOpacity(0);
-		this->m_label->setVisible(true);
-
-		//set position to center
-		CCPoint centerPt = Utility::getCenterPt();
-		m_label->setPosition(centerPt);
-		this->m_parentScriptLayer->addChild(this->m_label, 11);
 		this->m_parentScriptLayer = (ScriptLayer*)parentNode;
+
+		CCLabelTTF* label = this->createLabel(text, font, size);
+
+		this->m_labels.push_back(label);
+
+		
 	}	
+}
+
+CCLabelTTF* ZAutoLines::createLabel(char* text, char* font, int size)
+{
+	CCLabelTTF* label = CCLabelTTF::create(text, font, size, Utility::getDefaultScriptSize(), kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter);
+
+	label->setOpacity(0);
+	label->setVisible(true);
+
+	//set position to center
+	CCPoint centerPt = Utility::getCenterPt();
+	label->setPosition(centerPt);
+
+	this->m_parentScriptLayer->addChild(label, 11);
+
+	return label;
+}
+
+void ZAutoLines::play()
+{
+
 }
 
 ZAutoLines::~ZAutoLines(void)

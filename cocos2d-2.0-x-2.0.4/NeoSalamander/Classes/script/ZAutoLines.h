@@ -1,23 +1,25 @@
 #pragma once
+#include <vector>
 #include "cocos2d.h"
 #include "menu\tinyxml.h"
-#include <vector>
+
 #include "script\ScriptElement.h"
 
-
+using namespace std;
 using namespace cocos2d;
 
 class ScriptLayer;
-class ZLabelTTF;
 class ZAutoLines: public ScriptElement
 {
 public:
 	ZAutoLines(TiXmlElement* dlgElem, CCNode* parentNode, bool visible = false);
+	void play();
+	CCLabelTTF* createLabel(char* text, char* font, int size);
 	~ZAutoLines(void);
+
 
 private:
 	ScriptLayer* m_parentScriptLayer;
-	ZLabelTTF* m_scriptLabel;
-	CCLabelTTF* m_label;
+	vector<CCLabelTTF*> m_labels;
 };
 
