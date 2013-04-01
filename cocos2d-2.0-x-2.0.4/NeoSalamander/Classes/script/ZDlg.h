@@ -49,7 +49,7 @@ public:
 	void fadeOut(float interval0,float interval1,float interval2,float interval3,float interval4,float interval5,float interval6,float interval7,float interval8,float interval9,float interval10);
 	bool fadeOutInstantly();
 	void jumpToLine(char* lineId);
-	bool play(bool delay);
+	virtual bool play(bool delay);
 	ScriptLayer* getParentScriptLayer();
 	void setAnimationPlayingDone(CCNode* sender);
 	void autoRelease(CCNode* sender);
@@ -77,7 +77,10 @@ public:
 	static CCSize FRAME_R_SIZE;
 	static CCSize FRAME_F_SIZE;
 	
-
+protected:
+	ScriptLayer* m_parentScriptLayer;
+	ScriptState m_scriptState;
+	ZLabelTTF* m_scriptLabel;
 
 private:
 
@@ -98,9 +101,8 @@ private:
 	CCPoint m_scriptPos;
 	ZSprite* m_figure;
 	ZSprite* m_frame;
-	ZLabelTTF* m_scriptLabel;
-	ScriptLayer* m_parentScriptLayer;
-	ScriptState m_scriptState;
+	
+
 	char* m_musicName;
 	bool m_stopMusic;
 	int m_figureVerticalOffset;

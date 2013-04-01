@@ -30,18 +30,17 @@ ZAutoLines::ZAutoLines(TiXmlElement* autolinesElem, CCNode* parentNode, bool vis
 
 		this->m_parentScriptLayer = (ScriptLayer*)parentNode;
 
-		CCLabelTTF* label = this->createLabel(text, font, size);
+		CCLabelTTF* label = this->createLabel(text, font, colorCode, size);
 
 		this->m_labels.push_back(label);
-
-		
 	}	
 }
 
-CCLabelTTF* ZAutoLines::createLabel(char* text, char* font, int size)
+CCLabelTTF* ZAutoLines::createLabel(char* text, char* font, int color, int size)
 {
 	CCLabelTTF* label = CCLabelTTF::create(text, font, size, Utility::getDefaultScriptSize(), kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter);
 
+	Utility::setColor(color, label);
 	label->setOpacity(0);
 	label->setVisible(true);
 

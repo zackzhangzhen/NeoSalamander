@@ -32,63 +32,7 @@ void ZLabelTTF::init(vector<ScriptElement*>& scripts, CCSize scriptSize,int colo
 
 void ZLabelTTF::setColor(int colorCode)
 {
-	//0 : WHITE
-	//1 : BLUE
-	//2 : YELLOW 
-	//3 : MAGENTA
-	//4 : ORANGE
-	//5 : GREEN
-	//6 : RED
-	//7 : BLACK
-	//8 : GRAY
-	//default(0) : WHITE
-	switch(colorCode)
-	{
-	case 1:
-		{
-			this->m_label->setColor(ccBLUE  );
-			break;
-		}
-	case 2:
-		{
-			this->m_label->setColor(ccYELLOW  );
-			break;
-		}
-	case 3:
-		{
-			this->m_label->setColor(ccMAGENTA  );
-			break;
-		}
-	case 4:
-		{
-			this->m_label->setColor(ccORANGE  );
-			break;
-		}
-	case 5:
-		{
-			this->m_label->setColor(ccGREEN  );
-			break;
-		}
-	case 6:
-		{
-			this->m_label->setColor(ccRED  );
-			break;
-		}
-	case 7:
-		{
-			this->m_label->setColor(ccBLACK  );
-			break;
-		}
-	case 8:
-		{
-			this->m_label->setColor(ccGRAY  );
-			break;
-		}
-	default:
-		{
-			return;
-		}
-	}
+	Utility::setColor(colorCode, this->m_label);
 }
 
 ZLabelTTF::ZLabelTTF(vector<ScriptElement*>& scripts, CCSize scriptSize, int colorCode, char* font, int size)
@@ -176,6 +120,8 @@ bool ZLabelTTF::rollScript()
 		{
 			ZAutoLines* autoLines = (ZAutoLines*)elem;
 			autoLines->play();
+
+			return true;
 		}
 
 		return false;

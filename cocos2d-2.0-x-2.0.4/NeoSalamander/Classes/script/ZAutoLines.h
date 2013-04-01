@@ -14,7 +14,7 @@ class ZAutoLines: public ScriptElement
 public:
 	ZAutoLines(TiXmlElement* dlgElem, CCNode* parentNode, bool visible = false);
 	void play();
-	CCLabelTTF* createLabel(char* text, char* font, int size);
+	CCLabelTTF* createLabel(char* text, char* font,int color, int size);
 	~ZAutoLines(void);
 
 

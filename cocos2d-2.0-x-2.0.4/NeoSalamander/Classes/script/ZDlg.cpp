@@ -72,22 +72,22 @@ void ZDlg::zDlgInit(int pos, vector<ScriptElement*>& scripts, char* figureFileNa
 	m_font = font;
 	m_size = size;
 	this->m_frame = NULL;
-	
 
-	 this->m_pos = pos;
 
-	 if(parentNode != NULL)
+	this->m_pos = pos;
+
+	if(parentNode != NULL)
 	{
 		this->m_parentScriptLayer = (ScriptLayer*)parentNode;
 		//move to ZDlgLazyInit()
 		//this->addToCCNode(parentNode, 10);
 	}
 
-	 this->m_scriptState = ScriptState::NOT_FADED_IN;
+	this->m_scriptState = ScriptState::NOT_FADED_IN;
 
 	//this->m_scriptLabel = CCLabelTTF::create(script, font, size, CCSizeMake(/*68*/NeoConstants::WIN_WIDTH/2, 480),kCCTextAlignmentLeft,kCCVerticalTextAlignmentCenter);
-	
-		
+
+
 	//move to ZDlgLazyInit()
 	//this->m_figure = new ZSprite(figureFileName);
 

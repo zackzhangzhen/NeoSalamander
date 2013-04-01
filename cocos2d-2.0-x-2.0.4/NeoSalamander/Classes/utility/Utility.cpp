@@ -388,6 +388,67 @@ vector<ScriptElement*> Utility::createLines(TiXmlElement* lineElem, CCNode* pare
 	return lines;
 }
 
+void Utility::setColor(int colorCode, CCLabelTTF* label)
+{
+	//0 : WHITE
+	//1 : BLUE
+	//2 : YELLOW 
+	//3 : MAGENTA
+	//4 : ORANGE
+	//5 : GREEN
+	//6 : RED
+	//7 : BLACK
+	//8 : GRAY
+	//default(0) : WHITE
+	switch(colorCode)
+	{
+	case 1:
+		{
+			label->setColor(ccBLUE  );
+			break;
+		}
+	case 2:
+		{
+			label->setColor(ccYELLOW  );
+			break;
+		}
+	case 3:
+		{
+			label->setColor(ccMAGENTA  );
+			break;
+		}
+	case 4:
+		{
+			label->setColor(ccORANGE  );
+			break;
+		}
+	case 5:
+		{
+			label->setColor(ccGREEN  );
+			break;
+		}
+	case 6:
+		{
+			label->setColor(ccRED  );
+			break;
+		}
+	case 7:
+		{
+			label->setColor(ccBLACK  );
+			break;
+		}
+	case 8:
+		{
+			label->setColor(ccGRAY  );
+			break;
+		}
+	default:
+		{
+			return;
+		}
+	}
+}
+
 CCSize Utility::getDefaultScriptSize()
 {
 	return  CCSizeMake(NeoConstants::WIN_WIDTH, NeoConstants::WIN_HEIGHT);

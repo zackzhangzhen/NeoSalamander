@@ -46,6 +46,7 @@ public:
 	static char* getSaveString(char* title);
 	static vector<ScriptElement*> createLines(TiXmlElement* lineElem, CCNode* parentLayer);
 	static CCSize getDefaultScriptSize();
+	static void setColor(int colorCode, CCLabelTTF* label);
 
 private:
 	Utility(void);

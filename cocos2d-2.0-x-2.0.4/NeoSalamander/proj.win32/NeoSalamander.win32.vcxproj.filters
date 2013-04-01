@@ -235,6 +235,9 @@
     <ClInclude Include="..\Classes\script\ZAutoLines.h">
       <Filter>include\script</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\script\ZAutoDlg.h">
+      <Filter>include\script</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -349,6 +352,9 @@
       <Filter>source\menu</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\script\ZAutoLines.cpp">
+      <Filter>source\script</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\script\ZAutoDlg.cpp">
       <Filter>source\script</Filter>
     </ClCompile>
   </ItemGroup>

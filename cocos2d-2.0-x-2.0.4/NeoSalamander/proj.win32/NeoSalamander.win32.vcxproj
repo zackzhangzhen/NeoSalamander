@@ -160,6 +160,7 @@
     <ClInclude Include="..\Classes\script\ScriptElement.h" />
     <ClInclude Include="..\Classes\script\ScriptPlayer.h" />
     <ClInclude Include="..\Classes\script\ValueWrapper.h" />
+    <ClInclude Include="..\Classes\script\ZAutoDlg.h" />
     <ClInclude Include="..\Classes\script\ZAutoLines.h" />
     <ClInclude Include="..\Classes\script\ZDlg.h" />
     <ClInclude Include="..\Classes\script\ZLabelTTF.h" />
@@ -201,6 +202,7 @@
     <ClCompile Include="..\Classes\script\ScriptElement.cpp" />
     <ClCompile Include="..\Classes\script\ScriptPlayer.cpp" />
     <ClCompile Include="..\Classes\script\ValueWrapper.cpp" />
+    <ClCompile Include="..\Classes\script\ZAutoDlg.cpp" />
     <ClCompile Include="..\Classes\script\ZAutoLines.cpp" />
     <ClCompile Include="..\Classes\script\ZDlg.cpp" />
     <ClCompile Include="..\Classes\script\ZLabelTTF.cpp" />
