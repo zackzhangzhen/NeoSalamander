@@ -9,6 +9,7 @@ class ZAutoDlg : public ZDlg
 public:
 	ZAutoDlg(TiXmlElement* dlgElem, CCNode* parentNode);
 	bool play(bool delay);
+	void zDlgLazyInit();
 	~ZAutoDlg(void);
 };
 

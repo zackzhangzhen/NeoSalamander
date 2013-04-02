@@ -44,9 +44,24 @@ ZMenu::ZMenu(TiXmlElement* optionsElem, CCNode* parentNode, bool visible) : Scri
 		//text
 		char* text = (char*)optionElem->GetText();
 
+		int size = ZLabelTTF::MENU_FONT_DEFAULT_SIZE;
+		optionElem->Attribute(NeoConstants::SCRIPT_ATTR_SIZE, &size);
+
+		int colorCode = ZLabelTTF::FONT_COLOR_DEFAULT;
+		optionElem->Attribute(NeoConstants::SCRIPT_ATTR_COLOR, &colorCode);
+
+
+		char* font = (char*)optionElem->Attribute(NeoConstants::SCRIPT_ATTR_FONT);
+
 		//create menu item
 		CCMenuItemFont* menuItem = CCMenuItemFont::itemWithString(text, this, menu_selector(ZMenu::optionCallback));  
 		menuItem->setTag(id);
+
+		//menuItem->setFontSizeObj(60);
+		//menuItem->setFontNameObj(font);
+		//menuItem->setFontName(font);
+		menuItem->setFontSize(size);
+		Utility::setColor(colorCode, menuItem);
 
 		if(menu == NULL)
 		{

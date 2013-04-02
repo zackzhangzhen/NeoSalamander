@@ -12,7 +12,12 @@ ZAutoDlg::ZAutoDlg(TiXmlElement* dlgElem, CCNode* parentNode): ZDlg()
 
 	this->m_scriptLabel = new ZLabelTTF(lines, Utility::getDefaultScriptSize(), ZLabelTTF::FONT_COLOR_DEFAULT , ZLabelTTF::YAHEI, ZLabelTTF::FONT_DEFAULT_SIZE);
 	
-	m_scriptLabel->addToCCNode(parentNode, 12);
+	//m_scriptLabel->addToCCNode(parentNode, 12);
+}
+
+void ZAutoDlg::zDlgLazyInit()
+{
+
 }
 
 bool ZAutoDlg::play(bool delay)

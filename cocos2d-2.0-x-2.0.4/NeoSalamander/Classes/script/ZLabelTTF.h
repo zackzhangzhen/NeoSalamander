@@ -16,6 +16,7 @@ public:
 	static char* FONT_COMIC;
 	static char* YAHEI;
 	static int FONT_DEFAULT_SIZE;
+	static int MENU_FONT_DEFAULT_SIZE;
 	static int FONT_COLOR_DEFAULT;
 	static int FONT_COLOR_BLUE;
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "script\ZDlg.h"
+#include "script\ZAutoDlg.h"
 #include <vector>
 #include "menu\tinyxml.h"
 class ScriptLayer;

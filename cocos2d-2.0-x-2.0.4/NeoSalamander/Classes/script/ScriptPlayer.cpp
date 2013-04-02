@@ -22,7 +22,18 @@ ScriptPlayer::ScriptPlayer(char* id, TiXmlElement* scriptElem, CCNode* parentNod
 
 	for( ; dlgElem != NULL; dlgElem=dlgElem->NextSiblingElement())
 	{
-		ZDlg* dlg = new ZDlg(dlgElem, parentNode);
+		ZDlg* dlg = NULL;
+
+		const char* tagName = dlgElem->Value();
+		if(strcmp(tagName, NeoConstants::SCRIPT_TAG_DLG) == 0)
+		{
+			dlg = new ZDlg(dlgElem, parentNode);
+		}
+		else//NeoConstants::SCRIPT_TAG_AUTO_DLG
+		{
+			dlg = new ZAutoDlg(dlgElem, parentNode);
+		}
+		
 		m_vec.push_back(dlg);
 	}
 
