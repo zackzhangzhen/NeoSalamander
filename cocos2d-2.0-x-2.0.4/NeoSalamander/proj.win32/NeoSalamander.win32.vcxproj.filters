@@ -19,9 +19,6 @@
     <Filter Include="include\layer">
       <UniqueIdentifier>{11894baf-51a9-4200-84ed-6447569e04ee}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\sprite">
-      <UniqueIdentifier>{d0cbb799-0912-41f1-9264-d7dff33f16f2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="source\sprite">
       <UniqueIdentifier>{13e07340-df79-4ebc-ad8a-9dbaa83eefc8}</UniqueIdentifier>
     </Filter>
@@ -36,9 +33,6 @@
     </Filter>
     <Filter Include="source\action">
       <UniqueIdentifier>{ecd1d3e5-bdd1-45e7-a2a3-dc35bf164e2c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="include\menu">
-      <UniqueIdentifier>{26a07c35-d5ed-4b16-aab3-999ebc41afd6}</UniqueIdentifier>
     </Filter>
     <Filter Include="source\menu">
       <UniqueIdentifier>{d3e04fc9-df6e-4251-95e1-94f034ade76d}</UniqueIdentifier>
@@ -97,6 +91,12 @@
     <Filter Include="source\mail">
       <UniqueIdentifier>{ffccf2c6-ace6-488f-b058-3204052decd7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\script\sprite">
+      <UniqueIdentifier>{d0cbb799-0912-41f1-9264-d7dff33f16f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\scene\menu">
+      <UniqueIdentifier>{26a07c35-d5ed-4b16-aab3-999ebc41afd6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\NeoSalamander.ico">
@@ -137,13 +137,13 @@
       <Filter>include\constants</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\sprite\ZSprite.h">
-      <Filter>include\sprite</Filter>
+      <Filter>include\script\sprite</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\utility\Utility.h">
       <Filter>include\utility</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\sprite\Plane.h">
-      <Filter>include\sprite</Filter>
+      <Filter>include\script\sprite</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\layer\ObjectLayer.h">
       <Filter>include\layer</Filter>
@@ -188,10 +188,10 @@
       <Filter>include\mail</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\menu\ZMenu.h">
-      <Filter>include\menu</Filter>
+      <Filter>include\scene\menu</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\menu\ZOption.h">
-      <Filter>include\menu</Filter>
+      <Filter>include\scene\menu</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\script\ScriptElement.h">
       <Filter>include\script</Filter>
@@ -200,19 +200,19 @@
       <Filter>include\script</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\menu\ZGameMenu.h">
-      <Filter>include\menu</Filter>
+      <Filter>include\scene\menu</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\menu\ZMainMenu.h">
-      <Filter>include\menu</Filter>
+      <Filter>include\scene\menu</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\menu\ZGameOption.h">
-      <Filter>include\menu</Filter>
+      <Filter>include\scene\menu</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\menu\ZGameMenuContainer.h">
-      <Filter>include\menu</Filter>
+      <Filter>include\scene\menu</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\menu\ZLoadMenu.h">
-      <Filter>include\menu</Filter>
+      <Filter>include\scene\menu</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\scene\ZScene.h">
       <Filter>include\scene</Filter>
@@ -230,7 +230,7 @@
       <Filter>include\scene</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\menu\ZBackMenu.h">
-      <Filter>include\menu</Filter>
+      <Filter>include\scene\menu</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\script\ZAutoLines.h">
       <Filter>include\script</Filter>

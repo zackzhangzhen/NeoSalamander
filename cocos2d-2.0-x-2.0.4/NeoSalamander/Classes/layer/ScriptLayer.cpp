@@ -181,7 +181,12 @@ ScriptPlayer* ScriptLayer::findScriptPlayerByKey(char* key)
 
 	assert(iter != m_map.end());
 
-	return iter->second;
+	ScriptPlayer* player = iter->second;
+	
+	//when you get the script player and play it, you'll always need to refresh it in case it has been played before, so refresh it whenever you get it.
+	player->refresh();
+
+	return player;
 }
 void ScriptLayer::setCurrentScriptPlayer(ScriptPlayer* player)
 {
@@ -214,7 +219,6 @@ void ScriptLayer::refresh(char* strId)
 void ScriptLayer::resetCurrentScriptPlayer(char* idStr)
 {
 	ScriptPlayer* scriptPlayer = this->findScriptPlayerByKey(idStr);
-	scriptPlayer->refresh();
 
 	this->setCurrentScriptPlayer(scriptPlayer);
 }

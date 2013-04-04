@@ -44,6 +44,7 @@ const char* NeoConstants::LOAD_MENU_BACK_BUTTON_ID = "back";
 const char* NeoConstants::BACK_MENU_NORMAL_IMAGE_PATH = "pic\\menu\\back_normal.png";
 const char* NeoConstants::BACK_MENU_SELECTED_IMAGE_PATH = "pic\\menu\\back_selected.png";
 const char* NeoConstants::DEFAULT_SOUND_NAME = "option_correct";
+const char* NeoConstants::STARTING_SCRIPT_ID = "s0";
 NeoConstants::NeoConstants(void)
 {
 }

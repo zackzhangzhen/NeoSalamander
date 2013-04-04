@@ -84,7 +84,7 @@ ZMenu::ZMenu(TiXmlElement* optionsElem, CCNode* parentNode, bool visible) : Scri
 	}
 
 	//set position to center
-	CCPoint centerPt = Utility::getCenterPt();
+	CCPoint centerPt = Utility::getMenuCenterPt();
 	menu->setPosition(centerPt);
 	menu->alignItemsVertically();
 

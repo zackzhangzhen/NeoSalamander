@@ -54,7 +54,7 @@ ZDlg::ZDlg(TiXmlElement* dlgElem, CCNode* parentNode)
 	char* stopMusic = (char*)dlgElem->Attribute(NeoConstants::SCRIPT_ATTR_STOP_MUSIC);
 	bool isStopMusic = stopMusic == NULL?false:true;
 
-	vector<ScriptElement*> lines = Utility::createLines(lineElem, this->m_parentScriptLayer);
+	vector<ScriptElement*> lines = Utility::createLines(lineElem, this->m_parentScriptLayer, NULL);
 
 	zDlgInit(pos, lines, imageFile, musicName, isStopMusic, parentNode, colorCode, font, size, figure_vertical_offset);
 }
@@ -100,6 +100,7 @@ void ZDlg::zDlgLazyInit()
 	this->m_scriptLabel = new ZLabelTTF(m_scripts, this->getScriptSize(), m_colorCode, m_font == NULL? ZLabelTTF::YAHEI : m_font,  m_size);
 	this->m_figure = new ZSprite(m_figureFileName);
 	
+	m_scriptState = ScriptState::NOT_FADED_IN;
 
 	init(m_figureVerticalOffset);
 	this->addToCCNode(m_parentScriptLayer, 10);
@@ -247,6 +248,10 @@ void ZDlg::fadeIn(bool delay)
 	}
 }
 
+int ZDlg::getType()
+{
+	return NeoConstants::DLG_TYPE_NORMAL;
+}
 void ZDlg::autoRelease(CCNode* sender)
 {
 	CCSprite* sprite = (CCSprite*)sender;
@@ -338,6 +343,11 @@ bool ZDlg::fadeOutInstantly()
 void ZDlg::jumpToLine(char* lineId)
 {
 	this->m_scriptLabel->jumpToLine(lineId);
+}
+
+void ZDlg::resetScriptState()
+{
+	m_scriptState = ScriptState::NOT_FADED_IN;
 }
 
 void ZDlg::refresh()

@@ -42,7 +42,7 @@ public:
 	void calcInitOpacity(void);
 
 	void addToCCNode(CCNode* node, int baseOrder);
-
+	virtual int getType();
 	void fadeIn(bool delay);
 	void playMusic();
 	void fadeOut();
@@ -55,6 +55,7 @@ public:
 	void autoRelease(CCNode* sender);
 	char* getMusicName();
 	bool isStopMusic();
+	void resetScriptState();
 
 	static int POS_LEFT;
 	static int POS_RIGHT;
@@ -81,6 +82,8 @@ protected:
 	ScriptLayer* m_parentScriptLayer;
 	ScriptState m_scriptState;
 	ZLabelTTF* m_scriptLabel;
+	ZSprite* m_figure;
+	char* m_figureFileName;
 
 private:
 
@@ -99,14 +102,13 @@ private:
 	CCPoint m_framePos;
 	CCPoint m_figurePos;
 	CCPoint m_scriptPos;
-	ZSprite* m_figure;
 	ZSprite* m_frame;
 	
 
 	char* m_musicName;
 	bool m_stopMusic;
 	int m_figureVerticalOffset;
-	char* m_figureFileName;
+	
 	vector<ScriptElement*> m_scripts;
 	int m_colorCode;
 	char* m_font;

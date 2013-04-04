@@ -13,8 +13,10 @@
 #include "scene\ZSceneMgr.h"
 #include "script\ScriptElement.h"
 #include "script\ValueWrapper.h"
-#include "script\ZAutoLines.h"
+
 using namespace cocos2d;
+class ScriptPlayer;
+class ZAutoLines;
 class Utility
 {
 public:
@@ -33,18 +35,19 @@ public:
 	static void playSound(const char* soundName, bool repeat = false);
 	static void playMusic(const char* musicName, bool repeat = true);
 	static void stopMusic();
-	static TiXmlElement* Utility::getRootElementFromFile(const char* fileName);
+	static TiXmlElement* getRootElementFromFile(const char* fileName);
 	static bool getRandomBoolean();
 	static CCMoveToWrapper generateLinearMoveToDownAction(float velocity, bool moveLeft, CCSize size, CCPoint pos);
 	static CCMoveToWrapper generateLinearMoveToHorizontalAction(float velocity, bool moveLeft, CCSize size, CCPoint pos);
 	static CCPoint getCenterPt();
+	static CCPoint getMenuCenterPt();
 	static CCPoint getTopRightPt();
 	static void replaceTitleWithMainScene(ZSceneMgr* mgr);
 	static void replaceMainWithTitleScene(ZSceneMgr* mgr);
 	static void replaceScene(ZScene* originScene, ZScene* targetScene);
 	static char* getCurrentTime();
 	static char* getSaveString(char* title);
-	static vector<ScriptElement*> createLines(TiXmlElement* lineElem, CCNode* parentLayer);
+	static vector<ScriptElement*> createLines(TiXmlElement* lineElem, CCNode* parentLayer, ScriptPlayer* parentPlayer);
 	static CCSize getDefaultScriptSize();
 	static void setColor(int colorCode, CCLabelTTF* label);
 	static void setColor(int colorCode, CCMenuItemFont* label);

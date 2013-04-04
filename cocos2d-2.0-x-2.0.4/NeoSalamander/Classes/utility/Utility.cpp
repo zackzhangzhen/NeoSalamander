@@ -1,4 +1,6 @@
 #include "Utility.h"
+#include "script\ZAutoLines.h"
+#include "script\ScriptPlayer.h";
 using namespace cocos2d;
 
 Utility::Utility(void)
@@ -210,8 +212,15 @@ CCMoveToWrapper Utility::generateLinearMoveToHorizontalAction(float velocity, bo
 CCPoint Utility::getCenterPt()
 {
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
+    return ccp(size.width/2, size.height/2);
+}
+
+CCPoint Utility::getMenuCenterPt()
+{
+	CCSize size = CCDirector::sharedDirector()->getWinSize();
     return ccp(size.width/2, size.height - 150);
 }
+
 CCPoint Utility::getTopRightPt()
 {
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
@@ -359,7 +368,7 @@ void Utility::replaceScene(ZScene* originScene, ZScene* targetScene)
 	
 }
 
-vector<ScriptElement*> Utility::createLines(TiXmlElement* lineElem, CCNode* parentLayer)
+vector<ScriptElement*> Utility::createLines(TiXmlElement* lineElem, CCNode* parentLayer, ScriptPlayer* parentPlayer)
 {
 	assert(lineElem != NULL);
 	vector<ScriptElement*> lines;
@@ -379,7 +388,7 @@ vector<ScriptElement*> Utility::createLines(TiXmlElement* lineElem, CCNode* pare
 		}
 		else if(strcmp(tagName, NeoConstants::SCRIPT_TAG_AUTO_LINES) == 0)
 		{
-			ZAutoLines* autolines = new ZAutoLines(lineElem, parentLayer);
+			ZAutoLines* autolines = new ZAutoLines(lineElem, parentLayer, parentPlayer);
 			lines.push_back(autolines);
 		}
 

@@ -7,9 +7,11 @@ class ZLabelTTF;
 class ZAutoDlg : public ZDlg
 {
 public:
-	ZAutoDlg(TiXmlElement* dlgElem, CCNode* parentNode);
+	ZAutoDlg(TiXmlElement* dlgElem, CCNode* parentNode, ScriptPlayer* parentPlayer);
 	bool play(bool delay);
 	void zDlgLazyInit();
+	int getType();
 	~ZAutoDlg(void);
+
 };
 

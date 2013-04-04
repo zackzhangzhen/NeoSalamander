@@ -31,7 +31,7 @@ ScriptPlayer::ScriptPlayer(char* id, TiXmlElement* scriptElem, CCNode* parentNod
 		}
 		else//NeoConstants::SCRIPT_TAG_AUTO_DLG
 		{
-			dlg = new ZAutoDlg(dlgElem, parentNode);
+			dlg = new ZAutoDlg(dlgElem, parentNode, this);
 		}
 		
 		m_vec.push_back(dlg);
@@ -54,6 +54,11 @@ ScriptPlayer::~ScriptPlayer(void)
 
 void ScriptPlayer::refresh()
 {
+	//the first time it's played, no need to refresh
+	if(!this->fadedIn)
+	{
+		return;
+	}
 	//when making choices, sometimes the next script id will be reset, so when loading that script,will need to set it back.
 	this->resetNextScriptId();
 	//when the script faded out, the background sprite will be released, so when loading that script, will need to create it again.
@@ -65,6 +70,16 @@ void ScriptPlayer::refresh()
 	this->m_parentScriptLayer->switchCue(false);//turn off cue
 
 	refreshChildrenDlg();
+}
+
+void ScriptPlayer::resetChildrenDlgScriptState()
+{
+	vector<ZDlg*>::iterator iter = m_vec.begin();
+	for(; iter != m_vec.end(); iter++)
+	{
+		ZDlg* dlg = *iter;
+		dlg->resetScriptState();
+	}
 }
 
 void ScriptPlayer::refreshChildrenDlg()
@@ -273,7 +288,6 @@ bool ScriptPlayer::play(bool delay)
 		if(dlg->play(false))
 		{
 			//entering here means the current dlg is done, play the next dlg or fade out the background
-
 			m_iter++;
 
 			//play the next dlg with delay
@@ -284,9 +298,17 @@ bool ScriptPlayer::play(bool delay)
 				return false;
 			}
 
-			//no next dlg, conclude the script with fading out the background
-			this->bgFadeOut(true);
-			return true;
+			if(dlg->getType() == NeoConstants::DLG_TYPE_AUTO)
+			{
+				return false;
+			}
+			else
+			{
+				//no next dlg, conclude the script with fading out the background
+				this->bgFadeOut(true);
+				return true;
+			}
+
 		}
 
 		return false;

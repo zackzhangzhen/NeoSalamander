@@ -6,6 +6,8 @@
 #include "ScriptElement.h"
 #include "ValueWrapper.h"
 #include "menu\ZMenu.h"
+
+class ZAutoLines;
 class ZLabelTTF
 {
 public:
@@ -27,6 +29,7 @@ public:
 	void setPositionY(int y);
 	int getPositionX();
 	int getPositionY();
+	void resetIter();
 	CCPoint getPosition();
 	bool rollScript();
 	void jumpToLine(char* lineId);

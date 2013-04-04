@@ -1,5 +1,5 @@
 #include "script\ZLabelTTF.h"
-
+#include "script\ZAutoLines.h"
 
 char* ZLabelTTF::FONT_COMIC = "Comic Sans MS";
 char* ZLabelTTF::YAHEI = "Microsoft JhengHei";
@@ -103,21 +103,17 @@ void ZLabelTTF::setOpacity(int opacity)
 	this->m_label->setOpacity(opacity);
 }
 
+void ZLabelTTF::resetIter()
+{
+	m_iter = m_scripts.begin();
+}
+
 bool ZLabelTTF::rollScript()
 {
-	if(++m_iter != m_scripts.end())
+	if(m_iter != m_scripts.end())
 	{
 		ScriptElement* elem = *m_iter;
-		if(elem->isType(ScriptElementType::LINE))
-		{
-			this->m_label->setString(elem->getText());
-		}
-		else if(elem->isType(ScriptElementType::OPTIONS))
-		{
-			ZMenu* menu = (ZMenu*)elem;
-			menu->show();
-		}
-		else if(elem->isType(ScriptElementType::AUTO_LINES))
+		if(elem->isType(ScriptElementType::AUTO_LINES))
 		{
 			ZAutoLines* autoLines = (ZAutoLines*)elem;
 			autoLines->play();
@@ -125,7 +121,24 @@ bool ZLabelTTF::rollScript()
 			return true;
 		}
 
-		return false;
+		if(++m_iter != m_scripts.end())
+		{
+			elem = *m_iter;
+
+			if(elem->isType(ScriptElementType::LINE))
+			{
+				this->m_label->setString(elem->getText());
+			}
+			else if(elem->isType(ScriptElementType::OPTIONS))
+			{
+				ZMenu* menu = (ZMenu*)elem;
+				menu->show();
+			}
+
+			return false;
+		}
+
+		return true;
 	}
 
 	return true;

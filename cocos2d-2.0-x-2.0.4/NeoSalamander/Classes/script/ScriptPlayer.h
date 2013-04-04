@@ -24,6 +24,7 @@ public:
 	bool play(bool delay = false);
 	void refresh();
 	void refreshChildrenDlg();
+	void resetChildrenDlgScriptState();
 	void fadeOut(bool switchCueOn = true);
 	char* getId();
 	char* getTitle();

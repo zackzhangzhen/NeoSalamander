@@ -42,11 +42,16 @@ public:
 	static const char* SCRIPT_TAG_AUTO_SCRIPT;
 	static const char* SCRIPT_TAG_DLG;
 	static const char* SCRIPT_TAG_AUTO_DLG;
+	static const char* STARTING_SCRIPT_ID;
 
 	//Dlg elment's position
 	static int FIGURE_VERTICAL_OFFSET;
 
 	static const char* DUMMY_PIC_LOC;
+
+	//Dlg type
+	static const int DLG_TYPE_NORMAL = 0;
+	static const int DLG_TYPE_AUTO = 1;
 
 	//Save	
 	static const char* SAVE_FILE_LOC;

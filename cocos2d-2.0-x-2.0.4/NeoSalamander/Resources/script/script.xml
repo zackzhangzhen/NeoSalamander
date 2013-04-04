@@ -3,8 +3,8 @@
   <script title="前传" id="s0" pic="breakfast.png" toScript="s1" >
     <autoDlg id="1" pos="0" image="pic\\figure\\assassin.png" size="28" music="mySong" color="1">
         <autolines >
-               <autoscript size="50" color="2" font="Microsoft JhengHei">
-                2011年四月的Lingo，故事开始的地方
+               <autoscript size="200" color="2" font="Microsoft JhengHei">
+               好
                </autoscript>
                 <autoscript>
                 很好玩的哟

@@ -57,7 +57,7 @@ void ZLoadMenu::init()
 	}
 
 	//set position to center
-	CCPoint centerPt = Utility::getCenterPt();
+	CCPoint centerPt = Utility::getMenuCenterPt();
 	menu->setPosition(centerPt);
 	menu->alignItemsVertically();
 

@@ -66,7 +66,7 @@ void ZMainMenu::init()
 	}
 
 	//set position to center
-	CCPoint centerPt = Utility::getCenterPt();
+	CCPoint centerPt = Utility::getMenuCenterPt();
 	menu->setPosition(centerPt);
 	menu->alignItemsVertically();
 
@@ -94,6 +94,8 @@ void ZMainMenu::optionCallback(CCObject* sender)
 			CCLayer* layer = this->m_parentLayer;
 			ZScene* titleScene = ((ObjectLayer*)layer)->getParentTitleScene();
 			ZSceneMgr* sceneMgr = titleScene->getSceneMgr();
+			//reset the script to play the first one
+			sceneMgr->refreshMainScene((char*)NeoConstants::STARTING_SCRIPT_ID);
 			Utility::replaceTitleWithMainScene(sceneMgr);
 			break;
 		}
