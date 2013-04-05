@@ -5,7 +5,7 @@ char* ZLabelTTF::FONT_COMIC = "Comic Sans MS";
 char* ZLabelTTF::YAHEI = "Microsoft JhengHei";
 int ZLabelTTF::FONT_DEFAULT_SIZE = 28;
 int ZLabelTTF::MENU_FONT_DEFAULT_SIZE = 40;
-int ZLabelTTF::FONT_COLOR_DEFAULT = 0;
+int ZLabelTTF::FONT_COLOR_DEFAULT = 3;
 int ZLabelTTF::FONT_COLOR_BLUE = 1;
 
 void ZLabelTTF::init(vector<ScriptElement*>& scripts, CCSize scriptSize,int colorCode, char* font,  int size)
@@ -127,7 +127,13 @@ bool ZLabelTTF::rollScript()
 
 			if(elem->isType(ScriptElementType::LINE))
 			{
-				this->m_label->setString(elem->getText());
+				ValueWrapper* valueWrapper = (ValueWrapper*)elem;
+				this->m_label->setFontName(valueWrapper->getFont());
+				this->m_label->setFontSize(valueWrapper->getSize());
+				Utility::setColor(valueWrapper->getColorCode(), m_label);
+				Utility::playSound(valueWrapper->getSound());
+				Utility::playMusic(valueWrapper->getMusic());
+				this->m_label->setString(valueWrapper->getText());
 			}
 			else if(elem->isType(ScriptElementType::OPTIONS))
 			{

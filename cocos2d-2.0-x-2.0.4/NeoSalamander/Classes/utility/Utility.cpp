@@ -377,9 +377,7 @@ vector<ScriptElement*> Utility::createLines(TiXmlElement* lineElem, CCNode* pare
 		const char* tagName = lineElem->Value();
 		if(strcmp(tagName, NeoConstants::SCRIPT_TAG_LINE) == 0)
 		{
-			char* line = (char*)lineElem->GetText();
-			char* lineId = (char*)lineElem->Attribute(NeoConstants::SCRIPT_ATTR_ID);
-			lines.push_back(new ValueWrapper(lineId, line));
+			lines.push_back(new ValueWrapper(lineElem));
 		}
 		else if(strcmp(tagName, NeoConstants::SCRIPT_TAG_OPTIONS) == 0)
 		{
@@ -411,6 +409,11 @@ void Utility::setColor(int colorCode, CCLabelTTF* label)
 	//default(0) : WHITE
 	switch(colorCode)
 	{
+	case 0:
+		{
+			label->setColor(ccWHITE  );
+			break;
+		}
 	case 1:
 		{
 			label->setColor(ccBLUE  );

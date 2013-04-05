@@ -3,23 +3,23 @@
   <script title="前传" id="s0"  toScript="s1" >
     <autoDlg id="1" pos="0" image="pic\\figure\\assassin.png" size="28" music="mySong" color="1">
         <autolines >
-               <autoscript size="20" color="1" font="Microsoft JhengHei" preBlank="1" fadeInTime="1" presentTime="3" fadeOutTime="1" postBlank="0">
-               I won't give up on us
+               <autoscript size="60" color="1" font="Comic Sans MS" preBlank="1" fadeInTime="1" presentTime="3" fadeOutTime="1" postBlank="0">
+               A Wonder Bro Production
                </autoscript>
-                <autoscript size="25" color="8" preBlank="2" fadeInTime="1" presentTime="3" fadeOutTime="1" postBlank="0">
-                Even if the sky gets rough
+                <autoscript size="40" color="8" preBlank="2" fadeInTime="1" presentTime="3" fadeOutTime="1" postBlank="0">
+                技术顾问          Chuck
                </autoscript>
-                <autoscript size="30" color="2" preBlank="1" fadeInTime="1" presentTime="3" fadeOutTime="1" postBlank="0">
-                When you're needing your space
+                <autoscript size="40" color="2" preBlank="1" fadeInTime="1" presentTime="3" fadeOutTime="1" postBlank="0">
+                创意总监          Chuck 
                </autoscript>
-               <autoscript  size="35" color="3" preBlank="1" fadeInTime="1" presentTime="3" fadeOutTime="1" postBlank="0">
-                To do some navigating
+               <autoscript  size="40" color="3" preBlank="1" fadeInTime="1" presentTime="3" fadeOutTime="1" postBlank="0">
+                剧本          Chuck
                </autoscript>
               <autoscript  size="40" color="4" preBlank="1" fadeInTime="1" presentTime="3" fadeOutTime="1" postBlank="0">
-                I'll be there patiently waiting
+                执行制作人         Chuck
                </autoscript>
-               <autoscript size="45" color="5" preBlank="1" fadeInTime="1" presentTime="3" fadeOutTime="1" postBlank="3">
-                To see what you find
+               <autoscript size="40" color="5" preBlank="1" fadeInTime="1" presentTime="3" fadeOutTime="1" postBlank="3">
+                程序员         Chuck
                </autoscript>
                 <autoscript size="50" color="6" preBlank="1" fadeInTime="1" presentTime="3" fadeOutTime="0" postBlank="3">
                 Happy Birthday (͡° ͜ʖ ͡°)﻿
@@ -39,8 +39,14 @@
         <line>呵呵，谢谢你接受我的邀请，但是我先声明，我只是请客，钱不是我付哟～</line>
         <line>点击了豪华游轮，就会跑到这里来，说明测试成功了哟</line>
         <line id="l1">哟哟哟~</line>
-        <line>现在想找我陪你说话啦？</line>
-        <line>那我们找个地方去吃饭吧～我建议豪华游艇，哇哈哈～</line>
+        <line sound="alarm_clock2">闹钟响了</line>
+        <line sound="alarm_clock2">闹钟又响了</line>
+        <line sound="alarm_clock2">闹钟还响</line>
+        <line sound="alarm_clock2">真烦</line>
+        <line font="Comic Sans MS" size="50" color="3" sound="victory" music="RiverFlowsInYou">Now you want to talk to me?</line>
+        <line sound="panting">那我们找个地方去吃饭吧～我建议豪华游艇，哇哈哈～</line>
+        <line font="Comic Sans MS">Belive me, you won't be disappointed!</line>
+        <line font="Comic Sans MS" music="ShuffleOrBoogie">Belive me, you won't be disappointed!</line>
     </dlg>
     <!--dlg id="2" pos="1" font="Comic Sans MS/Microsoft JhengHei" image="pic\\figure\\master_chief.png" size="20" figureVerticalOffset="180">
         <line font="Comic Sans MS">Fine thank you! My name is Li Lei, what about you?</line>
