@@ -2,7 +2,7 @@
 #include <vector>
 #include "cocos2d.h"
 #include "menu\tinyxml.h"
-
+#include "script\AutoScriptAttrHolder.h"
 #include "script\ScriptElement.h"
 
 using namespace std;

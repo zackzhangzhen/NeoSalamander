@@ -19,6 +19,10 @@ ScriptPlayer::ScriptPlayer(char* id, TiXmlElement* scriptElem, CCNode* parentNod
 	//Initialize the background sprite, don't initialize here, will lazy-initialize it, so that it saves memory, and also when loading a game it will be re-initialized, this is necessary as it might have been manually GCed.
 	//initBg(scriptElem, parentNode);
 	m_bgPic = (char*)scriptElem->Attribute(NeoConstants::SCRIPT_ATTR_PIC);
+	if(m_bgPic == NULL)
+	{
+		m_bgPic = (char*)NeoConstants::BG_PIC_DEFAULT;
+	}
 
 	for( ; dlgElem != NULL; dlgElem=dlgElem->NextSiblingElement())
 	{

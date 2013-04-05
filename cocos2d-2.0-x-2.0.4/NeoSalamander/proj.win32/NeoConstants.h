@@ -19,6 +19,7 @@ public:
 	//script - attr
 	static const char* SCRIPT_FILE_LOC;
 	static const char* BG_PIC_BASE;
+	static const char* BG_PIC_DEFAULT;
 	static const char* SCRIPT_ATTR_POS;
 	static const char* SCRIPT_ATTR_SIZE;
 	static const char* SCRIPT_ATTR_FONT;
@@ -43,6 +44,19 @@ public:
 	static const char* SCRIPT_TAG_DLG;
 	static const char* SCRIPT_TAG_AUTO_DLG;
 	static const char* STARTING_SCRIPT_ID;
+
+	//autoline
+	static const char* PRE_BLANK;
+	static const char* FADE_IN_TIME;
+	static const char* PRESENT_TIME;
+	static const char* FADE_OUT_TIME;
+	static const char* POST_BLANK;
+
+	static const int PRE_BLANK_DEFAULT = 1;
+	static const int FADE_IN_TIME_DEFAULT = 2;
+	static const int PRESENT_TIME_DEFAULT = 4;
+	static const int FADE_OUT_TIME_DEFAULT = 2;
+	static const int POST_BLANK_DEFAULT = 1;
 
 	//Dlg elment's position
 	static int FIGURE_VERTICAL_OFFSET;

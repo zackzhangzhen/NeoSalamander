@@ -91,11 +91,11 @@
     <Filter Include="source\mail">
       <UniqueIdentifier>{ffccf2c6-ace6-488f-b058-3204052decd7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\script\sprite">
-      <UniqueIdentifier>{d0cbb799-0912-41f1-9264-d7dff33f16f2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="include\scene\menu">
       <UniqueIdentifier>{26a07c35-d5ed-4b16-aab3-999ebc41afd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\sprite">
+      <UniqueIdentifier>{d0cbb799-0912-41f1-9264-d7dff33f16f2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -137,13 +137,13 @@
       <Filter>include\constants</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\sprite\ZSprite.h">
-      <Filter>include\script\sprite</Filter>
+      <Filter>include\sprite</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\utility\Utility.h">
       <Filter>include\utility</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\sprite\Plane.h">
-      <Filter>include\script\sprite</Filter>
+      <Filter>include\sprite</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\layer\ObjectLayer.h">
       <Filter>include\layer</Filter>
@@ -236,6 +236,9 @@
       <Filter>include\script</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\script\ZAutoDlg.h">
+      <Filter>include\script</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\script\AutoScriptAttrHolder.h">
       <Filter>include\script</Filter>
     </ClInclude>
   </ItemGroup>
@@ -355,6 +358,9 @@
       <Filter>source\script</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\script\ZAutoDlg.cpp">
+      <Filter>source\script</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\script\AutoScriptAttrHolder.cpp">
       <Filter>source\script</Filter>
     </ClCompile>
   </ItemGroup>

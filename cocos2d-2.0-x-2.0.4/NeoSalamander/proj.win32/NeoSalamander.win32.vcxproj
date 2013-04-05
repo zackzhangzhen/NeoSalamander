@@ -157,6 +157,7 @@
     <ClInclude Include="..\Classes\scheduler\LayerScheduler.h" />
     <ClInclude Include="..\Classes\scheduler\ScheduleTempValHolder.h" />
     <ClInclude Include="..\Classes\layer\ScriptLayer.h" />
+    <ClInclude Include="..\Classes\script\AutoScriptAttrHolder.h" />
     <ClInclude Include="..\Classes\script\ScriptElement.h" />
     <ClInclude Include="..\Classes\script\ScriptPlayer.h" />
     <ClInclude Include="..\Classes\script\ValueWrapper.h" />
@@ -199,6 +200,7 @@
     <ClCompile Include="..\Classes\scheduler\LayerScheduler.cpp" />
     <ClCompile Include="..\Classes\scheduler\ScheduleTempValHolder.cpp" />
     <ClCompile Include="..\Classes\layer\ScriptLayer.cpp" />
+    <ClCompile Include="..\Classes\script\AutoScriptAttrHolder.cpp" />
     <ClCompile Include="..\Classes\script\ScriptElement.cpp" />
     <ClCompile Include="..\Classes\script\ScriptPlayer.cpp" />
     <ClCompile Include="..\Classes\script\ValueWrapper.cpp" />

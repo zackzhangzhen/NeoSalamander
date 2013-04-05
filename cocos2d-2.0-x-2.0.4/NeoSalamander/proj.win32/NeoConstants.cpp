@@ -9,6 +9,7 @@ const int NeoConstants::MOVE_DOWN = 0;
 const int NeoConstants::MOVE_LEFT = 1;
 const int NeoConstants::MOVE_RIGHT = 2;
 const char* NeoConstants::BG_PIC_BASE = "pic\\bg\\";
+const char* NeoConstants::BG_PIC_DEFAULT = "blank.png";
 const char* NeoConstants::SAVE_FILE_LOC = "save\\save.xml";
 const char* NeoConstants::MAIN_MENU_FILE_LOC = "menu\\main_menu.xml";
 const char* NeoConstants::SAVE_NODE_ROOT_TAG = "saves";
@@ -45,6 +46,11 @@ const char* NeoConstants::BACK_MENU_NORMAL_IMAGE_PATH = "pic\\menu\\back_normal.
 const char* NeoConstants::BACK_MENU_SELECTED_IMAGE_PATH = "pic\\menu\\back_selected.png";
 const char* NeoConstants::DEFAULT_SOUND_NAME = "option_correct";
 const char* NeoConstants::STARTING_SCRIPT_ID = "s0";
+const char* NeoConstants::PRE_BLANK = "preBlank";
+const char* NeoConstants::FADE_IN_TIME = "faedInTime";
+const char* NeoConstants::PRESENT_TIME = "presentTime";
+const char* NeoConstants::FADE_OUT_TIME = "fadeOutTime";
+const char* NeoConstants::POST_BLANK = "postBlank";
 NeoConstants::NeoConstants(void)
 {
 }

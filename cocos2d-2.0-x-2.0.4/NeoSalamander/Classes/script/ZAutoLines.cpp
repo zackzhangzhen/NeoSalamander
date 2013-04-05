@@ -21,6 +21,20 @@ ZAutoLines::ZAutoLines(TiXmlElement* autolinesElem, CCNode* parentNode, ScriptPl
 		int colorCode = ZLabelTTF::FONT_COLOR_DEFAULT;
 		autoScriptElem->Attribute(NeoConstants::SCRIPT_ATTR_COLOR, &colorCode);
 
+		int preBlank = NeoConstants::PRE_BLANK_DEFAULT;
+		autoScriptElem->Attribute(NeoConstants::PRE_BLANK, &preBlank);
+
+		int fadeInTime = NeoConstants::FADE_IN_TIME_DEFAULT;
+		autoScriptElem->Attribute(NeoConstants::FADE_IN_TIME, &fadeInTime);
+
+		int presentTime = NeoConstants::PRESENT_TIME_DEFAULT;
+		autoScriptElem->Attribute(NeoConstants::PRESENT_TIME, &presentTime);
+
+		int fadeOutTime = NeoConstants::FADE_OUT_TIME_DEFAULT;
+		autoScriptElem->Attribute(NeoConstants::FADE_OUT_TIME, &fadeOutTime);
+
+		int postBlank = NeoConstants::POST_BLANK_DEFAULT;
+		autoScriptElem->Attribute(NeoConstants::POST_BLANK, &postBlank);
 
 		char* font = (char*)autoScriptElem->Attribute(NeoConstants::SCRIPT_ATTR_FONT);
 		if(font == NULL)
@@ -34,6 +48,8 @@ ZAutoLines::ZAutoLines(TiXmlElement* autolinesElem, CCNode* parentNode, ScriptPl
 		this->m_parentScriptLayer = (ScriptLayer*)parentNode;
 
 		CCLabelTTF* label = this->createLabel(text, font, colorCode, size);
+
+		label->setUserData(new AutoScriptAttrHolder(preBlank, fadeInTime, presentTime, fadeOutTime, postBlank));
 		
 		this->m_labels.push_back(label);
 	}	
@@ -63,26 +79,42 @@ void ZAutoLines::play()
 	int base = 0;
 	while(iter != m_labels.end())
 	{
-
 		CCLabelTTF* label = *iter;
 
-		CCDelayTime *offsetAction = CCDelayTime::actionWithDuration(base);
-		CCFadeIn* pCCFadeIn= CCFadeIn::actionWithDuration(1);
-		CCDelayTime *delayAction = CCDelayTime::actionWithDuration(1);
-		CCFadeOut* pCCFadeOut= CCFadeOut::actionWithDuration(1);
+		AutoScriptAttrHolder* attrHolder = (AutoScriptAttrHolder*)label->getUserData();
+
+		int preBlank = attrHolder->getPreBlank();
+		int fadeInTime = attrHolder->getFadeInTime();
+		int presentTime = attrHolder->getPresentTime();
+		int fadeOutTime = attrHolder->getFadeOutTime();
+		int postBlank = attrHolder->getPostBlank();
+
+		CCDelayTime *preBlankAction = CCDelayTime::actionWithDuration(base + preBlank);
+		CCFadeIn* fadeInAction= CCFadeIn::actionWithDuration(fadeInTime);
+		CCDelayTime *presentAction = CCDelayTime::actionWithDuration(presentTime);
+		CCFadeOut* fadeOutAction= CCFadeOut::actionWithDuration(fadeOutTime);
+		CCDelayTime *postBlankAction = CCDelayTime::actionWithDuration(postBlank);
 
 		if(i == size - 1)
 		{
-			CCFiniteTimeAction* animationDone = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ZAutoLines::setAnimationPlayingDone));
-			label->runAction(CCSequence::actions(offsetAction, pCCFadeIn, delayAction, pCCFadeOut, animationDone, NULL));
+			//The end --- :)
+			if(fadeOutTime == 0)
+			{
+				label->runAction(CCSequence::actions(preBlankAction, fadeInAction, presentAction, NULL));
+			}
+			else
+			{
+				CCFiniteTimeAction* animationDone = CCCallFuncN::actionWithTarget(this,callfuncN_selector(ZAutoLines::setAnimationPlayingDone));
+				label->runAction(CCSequence::actions(preBlankAction, fadeInAction, presentAction, fadeOutAction, postBlankAction, animationDone, NULL));
+			}			
 		}
 		else
 		{
-			label->runAction(CCSequence::actions(offsetAction, pCCFadeIn, delayAction, pCCFadeOut, NULL));
+			label->runAction(CCSequence::actions(preBlankAction, fadeInAction, presentAction, fadeOutAction, postBlankAction, NULL));
 		}
 		
 		i++;
-		base+= 3;
+		base+= preBlank+fadeInTime+presentTime+fadeOutTime+postBlank;
 		iter++;
 	}
 }
