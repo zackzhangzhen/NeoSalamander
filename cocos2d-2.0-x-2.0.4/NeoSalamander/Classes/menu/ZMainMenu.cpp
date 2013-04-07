@@ -43,6 +43,8 @@ void ZMainMenu::init()
 		CCMenuItemFont* menuItem = createMenuItemWithString(NULL,text, this);
 		 
 		menuItem->setTag(id);
+		menuItem->setFontName("SimHei");
+		Utility::setColor(NeoConstants::GAME_MENU_DEFAULT_COLOR,menuItem);
 
 		if(menu == NULL)
 		{

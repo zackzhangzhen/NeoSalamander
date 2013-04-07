@@ -9,6 +9,12 @@ const char* ObjectLayer::RAVEN = "pic\\enemy\\raven.png";
 ObjectLayer::ObjectLayer(ZTitleScene* parentScene)
 {
 	this->m_parentScene = parentScene;
+
+	CCSprite* bgSprite = CCSprite::create("pic\\bg\\frame.png");
+	bgSprite->setPosition(Utility::getCenterPt());
+
+	this->addChild(bgSprite, 0);
+
 }
 
 ObjectLayer * ObjectLayer::createObjectLayer(ZTitleScene* parentScene)

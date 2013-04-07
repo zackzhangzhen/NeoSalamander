@@ -34,6 +34,7 @@ void ZLoadMenu::init()
 		//use virtual function to create menu item
 		CCMenuItemFont* menuItem = createMenuItemWithString(idStr, text, this);
 		menuItem->setFontSize(20);
+		Utility::setColor(NeoConstants::GAME_MENU_DEFAULT_COLOR,menuItem);
 
 		if(menu == NULL)
 		{
