@@ -29,7 +29,22 @@
   </script>
   <script title="初遇" id="s1" pic="bar.png" toScript="s2" >
     <dlg id="1" pos="0" image="pic\\figure\\assassin.png" size="28" music="mySong" color="1">
-        <line >我就开门见山吧，我想约你出来，豪华游轮和甜美早餐，你自己选一个吧～</line>
+        <line >请选择一下三个选项当中的一个</line>
+        <options>
+          <option id="1" score="2" toLine="l0" jumpL="y" sound="option_correct" size="60" color="2">答案一</option>
+          <option id="2" score="3" toLine="l1" jumpL="y" sound="option_correct" color="3">答案二</option>
+          <option id="3" score="4" toLine="l2" jumpL="y" sound="thunder" size="20" color="4">答案三</option>
+        </options>
+        <line id="l0">选答案一？</line>
+        <line>选答案一对伐？</line>
+        <line toLine="l3">答案一不对</line>
+        <line id="l1">选答案二？</line>
+        <line>选答案二对伐？</line>
+        <line toLine="l3">答案二不对</line>
+        <line id="l2">选答案三？</line>
+        <line>选答案三对伐？</line>
+        <line toLine="l3">答案三对</line>
+        <line id="l3">我就开门见山吧，我想约你出来，豪华游轮和甜美早餐，你自己选一个吧～</line>
         <options>
           <option id="1" score="2" sound="option_correct" size="60" color="2">甜美早餐</option>
           <option id="2" score="3" toScript="s3" jumpS="y" sound="option_correct" color="3">豪华游轮</option>
@@ -38,7 +53,7 @@
         </options>
         <line>呵呵，谢谢你接受我的邀请，但是我先声明，我只是请客，钱不是我付哟～</line>
         <line>点击了豪华游轮，就会跑到这里来，说明测试成功了哟</line>
-        <line id="l1">哟哟哟~</line>
+        <line id="l4">哟哟哟~</line>
         <line sound="alarm_clock2">闹钟响了</line>
         <line sound="alarm_clock2">闹钟又响了</line>
         <line sound="alarm_clock2">闹钟还响</line>

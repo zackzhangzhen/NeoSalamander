@@ -44,6 +44,7 @@ public:
 	static const char* SCRIPT_TAG_DLG;
 	static const char* SCRIPT_TAG_AUTO_DLG;
 	static const char* STARTING_SCRIPT_ID;
+	static const char* TO_LINE_ID;
 
 	//autoline
 	static const char* PRE_BLANK;

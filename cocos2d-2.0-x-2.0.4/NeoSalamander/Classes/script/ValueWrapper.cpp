@@ -12,6 +12,8 @@ ValueWrapper::ValueWrapper(TiXmlElement* lineElem) : ScriptElement(ScriptElement
 	char* line = (char*)lineElem->GetText();
 	char* lineId = (char*)lineElem->Attribute(NeoConstants::SCRIPT_ATTR_ID);
 
+	char* toLineId = (char*)lineElem->Attribute(NeoConstants::TO_LINE_ID);
+
 	int size = ZLabelTTF::FONT_DEFAULT_SIZE;
 	lineElem->Attribute(NeoConstants::SCRIPT_ATTR_SIZE, &size);
 
@@ -29,6 +31,7 @@ ValueWrapper::ValueWrapper(TiXmlElement* lineElem) : ScriptElement(ScriptElement
 	char* music = (char*)lineElem->Attribute(NeoConstants::SCRIPT_ATTR_MUSIC);
 	
 	this->m_lineId = lineId;
+	this->m_toLineId = toLineId;
 	this->m_text = line;
 	this->m_font = font;
 	this->m_size = size;
@@ -63,6 +66,11 @@ char* ValueWrapper::getMusic()
 char* ValueWrapper::getLineId()
 {
 	return m_lineId;
+}
+
+char* ValueWrapper::getToLineId()
+{
+	return m_toLineId;
 }
 
 

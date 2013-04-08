@@ -113,6 +113,9 @@ bool ZLabelTTF::rollScript()
 	if(m_iter != m_scripts.end())
 	{
 		ScriptElement* elem = *m_iter;
+
+		char* toLineId = NULL;
+
 		if(elem->isType(ScriptElementType::AUTO_LINES))
 		{
 			ZAutoLines* autoLines = (ZAutoLines*)elem;
@@ -120,13 +123,34 @@ bool ZLabelTTF::rollScript()
 
 			return true;
 		}
-
-		if(++m_iter != m_scripts.end())
+		else if(elem->isType(ScriptElementType::LINE))
 		{
+			ValueWrapper* valueWrapper = (ValueWrapper*)elem;
+			toLineId = valueWrapper->getToLineId();
+		}
+
+
+		if(toLineId != NULL)
+		{
+			this->jumpToLine(toLineId);
+		}
+		else
+		{
+			++m_iter;
+		}
+
+
+		if(m_iter != m_scripts.end())
+		{
+			
+
 			elem = *m_iter;
 
 			if(elem->isType(ScriptElementType::LINE))
 			{
+				
+				
+
 				ValueWrapper* valueWrapper = (ValueWrapper*)elem;
 				this->m_label->setFontName(valueWrapper->getFont());
 				this->m_label->setFontSize(valueWrapper->getSize());

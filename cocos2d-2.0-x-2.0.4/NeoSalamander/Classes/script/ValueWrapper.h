@@ -10,6 +10,7 @@ public:
 	ValueWrapper(TiXmlElement* autolinesElem);
 	~ValueWrapper(void);
 	char* getLineId();
+	char* getToLineId();
 	virtual char* getText();
 	char* getFont();
 	int getSize();
@@ -24,5 +25,6 @@ private:
 	int m_colorCode;
 	char* m_sound;
 	char* m_music;
+	char* m_toLineId;
 };
 

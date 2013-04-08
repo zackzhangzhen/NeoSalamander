@@ -35,6 +35,7 @@ const char* NeoConstants::SCRIPT_TAG_DLG = "dlg";
 const char* NeoConstants::SCRIPT_TAG_AUTO_DLG = "autoDlg";
 const char* NeoConstants::SCRIPT_TAG_LINE = "line";
 const char* NeoConstants::SCRIPT_TAG_OPTIONS = "options";
+const char* NeoConstants::TO_LINE_ID = "toLine";
 const const char* NeoConstants::SCRIPT_TAG_AUTO_LINES = "autolines";
 const const char* NeoConstants::SCRIPT_TAG_AUTO_SCRIPT = "autoscript";
 const char* NeoConstants::SCENE_NAME_TITLE = "titleScene";
