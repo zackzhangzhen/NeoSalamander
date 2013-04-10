@@ -88,5 +88,8 @@ public:
 	static const char* SCENE_NAME_TITLE;
 	static const char* SCENE_NAME_MAIN;
 	static const int GAME_MENU_DEFAULT_COLOR = 3;
+
+	//Save
+	static const int MAX_SAVE_ENTRY_COUNT = 8;
 };
 

@@ -1,25 +1,25 @@
 <?xml version="1.0" ?>
 <play>
-  <script title="前传" id="s0"  toScript="s1" >
-    <autoDlg id="1" pos="0" image="pic\\figure\\assassin.png" size="28" music="mySong" color="1">
+  <script title="前传" id="s0" toScript="s1" >
+    <autoDlg id="1" pos="0" image="pic\\figure\\assassin.png" size="28" music="RiverFlowsInYou" color="3">
         <autolines >
-               <autoscript size="60" color="1" font="Comic Sans MS" preBlank="1" fadeInTime="1" presentTime="3" fadeOutTime="1" postBlank="0">
+               <autoscript size="60" color="8" font="Comic Sans MS" preBlank="1" fadeInTime="1" presentTime="3" fadeOutTime="1" postBlank="0">
                A Wonder Bro Production
                </autoscript>
-                <autoscript size="40" color="8" preBlank="2" fadeInTime="1" presentTime="3" fadeOutTime="1" postBlank="0">
-                技术顾问          Chuck
+                <autoscript size="40" color="2" preBlank="2" fadeInTime="1" presentTime="3" fadeOutTime="1" postBlank="0">
+                技术顾问          Zack
                </autoscript>
-                <autoscript size="40" color="2" preBlank="1" fadeInTime="1" presentTime="3" fadeOutTime="1" postBlank="0">
-                创意总监          Chuck 
+                <autoscript size="40" color="8" preBlank="1" fadeInTime="1" presentTime="3" fadeOutTime="1" postBlank="0">
+                创意总监          Zack 
                </autoscript>
                <autoscript  size="40" color="3" preBlank="1" fadeInTime="1" presentTime="3" fadeOutTime="1" postBlank="0">
-                剧本          Chuck
+                剧本          Zack
                </autoscript>
               <autoscript  size="40" color="4" preBlank="1" fadeInTime="1" presentTime="3" fadeOutTime="1" postBlank="0">
-                执行制作人         Chuck
+                执行制作人         Zack
                </autoscript>
                <autoscript size="40" color="5" preBlank="1" fadeInTime="1" presentTime="3" fadeOutTime="1" postBlank="3">
-                程序员         Chuck
+                程序员         Zack
                </autoscript>
                 <autoscript size="50" color="6" preBlank="1" fadeInTime="1" presentTime="3" fadeOutTime="0" postBlank="3">
                 Happy Birthday (͡° ͜ʖ ͡°)﻿
@@ -60,14 +60,13 @@
         <line sound="alarm_clock2">真烦</line>
         <line font="Comic Sans MS" size="50" color="3" sound="victory" music="RiverFlowsInYou">Now you want to talk to me?</line>
         <line sound="panting">那我们找个地方去吃饭吧～我建议豪华游艇，哇哈哈～</line>
-        <line font="Comic Sans MS">Belive me, you won't be disappointed!</line>
         <line font="Comic Sans MS" music="ShuffleOrBoogie">Belive me, you won't be disappointed!</line>
     </dlg>
     <!--dlg id="2" pos="1" font="Comic Sans MS/Microsoft JhengHei" image="pic\\figure\\master_chief.png" size="20" figureVerticalOffset="180">
         <line font="Comic Sans MS">Fine thank you! My name is Li Lei, what about you?</line>
         <line font="Comic Sans MS">1 - 2 This is a very brief self-introduction!</line>
     </dlg-->
-    <dlg id="2" pos="1" image="pic\\figure\\jedi.png" color="2">
+    <dlg id="2" pos="1" image="pic\\figure\\julie_zebra_face_left.png" color="2">
         <line font="Comic Sans MS" size="50">What the fuck are you saying!!!!!</line>   
         <line>。。。。。。</line> 
         <line>哎，真是拿你么办法，我就这么被你骗走了。。。</line>    

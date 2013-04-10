@@ -83,7 +83,8 @@ protected:
 	ScriptState m_scriptState;
 	ZLabelTTF* m_scriptLabel;
 	ZSprite* m_figure;
-	char* m_figureFileName;
+	bool m_stopMusic;
+	char* m_musicName;
 
 private:
 
@@ -105,8 +106,8 @@ private:
 	ZSprite* m_frame;
 	
 
-	char* m_musicName;
-	bool m_stopMusic;
+	char* m_figureFileName;
+	
 	int m_figureVerticalOffset;
 	
 	vector<ScriptElement*> m_scripts;

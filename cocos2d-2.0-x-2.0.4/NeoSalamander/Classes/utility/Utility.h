@@ -51,7 +51,9 @@ public:
 	static CCSize getDefaultScriptSize();
 	static void setColor(int colorCode, CCLabelTTF* label);
 	static void setColor(int colorCode, CCMenuItemFont* label);
-
+	static int getChildrenCount(TiXmlElement* parentElem);
+	static void removeFirstNChildren(TiXmlElement* parentElem, int n);
+	static void trimElementChidren(TiXmlElement* parentElem);
 private:
 	Utility(void);
 };

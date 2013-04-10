@@ -368,6 +368,78 @@ void Utility::replaceScene(ZScene* originScene, ZScene* targetScene)
 	
 }
 
+void Utility::trimElementChidren(TiXmlElement* parentElem)
+{
+	int count = getChildrenCount(parentElem);
+	if(count > NeoConstants::MAX_SAVE_ENTRY_COUNT)
+	{
+		int n = count - NeoConstants::MAX_SAVE_ENTRY_COUNT;
+		removeFirstNChildren(parentElem, n);
+	}
+}
+
+int Utility::getChildrenCount(TiXmlElement* parentElem)
+{
+	int count = 0;
+	if(parentElem == NULL)
+	{
+		return count;
+	}
+
+	
+	TiXmlNode* child = parentElem->FirstChild();
+	
+	if(child == NULL)
+	{
+		return count;
+	}
+
+	//skip the first node which is the back node
+	child = child->NextSibling();
+
+	for( ; child; child = child->NextSibling())
+	{
+		count++;
+	}
+
+	return count;
+    
+}
+
+void Utility::removeFirstNChildren(TiXmlElement* parentElem, int n)
+{
+	if(parentElem == NULL)
+	{
+		return;
+	}
+
+	TiXmlNode* child = parentElem->FirstChild();
+	
+	if(child == NULL)
+	{
+		return;
+	}
+
+	int i = 0;
+
+	//skip the first node which is the back node
+	child = child->NextSibling();
+
+	for( ; child; child = child->NextSibling(), i++)
+	{
+		if(i == n)
+		{
+			return;
+		}
+
+		TiXmlNode* temp = child->NextSibling();
+
+		parentElem->RemoveChild(child);
+
+		child = temp;
+	}	
+}
+
 vector<ScriptElement*> Utility::createLines(TiXmlElement* lineElem, CCNode* parentLayer, ScriptPlayer* parentPlayer)
 {
 	assert(lineElem != NULL);

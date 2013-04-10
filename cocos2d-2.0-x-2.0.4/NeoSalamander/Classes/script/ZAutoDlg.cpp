@@ -10,6 +10,10 @@ ZAutoDlg::ZAutoDlg(TiXmlElement* dlgElem, CCNode* parentNode, ScriptPlayer* pare
 
 	vector<ScriptElement*> lines = Utility::createLines(lineElem, this->m_parentScriptLayer, parentPlayer);
 
+	m_musicName = (char*)dlgElem->Attribute(NeoConstants::SCRIPT_ATTR_MUSIC);	
+	char* stopMusic = (char*)dlgElem->Attribute(NeoConstants::SCRIPT_ATTR_STOP_MUSIC);
+	bool m_stopMusic = stopMusic == NULL?false:true;
+
 	this->m_scriptLabel = new ZLabelTTF(lines, Utility::getDefaultScriptSize(), ZLabelTTF::FONT_COLOR_DEFAULT , ZLabelTTF::YAHEI, ZLabelTTF::FONT_DEFAULT_SIZE);
 	
 	//m_scriptLabel->addToCCNode(parentNode, 12);
@@ -32,8 +36,7 @@ bool ZAutoDlg::play(bool delay)
 	if(this->m_scriptState == ScriptState::NOT_FADED_IN)
 	{
 		this->m_scriptLabel->resetIter();
-		this->m_scriptState = ScriptState::SCRIPT_DONE;
-		
+		this->m_scriptState = ScriptState::SCRIPT_DONE;		
 	}
 
 
@@ -41,6 +44,8 @@ bool ZAutoDlg::play(bool delay)
 	this->m_parentScriptLayer->switchCue(false);
 	this->m_parentScriptLayer->setAnimationPlaying(true);
 	m_scriptLabel->rollScript();
+
+	Utility::playMusic((const char*)(this->m_musicName));
 
 	return true;
 }
